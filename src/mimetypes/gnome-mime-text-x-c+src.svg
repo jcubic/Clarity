@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    This is shape (source) for Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This svg file is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>C++ File Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>C++ File Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 29.09375,11.234375 c -3.183804,0 -5.71875,2.566196 -5.71875,5.75 l 0,94.031255 c 0,3.1838 2.534946,5.75 5.71875,5.75 l 69.8125,0 c 3.1838,0 5.71875,-2.5662 5.71875,-5.75 l 0,-70.656255 -21.03125,0 c -4.306108,0 -8.0625,-3.141109 -8.0625,-7.3125 l 0,-21.8125 -46.4375,0 z m 50.4375,0 0,21.8125 c 0,1.714122 1.631968,3.3125 4.0625,3.3125 l 21.03125,0 -25.09375,-25.125 z M 42.5,62.921875 c 2.421862,3.3e-5 4.424464,0.468782 6,1.40625 1.575502,0.93753 2.598939,2.125029 3.09375,3.53125 0.494771,1.393255 0.749979,3.544294 0.75,6.5 l 0,3.03125 -8.21875,0 0,-5.53125 c -1.3e-5,-1.601538 -0.09897,-2.5781 -0.28125,-2.96875 -0.169283,-0.40362 -0.557304,-0.624973 -1.15625,-0.625 -0.677093,2.7e-5 -1.098968,0.268256 -1.28125,0.75 -0.182301,0.481797 -0.28126,1.523462 -0.28125,3.125 l 0,14.6875 c -1e-5,1.536465 0.09895,2.531255 0.28125,3 0.182282,0.468754 0.611968,0.687504 1.25,0.6875 0.611967,4e-6 1.005196,-0.218746 1.1875,-0.6875 0.1953,-0.468745 0.281237,-1.580722 0.28125,-3.3125 l 0,-3.96875 8.21875,0 0,1.25 c -2.1e-5,3.268238 -0.218771,5.570319 -0.6875,6.9375 -0.455749,1.367191 -1.473977,2.565106 -3.0625,3.59375 -1.575536,1.028646 -3.526055,1.562499 -5.84375,1.5625 -2.408863,-10e-7 -4.406257,-0.440104 -5.96875,-1.3125 -1.562504,-0.872394 -2.58594,-2.088539 -3.09375,-3.625 -0.507814,-1.549473 -0.781251,-3.869784 -0.78125,-6.96875 l 0,-9.25 c -10e-7,-2.278624 0.09374,-3.960913 0.25,-5.09375 0.156248,-1.145807 0.606769,-2.257785 1.375,-3.3125 0.781246,-1.054658 1.851558,-1.869761 3.21875,-2.46875 1.380201,-0.611947 2.966137,-0.937467 4.75,-0.9375 z m 19.46875,7.09375 4.75,0 0,7.03125 7.0625,0 0,4.78125 -7.0625,0 0,6.96875 -4.75,0 0,-6.96875 -7.03125,0 0,-4.78125 7.03125,0 0,-7.03125 z m 21.3125,0 4.78125,0 0,7.03125 7.03125,0 0,4.78125 -7.03125,0 0,6.96875 -4.78125,0 0,-6.96875 -7,0 0,-4.78125 7,0 0,-7.03125 z" style="fill:#aaaaaa"/>
+</svg>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    This is shape (source) for Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This svg file is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Certificate Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Certificate Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 63.60921,9.4038203 c -3.622482,0.040062 -5.946082,4.6066087 -9.378893,5.7641117 -3.43281,1.157501 -8.00237,-1.054415 -10.909478,1.107231 -2.907109,2.161646 -2.104126,7.173708 -4.200964,10.127903 -2.096839,2.954193 -7.125209,3.869698 -8.206533,7.327261 -1.081313,3.457564 2.532626,7.059036 2.572685,10.681521 0.04002,3.622482 -3.502227,7.281272 -2.344724,10.714083 1.1575,3.432811 6.207714,4.257325 8.36936,7.164434 2.161646,2.907108 1.474729,7.965935 4.428922,10.062773 1.838263,1.30477 4.289342,0.877747 6.708516,0.65131 l 0,45.591872 14.426563,-19.865035 14.393998,19.865035 0,-45.787263 c 1.914679,0.123628 3.740861,0.124156 5.177932,-0.944404 2.907109,-2.161646 2.136691,-7.141143 4.233529,-10.095337 2.09684,-2.954195 7.125216,-3.902264 8.206532,-7.359828 1.081316,-3.457565 -2.532629,-7.059035 -2.572681,-10.68152 -0.04006,-3.622483 3.469658,-7.281273 2.312156,-10.714083 C 95.668628,29.581074 90.65098,28.75656 88.489334,25.84945 86.327689,22.942342 87.014607,17.916082 84.060412,15.819244 81.106219,13.722404 76.543367,15.988726 73.085805,14.907407 69.844336,13.893673 67.555971,9.9307259 64.29309,9.4689507 64.075564,9.4381683 63.835618,9.4013199 63.60921,9.4038097 z m 0,9.7696817 c 1.651242,-0.02549 3.330953,0.10457 5.015105,0.423352 C 82.097526,22.147067 91.006982,35.204732 88.45677,48.67794 85.906557,62.151152 72.848893,71.060609 59.375683,68.510396 45.902473,65.960184 36.993016,52.902521 39.543229,39.429309 41.774665,27.64025 52.050535,19.351996 63.60921,19.173502 z m -0.81414,4.428922 C 53.62832,24.131903 45.661052,30.80454 43.874455,40.24345 41.766763,51.37875 49.054522,62.071478 60.189823,64.17917 71.325127,66.286863 81.985286,58.999104 84.092978,47.8638 86.20067,36.728499 78.945477,26.068339 67.810175,23.960645 67.462196,23.89478 67.114935,23.81295 66.768076,23.765253 65.423994,23.580468 64.104606,23.526784 62.79507,23.602421 z m 1.0421,2.214461 c 0.367139,-0.01433 0.740132,0.02493 1.107233,0.03256 0.211612,0.0045 0.422583,-0.01056 0.618746,0.03258 0.588487,0.129074 1.083518,0.434215 1.432886,0.81414 0.465828,0.506556 0.645738,1.164923 0.521049,1.823671 -0.124684,0.658751 -0.525131,1.188889 -1.009534,1.56315 -0.484402,0.374266 -1.06991,0.566549 -1.693411,0.553616 -0.270405,-0.0056 -0.51156,0.02189 -0.781574,0.03258 -6.154268,0.111676 -12.021045,5.77994 -12.895982,11.886446 -0.08615,0.601269 -0.37627,1.118703 -0.81414,1.530582 -0.437868,0.411882 -1.023483,0.722636 -1.693411,0.74901 -0.669926,0.02636 -1.303847,-0.303951 -1.725977,-0.846706 C 46.480926,43.44576 46.25474,42.643432 46.382006,41.806617 47.674512,33.307886 55.070892,26.292602 63.83717,25.816904 z" style="fill:#aaaaaa"/>
+</svg>

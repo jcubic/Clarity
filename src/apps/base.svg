@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Libre Office Database</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This icon is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    -->
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Libre Office Database</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 25.15625 7.84375 C 21.934691 7.84375 19.28125 10.528441 19.28125 13.75 L 19.28125 114.28125 C 19.28125 117.50281 21.919281 120.15625 25.15625 120.15625 L 102.8125 120.15625 C 106.04947 120.15625 108.71875 117.51822 108.71875 114.28125 L 108.71875 49.78125 L 108.71875 48.96875 L 108.125 48.375 L 68.25 8.4375 L 67.65625 7.84375 L 66.8125 7.84375 L 25.15625 7.84375 z M 104.375 8.28125 C 102.51902 8.28125 86.191384 8.4375 82.96875 8.4375 C 79.746122 8.4375 78.749033 10.806914 80.6875 13.1875 C 82.625964 15.568085 102.51936 35.042857 103.625 36.3125 C 105.10448 38.011404 108.3125 37.807027 108.3125 33.875 L 108.3125 12.21875 C 108.3125 10.333734 106.84395 8.28125 104.375 8.28125 z M 25.15625 11.84375 L 65.96875 11.84375 L 104.71875 50.59375 L 104.71875 114.28125 C 104.71875 115.34686 103.87809 116.15625 102.8125 116.15625 L 25.15625 116.15625 C 24.090645 116.15625 23.28125 115.36227 23.28125 114.28125 L 23.28125 13.75 C 23.28125 12.668987 24.075235 11.84375 25.15625 11.84375 z M 64 55.65625 C 50.1052 55.65625 38.84375 59.482836 38.84375 64.1875 L 38.84375 70.5 C 38.84375 75.20467 50.1052 79.03125 64 79.03125 C 77.89481 79.03125 89.15625 75.20467 89.15625 70.5 L 89.15625 64.1875 C 89.15625 59.482836 77.89481 55.65625 64 55.65625 z M 38.84375 75.5 L 38.84375 81.8125 C 38.84375 86.51717 50.1052 90.34375 64 90.34375 C 77.89481 90.34375 89.15625 86.51717 89.15625 81.8125 L 89.15625 75.5 C 89.15625 80.20467 77.89481 84.03125 64 84.03125 C 50.1052 84.03125 38.84375 80.20467 38.84375 75.5 z M 38.84375 86.8125 L 38.84375 93.125 C 38.84375 97.82967 50.1052 101.65625 64 101.65625 C 77.89481 101.65625 89.15625 97.82967 89.15625 93.125 L 89.15625 86.8125 C 89.15625 91.51717 77.89481 95.34375 64 95.34375 C 50.1052 95.34375 38.84375 91.51717 38.84375 86.8125 z " style="fill:#aaaaaa"/>
+</svg>

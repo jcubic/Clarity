@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Twitter Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This icon is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    -->
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Twitter Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 42.159253,9.329017 c -5.529837,0 -11.376405,2.30654 -15.343815,6.220466 -3.997737,3.949808 -6.393257,9.884798 -6.393257,15.44749 l 0,44.061633 c -1.5e-5,11.609264 4.594617,22.607627 12.821071,30.825864 8.219223,8.22333 19.185619,12.78651 30.791306,12.78651 l 21.875305,0 c 5.557748,-2e-5 11.358149,-2.48253 15.274697,-6.39325 3.93937,-3.92472 6.39326,-9.71394 6.39326,-15.274703 1e-5,-5.561033 -2.47195,-11.393786 -6.39326,-15.309258 -3.920526,-3.91758 -9.706143,-6.358698 -15.274697,-6.358698 l 0,-0.656605 c 5.564754,-1.6e-5 11.352851,-2.411037 15.274697,-6.32414 3.92506,-3.919225 6.39326,-9.74853 6.39326,-15.309257 0,-5.560985 -2.45126,-11.425155 -6.39326,-15.343816 -3.928112,-3.91064 -9.77745,-6.32414 -15.343813,-6.32414 l -22.082654,0 0,-0.414698 C 63.758078,25.412189 61.306218,19.640773 57.399395,15.722274 53.48964,11.768456 47.71312,9.329017 42.159253,9.329017 z m 0,10.60935 c 3.008445,0 5.595816,1.0791 7.741024,3.248466 2.15326,2.159703 3.248466,4.742979 3.248466,7.775582 l 0,11.058606 32.726562,0 c 3.039044,0 5.635942,1.083931 7.81014,3.248465 2.175808,2.162924 3.248466,4.746201 3.248466,7.775583 0,3.027771 -1.08071,5.645605 -3.248466,7.81014 -2.166144,2.161313 -4.780759,3.213907 -7.81014,3.213907 l -32.76112,0 0,10.954932 c 0,3.039045 1.089636,5.6087 3.213907,7.741024 2.124272,2.122661 4.673864,3.213907 7.706466,3.213907 l 21.840747,0 c 3.029381,0 5.643996,1.083932 7.81014,3.248466 2.167756,2.164534 3.248466,4.746201 3.248466,7.775582 0,3.027773 -1.08071,5.615883 -3.248466,7.775583 -2.166144,2.16292 -4.742979,3.24846 -7.775582,3.24846 l -21.840747,0 c -9.092976,0 -16.873406,-3.21971 -23.326747,-9.676275 -6.458171,-6.451729 -9.67628,-14.23055 -9.67628,-23.326747 l 0,-44.027075 c 0,-3.116349 1.063868,-5.754985 3.213908,-7.879257 2.150039,-2.12105 4.779013,-3.179349 7.879256,-3.179349 z" style="fill:#aaaaaa"/>
+</svg>

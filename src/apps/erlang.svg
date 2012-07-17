@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Erlang Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This icon is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    -->
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Erlang Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 12.239265,30.664279 14.960911,0 c -5.59432,5.460938 -7.654216,10.692785 -10.342106,18.023379 -3.200764,8.729348 -0.549141,29.987457 3.815534,37.55289 2.943384,5.101853 6.282685,8.994876 8.233522,11.095173 l -16.667861,0 z m 89.614855,0 13.90661,0 0,66.671442 -13.55518,0 c 1.31391,-1.750328 3.43934,-4.534454 5.12085,-6.426163 2.32782,-2.618784 4.97023,-6.978412 4.97023,-6.978412 L 96.281428,75.798034 c 0,0 -5.48977,11.600331 -15.964999,15.964998 -10.475214,4.364666 -19.784679,-0.838179 -25.604243,-7.530659 -5.819578,-6.692502 -5.82371,-22.14014 -5.82371,-22.14014 l 60.797524,0 c 1.16391,-14.839892 -2.63216,-21.249816 -4.66901,-25.90547 -0.91799,-2.098266 -1.89261,-3.810819 -3.16287,-5.522484 z m -38.356164,1.757154 c 0.35429,-0.01632 0.731685,-0.0092 1.104497,0 11.930114,0.290977 13.053143,12.802122 13.053143,12.802122 l -27.311192,0 c 0,0 2.170772,-12.298638 13.153552,-12.802122 z" style="fill:#aaaaaa"/>
+</svg>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (C) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    licensed under the GNU GPL Version 3 <http://www.gnu.org/licenses/>.
+
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Red Waring Element</title>
+    <desc>This icon is a part of Clarity icon theme</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Red Warning Element</dc:title>
+                <dc:description>This icon is a part of Clarity icon theme</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path id="shape" d="m 100.60965,80.02071 c -0.750272,0.01636 -1.495262,0.520945 -2.044872,1.47351 l -24.76399,42.92726 C 72.685578,126.35431 73.684418,128 75.875728,128 l 49.573102,0 c 2.51288,0 3.10451,-1.7703 2.0599,-3.57852 L 102.71467,81.49422 c -0.5881,-1.018006 -1.35474,-1.48987 -2.10502,-1.47351 z m -0.27064,10.344642 c 1.26946,3.1e-5 2.27083,0.393221 2.99213,1.157758 0.73571,0.764597 1.0976,1.783438 1.09761,3.067306 -10e-6,1.759974 -0.32939,4.157726 -1.0074,7.187124 -0.76458,3.49106 -1.20837,5.87316 -1.33819,7.15705 -0.0289,0.80785 -0.0608,1.62857 -0.0752,2.45083 -0.0866,1.09637 -0.36657,1.77018 -0.85704,2.02984 -0.18754,0.11541 -0.41756,0.18044 -0.69165,0.18043 -0.663592,10e-6 -1.073032,-0.52506 -1.202862,-1.56373 -0.0144,-0.10097 -0.0151,-0.87231 -0.015,-2.30048 -1e-5,-2.62548 -0.55881,-6.38771 -1.68401,-11.30693 -0.43278,-1.918606 -0.64655,-3.183116 -0.64655,-3.789026 0,-1.096333 0.28001,-2.064577 0.85705,-2.886877 0.64915,-0.92322 1.50361,-1.383264 2.571122,-1.383295 z m 0.0301,25.500748 c 0.89439,0 1.66635,0.26315 2.31551,0.79689 0.69244,0.57704 1.03747,1.30023 1.03748,2.1802 -1e-5,0.96653 -0.31192,1.77039 -0.93222,2.39069 -0.6059,0.62031 -1.39411,0.91719 -2.36063,0.91719 -0.807852,0 -1.514172,-0.29627 -2.120052,-0.90215 -0.60589,-0.60588 -0.90215,-1.3122 -0.90215,-2.12005 0,-0.86555 0.2794,-1.62124 0.84201,-2.27041 0.5626,-0.66358 1.26892,-0.99236 2.120052,-0.99236 z" style="fill:#bf0000;fill-opacity:1;stroke:none" />
+</svg>

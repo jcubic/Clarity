@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    This is shape (source) for Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This svg file is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Authors File Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Authors File Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 29.09375,11.234375 c -3.18381,0 -5.71875,2.566196 -5.71875,5.75 l 0,94.031255 c 0,3.1838 2.53494,5.75 5.71875,5.75 l 69.8125,0 c 3.1838,0 5.71875,-2.5662 5.71875,-5.75 l 0,-70.656255 -21.03125,0 c -4.30611,0 -8.0625,-3.141109 -8.0625,-7.3125 l 0,-21.8125 -46.4375,0 z m 50.4375,0 0,21.8125 c 0,1.714122 1.63197,3.3125 4.0625,3.3125 l 21.03125,0 -25.09375,-25.125 z m -5.6875,39.28125 c 5.621821,0 10.1875,5.777293 10.1875,12.875 0,7.09771 -4.565679,12.84375 -10.1875,12.84375 -5.621841,0 -10.15625,-5.74604 -10.15625,-12.84375 0,-7.097707 4.534409,-12.875 10.15625,-12.875 z m -23.03125,2.75 c 4.604175,0 8.34375,4.749601 8.34375,10.5625 0,5.812901 -3.739575,10.5 -8.34375,10.5 -4.60419,0 -8.3125,-4.687099 -8.3125,-10.5 0,-5.812899 3.70831,-10.5625 8.3125,-10.5625 z m 8.40625,24.5 c 0.554765,-0.0091 1.102846,0.453074 1.6875,1.34375 -0.819367,0.539681 -1.509747,1.293886 -2,2.09375 -2.706256,4.415362 -4.535752,9.912616 -5.5,16.0625 l -17.65625,0 c 0.380103,-7.005593 1.989137,-13.26528 4.71875,-17.71875 1.037041,-1.691965 2.588119,-1.800188 3.96875,0.03125 1.644325,2.181235 3.899269,3.5 6.375,3.5 2.535643,0 5.048636,-1.271937 6.5,-3.6875 0.639109,-1.063691 1.282804,-1.61472 1.90625,-1.625 z m 24.84375,2.65625 c 0.761249,-0.01249 1.530772,0.645844 2.34375,2.03125 3.243209,5.52676 5.349035,13.173713 5.84375,21.781255 l -36.8125,0 c 0.464117,-8.554024 2.448317,-16.187197 5.78125,-21.625005 1.266253,-2.065935 3.157961,-2.204986 4.84375,0.03125 2.007765,2.663346 4.758315,4.25 7.78125,4.25 3.096089,0 6.165344,-1.519282 7.9375,-4.46875 0.780367,-1.298795 1.520005,-1.98751 2.28125,-2 z" style="fill:#aaaaaa"/>
+</svg>

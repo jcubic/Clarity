@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Kexi Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This icon is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    -->
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Kexi Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 48.224115,9.494512 -14.202134,2.456587 0,11.361706 -10.286952,-5.297013 -8.52128,8.674819 -0.46061,12.743534 2.456585,2.303051 -6.678842,0.921219 -3.0707303,15.046585 2.1495114,14.125365 11.6687809,0 1.842439,4.836404 -5.143477,13.895061 12.897074,13.51122 11.515245,-6.678842 5.83439,2.840422 2.072743,14.12537 16.428417,4.14549 8.214206,-10.97787 4.98994,-0.15353 7.21622,8.36775 8.598048,-3.60812 12.820301,-14.278898 -1.6889,-1.688907 10.51726,-9.288965 3.1475,-11.975851 -10.59403,-8.21421 8.75159,-7.139451 -6.0647,-14.048597 -9.28896,-2.072743 -4.375792,-5.527318 4.068722,-5.604086 -12.282931,-9.749572 -6.678842,2.610121 -5.29701,-2.456584 -0.767685,-7.600061 -15.046585,-4.836403 -2.917194,6.525305 -5.143476,0.307073 -6.678842,-7.600061 z m -0.460609,2.456587 5.450549,6.985915 8.598048,0.307073 2.610121,-5.987927 11.975854,3.838413 c 0,0 -0.0239,2.288864 0.307074,6.75561 2.977848,0.496304 7.907131,4.145488 7.907133,4.145488 l 5.987927,-2.76366 9.749578,7.446524 c 0,0 -1.321208,2.129952 -4.299028,5.604086 2.812397,2.481527 5.604088,7.292988 5.604088,7.292988 l 10.44048,2.30305 4.45257,10.901096 c 0,0 -3.95936,0.631422 -9.74958,1.458597 1.15804,2.646962 -0.15353,7.292988 -0.15353,7.292988 l 11.59201,8.290978 -2.68689,8.598048 c 0,0 -7.75131,-3.453428 -12.05262,-5.604086 -1.32348,3.308702 -6.294997,6.602073 -6.294999,6.602073 l 6.448539,12.206159 -9.05866,4.529328 c 0,0 -6.459295,-8.832583 -8.444512,-11.975852 -4.135884,1.323485 -12.897076,0.844449 -12.897073,0.844451 l -1.995978,13.050611 -12.129388,-2.45659 c 0,0 -0.614146,-8.4238 -0.614146,-14.048595 -5.459344,-1.488915 -11.745547,-6.75561 -11.74555,-6.75561 L 35.327047,87.721401 26.57546,79.814268 c 0,0 4.99419,-6.824712 8.137441,-10.133414 -4.79762,-3.474137 -7.139456,-11.899083 -7.139456,-11.899086 L 13.83192,57.321158 12.373321,44.424085 c 0,0 5.936905,-0.1946 13.05061,-0.690914 -0.330877,-5.128488 2.30305,-9.135426 2.30305,-9.135426 l -10.056648,-6.909147 6.218232,-6.985914 c 0,0 5.518523,2.029382 10.977867,5.83439 1.488936,-2.481528 5.911159,-5.143476 5.911159,-5.143476 l -3.761647,-7.907134 10.747562,-1.535365 z m 17.963781,12.51323 C 39.423128,23.968027 36.336355,45.476993 37.246248,53.252438 c 0.909896,7.775447 19.643519,27.465773 36.848783,26.638598 17.205235,-0.827176 23.337562,-14.002952 23.33756,-22.109268 0,-8.106318 -5.401121,-32.821133 -31.705304,-33.317439 z" style="fill:#aaaaaa"/>
+</svg>

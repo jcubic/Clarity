@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    This is shape (source) for Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This svg file is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Corel Draw File Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Corel Draw File Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 28.5 11.25 C 25.598125 11.54359 23.375 14.015184 23.375 17 L 23.375 111 C 23.375 114.1838 25.90994 116.75 29.09375 116.75 L 98.90625 116.75 C 102.09005 116.75 104.625 114.1838 104.625 111 L 104.625 40.375 L 83.59375 40.375 C 79.28764 40.375 75.53125 37.233891 75.53125 33.0625 L 75.53125 11.25 L 29.09375 11.25 C 28.894762 11.25 28.693458 11.230427 28.5 11.25 z M 79.53125 11.25 L 79.53125 33.0625 C 79.53125 34.776622 81.16322 36.375 83.59375 36.375 L 104.625 36.375 L 79.53125 11.25 z M 69 49.46875 L 75.75 51.28125 L 54.03125 73 C 53.803453 72.876576 53.667255 72.717409 53.40625 72.59375 C 52.623225 72.222782 51.717498 71.831453 50.78125 71.5 C 49.777059 71.144493 48.766643 70.838839 47.875 70.59375 L 69 49.46875 z M 76.96875 52.5 L 88.84375 64.375 L 66.8125 85.625 C 65.456786 84.675707 63.957323 84.299032 62.625 84.125 C 61.045148 83.918635 59.770259 83.754441 58.6875 82.6875 C 57.628735 81.644201 57.428598 80.341043 57.21875 78.75 C 57.019299 77.237791 56.726965 75.494676 55.4375 74.03125 L 76.96875 52.5 z M 90.03125 65.59375 L 91.875 72.40625 L 70.96875 93.3125 C 70.406633 90.077872 69.1043 88.025932 68.0625 86.8125 L 90.03125 65.59375 z M 46.5625 72.0625 C 47.538226 72.299896 48.88855 72.696392 50.1875 73.15625 C 51.084445 73.47379 51.952587 73.79163 52.65625 74.125 C 53.359913 74.45837 53.913201 74.847903 54.0625 75 C 55.105186 76.062166 55.289599 77.404759 55.5 79 C 55.710403 80.595241 55.964905 82.424379 57.46875 83.90625 C 58.982455 85.397846 60.825967 85.637327 62.40625 85.84375 C 63.986532 86.050171 65.290341 86.247224 66.375 87.3125 C 67.231633 88.15383 68.970746 90.590863 69.40625 94.6875 L 45.4375 102.28125 C 45.012358 100.80428 44.218725 99.40623 43.0625 98.25 C 41.906273 97.093775 40.539467 96.300142 39.0625 95.875 L 46.5625 72.0625 z M 38.53125 97.53125 C 39.75216 97.878185 40.888444 98.51345 41.84375 99.46875 C 42.793177 100.41819 43.432736 101.56875 43.78125 102.78125 L 36.125 105.21875 L 38.53125 97.53125 z " style="fill:#aaaaaa"/>
+</svg>

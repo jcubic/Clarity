@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Force Exit Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This icon is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    -->
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Force Exit Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 80.746065,25.056667 c -0.157796,0.01523 -0.307935,0.0753 -0.432707,0.173083 L 65.947505,35.874327 c -0.129299,0.113819 -0.220022,0.265052 -0.259624,0.432707 -0.0789,0.272141 -0.01357,0.565744 0.173083,0.778871 0.04882,0.06591 0.107173,0.12426 0.173083,0.173083 0.05414,0.03547 0.112212,0.06452 0.173082,0.08654 L 86.284707,44.18229 63.264726,57.423107 c -0.03093,0.02658 -0.05987,0.05561 -0.08654,0.08654 -0.345849,0.270396 -0.421662,0.763189 -0.173082,1.125037 0.04882,0.06591 0.107172,0.124259 0.173082,0.173082 0.100167,0.08413 0.218749,0.143451 0.346165,0.173083 l 13.586982,2.942403 -9.952248,7.356009 c -0.257187,0.186708 -0.401396,0.465892 -0.346165,0.778872 0.05522,0.312977 0.300231,0.604919 0.605789,0.69233 L 84.813505,76.029482 61.620441,88.66451 c -0.06087,0.02188 -0.118942,0.05104 -0.173082,0.08654 -0.318104,0.294924 -0.355797,0.784931 -0.08654,1.125037 0.136251,0.146164 0.32058,0.238327 0.519248,0.259623 l 19.731412,4.500147 -6.490596,6.750222 c -0.269316,0.28281 -0.305337,0.71501 -0.08654,1.03849 0.159651,0.22241 0.418616,0.35189 0.69233,0.34617 l 42.83793,0 c 0.14941,0.0108 0.29891,-0.0191 0.43271,-0.0865 0.2555,-0.13911 0.41962,-0.40172 0.43271,-0.69233 l 0,-76.06979 c -0.0152,-0.157796 -0.0753,-0.307935 -0.17308,-0.432707 -0.078,-0.147521 -0.19865,-0.268153 -0.34617,-0.346165 -0.10775,-0.05359 -0.22587,-0.08311 -0.34617,-0.08654 l -37.731994,0 c -0.02883,-0.0015 -0.05771,-0.0015 -0.08654,0 z m -71.6561823,0.08654 c -0.1048188,0.0661 -0.1935201,0.154805 -0.2596238,0.259624 -0.1146776,0.148574 -0.1756858,0.331585 -0.1730826,0.519248 l -0.086541,76.15633 c -0.00997,0.2324 0.095126,0.4413 0.2596239,0.60579 0.1644976,0.1645 0.3733792,0.26948 0.6057889,0.25962 l 47.6842462,0 c 0.09072,-0.0144 0.178456,-0.0435 0.259624,-0.0865 0.0967,-0.0408 0.184797,-0.0995 0.259624,-0.17308 l 5.019395,-4.240526 c 0.318103,-0.294924 0.355796,-0.78493 0.08654,-1.125036 -0.04882,-0.06594 -0.107173,-0.12426 -0.173083,-0.173083 -0.08117,-0.04301 -0.168901,-0.07225 -0.259624,-0.08654 L 38.254295,91.953078 64.90901,78.106473 c 0.320081,-0.137967 0.538583,-0.430854 0.519248,-0.778871 -0.01939,-0.348018 -0.272419,-0.677194 -0.605789,-0.778872 l -17.567881,-6.144431 8.481046,-5.625183 c 0.104819,-0.0661 0.19352,-0.154805 0.259624,-0.259624 0.12869,-0.213543 0.170396,-0.457536 0.08654,-0.69233 -0.08385,-0.234784 -0.28439,-0.435557 -0.519248,-0.519248 l -13.50044,-5.36556 23.539229,-11.50999 c 0.350862,-0.175381 0.531264,-0.572278 0.432707,-0.951954 -0.05846,-0.277259 -0.254196,-0.505609 -0.519248,-0.605789 L 47.514212,38.557107 63.870514,26.61441 c 0.34585,-0.270396 0.421663,-0.763189 0.173083,-1.125037 -0.159651,-0.222404 -0.418616,-0.351886 -0.69233,-0.346165 l -53.9152192,0 c -0.114096,-0.02437 -0.2320414,-0.02437 -0.3461651,0 z" style="fill:#aaaaaa"/>
+</svg>

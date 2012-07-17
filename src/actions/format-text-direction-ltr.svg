@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Text Direction Left</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This icon is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    -->
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Text Direction Left</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 24.463249,20.775516 9.9959887,61.69517 l 10.1412663,0 2.482127,-7.446385 15.814702,0 2.411208,7.446385 10.212183,0 -14.538177,-40.919654 -12.056049,0 z m 30.707468,0.425507 0,40.494147 9.432086,0 0,-4.396913 c 1.293334,1.79162 3.249382,3.112163 4.82242,3.971403 1.57297,0.840961 3.415725,1.276525 5.46068,1.276525 3.617927,0 6.611031,-1.540533 8.935661,-4.53875 2.324533,-3.016482 3.474947,-6.895549 3.474978,-11.630542 -3.4e-5,-4.734959 -1.150447,-8.561391 -3.474978,-11.559622 -2.324628,-3.016468 -5.317731,-4.538716 -8.935661,-4.53875 -2.044958,3.4e-5 -3.88771,0.417313 -5.46068,1.276524 -1.573038,0.84099 -3.529086,2.179821 -4.82242,3.971404 l 0,-14.325426 -9.432086,0 z m 53.826713,9.077498 c -5.29583,3.4e-5 -9.492807,1.403149 -12.481553,4.255076 -2.98871,2.833701 -4.467833,6.779264 -4.467831,11.843296 0,5.064067 1.479126,9.062261 4.467831,11.914215 2.988741,2.833677 7.185723,4.255077 12.481553,4.255077 1.52057,0 2.9647,-0.203939 4.46783,-0.496427 1.52054,-0.274225 3.07058,-0.63887 4.53875,-1.205605 l 0,-8.084644 c -1.11859,0.895814 -2.35945,1.599584 -3.68773,2.05662 -1.31087,0.457046 -2.71605,0.709184 -4.18416,0.709179 -2.62171,7e-6 -4.6308,-0.820685 -6.09894,-2.411211 -1.4507,-1.608784 -2.19846,-3.86695 -2.19846,-6.737204 0,-2.870222 0.74777,-5.075744 2.19846,-6.666285 1.46814,-1.608772 3.47723,-2.411185 6.09894,-2.41121 1.38072,2.7e-5 2.69548,0.19952 3.9714,0.638261 1.29337,0.438788 2.62458,1.142558 3.90049,2.05662 l 0,-8.013726 c -1.48565,-0.566706 -3.03569,-1.00227 -4.53875,-1.276522 -1.48564,-0.292479 -2.92978,-0.425476 -4.46783,-0.42551 z m -78.506156,0.07092 5.389763,15.601945 -10.70861,0 5.318847,-15.601945 z m 40.91965,7.020875 c 2.009975,2.4e-5 3.490039,0.80465 4.53875,2.340293 1.066122,1.535692 1.63108,3.741219 1.631112,6.666285 -3.2e-5,2.925095 -0.564987,5.201543 -1.631112,6.737204 -1.048714,1.535677 -2.528775,2.269378 -4.53875,2.269376 -2.009971,5e-6 -4.164326,-0.733699 -5.247926,-2.269376 -1.066189,-1.553941 -1.560225,-3.830384 -1.560195,-6.737204 -3e-5,-2.906786 0.494006,-5.130593 1.560195,-6.666285 1.0836,-1.553931 3.237955,-2.340269 5.247926,-2.340293 z m 12.623393,31.274813 0,10.212183 -69.499581,0 0,15.885618 69.499581,0 0,12.481553 L 117.79126,87.934804 84.034317,68.645126 z" style="fill:#aaaaaa"/>
+</svg>

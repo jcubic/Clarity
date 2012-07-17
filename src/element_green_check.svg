@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (C) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    licensed under the GNU GPL Version 3 <http://www.gnu.org/licenses/>.
+
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Green Check Element Icon</title>
+    <desc>This icon is a part of Clarity icon theme</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Green Check Element Icon</dc:title>
+                <dc:description>This icon is a part of Clarity icon theme</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path id="shape" d="M 100.67051,0 C 85.578605,0 73.341002,12.237601 73.341002,27.329504 c 0,15.0919 12.237603,27.32951 27.329508,27.32951 C 115.7624,54.659014 128,42.421404 128,27.329504 128,12.237601 115.7624,0 100.67051,0 z m 13.78584,11.680708 5.79378,4.508344 -20.846423,26.789242 -0.149038,-0.111744 -5.644746,-4.396567 -12.500409,-9.705979 4.508338,-5.79378 12.500414,9.705979 16.338084,-20.995468 z" style="fill:#15a100;fill-opacity:1;stroke:none" />
+</svg>

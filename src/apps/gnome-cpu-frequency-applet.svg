@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>CPU Frequency Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This icon is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    -->
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>CPU Frequency Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 12.790171,12.790171 0,9.701862 c 51.264985,0 92.717789,41.452811 92.717789,92.717787 l 9.70186,0 C 115.20984,58.749658 69.250346,12.790171 12.790171,12.790171 z m 3.100595,19.90382 c -1.146805,0 -2.178824,0.254225 -3.100595,0.800154 l 0,10.602035 c 0.924338,0.535117 1.949007,0.900172 3.100595,0.900172 3.423301,0 6.20119,-2.701125 6.20119,-6.101171 0,-3.400041 -2.777889,-6.20119 -6.20119,-6.20119 z m 48.909388,24.404685 c -3.367847,0 -6.101172,2.801145 -6.101172,6.20119 0,0.499382 0.08875,0.935239 0.200039,1.400269 l -46.10885,29.405644 0,21.104041 21.104051,0 29.305625,-46.008821 c 0.513451,0.141755 1.042506,0.200038 1.600307,0.200038 3.367846,0 6.101168,-2.70113 6.101171,-6.101171 0,-1.500707 -0.515751,-2.93185 -1.40027,-4.000768 l 1.40027,-2.200422 -2.300442,1.400269 c -1.046444,-0.851297 -2.353204,-1.400269 -3.800729,-1.400269 z m 24.404684,48.709354 c -3.367847,0 -6.101168,2.70112 -6.101171,6.10117 0,1.22501 0.388718,2.3341 1.000192,3.30062 l 10.301977,0 c 0.611475,-0.96652 0.900173,-2.07561 0.900173,-3.30062 0,-3.40005 -2.733325,-6.10117 -6.101171,-6.10117 z" style="fill:#aaaaaa"/>
+</svg>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (C) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    licensed under the GNU GPL Version 3 <http://www.gnu.org/licenses/>.
+
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Yellow Lock Icon Element</title>
+    <desc>This icon is a part of Clarity icon theme</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Yellow Lock Icon Element</dc:title>
+                <dc:description>This icon is a part of Clarity icon theme</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path id="shape" d="m 64.012252,37.917487 c -7.766662,0 -14.113232,6.346568 -14.113232,14.113226 l 0,8.379728 c -3.092025,0.6772 -5.390466,3.412487 -5.390466,6.713582 l 0,16.07339 c 0,3.812945 3.07216,6.8851 6.885098,6.8851 l 25.237192,0 c 3.812937,0 6.860602,-3.072155 6.860602,-6.8851 l 0,-16.07339 c 0,-3.292824 -2.285654,-6.027758 -5.365969,-6.713582 l 0,-8.379728 c 0,-7.766658 -6.346571,-14.113226 -14.113224,-14.113226 z m 0,4.704408 c 5.224199,0 9.408816,4.18461 9.408816,9.408818 l 0,8.232715 -18.817633,0 0,-8.232715 c 0,-5.224208 4.18461,-9.408818 9.408817,-9.408818 z" style="fill:#b3a91a;fill-opacity:1;stroke:none" />
+</svg>

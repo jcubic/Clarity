@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>{{TITLE}}</title>
+    <desc>This icon is a part of Clarity icon theme for gtk</desc>
+    <!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (C) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    licensed under the GNU GPL Version 3 <http://www.gnu.org/licenses/>.
+
+    -->
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>{{TITLE}}</dc:title>
+                <dc:description>This icon is a part of Clarity icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <defs>
+        <linearGradient x1="0" y1="90" x2="0" y2="128" id="gradient" gradientUnits="userSpaceOnUse">
+            <stop id="start" style="stop-color:#0a5a8c;stop-opacity:1" offset="0" />
+            <stop id="stop" style="stop-color:#021520;stop-opacity:1" offset="1" />
+        </linearGradient>
+        <clipPath id="glow_clip" clipPathUnits="userSpaceOnUse">
+             <path d="M 0,0 0,48.355747 C 29.374263,48.090954 44.055815,53.715984 65.743069,65.351529 88.551519,77.588613 104.41797,84.470874 128,82.828673 L 128,0 z"/>
+        </clipPath>
+        <linearGradient x1="128" y1="0" x2="31" y2="70" id="white_gradient" gradientUnits="userSpaceOnUse">
+            <stop id="start" style="stop-color:#ffffff;stop-opacity:0.58282208;" offset="0" />
+            <stop id="stop" style="stop-color:#ffffff;stop-opacity:0;" offset="1" />
+        </linearGradient>
+    </defs>
+    <symbol id="shape">
+        <path d="{{PATH}}" />
+    </symbol>
+    <use style="fill:url(#gradient);fill-opacity:1;stroke:none" xlink:href="#shape" />
+    <use style="fill:url(#white_gradient);fill-opacity:1;stroke:none" clip-path="url(#glow_clip)" xlink:href="#shape"/>
+</svg>

@@ -1,0 +1,155 @@
+clarity-icon-theme (0.3.3~lucid1) lucid; urgency=low
+  * wireshark, pdfedit jdownloader, glade mimetype
+  * Change monodevelop icon
+  * Symlink to cups, pdfmod
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl> 
+
+clarity-icon-theme (0.3.2~oneiric1) oneiric; urgency=low
+  * Changeable Wireless load icons
+  * Add missing symlinks
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Thu, 12 Jan 2012 22:41:39 +0100
+
+clarity-icon-theme (0.3.1) maverick; urgency=low
+  * Add Libre Office icons
+  * Add icon for Flash Player and Teamviewer
+  * Add changable icons for wireless aplet
+  * Fix build script
+  * Fix change-theme script
+  * Add 16x16 icons created using ImageMagic in build process
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Wed, 28 Dec 2011 14:55:31 +0100
+
+clarity-icon-theme (0.3) maverick; urgency=low
+  * Add missing symlinks
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Fri, 14 Oct 2011 19:05:01 +0200
+
+clarity-icon-theme (0.2.11) maverick; urgency=low
+  * fix haskell mimetype icon
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Fri, 20 May 2011 18:14:47 +0200
+
+clarity-icon-theme (0.2.10b) maverick; urgency=low
+  * for launchpad only
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Sat, 16 Apr 2011 22:31:46 +0200
+
+clarity-icon-theme (0.2.10) maverick; urgency=low
+  * xfce4-notifyd xfce-nomail ristretto xfce-sensors image-vnd.djvu application-x-dia-diagram
+  * new template dark canus
+  * remove shadows from templates
+  * new symlinks, Gzip verions of 9 mimetypes
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Fri, 08 Apr 2011 14:36:06 +0200
+
+clarity-icon-theme (0.2.9) maverick; urgency=low
+  * Add icons for Dropbox status
+  * Mimetypes for inode-blockdevice, text-x-chdr, text-x-c++hdr, application-x-sharedlib,
+    application-vnd.ms-powerpoint, application-vnd.scribus, text-x-xptv and
+    text-x-gettext-translation-template
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Thu, 10 Feb 2011 09:16:24 +0100
+
+clarity-icon-theme (0.2.8) maverick; urgency=low
+  * Fix debian/control file
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Mon, 24 Jan 2011 02:57:56 +0100
+
+clarity-icon-theme (0.2.7) maverick; urgency=low
+  * Add mimetypes for application-x-cbr, application-x-asp, application-epub+zip,
+    application-mathml+xml, application-x-gnome-saved-search, application-x-gettext-translation,
+    text-x-gettext-translation-template, message-rfc822, text-x-perl, application-xslt+xml,
+    application-x-jar, text-x-adasrc, text-x-ocaml, text-x-erlang, x-cisco-vpn-settings,
+    application-x-kexi-connectiondata, text-x-iptables, text-calendar, application-x-ole-storage,
+    application-x-xbel and text-x-log
+  * Add appliction icons for erlang, makehuman and lxmusic
+  * change icon for xarchiver
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Wed, 12 Jan 2011 18:37:42 +0100
+
+clarity-icon-theme (0.2.6) maverick; urgency=low
+
+  * Add status indicators for vpn conection, batery, ups, keyboard, mouse
+  * Add icons for facebook, xmms, gnometrix, unison, hxplay, flickr, ipla, glchess, 
+    songbird, scribes, scummvm, picasa-fontcfg, openshot, onboard, nxclient-icon,
+    nexuiz48x48, nero, moiosms, magnatune, mirage, monodevelop, gtweakui, gnome-mines,
+    gnome-cpu-frequency-applet, latex, limewire, graphics-svg-editor, im-icq, im-aim,
+    im-msn, im-nov, openarena128, proxy, gnibbless, gajim, im-jabber, identica, clementine,
+    gchem3d, palm-pilot, deluge, elisa, gnome-settings-ui-behavior, miro, neverball, jamendo, 
+    indicator-usb, bluefish, download, gnome-nettools, celestia, midori, amarok, opera-widget,
+    nxclient-wizard, kexi, vmware-player, kalgebra, force-exit, gnome-activity-journal,
+    visualization, wesnoth, amule, gnome-laptop, gnome-sudoku, gbrainy, gksu-root-terminal,
+    xournal, nxclient-desktop, gnome-tetraves, azureus, xchat, ut, scim-setup, xarchiver, squeeze, 
+    tmw, Thunar, rhythmbox-notplaying, smplayer, chemical-x-cml, application-x-brasero, text-x-sl,
+    application-x-slx, application-x-mswinurl, applications-science, applications-drawing
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Sun, 26 Dec 2010 22:38:50 +0100
+
+clarity-icon-theme (0.2.5) maverick; urgency=low
+
+  * Add icons for minitube, scribus, rhythmbox, exaile, haskell, applications-lisp
+    haskell, remastersys, wmtweaks, twitter, idjc, package_games_card, vim, taskbar,
+    gnome-tali, package_games_rpg, gnome-brightness-applet, gambas, dia, abiword,
+    launchpad, vmware, matroskalogo, lyx, docky, gnome-do, openid, nvidia, mypaint,
+    joomla, minitube, folder-templates, folder-publicshare, folder-heart,
+    folder-important, folder-joomla, folder-byte, folder-fonts, folder-lock, 
+    folder-cd, folder-games, folder-icons, folder-deviantart, folder-python, 
+    folder-science, folder-settings, folder-wallpapers, folder-user, folder-recent,
+    folder-ubuntu, folder-web-upload, emblem-education, emblem-art, 
+    emblem-presentation, emblem-marketing, emblem-development, emblem-draft,
+    applications-mathematics, applications-lisp, applications-ide, gnome-wokspace, 
+    gnome-dev-disc-cdr, drive-harddisk-ieee1394, media-cdrw, gnome-dev-memory, 
+    gnome-dev-printer-network
+  * Add missing symlinks
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Sat, 25 Dec 2010 01:41:06 +0100
+
+clarity-icon-theme (0.2.4.3) maverick; urgency=low
+
+  * add rules for copy change-theme script to /usr/bin
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Thu, 23 Dec 2010 16:43:00 +0100
+
+clarity-icon-theme (0.2.4.1) maverick; urgency=low
+
+  * add helper tools for creating new icons
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Thu, 23 Dec 2010 16:16:00 +0100
+
+clarity-icon-theme (0.2.4) maverick; urgency=low
+
+  * Add symlink virtualbox-bin and thunderbird-icon
+  * Add icons for Eclipse, qjackctl, kvirc, Calibre and KeePassX
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Thu, 23 Dec 2010 12:11:00 +0100
+
+clarity-icon-theme (0.2.3) maverick; urgency=low
+
+  * Add icon for caffeine.
+  * Add rules for make to change distributor logos.
+  * Add icons for Tuxtremsplit, Kmajhongg, Kshisen, Yahtzeesharp and Meld, 
+    and missing symlink to applications-utilities
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Tue, 21 Dec 2010 19:30:00 +0100
+
+clarity-icon-theme (0.2.2) maverick; urgency=low
+
+  * add icons for ailurus, avant-window-navigator, dockbarx, easytag, EasyTAG_icon,
+    filezilla, geany, k3b, palimpset, shutter, skype, nautilus, qt, keyboard shortcuts,
+    monitor preferences and lottanzb
+  * Add new themes lux_caeruleus, lux_violaceus
+  * And change-theme script with GUI to change color of icons.
+  * Add icons for xfburn.
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Tue, 14 Dec 2010 12:00:00 +0100
+
+clarity-icon-theme (0.2.1) maverick; urgency=high
+
+  * Add symlink to gz and chm files, other subtitles files and add icon for changelog.
+  * Add icons for subtitles, Corel Draw, EPS, WMF and change AI, folder windows,
+    folder Internet, folder html, folder user, fix missing icons that stay the same
+    across different color schemes and update configure script to check if building
+    rules are valid.
+  * Fix Fedora issue (This really strange but Fedora don't display svg files that have
+    specific comments between xml prolog and svg root tag)
+
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Mon, 29 Nov 2010 13:00:00 +0100
+
+clarity-icon-theme (0.2.0)
+Initial Release

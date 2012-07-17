@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Stop Call Icon</title>
+    <desc>This icon is a part of Clarity icon theme for gtk</desc>
+    <!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    This icon is free: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    -->
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Stop Call Icon</dc:title>
+                <dc:description>This icon is a part of Clarity icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <defs>
+        <linearGradient x1="0" y1="128" x2="128" y2="0" id="gradient" gradientUnits="userSpaceOnUse">
+            <stop id="start" style="stop-color:#621818;stop-opacity:1" offset="0" />
+            <stop id="stop" style="stop-color:#d53535;stop-opacity:1" offset="1" />
+        </linearGradient>
+    </defs>
+    <path d="m 25.352195,102.64781 c 21.344605,21.3446 55.951006,21.3446 77.295615,0 21.3446,-21.344611 21.3446,-55.95101 0,-77.295615 -21.344611,-21.3446065 -55.951009,-21.3446058 -77.295615,0 -21.3446044,21.344604 -21.3446065,55.951004 0,77.295615 z M 24.888156,74.59409 c -4.070232,-4.070232 -2.855393,-11.905461 2.695845,-17.456699 2.171454,-2.171454 4.701907,-3.634427 7.20365,-4.419417 C 41.380325,49.348188 52.002601,47.149508 64,47.149508 c 11.9974,0 22.619681,2.198676 29.212349,5.568466 2.501744,0.78499 5.032197,2.247965 7.203651,4.419417 5.55124,5.55124 6.76608,13.386464 2.69584,17.456699 -4.070231,4.070235 -11.905455,2.855395 -17.456695,-2.695845 -1.79498,-1.79498 -3.105775,-3.839532 -3.955378,-5.899922 -0.726862,-1.76272 1.402348,-3.298181 1.900349,-5.170718 C 84.019383,59.25112 81.962361,57.420054 80.440233,57.004809 75.348425,55.615735 70.316477,55.148654 64,55.148654 c -6.316477,0 -11.348425,0.467082 -16.440233,1.856155 -1.522129,0.415244 -3.579149,2.24631 -3.159883,3.822796 0.498,1.872537 2.627211,3.407996 1.900349,5.170718 -0.849604,2.060389 -2.160398,4.104942 -3.955378,5.899922 -5.551239,5.551239 -13.386464,6.76608 -17.456699,2.695845 z" style="fill:url(#gradient);fill-opacity:1;stroke:none" xlink:href="#shape" />
+</svg>

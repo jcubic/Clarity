@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    This icon is a part of Clarity vector icon theme for gtk
+
+    Copyright (C) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+
+    licensed under the GNU GPL Version 3 <http://www.gnu.org/licenses/>.
+
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Yellow Package Icon Element</title>
+    <desc>This icon is a part of Clarity icon theme</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Yellow Package Icon Element</dc:title>
+                <dc:description>This icon is a part of Clarity icon theme</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path id="shape" d="m 99.579205,78.3623 c -13.290324,1.76629 -14.950088,2.733434 -22.020044,6.254603 -1.760027,0.876575 -3.36932,2.960591 -3.239847,4.922557 l 1.38133,25.1402 c 0.364583,3.10215 0.343381,6.24264 4.470486,7.23315 l 15.612348,5.35135 c 3.938424,0.94522 7.108002,1.16227 10.623682,-0.45207 l 15.11928,-6.95688 c 2.09027,-1.25129 4.35635,-3.00515 4.92256,-5.37462 l 1.53202,-23.432379 c 0.21614,-3.285423 -1.42685,-5.057149 -4.24501,-6.781074 -6.64489,-4.064816 -13.63918,-5.822655 -24.156805,-5.904837 z m 19.398375,7.824598 c 0,0 -8.98692,3.977006 -13.17316,6.242643 -1.53341,0.829896 -3.39096,1.755294 -3.69192,3.717033 l -1.1973,23.526546 -1.138403,-24.154423 c -0.08216,-1.743166 -3.5729,-3.277423 -5.223938,-3.842609 -7.741186,-2.649972 -11.994715,-3.824349 -11.994715,-3.824349 9.326599,-4.89851 23.564806,-6.137699 36.419436,-1.664841 z" style="fill:#b3a91a;fill-opacity:1;stroke:none" />
+</svg>

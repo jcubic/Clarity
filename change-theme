@@ -1,0 +1,56 @@
+#!/bin/bash
+# This script is a part of Clarity Vector Icon theme for GTK
+# Copyright (C) 2010 Jakub Jankiewicz <http://jcubic.pl>
+
+
+BASE=.
+
+theme=$(ls ${BASE}/src/template_*.svg | sed -e 's/.*template_\(.*\)\.svg/\1/' | zenity --list --title="Select The Theme" --column=theme 2> /dev/null)
+#user don't select the theme
+[ -z "$theme" ] && exit
+
+#variables for counting progress
+num=$(find ${BASE}/src -mindepth 2 -type f -name "*.svg" | wc -l)
+count=0
+rcount=$(grep -v '^#' ${BASE}/src/compound_icons_rules | grep -v '^ *$' | wc -l)
+lcount=$(find scalable -type l | wc -l)
+#num=`echo $num+$rcount | bc`
+function progress() {
+    (( count++ ));
+    (( percent = (count*99)/$1 ));
+    echo $percent;
+}
+
+{
+    #find all icons in src directory
+    for i in $(find ${BASE}/src -mindepth 2 -name "*.svg" -type f); do
+        SHAPE=$(grep "path.*d=" $i | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";);
+        TITLE=$(grep "<title>" $i | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/");
+        #replace d attribute of source icons in template and save it in scalable directory 
+        sed -e "s/{{PATH}}/${SHAPE}/" -e "s/{{TITLE}}/${TITLE}/" ${BASE}/src/template_${theme}.svg > `echo $i | sed -e "s/src/scalable/"`;
+        progress $num
+    done
+    find static -type f | sed -e 's/[^\/]*\/\(.*\)/cp & scalable\/\1/' | bash
+    IFS=$'\n'
+	count=0
+    #skip comments and empty lines
+    for i in $(grep -v '^#' ${BASE}/src/compound_icons_rules | grep -v '^ *$'); do
+        if $(echo $i | grep -e ".*=.*\+.*" > /dev/null); then
+            #if rule is valid process rules
+            desc=$(echo $i | sed -e 's/\([^= ]*\) *=.*/\1/')
+            source=$(echo $i | sed -e 's/[^=]*= *\([^ ]*\) *\+.*/\1/')
+            element=$(echo $i | sed -e 's/.*+ *\(.*\) *$/\1/')
+            sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d='  ${BASE}/src/$element | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" ${BASE}/scalable/$source > ${BASE}/scalable/$desc;
+        else
+            zenity --error --title="src/compound_icons_rules corupted" --text="bad line in $RULES_FILE file\n  '$i'"
+        fi
+        progress $rcount
+    done
+    count=0
+    for i in $(find scalable -type f); do
+        desc=$(echo $i | sed -e 's/scalable\(.*\)svg/16x16\1png/')
+        convert -background none $i -resize 16x16 $desc
+        progress $lcount
+    done
+    echo 100
+} | zenity --progress --title="Building ${theme} icons" --width=250
