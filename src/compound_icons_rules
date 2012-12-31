@@ -17,6 +17,7 @@ devices/usbpendrive_unmount.svg = devices/drive-removable-media-usb.svg + elemen
 status/ubuntuone-client-offline.svg = status/stock_weather-cloudy.svg + element_red_minus_bottom.svg
 apps/stock_delete-bookmark.svg = actions/bookmark-new.svg + element_red_minus_bottom.svg
 
+
 #error icons
 status/network-offline.svg = status/network-idle.svg + element_red_cancel_bottom.svg
 actions/touchpad-disabled.svg = devices/input-touchpad.svg + element_red_cancel_bottom.svg
@@ -34,6 +35,7 @@ status/dropboxstatus-x.svg = status/dropboxstatus-logo.svg + element_red_cancel_
 status/notification-network-wireless-disconnected.svg = status/nm-signal-00.svg + element_red_cancel_bottom.svg
 status/notification-network-ethernet-disconnected.svg = devices/network-wired.svg + element_red_cancel_bottom.svg
 status/microphone-sensitivity-muted.svg = devices/microphone.svg + element_red_cancel_bottom.svg
+
 
 #add/new icons
 actions/mail_new.svg = apps/email.svg + element_green_plus_bottom.svg
@@ -57,12 +59,14 @@ apps/ubiquity.svg = devices/drive-harddisk.svg + element_green_plus.svg
 actions/tag-new.svg = apps/easytags.svg + element_green_plus_bottom.svg
 devices/gnome-dev-printer-new.svg = devices/printer.svg + element_green_plus.svg
 
+
 #warning icons
 status/network-error.svg = status/network-idle.svg + element_red_warning_bottom.svg
 status/weather-severe-alert.svg = status/stock_weather-cloudy.svg + element_red_warning_bottom.svg
 apps/gdu-warning.svg = devices/drive-harddisk.svg + element_red_warning_bottom.svg
 actions/gtk-print-warning.svg = devices/printer.svg + element_red_warning_bottom.svg
 apps/xfce4-fsguard-plugin-warning.svg = devices/drive-harddisk.svg + element_yellow_warning_bottom.svg
+status/system-devices-panel-alert.svg = status/system-devices-panel.svg + element_red_warning_bottom.svg
 
 
 #down arrow
@@ -72,9 +76,11 @@ apps/ogmrip.svg = devices/drive-optical.svg + element_green_down_arrow_bottom.sv
 actions/mail-move.svg = actions/mail-copy.svg + element_green_down_arrow_bottom.svg
 actions/torrent-search-download.svg = emblems/emblem-web.svg + element_green_down_arrow_bottom.svg
 
+
 #up arrow
 actions/extract-archive.svg = mimetypes/package-x-generic.svg + element_green_up_arrow.svg
 actions/gtk-undelete.svg = places/user-trash.svg + element_green_up_arrow.svg
+
 
 #battery charging
 status/xfpm-battery-100-charging.svg = status/xfpm-battery-100.svg + element_red_bolt.svg
@@ -85,23 +91,25 @@ status/xfpm-battery-020-charging.svg = status/xfpm-battery-020.svg + element_red
 status/xfpm-battery-000-charging.svg = status/xfpm-battery-000.svg + element_red_bolt.svg
 
 
-
 #clock
 actions/mail-notification.svg = apps/email.svg + element_yellow_clock_bottom.svg
 actions/stock_timezone.svg = stock/epiphany-history.svg + element_yellow_clock_bottom.svg
+
 
 #info icons
 actions/gtk-print-report.svg = devices/printer.svg + element_blue_info_bottom.svg
 apps/user-info.svg = status/avatar-default.svg + element_blue_info_bottom.svg
 apps/hwbrowser.svg = devices/generic-card.svg + element_blue_info_bottom.svg
+status/system-devices-panel-information.svg = status/system-devices-panel.svg + element_blue_info_bottom.svg
+
 
 #Lock icons
 categories/debian-security.svg = distributor-logos/debian.svg + element_yellow_lock_bottom.svg
 actions/jockey-proprietary.svg = mimetypes/package-x-generic.svg + element_yellow_lock_bottom.svg
 apps/jockey.svg = devices/generic-card.svg + element_yellow_lock_bottom.svg
 
-#packages
 
+#packages
 mimetypes/application-x-gzpdf.svg = mimetypes/gnome-mime-application-pdf.svg + element_yellow_package_bottom.svg
 mimetypes/application-x-gzpostscript.svg = mimetypes/application-postscript.svg + element_yellow_package_bottom.svg
 mimetypes/image-x-gzeps.svg = mimetypes/openofficeorg23-drawing.svg + element_yellow_package_bottom.svg
@@ -111,6 +119,7 @@ mimetypes/packages-aqsis.svg = mimetypes/application-x-slx.svg + element_yellow_
 mimetypes/application-x-gz-font-linux-psf.svg = mimetypes/font_truetype.svg + element_yellow_package_bottom.svg
 mimetypes/application-x-gzdvi.svg = mimetypes/text-x-bibtex.svg + element_yellow_package_bottom.svg
 mimetypes/model-x-rib-gzip.svg = mimetypes/text-x-sl.svg + element_yellow_package_bottom.svg
+
 
 #other icons
 status/ubuntuone-client-updating.svg = status/stock_weather-cloudy.svg + element_green_reload.svg
@@ -132,10 +141,12 @@ apps/checkbox.svg = devices/monitor.svg + element_green_check_fit_monitor.svg
 
 mimetypes/vmlinuz.svg = mimetypes/gtk-file.svg + element_black_tux.svg
 
+
 #nm signal
 status/nm-signal-75.svg = status/part-nm-signal-75.svg + complement_nm_signal_75.svg
 status/nm-signal-50.svg = status/part-nm-signal-50.svg + complement_nm_signal_50.svg
 status/nm-signal-25.svg = status/part-nm-signal-25.svg + complement_nm_signal_25.svg
+
 
 #vpn
 status/nm-vpn-connecting12.svg = status/nm-stage01-connecting12.svg + element_yellow_lock_center.svg
