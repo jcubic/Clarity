@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sed -e "s/{{PATH}}/`xclip -o -sel clip`/" -e "s/{{TITLE}}/$1/" src/shape_template.svg
