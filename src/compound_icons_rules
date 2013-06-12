@@ -141,6 +141,7 @@ apps/checkbox.svg = devices/monitor.svg + element_green_check_fit_monitor.svg
 
 mimetypes/vmlinuz.svg = mimetypes/gtk-file.svg + element_black_tux.svg
 
+mimetypes/application-x-rpm.svg = mimetypes/package-x-generic.svg + element_red_rpm_bottom.svg
 
 #nm signal
 status/nm-signal-75.svg = status/part-nm-signal-75.svg + complement_nm_signal_75.svg
