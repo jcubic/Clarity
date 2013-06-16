@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Emblem Important</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Emblem Important</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 63.96875 8.875 C 33.82779 8.875 9.40625 33.582364 9.40625 64.03125 C 9.40625 94.480137 33.82779 119.125 63.96875 119.125 C 94.10971 119.125 118.59375 94.480136 118.59375 64.03125 C 118.59375 33.582364 94.10971 8.875 63.96875 8.875 z M 63.3125 30.96875 C 65.950915 30.968816 68.032121 31.78601 69.53125 33.375 C 71.06032 34.964116 71.81247 37.081647 71.8125 39.75 C 71.81247 43.407877 71.12789 48.391295 69.71875 54.6875 C 68.129674 61.943217 67.207323 66.894118 66.9375 69.5625 C 66.87752 71.241526 66.811216 72.947291 66.78125 74.65625 C 66.601341 76.934914 66.019378 78.335339 65 78.875 C 64.610218 79.114875 64.132148 79.250017 63.5625 79.25 C 62.183309 79.250017 61.332329 78.158734 61.0625 76 C 61.03251 75.790146 61.03124 74.187006 61.03125 71.21875 C 61.03124 65.762028 59.869849 57.942705 57.53125 47.71875 C 56.631779 43.731176 56.187495 41.103056 56.1875 39.84375 C 56.187495 37.565165 56.769458 35.552794 57.96875 33.84375 C 59.317939 31.924957 61.09381 30.968816 63.3125 30.96875 z M 63.375 83.96875 C 65.233879 83.968763 66.838287 84.515672 68.1875 85.625 C 69.626624 86.824296 70.34373 88.327347 70.34375 90.15625 C 70.34373 92.165059 69.69546 93.83577 68.40625 95.125 C 67.146979 96.414227 65.50879 97.03125 63.5 97.03125 C 61.820988 97.03125 60.352991 96.415497 59.09375 95.15625 C 57.834492 93.897002 57.218744 92.429005 57.21875 90.75 C 57.218744 88.951078 57.799439 87.380456 58.96875 86.03125 C 60.138045 84.652083 61.606042 83.968763 63.375 83.96875 z " style="fill:#aaaaaa"/>
+</svg>

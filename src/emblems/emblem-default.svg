@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Emblem Default Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Emblem Default Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 63.886736,9.4999769 c -29.888579,0 -54.0460934,24.4074361 -54.0460934,54.5000001 0,30.092564 24.1575144,54.500003 54.0460934,54.500003 29.8878,0 54.272654,-24.407439 54.272654,-54.500003 0,-3.027475 -0.43678,-5.963156 -0.90836,-8.85625 L 67.161641,100.01669 35.603805,68.444841 52.153119,52.20462 67.168648,68.23852 106.57838,30.391384 C 96.690519,17.70067 81.196948,9.5256698 63.912662,9.5256698 z" style="fill:#aaaaaa"/>
+</svg>
