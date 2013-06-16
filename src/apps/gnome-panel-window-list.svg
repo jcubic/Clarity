@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Gnome panel window list</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Gnome panel window list</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 7.5e-7,40.4375 0,7.59375 15.54060725,0 0,31.9375 -15.54060725,0 0,7.59375 15.13435725,0 c 4.69656,0 8.5,-3.80345 8.5,-8.5 l 0,-30.15625 c 0,-4.69655 -3.80344,-8.46875 -8.5,-8.46875 z m 37.59374725,0 c -4.69655,0 -8.46875,3.7722 -8.46875,8.46875 l 0,30.15625 c 0,4.69655 3.7722,8.5 8.46875,8.5 l 90.406252,0 0,-7.59375 -90.781252,0 0,-31.9375 90.781252,0 0,-7.59375 z m 3.09375,11.4375 0,24.25 28.3125,0 0,-24.25 z" style="fill:#aaaaaa"/>
+</svg>
