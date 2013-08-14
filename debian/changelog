@@ -1,8 +1,11 @@
-clarity-icon-theme (0.3.3~lucid1) lucid; urgency=low
-  * wireshark, pdfedit jdownloader, glade mimetype
-  * Change monodevelop icon
+clarity-icon-theme (0.4.0~lucid2) lucid; urgency=low
+  * Nikon NEF, Wordpress, Freemind, pithos
+  * Preferences, XFce panel menu, Application Engineering
+  * Ufraw, new embeds, Themable System Upgrade
+  * Gnome Panel, notification area, window list, window menu, Gnumeric
+  * wireshark, pdfedit jdownloader, glade mimetype, Change monodevelop icon
   * Symlink to cups, pdfmod
- -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl> 
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Wed, 14 Aug 2013 19:29:35 +0200
 
 clarity-icon-theme (0.3.2~oneiric1) oneiric; urgency=low
   * Changeable Wireless load icons

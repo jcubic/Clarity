@@ -203,6 +203,8 @@ elements:
 	@echo "building scalable/actions/gtk-print-warning.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_yellow_warning_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/devices/drive-harddisk.svg > scalable/apps/xfce4-fsguard-plugin-warning.svg;
 	@echo "building scalable/apps/xfce4-fsguard-plugin-warning.svg"
+	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_red_warning_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/status/system-devices-panel.svg > scalable/status/system-devices-panel-alert.svg;
+	@echo "building scalable/status/system-devices-panel-alert.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_green_down_arrow_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/devices/printer.svg > scalable/status/printer-printing.svg;
 	@echo "building scalable/status/printer-printing.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_green_down_arrow_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/mimetypes/package-x-generic.svg > scalable/apps/gdeb.svg;
@@ -239,6 +241,8 @@ elements:
 	@echo "building scalable/apps/user-info.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_blue_info_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/devices/generic-card.svg > scalable/apps/hwbrowser.svg;
 	@echo "building scalable/apps/hwbrowser.svg"
+	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_blue_info_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/status/system-devices-panel.svg > scalable/status/system-devices-panel-information.svg;
+	@echo "building scalable/status/system-devices-panel-information.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_yellow_lock_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/distributor-logos/debian.svg > scalable/categories/debian-security.svg;
 	@echo "building scalable/categories/debian-security.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_yellow_lock_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/mimetypes/package-x-generic.svg > scalable/actions/jockey-proprietary.svg;
@@ -291,6 +295,8 @@ elements:
 	@echo "building scalable/apps/checkbox.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_black_tux.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/mimetypes/gtk-file.svg > scalable/mimetypes/vmlinuz.svg;
 	@echo "building scalable/mimetypes/vmlinuz.svg"
+	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_red_rpm_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/mimetypes/package-x-generic.svg > scalable/mimetypes/application-x-rpm.svg;
+	@echo "building scalable/mimetypes/application-x-rpm.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/complement_nm_signal_75.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/status/part-nm-signal-75.svg > scalable/status/nm-signal-75.svg;
 	@echo "building scalable/status/nm-signal-75.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/complement_nm_signal_50.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/status/part-nm-signal-50.svg > scalable/status/nm-signal-50.svg;
@@ -428,7 +434,7 @@ zenwalk:
 
 _16x16:
 	@tar xzf 16x16.tar.gz
-	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; convert -background none & -resize 16x16 16x16\1png/' | bash
+	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg -w 16 -h 16 & 16x16\1png/' | bash
 
 symlinks:
 	@test -d scalable || ( echo "folder scalable doesn't exists"; false )
