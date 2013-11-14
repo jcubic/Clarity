@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Exfalso</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Exfalso</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 7.3001998,6.9349352 C 21.287367,21.667238 15.217795,31.091732 22.892224,48.44344 30.014096,64.54584 45.517036,52.493101 56.130581,63.877454 45.517092,75.261716 29.961349,63.156365 22.839525,79.258761 15.165129,96.610514 21.287321,106.08761 7.3001998,120.81992 22.03248,106.83274 31.50958,112.95501 48.861299,105.28059 64.963732,98.1587 52.910962,82.655736 64.295351,72.042191 c 11.303271,10.614744 -0.70153,26.177879 15.381281,33.291049 17.355547,7.67617 26.772878,1.49642 41.508398,15.48668 C 107.19483,106.0844 113.37446,96.666993 105.69838,79.31147 98.585207,63.228634 83.074755,75.180791 72.460027,63.877454 83.074755,52.574074 98.585207,64.526231 105.69838,48.44344 113.37451,31.087864 107.19478,21.670459 121.18503,6.9349352 106.44949,20.925156 97.032133,14.745502 79.676632,22.42161 63.593821,29.534792 75.598622,45.097973 64.295351,55.712717 52.911018,45.099126 64.963732,29.596153 48.861299,22.474269 31.50958,14.799866 22.03248,20.922118 7.3001998,6.9349352 z" style="fill:#aaaaaa"/>
+</svg>
