@@ -434,7 +434,7 @@ zenwalk:
 
 _16x16:
 	@tar xzf 16x16.tar.gz
-	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg -w 16 -h 16 & 16x16\1png/' | bash
+	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash
 
 symlinks:
 	@test -d scalable || ( echo "folder scalable doesn't exists"; false )

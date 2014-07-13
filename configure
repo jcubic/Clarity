@@ -109,7 +109,7 @@ echo "Generating Makefile"
     echo
     echo '_16x16:'
     echo -e "\t@tar xzf 16x16.tar.gz"
-    echo -e "\t@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg -w 16 -h 16 & 16x16\1png/' | bash"
+    echo -e "\t@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash"
     echo
     echo 'symlinks:'
     echo -e "\t@test -d scalable || ( echo \"folder scalable doesn't exists\"; false )"
