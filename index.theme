@@ -54,28 +54,28 @@ MinSize=1
 Size=128
 MaxSize=256
 Context=Actions
-Type=scalable
+Type=Scalable
 
 [scalable/apps]
 MinSize=1
 Size=128
 MaxSize=256
 Context=Applications
-Type=scalable
+Type=Scalable
 
 [scalable/categories]
 MinSize=1
 Size=128
 MaxSize=256
 Context=Categories
-Type=scalable
+Type=Scalable
 
 [scalable/devices]
 MinSize=1
 Size=128
 MaxSize=256
 Context=Devices
-Type=scalable
+Type=Scalable
 
 [scalable/emblems]
 MinSize=1
@@ -117,28 +117,28 @@ MinSize=1
 MaxSize=16
 Size=16
 Context=Actions
-Type=scalable
+Type=Scalable
 
 [16x16/apps]
 MinSize=1
 MaxSize=16
 Size=16
 Context=Applications
-Type=scalable
+Type=Scalable
 
 [16x16/categories]
 MinSize=1
 MaxSize=16
 Size=16
 Context=Categories
-Type=scalable
+Type=Scalable
 
 [16x16/devices]
 MinSize=1
 MaxSize=16
 Size=16
 Context=Devices
-Type=scalable
+Type=Scalable
 
 [16x16/emblems]
 MinSize=1
