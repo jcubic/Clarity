@@ -1,3 +1,8 @@
+clarity-icon-theme (0.4.2~wily1) wily; urgency=low
+  * JSON File icon
+  * System Restart icon
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Thu, 10 Dec 2015 18:39:25 +0100
+
 clarity-icon-theme (0.4.0~lucid2) lucid; urgency=low
   * Nikon NEF, Wordpress, Freemind, pithos
   * Preferences, XFce panel menu, Application Engineering
