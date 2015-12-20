@@ -1,2 +1,2 @@
-#/bin/bash
+#!/bin/bash
 find scalable/ -type l | while read file; do x=$(file $file); desc=$(echo $file | sed -e 's/scalable/16x16/' -e 's/.svg/.png/'); test -L $desc || (echo $desc; ln -s $(echo $x | sed -e "s/.*\`\(.*\)'/\1/" -e 's/.*symbolic link to //' -e 's/.svg/.png/') $desc); done
