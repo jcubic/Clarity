@@ -1,3 +1,9 @@
+clarity-icon-theme (0.4.4~wily1) wily; urgency=low
+  * Add Markdown filetype icon
+  * Symlink for Apple diskimage
+  * Not publish
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Sun, 10 Apr 2016 19:52:18 +0200
+
 clarity-icon-theme (0.4.3~wily1) wily; urgency=low
   * keepass2, playonlinux, quodlibet, spotify, steam, sublime_text
  -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Sun, 20 Dec 2015 16:42:02 +0100
