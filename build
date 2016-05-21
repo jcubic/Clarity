@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "$#" -eq 2 ]; then
+
+    SHAPE=`grep "path.*d=" $2 | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";`;\
+    TITLE=`grep "<title>" $2 | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
+    sed -e "s/{{PATH}}/${SHAPE}/" -e "s/{{TITLE}}/${TITLE}/" src/template_$1.svg > `echo $2 | sed -e "s/src/scalable/"`
+else
+    echo -e "usage:\n\tbuild template src/dir/filename.svg"
+fi

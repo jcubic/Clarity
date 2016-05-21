@@ -50,9 +50,7 @@ echo "Generating Makefile"
         echo gen_${name}: 
         echo -e "\t@echo 'Building icons for theme $name ... '"
         echo -e "\t@bash -c 'for i in \`find src -mindepth 2 -name \"*.svg\" -type f\`; do \\"
-        echo -e "SHAPE=\`grep \"path.*d=\" \$\$i | sed -e \"s/.*d=\\\"\([^\\\"]*\)\\\".*/\1/\";\`;\\"
-        echo -e "TITLE=\`grep \"<title>\" \$\$i | sed -e \"s/.*<title>\([^<]*\)<\/title>/\1/\"\`;\\"
-        echo -e "sed -e \"s/{{PATH}}/\$\${SHAPE}/\" -e \"s/{{TITLE}}/\$\${TITLE}/\" $i > \`echo \$\$i | sed -e \"s/src/scalable/\"\`;\\"
+        echo -e "./build ${name} \$\$i;\\"
         echo -e "echo building \`echo \$\$i | sed -e \"s/src/scalable/\"\`;\\"
         echo "done;'"
         echo -e "[\x1b[32m\x1b[1mOK\x1b[0m]" > /dev/stderr

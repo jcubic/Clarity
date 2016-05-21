@@ -22,9 +22,7 @@ caeruleus: scalable static-files gen_caeruleus elements _16x16
 gen_caeruleus:
 	@echo 'Building icons for theme caeruleus ... '
 	@bash -c 'for i in `find src -mindepth 2 -name "*.svg" -type f`; do \
-SHAPE=`grep "path.*d=" $$i | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";`;\
-TITLE=`grep "<title>" $$i | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
-sed -e "s/{{PATH}}/$${SHAPE}/" -e "s/{{TITLE}}/$${TITLE}/" src/template_caeruleus.svg > `echo $$i | sed -e "s/src/scalable/"`;\
+./build caeruleus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
@@ -33,9 +31,7 @@ canus: scalable static-files gen_canus elements _16x16
 gen_canus:
 	@echo 'Building icons for theme canus ... '
 	@bash -c 'for i in `find src -mindepth 2 -name "*.svg" -type f`; do \
-SHAPE=`grep "path.*d=" $$i | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";`;\
-TITLE=`grep "<title>" $$i | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
-sed -e "s/{{PATH}}/$${SHAPE}/" -e "s/{{TITLE}}/$${TITLE}/" src/template_canus.svg > `echo $$i | sed -e "s/src/scalable/"`;\
+./build canus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
@@ -44,9 +40,7 @@ dark_canus: scalable static-files gen_dark_canus elements _16x16
 gen_dark_canus:
 	@echo 'Building icons for theme dark_canus ... '
 	@bash -c 'for i in `find src -mindepth 2 -name "*.svg" -type f`; do \
-SHAPE=`grep "path.*d=" $$i | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";`;\
-TITLE=`grep "<title>" $$i | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
-sed -e "s/{{PATH}}/$${SHAPE}/" -e "s/{{TITLE}}/$${TITLE}/" src/template_dark_canus.svg > `echo $$i | sed -e "s/src/scalable/"`;\
+./build dark_canus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
@@ -55,9 +49,7 @@ luteus: scalable static-files gen_luteus elements _16x16
 gen_luteus:
 	@echo 'Building icons for theme luteus ... '
 	@bash -c 'for i in `find src -mindepth 2 -name "*.svg" -type f`; do \
-SHAPE=`grep "path.*d=" $$i | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";`;\
-TITLE=`grep "<title>" $$i | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
-sed -e "s/{{PATH}}/$${SHAPE}/" -e "s/{{TITLE}}/$${TITLE}/" src/template_luteus.svg > `echo $$i | sed -e "s/src/scalable/"`;\
+./build luteus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
@@ -66,9 +58,7 @@ lux_caeruleus: scalable static-files gen_lux_caeruleus elements _16x16
 gen_lux_caeruleus:
 	@echo 'Building icons for theme lux_caeruleus ... '
 	@bash -c 'for i in `find src -mindepth 2 -name "*.svg" -type f`; do \
-SHAPE=`grep "path.*d=" $$i | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";`;\
-TITLE=`grep "<title>" $$i | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
-sed -e "s/{{PATH}}/$${SHAPE}/" -e "s/{{TITLE}}/$${TITLE}/" src/template_lux_caeruleus.svg > `echo $$i | sed -e "s/src/scalable/"`;\
+./build lux_caeruleus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
@@ -77,9 +67,7 @@ lux_violaceus: scalable static-files gen_lux_violaceus elements _16x16
 gen_lux_violaceus:
 	@echo 'Building icons for theme lux_violaceus ... '
 	@bash -c 'for i in `find src -mindepth 2 -name "*.svg" -type f`; do \
-SHAPE=`grep "path.*d=" $$i | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";`;\
-TITLE=`grep "<title>" $$i | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
-sed -e "s/{{PATH}}/$${SHAPE}/" -e "s/{{TITLE}}/$${TITLE}/" src/template_lux_violaceus.svg > `echo $$i | sed -e "s/src/scalable/"`;\
+./build lux_violaceus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
@@ -88,9 +76,7 @@ violaceus: scalable static-files gen_violaceus elements _16x16
 gen_violaceus:
 	@echo 'Building icons for theme violaceus ... '
 	@bash -c 'for i in `find src -mindepth 2 -name "*.svg" -type f`; do \
-SHAPE=`grep "path.*d=" $$i | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";`;\
-TITLE=`grep "<title>" $$i | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
-sed -e "s/{{PATH}}/$${SHAPE}/" -e "s/{{TITLE}}/$${TITLE}/" src/template_violaceus.svg > `echo $$i | sed -e "s/src/scalable/"`;\
+./build violaceus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
@@ -99,9 +85,7 @@ viridis: scalable static-files gen_viridis elements _16x16
 gen_viridis:
 	@echo 'Building icons for theme viridis ... '
 	@bash -c 'for i in `find src -mindepth 2 -name "*.svg" -type f`; do \
-SHAPE=`grep "path.*d=" $$i | sed -e "s/.*d=\"\([^\"]*\)\".*/\1/";`;\
-TITLE=`grep "<title>" $$i | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
-sed -e "s/{{PATH}}/$${SHAPE}/" -e "s/{{TITLE}}/$${TITLE}/" src/template_viridis.svg > `echo $$i | sed -e "s/src/scalable/"`;\
+./build viridis $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
