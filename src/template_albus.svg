@@ -15,26 +15,20 @@
                 <dc:description>This icon is a part of Clarity icon theme for gtk</dc:description>
                 <dc:creator>
                     <cc:Agent>
-                        <dc:title>Jakub Jankiewicz</dc:title>
+                        <dc:title>Eemil Lagerspetz</dc:title>
                     </cc:Agent>
                 </dc:creator>
                 <dc:rights>
                     <cc:Agent>
-                        <dc:title>Jakub Jankiewicz</dc:title>
+                        <dc:title>Eemil Lagerspetz</dc:title>
                     </cc:Agent>
                 </dc:rights>
-                <dc:date>2010</dc:date>
+                <dc:date>2016</dc:date>
                 <dc:format>image/svg+xml</dc:format>
                 <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
                 <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
              </cc:Work>
         </rdf:RDF>
     </metadata>
-    <defs>
-        <linearGradient x1="0" y1="128" x2="128" y2="0" id="gradient" gradientUnits="userSpaceOnUse">
-            <stop id="start" style="stop-color:#dbdbdb;stop-opacity:1" offset="0" />
-            <stop id="stop" style="stop-color:#757575;stop-opacity:1" offset="1" />
-        </linearGradient>
-    </defs>
     <path d="{{PATH}}" style="fill:#FFFFFF;fill-opacity:1;stroke:none" />
 </svg>
