@@ -17,6 +17,15 @@ scalable:
 static-files:
 	@bash -c "find static -type f | sed -e 's/[^\/]*\/\(.*\)/echo copy scalable\/\1;cp & scalable\/\1/' | bash"
 
+albus: scalable static-files gen_albus elements _16x16
+
+gen_albus:
+	@echo 'Building icons for theme albus ... '
+	@bash -c 'for i in `find src -mindepth 2 -name "*.svg" -type f`; do \
+./build albus $$i;\
+echo building `echo $$i | sed -e "s/src/scalable/"`;\
+done;'
+
 caeruleus: scalable static-files gen_caeruleus elements _16x16
 
 gen_caeruleus:
