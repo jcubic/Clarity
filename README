@@ -35,6 +35,13 @@ INSTALLATION
 
   copy Clarity folder to ~/.icons or /usr/share/icons as root
 
+on Ubuntu based systems you can install Clarity from PPA:
+
+ $ sudo add-apt-repository ppa:jcubic/jcubicppa && sudo apt-get update
+
+ $ sudo apt-get install clarity-icon-theme
+
+
 CHANGING COLORS OF ICONS
 
 To change color theme of icons:
