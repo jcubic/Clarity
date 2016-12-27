@@ -449,13 +449,12 @@ _16x16:
 	@test -d 16x16/places || mkdir 16x16/places
 	@test -d 16x16/status || mkdir 16x16/status
 	@test -d 16x16/stock || mkdir 16x16/stock
-	@sed 's/^/ln -sf /g' < src/16x16-symlinks | sh
+	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' < src/symlinks | sh
 	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash
 
 symlinks:
 	@test -d scalable || ( echo "folder scalable doesn't exists"; false )
 	@./symlink-file > src/symlinks
-	@./symlink-file | sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' > src/16x16-symlinks
 
 clean:
 	@echo cleaning...
