@@ -35,8 +35,12 @@ echo "Generating Makefile"
     echo "ALL: canus"
     echo
     echo 'scalable:'
-    echo -e "\t@echo unpack symlinks"
-    echo -e "\ttar xzf scalable.tar.gz"
+    echo -e "\t@echo creating symlinks"
+    echo -e "\t@test -d scalable || mkdir scalable"
+    for dir in actions apps categories devices distributor-logos emblems mimetypes places status stock; do
+        echo -e "\t@test -d scalable/$dir || mkdir scalable/$dir"
+    done
+    echo -e "\t@sed 's/^/ln -sf /g' < src/symlinks | sh"
     echo
     echo 'static-files:'
     echo -e "\t@bash -c \"find static -type f | sed -e 's/[^\/]*\/\(.*\)/echo copy scalable\/\1;cp & scalable\/\1/' | bash\""
@@ -106,16 +110,18 @@ echo "Generating Makefile"
         echo -ne "[\x1b[32m\x1b[1mOK\x1b[0m]\nGenerating simple test ... " > /dev/stderr
     echo
     echo '_16x16:'
-    echo -e "\t@tar xzf 16x16.tar.gz"
+    echo -e "\t@echo creating 16x16 symlinks"
+    echo -e "\t@test -d 16x16 || mkdir 16x16"
+    for dir in actions apps categories devices distributor-logos emblems mimetypes places status stock; do
+        echo -e "\t@test -d 16x16/$dir || mkdir 16x16/$dir"
+    done
+    echo -e "\t@sed 's/^/ln -sf /g' < src/16x16-symlinks | sh"
     echo -e "\t@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash"
     echo
     echo 'symlinks:'
     echo -e "\t@test -d scalable || ( echo \"folder scalable doesn't exists\"; false )"
-    echo -e "\t@tar czvf scalable.tar.gz scalable"
-    echo -e "\t@find scalable/ -type d | sed -e 's/scalable\(.*\)/test -d \"16x16\1\" || mkdir 16x16\1/' | bash"
-    echo -e "\t@find scalable/ -type l | xargs file | sed -e \"s/scalable\(.*\)svg:.*\\\`\(.*\)svg'/ln -sf \2png 16x16\1png/\" | bash"
-    echo -e "\t@test -d 16x16 || ( echo \"folder 16x16 doesn't exists\"; false )"
-    echo -e "\t@tar czvf 16x16.tar.gz 16x16"
+    echo -e "\t@./symlink-file > src/symlinks"
+    echo -e "\t@./symlink-file | sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' > src/16x16-symlinks"
     echo
     echo "clean:"
     echo -e "\t@echo cleaning..."
@@ -126,7 +132,7 @@ echo "Generating Makefile"
     echo
     echo "install:"
     echo -e "\tmkdir debian/clarity-icon-theme/usr/share/icons/Clarity"
-    for i in configure index.theme Makefile README scalable.tar.gz 16x16.tar.gz change-theme; do
+    for i in configure index.theme Makefile build README scalable.tar.gz 16x16.tar.gz change-theme; do
       echo -e "\tcp $i debian/clarity-icon-theme/usr/share/icons/Clarity"
     done
     for name in static src scalable 16x16; do

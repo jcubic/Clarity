@@ -1,4 +1,8 @@
-clarity-icon-theme (0.4.5~trusty1) trusty; urgency=low
+clarity-icon-theme (0.4.6~yakkety1) yakkety; urgency=low
+  * Add missing build script
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Tue, 27 Dec 2016 18:28:28 +0100
+
+clarity-icon-theme (0.4.5~yakkety1) yakkety; urgency=low
   * Kupfer icon by @ShadowKyogre
   * white theme - albus
  -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Mon, 26 Dec 2016 19:51:51 +0100
@@ -6,7 +10,6 @@ clarity-icon-theme (0.4.5~trusty1) trusty; urgency=low
 clarity-icon-theme (0.4.4~wily1) wily; urgency=low
   * Add Markdown filetype icon
   * Symlink for Apple diskimage
-  * Not publish
  -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Sun, 10 Apr 2016 19:52:18 +0200
 
 clarity-icon-theme (0.4.3~wily1) wily; urgency=low

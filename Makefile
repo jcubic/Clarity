@@ -11,8 +11,19 @@
 ALL: canus
 
 scalable:
-	@echo unpack symlinks
-	tar xzf scalable.tar.gz
+	@echo creating symlinks
+	@test -d scalable || mkdir scalable
+	@test -d scalable/actions || mkdir scalable/actions
+	@test -d scalable/apps || mkdir scalable/apps
+	@test -d scalable/categories || mkdir scalable/categories
+	@test -d scalable/devices || mkdir scalable/devices
+	@test -d scalable/distributor-logos || mkdir scalable/distributor-logos
+	@test -d scalable/emblems || mkdir scalable/emblems
+	@test -d scalable/mimetypes || mkdir scalable/mimetypes
+	@test -d scalable/places || mkdir scalable/places
+	@test -d scalable/status || mkdir scalable/status
+	@test -d scalable/stock || mkdir scalable/stock
+	@sed 's/^/ln -sf /g' < src/symlinks | sh
 
 static-files:
 	@bash -c "find static -type f | sed -e 's/[^\/]*\/\(.*\)/echo copy scalable\/\1;cp & scalable\/\1/' | bash"
@@ -426,16 +437,25 @@ zenwalk:
 
 
 _16x16:
-	@tar xzf 16x16.tar.gz
+	@echo creating 16x16 symlinks
+	@test -d 16x16 || mkdir 16x16
+	@test -d 16x16/actions || mkdir 16x16/actions
+	@test -d 16x16/apps || mkdir 16x16/apps
+	@test -d 16x16/categories || mkdir 16x16/categories
+	@test -d 16x16/devices || mkdir 16x16/devices
+	@test -d 16x16/distributor-logos || mkdir 16x16/distributor-logos
+	@test -d 16x16/emblems || mkdir 16x16/emblems
+	@test -d 16x16/mimetypes || mkdir 16x16/mimetypes
+	@test -d 16x16/places || mkdir 16x16/places
+	@test -d 16x16/status || mkdir 16x16/status
+	@test -d 16x16/stock || mkdir 16x16/stock
+	@sed 's/^/ln -sf /g' < src/16x16-symlinks | sh
 	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash
 
 symlinks:
 	@test -d scalable || ( echo "folder scalable doesn't exists"; false )
-	@tar czvf scalable.tar.gz scalable
-	@find scalable/ -type d | sed -e 's/scalable\(.*\)/test -d "16x16\1" || mkdir 16x16\1/' | bash
-	@find scalable/ -type l | xargs file | sed -e "s/scalable\(.*\)svg:.*\`\(.*\)svg'/ln -sf \2png 16x16\1png/" | bash
-	@test -d 16x16 || ( echo "folder 16x16 doesn't exists"; false )
-	@tar czvf 16x16.tar.gz 16x16
+	@./symlink-file > src/symlinks
+	@./symlink-file | sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' > src/16x16-symlinks
 
 clean:
 	@echo cleaning...
@@ -448,6 +468,7 @@ install:
 	cp configure debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp index.theme debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp Makefile debian/clarity-icon-theme/usr/share/icons/Clarity
+	cp build debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp README debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp scalable.tar.gz debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp 16x16.tar.gz debian/clarity-icon-theme/usr/share/icons/Clarity
