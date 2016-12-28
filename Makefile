@@ -469,8 +469,6 @@ install:
 	cp Makefile debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp build debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp README debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp scalable.tar.gz debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp 16x16.tar.gz debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp change-theme debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp -r static debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp -r src debian/clarity-icon-theme/usr/share/icons/Clarity
