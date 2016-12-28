@@ -131,7 +131,7 @@ echo "Generating Makefile"
     echo
     echo "install:"
     echo -e "\tmkdir debian/clarity-icon-theme/usr/share/icons/Clarity"
-    for i in configure index.theme Makefile build README scalable.tar.gz 16x16.tar.gz change-theme; do
+    for i in configure index.theme Makefile build README change-theme; do
       echo -e "\tcp $i debian/clarity-icon-theme/usr/share/icons/Clarity"
     done
     for name in static src scalable 16x16; do
