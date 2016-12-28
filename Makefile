@@ -10,7 +10,7 @@
 
 ALL: canus
 
-scalable:
+scalable: src/symlinks
 	@echo creating symlinks
 	@test -d scalable || mkdir scalable
 	@test -d scalable/actions || mkdir scalable/actions
@@ -436,7 +436,7 @@ zenwalk:
 	ln -sf ../distributor-logos/zenwalk.png 16x16/places/distributor-logo.png
 
 
-_16x16:
+_16x16: src/symlinks
 	@echo creating 16x16 symlinks
 	@test -d 16x16 || mkdir 16x16
 	@test -d 16x16/actions || mkdir 16x16/actions

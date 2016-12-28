@@ -34,7 +34,7 @@ echo "Generating Makefile"
     echo
     echo "ALL: canus"
     echo
-    echo 'scalable:'
+    echo "scalable: src/symlinks"
     echo -e "\t@echo creating symlinks"
     echo -e "\t@test -d scalable || mkdir scalable"
     for dir in actions apps categories devices distributor-logos emblems mimetypes places status stock; do
@@ -109,7 +109,7 @@ echo "Generating Makefile"
     done
         echo -ne "[\x1b[32m\x1b[1mOK\x1b[0m]\nGenerating simple test ... " > /dev/stderr
     echo
-    echo '_16x16:'
+    echo '_16x16: src/symlinks'
     echo -e "\t@echo creating 16x16 symlinks"
     echo -e "\t@test -d 16x16 || mkdir 16x16"
     for dir in actions apps categories devices distributor-logos emblems mimetypes places status stock; do
