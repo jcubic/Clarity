@@ -45,8 +45,8 @@ Comment[vi]=Sắn thái véctơ
 Comment[zh_CN]=顶点主题
 Comment[zh_TW]=向量圖案佈景主題
 DesktopDefault=Scalable
-Inherits=AwOken,Humanity,gnome
-Directories=scalable/actions,scalable/apps,scalable/categories,scalable/devices,scalable/emblems,scalable/mimetypes,scalable/places,scalable/status,scalable/stock
+Inherits=Humanity,gnome
+Directories=scalable/actions,scalable/apps,scalable/categories,scalable/devices,scalable/emblems,scalable/mimetypes,scalable/places,scalable/status,scalable/stock,16x16/actions,16x16/apps,16x16/categories,16x16/devices,16x16/emblems,16x16/mimetypes,16x16/places,16x16/status,16x16/stock
 Example=evolution-addressbook.svg
 
 [scalable/actions]
