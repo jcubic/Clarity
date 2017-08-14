@@ -1986,3 +1986,9 @@ up.svg scalable/actions/stock_up.svg
 gtk-indent.svg scalable/actions/gtk-unindent-rtl.svg
 player_rew.svg scalable/actions/media-seek-backward.svg
 redo.svg scalable/actions/edit-redo.svg
+../apps/bluetooth.svg scalable/status/blueberry.svg
+../apps/bluetooth.svg scalable/status/blueberry-tray.svg
+../apps/bluetooth-tray-disabled.svg scalable/status/blueberry-disabled.svg
+../apps/bluetooth-tray-active.svg scalable/status/blueberry-active.svg
+
+

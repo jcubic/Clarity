@@ -162,3 +162,7 @@ status/nm-vpn-connecting04.svg = status/nm-stage01-connecting04.svg + element_ye
 status/nm-vpn-connecting03.svg = status/nm-stage01-connecting03.svg + element_yellow_lock_center.svg
 status/nm-vpn-connecting02.svg = status/nm-stage01-connecting02.svg + element_yellow_lock_center.svg
 status/nm-vpn-connecting01.svg = status/nm-stage01-connecting01.svg + element_yellow_lock_center.svg
+
+#blueberry
+status/blueberry-tray-active.svg = apps/bluetooth.svg + element_green_check_bottom.svg
+status/blueberry-tray-disabled.svg = apps/bluetooth.svg + element_red_cancel_bottom.svg

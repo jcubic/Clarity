@@ -1,6 +1,10 @@
-clarity-icon-theme (0.4.6~yakkety1) yakkety; urgency=low
+clarity-icon-theme (0.4.7~zesty1) zesty; urgency=low
+  * icons for blueberry (symlinks + composite)
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Mon, 14 Aug 2017 19:18:43 +0200
+
+clarity-icon-theme (0.4.6~zesty1) zesty; urgency=low
   * Add missing build script
- -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Tue, 27 Dec 2016 18:28:28 +0100
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Sat, 15 Apr 2017 11:34:25 +0200
 
 clarity-icon-theme (0.4.5~yakkety1) yakkety; urgency=low
   * Kupfer icon by @ShadowKyogre
