@@ -32,7 +32,7 @@ function progress() {
     done
     find static -type f | sed -e 's/[^\/]*\/\(.*\)/cp & scalable\/\1/' | bash
     IFS=$'\n'
-	count=0
+    count=0
     #skip comments and empty lines
     for i in $(grep -v '^#' ${BASE}/src/compound_icons_rules | grep -v '^ *$'); do
         if $(echo $i | grep -e ".*=.*\+.*" > /dev/null); then
@@ -47,10 +47,12 @@ function progress() {
         progress $rcount
     done
     count=0
+    sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' < src/symlinks | sh
     for i in $(find scalable -type f); do
         desc=$(echo $i | sed -e 's/scalable\(.*\)svg/16x16\1png/')
-        convert -background none $i -resize 16x16 $desc
+        rsvg-convert -w 16 -h 16 $i > $desc
         progress $lcount
     done
     echo 100
+    echo "# Completed"
 } | zenity --progress --title="Building ${theme} icons" --width=250

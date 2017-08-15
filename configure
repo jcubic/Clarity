@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #    This file is a part of Clarity vector icon theme for gtk
-#    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl> 
+#    Copyright (c) 2010 Jakub Jankiewicz <http://jcubic.pl>
 #
 #    This icons are free: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ echo "Generating Makefile"
     echo "# Don't modified it, if you want to do some changes, do this"
     echo "# in configure script"
     echo "#"
+    echo "DIR=\`pwd | sed 's%.*/%%'\`"
     echo
     echo "ALL: canus"
     echo
@@ -51,7 +52,7 @@ echo "Generating Makefile"
         echo -n "Process template $name ... " > /dev/stderr
         echo ${name}: scalable static-files gen_$name elements _16x16
         echo
-        echo gen_${name}: 
+        echo gen_${name}:
         echo -e "\t@echo 'Building icons for theme $name ... '"
         echo -e "\t@bash -c 'for i in \`find src -mindepth 2 -name \"*.svg\" -type f\`; do \\"
         echo -e "./build ${name} \$\$i;\\"
@@ -88,7 +89,7 @@ echo "Generating Makefile"
                 echo -e "[\x1b[31m\x1b[1mFAIL\x1b[0m]"
                 echo "ERROR in $RULES_FILE"
                 echo "line: $i"
-                
+
             } > /dev/stderr
             exit
         fi
@@ -125,11 +126,12 @@ echo "Generating Makefile"
     echo "clean:"
     echo -e "\t@echo cleaning..."
     echo -e "\t@test -d scalable && rm -r scalable || true"
+    echo -e "\t@test -d Clarity && rm -r Clarity || true"
     echo -e "\t@test -d 16x16 && rm -r 16x16 || true"
     echo -e "\t@bash -c 'for i in \`find . -name \"*-stamp\"\`; do rm \$\$i; done'"
     #test rule
     echo
-    echo "install:"
+    echo "install-deb:"
     echo -e "\tmkdir debian/clarity-icon-theme/usr/share/icons/Clarity"
     for i in configure index.theme Makefile build README change-theme; do
       echo -e "\tcp $i debian/clarity-icon-theme/usr/share/icons/Clarity"
@@ -138,16 +140,20 @@ echo "Generating Makefile"
       echo -e "\tcp -r $name debian/clarity-icon-theme/usr/share/icons/Clarity"
     done
     echo
-    echo "source:"
+    echo "source-deb:"
     echo -e "\tdebuild -S"
     echo
     echo "deb:"
     echo -e "\tdpkg-buildpackage -rfakeroot"
     echo -e "[\x1b[32m\x1b[1mOK\x1b[0m]" > /dev/stderr
+    echo
+    echo "tar.gz:"
+    echo -e "\t@test -d Clarity && true || mkdir Clarity"
+    for path in scalable static src build change-theme configure Makefile index.theme README; do
+        echo -e "\tcp -r $path Clarity/"
+    done
+    echo -e "\ttar czvf ../\${DIR}.tar.gz Clarity"
 
 } > Makefile
 
 echo -e "\nMakefile generated, now you can run 'make' to create your icons\n"
-
-
-

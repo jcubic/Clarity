@@ -7,6 +7,7 @@
 # Don't modified it, if you want to do some changes, do this
 # in configure script
 #
+DIR=`pwd | sed 's%.*/%%'`
 
 ALL: canus
 
@@ -331,6 +332,10 @@ elements:
 	@echo "building scalable/status/nm-vpn-connecting02.svg"
 	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_yellow_lock_center.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/status/nm-stage01-connecting01.svg > scalable/status/nm-vpn-connecting01.svg;
 	@echo "building scalable/status/nm-vpn-connecting01.svg"
+	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_green_check_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/apps/bluetooth.svg > scalable/status/blueberry-tray-active.svg;
+	@echo "building scalable/status/blueberry-tray-active.svg"
+	@sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d=' src/element_red_cancel_bottom.svg | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" scalable/apps/bluetooth.svg > scalable/status/blueberry-tray-disabled.svg;
+	@echo "building scalable/status/blueberry-tray-disabled.svg"
 arch:
 	ln -sf ../distributor-logos/arch.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/arch.svg scalable/places/gnome-main-menu.svg
@@ -459,10 +464,11 @@ symlinks:
 clean:
 	@echo cleaning...
 	@test -d scalable && rm -r scalable || true
+	@test -d Clarity && rm -r Clarity || true
 	@test -d 16x16 && rm -r 16x16 || true
 	@bash -c 'for i in `find . -name "*-stamp"`; do rm $$i; done'
 
-install:
+install-deb:
 	mkdir debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp configure debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp index.theme debian/clarity-icon-theme/usr/share/icons/Clarity
@@ -475,8 +481,21 @@ install:
 	cp -r scalable debian/clarity-icon-theme/usr/share/icons/Clarity
 	cp -r 16x16 debian/clarity-icon-theme/usr/share/icons/Clarity
 
-source:
+source-deb:
 	debuild -S
 
 deb:
 	dpkg-buildpackage -rfakeroot
+
+tar.gz:
+	@test -d Clarity && true || mkdir Clarity
+	cp -r scalable Clarity/
+	cp -r static Clarity/
+	cp -r src Clarity/
+	cp -r build Clarity/
+	cp -r change-theme Clarity/
+	cp -r configure Clarity/
+	cp -r Makefile Clarity/
+	cp -r index.theme Clarity/
+	cp -r README Clarity/
+	tar czvf ../${DIR}.tar.gz Clarity
