@@ -26,7 +26,7 @@
                 <dc:date>2010</dc:date>
                 <dc:format>image/svg+xml</dc:format>
                 <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
              </cc:Work>
         </rdf:RDF>
     </metadata>
