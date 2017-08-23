@@ -664,7 +664,6 @@ dialog-warning.svg scalable/status/gtk-dialog-warning-panel.svg
 ../emblems/emblem-personal.svg scalable/status/network-wireless-encrypted.svg
 ../emblems/emblem-nowrite.svg scalable/status/stock_dialog-error.svg
 xfpm-battery-060-charging.svg scalable/status/battery-060-charging.svg
-../apps/apport-gtk2.svg scalable/status/software-update-urgent.svg
 audio-volume-low-zero-panel.svg scalable/status/audio-volume-zero-panel.svg
 xfpm-battery-020-charging.svg scalable/status/gpm-battery-020-charging.svg
 ../apps/sleep.svg scalable/status/weather-clear-night-230.svg
@@ -1990,3 +1989,4 @@ redo.svg scalable/actions/edit-redo.svg
 ../apps/bluetooth.svg scalable/status/blueberry-tray.svg
 ../apps/bluetooth-tray-disabled.svg scalable/status/blueberry-disabled.svg
 ../apps/bluetooth-tray-active.svg scalable/status/blueberry-active.svg
+gdeb.svg yumex-dnf.svg

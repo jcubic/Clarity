@@ -153,6 +153,7 @@ echo "Generating Makefile"
         echo -e "\tcp -r $path Clarity/"
     done
     echo -e "\ttar czvf ../\${DIR}.tar.gz Clarity"
+    echo -e "\trm -r Clarity"
 
 } > Makefile
 
