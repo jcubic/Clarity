@@ -1987,6 +1987,14 @@ player_rew.svg scalable/actions/media-seek-backward.svg
 redo.svg scalable/actions/edit-redo.svg
 ../apps/bluetooth.svg scalable/status/blueberry.svg
 ../apps/bluetooth.svg scalable/status/blueberry-tray.svg
-../apps/bluetooth-tray-disabled.svg scalable/status/blueberry-disabled.svg
-../apps/bluetooth-tray-active.svg scalable/status/blueberry-active.svg
+../status/bluetooth-tray-disabled.svg scalable/status/blueberry-disabled.svg
+../status/bluetooth-tray-active.svg scalable/status/blueberry-active.svg
 gdeb.svg yumex-dnf.svg
+../distributor-logos/fedora.svg scalable/apps/fedora-logo-icon.svg
+gnome-mime-text-plain.svg scalable/mimetypes/text-x-component.svg
+gcolor.svg scalable/apps/gnome-color-manager.svg
+../stock/epiphany-history.svg scalable/apps/preferences-system-time.svg
+../stock/epiphany-history.svg scalable/apps/xfce4-time-out-plugin.svg
+java.svg scalable/apps/java-1.8.0.svg
+java.svg scalable/apps/java-1.7.0.svg
+java.svg scalable/apps/java-1.9.0.svg
