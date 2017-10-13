@@ -26,9 +26,9 @@
                 <dc:date>2010</dc:date>
                 <dc:format>image/svg+xml</dc:format>
                 <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+                <cc:license rdf:resource="http://www.gnu.org/copyleft/gpl.html" />
              </cc:Work>
         </rdf:RDF>
     </metadata>
-    <path id="shape" d="m 64,21.600141 c -24.466421,0 -46.551362,10.330275 -62.1749385,26.834716 l 9.4784605,8.850749 C 24.516624,43.34288 43.216313,34.656565 64,34.656565 c 20.78015,0 39.47385,8.69047 52.69648,22.629041 l 9.47846,-8.850748 C 110.55137,31.930416 88.466421,21.600141 64,21.600141 z" style="fill:#333333;fill-opacity:1;stroke:none" />
+    <path id="shape" d="m 64,21.600141 c -24.466421,0 -46.551362,10.330275 -62.1749385,26.834716 l 9.4784605,8.850749 C 24.516624,43.34288 43.216313,34.656565 64,34.656565 c 20.78015,0 39.47385,8.69047 52.69648,22.629041 l 9.47846,-8.850748 C 110.55137,31.930416 88.466421,21.600141 64,21.600141 z" style="fill:#333333;fill-opacity:0.3;stroke:none" />
 </svg>
