@@ -1987,8 +1987,8 @@ player_rew.svg scalable/actions/media-seek-backward.svg
 redo.svg scalable/actions/edit-redo.svg
 ../apps/bluetooth.svg scalable/status/blueberry.svg
 ../apps/bluetooth.svg scalable/status/blueberry-tray.svg
-bluetooth-tray-disabled.svg scalable/status/blueberry-disabled.svg
-bluetooth-tray-active.svg scalable/status/blueberry-active.svg
+blueberry-tray-disabled.svg scalable/status/blueberry-disabled.svg
+blueberry-tray-active.svg scalable/status/blueberry-active.svg
 gdeb.svg yumex-dnf.svg
 ../distributor-logos/fedora.svg scalable/apps/fedora-logo-icon.svg
 gnome-mime-text-plain.svg scalable/mimetypes/text-x-component.svg
