@@ -1,4 +1,4 @@
-clarity-icon-theme (0.4.7~zesty1) zesty; urgency=low
+clarity-icon-theme (0.4.7~artful1) artful; urgency=low
   * icons for blueberry (symlinks + composite)
  -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Mon, 14 Aug 2017 19:18:43 +0200
 
