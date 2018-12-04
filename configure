@@ -70,7 +70,7 @@ echo "Generating Makefile"
                 } > /dev/stderr
                 exit;
             else
-                echo -e "\t@sed -e \"s/<\\/svg>/    <path \`grep 'id=\\\"shape\\\" d=' src/$element | sed -e 's/.*\\(d=[^\\/]*\)\\/.*/\\1/'\` \\/\\>\\\\n\\<\\/svg\\>/\" scalable/$source > scalable/$desc;"
+                echo -e "\t@sed -e \"s%</svg>%\`grep 'id=\\\"shape\\\"' src/$element\`/>\\\\n</svg>%\" scalable/$source > scalable/$desc;"
                 echo -e "\t@echo \"building scalable/$desc\""
             fi
         else

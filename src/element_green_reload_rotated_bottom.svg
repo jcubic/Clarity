@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
-     xmlns:cc="http://creativecommons.org/ns#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:svg="http://www.w3.org/2000/svg"
-     xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="128" height="128" version="1.1">
-    <title>Reload Icon Element</title>
-    <desc>This icon is a part of Clarity icon theme</desc>
-    <metadata>
-        <rdf:RDF>
-            <cc:Work rdf:about="">
-                <dc:title>Reload Icon Element</dc:title>
-                <dc:description>This icon is a part of Clarity icon theme</dc:description>
-                <dc:creator>
-                    <cc:Agent>
-                        <dc:title>Jakub Jankiewicz</dc:title>
-                    </cc:Agent>
-                </dc:creator>
-                <dc:rights>
-                    <cc:Agent>
-                        <dc:title>Jakub Jankiewicz</dc:title>
-                    </cc:Agent>
-                </dc:rights>
-                <dc:date>2010</dc:date>
-                <dc:format>image/svg+xml</dc:format>
-                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
-             </cc:Work>
-        </rdf:RDF>
-    </metadata>
-    <path id="shape" d="m 128.48027,99.161057 c 0,-13.991559 -11.34825,-25.339805 -25.33981,-25.339805 -8.136478,0 -15.374818,3.8383 -20.003508,9.803545 l -5.19908,-5.351547 -0.15247,17.564055 17.56406,0.365917 -5.38204,-5.549753 c 2.79367,-4.319728 7.64389,-7.181138 13.173038,-7.181138 8.66642,0 15.68873,7.02231 15.68873,15.688726 0,0.380352 -0.0191,0.754682 -0.0457,1.128253 l 9.66633,0 c 0.0162,-0.372271 0.0305,-0.751992 0.0305,-1.128253 z m -3.96411,6.342573 -17.56405,-0.36591 5.38204,5.54975 c -2.79368,4.31973 -7.64389,7.18114 -13.173048,7.18114 -8.66641,0 -15.68872,-7.02231 -15.68872,-15.68873 0,-0.38035 0.0191,-0.75468 0.0457,-1.12825 l -9.66633,0 c -0.0162,0.37227 -0.0305,0.75199 -0.0305,1.12825 0,13.99156 11.34825,25.33981 25.33981,25.33981 8.136478,0 15.374818,-3.8383 20.003498,-9.80355 l 5.19909,5.35155 0.15247,-17.56406 z" style="fill:#15a100;fill-opacity:1;stroke:none" />
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" id="svg9" version="1.1" height="128" width="128">
+  <defs id="defs13" />
+  <title id="title2">Reload Icon Element</title>
+  <desc id="desc4">This icon is a part of Clarity icon theme</desc>
+  <metadata id="metadata6">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:title>Reload Icon Element</dc:title>
+        <dc:description>This icon is a part of Clarity icon theme</dc:description>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Jakub Jankiewicz</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Jakub Jankiewicz</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:date>2010</dc:date>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path style="fill:#15a100;fill-opacity:1;stroke:none" d="m 54.659018,99.161057 c 0,-13.991559 -11.34825,-25.339805 -25.33981,-25.339805 -8.136478,0 -15.374818,3.8383 -20.003508,9.803545 L 4.11662,78.27325 3.96415,95.837305 21.52821,96.203222 16.14617,90.653469 c 2.79367,-4.319728 7.64389,-7.181138 13.173038,-7.181138 8.66642,0 15.68873,7.02231 15.68873,15.688726 0,0.380352 -0.0191,0.754682 -0.0457,1.128253 h 9.66633 c 0.0162,-0.372271 0.0305,-0.751992 0.0305,-1.128253 z m -3.96411,6.342573 -17.56405,-0.36591 5.38204,5.54975 c -2.79368,4.31973 -7.64389,7.18114 -13.173048,7.18114 -8.66641,0 -15.68872,-7.02231 -15.68872,-15.68873 0,-0.38035 0.0191,-0.75468 0.0457,-1.12825 H 0.0305 C 0.0143,101.4239 0,101.80362 0,102.17988 c 0,13.99156 11.34825,25.33981 25.33981,25.33981 8.136478,0 15.374818,-3.8383 20.003498,-9.80355 l 5.19909,5.35155 0.15247,-17.56406 z" id="shape" />
 </svg>

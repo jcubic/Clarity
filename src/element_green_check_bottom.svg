@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
-     xmlns:cc="http://creativecommons.org/ns#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:svg="http://www.w3.org/2000/svg"
-     xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="128" height="128" version="1.1">
-    <title>Green Check Element Icon</title>
-    <desc>This icon is a part of Clarity icon theme</desc>
-    <metadata>
-        <rdf:RDF>
-            <cc:Work rdf:about="">
-                <dc:title>Green Check Bottom Element Icon</dc:title>
-                <dc:description>This icon is a part of Clarity icon theme</dc:description>
-                <dc:creator>
-                    <cc:Agent>
-                        <dc:title>Jakub Jankiewicz</dc:title>
-                    </cc:Agent>
-                </dc:creator>
-                <dc:rights>
-                    <cc:Agent>
-                        <dc:title>Jakub Jankiewicz</dc:title>
-                    </cc:Agent>
-                </dc:rights>
-                <dc:date>2010</dc:date>
-                <dc:format>image/svg+xml</dc:format>
-                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
-             </cc:Work>
-        </rdf:RDF>
-    </metadata>
-    <path id="shape" d="m 100.67051,73.34098 c -15.091902,0 -27.329512,12.2376 -27.329512,27.32951 0,15.0919 12.23761,27.32951 27.329512,27.32951 C 115.7624,128 128,115.76239 128,100.67049 128,85.57858 115.7624,73.34098 100.67051,73.34098 z m 13.78584,11.68071 5.79378,4.50834 -20.846422,26.78925 -0.14904,-0.11175 -5.64474,-4.39656 -12.50041,-9.70598 4.50833,-5.79378 12.50042,9.70598 16.338082,-20.99547 z" style="fill:#15a100;fill-opacity:1;stroke:none" />
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" id="svg9" version="1.1" height="128" width="128">
+  <defs id="defs13" />
+  <title id="title2">Green Check Element Icon</title>
+  <desc id="desc4">This icon is a part of Clarity icon theme</desc>
+  <metadata id="metadata6">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:title>Green Check Element Icon</dc:title>
+        <dc:description>This icon is a part of Clarity icon theme</dc:description>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Jakub Jankiewicz</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Jakub Jankiewicz</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:date>2010</dc:date>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path style="fill:#15a100;fill-opacity:1;stroke:none" d="M 27.329512,73.34098 C 12.23761,73.34098 0,85.57858 0,100.67049 0,115.76239 12.23761,128 27.329512,128 c 15.09189,0 27.32949,-12.23761 27.32949,-27.32951 0,-15.09191 -12.2376,-27.32951 -27.32949,-27.32951 z m 13.78584,11.68071 5.79378,4.50834 -20.846422,26.78925 -0.14904,-0.11175 -5.64474,-4.39656 -12.50041,-9.70598 4.50833,-5.79378 12.50042,9.70598 16.338082,-20.99547 z" id="shape" />
 </svg>
