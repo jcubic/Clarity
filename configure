@@ -24,6 +24,7 @@ echo "Generating Makefile"
     echo "DIR=\`pwd | sed 's%.*/%%'\`"
     echo "SYMLINKS=grep -v '^\\#' src/symlinks | tr -d '\\r' | grep -v '^ *\$\$'"
     echo "COPIES=grep -v '^\\#' src/copies | tr -d '\\r' | grep -v '^ *\$\$'"
+    echo "SKIP=\`grep -v '^\\#' src/16x16_exceptions | tr -d '\\r' | grep -v '^ *\$\$' | paste -sd '|' - | sed -e 's/.*/(&)/'\`"
     echo
     echo "ALL: canus"
     echo
@@ -50,9 +51,9 @@ echo "Generating Makefile"
         echo -e "./build ${name} \$\$i;\\"
         echo -e "echo building \`echo \$\$i | sed -e \"s/src/scalable/\"\`;\\"
         echo "done;'"
+        echo -e "\t@sed 's/^/cp /g' <(\$(COPIES)) | bash"
         echo -e "[\x1b[32m\x1b[1mOK\x1b[0m]" > /dev/stderr
     done
-    echo -e "\t@sed 's/^/cp /g' <(\$(COPIES)) | bash"
     echo
     echo "elements:"
     echo -e "\t@echo -n 'building additional icons ... '"
@@ -111,9 +112,9 @@ echo "Generating Makefile"
     for dir in actions apps categories devices distributor-logos emblems mimetypes places status stock; do
         echo -e "\t@test -d 16x16/$dir || mkdir 16x16/$dir"
     done
-    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <(\$(SYMLINKS)) | bash"
+    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <(\$(SYMLINKS)) | grep -vE \$(SKIP) | bash"
     echo -e "\t@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash"
-    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <(\$(COPIES)) | bash"
+    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <(\$(COPIES)) | grep -vE \$(SKIP) | bash"
     echo
     echo '_symlinks:'
     echo -e "\t@test -d scalable || ( echo \"folder scalable doesn't exists\"; false )"

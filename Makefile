@@ -11,6 +11,7 @@ SHELL := /bin/bash
 DIR=`pwd | sed 's%.*/%%'`
 SYMLINKS=grep -v '^\#' src/symlinks | tr -d '\r' | grep -v '^ *$$'
 COPIES=grep -v '^\#' src/copies | tr -d '\r' | grep -v '^ *$$'
+SKIP=`grep -v '^\#' src/16x16_exceptions | tr -d '\r' | grep -v '^ *$$' | paste -sd '|' - | sed -e 's/.*/(&)/'`
 
 ALL: canus
 
@@ -40,6 +41,7 @@ gen_albus:
 ./build albus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
+	@sed 's/^/cp /g' <($(COPIES)) | bash
 
 caeruleus: scalable static-files gen_caeruleus elements _16x16
 
@@ -49,6 +51,7 @@ gen_caeruleus:
 ./build caeruleus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
+	@sed 's/^/cp /g' <($(COPIES)) | bash
 
 canus: scalable static-files gen_canus elements _16x16
 
@@ -58,6 +61,7 @@ gen_canus:
 ./build canus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
+	@sed 's/^/cp /g' <($(COPIES)) | bash
 
 dark_canus: scalable static-files gen_dark_canus elements _16x16
 
@@ -67,6 +71,7 @@ gen_dark_canus:
 ./build dark_canus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
+	@sed 's/^/cp /g' <($(COPIES)) | bash
 
 luteus: scalable static-files gen_luteus elements _16x16
 
@@ -76,6 +81,7 @@ gen_luteus:
 ./build luteus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
+	@sed 's/^/cp /g' <($(COPIES)) | bash
 
 lux_caeruleus: scalable static-files gen_lux_caeruleus elements _16x16
 
@@ -85,6 +91,7 @@ gen_lux_caeruleus:
 ./build lux_caeruleus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
+	@sed 's/^/cp /g' <($(COPIES)) | bash
 
 lux_violaceus: scalable static-files gen_lux_violaceus elements _16x16
 
@@ -94,6 +101,7 @@ gen_lux_violaceus:
 ./build lux_violaceus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
+	@sed 's/^/cp /g' <($(COPIES)) | bash
 
 violaceus: scalable static-files gen_violaceus elements _16x16
 
@@ -103,6 +111,7 @@ gen_violaceus:
 ./build violaceus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
+	@sed 's/^/cp /g' <($(COPIES)) | bash
 
 viridis: scalable static-files gen_viridis elements _16x16
 
@@ -488,9 +497,9 @@ _16x16: src/symlinks
 	@test -d 16x16/places || mkdir 16x16/places
 	@test -d 16x16/status || mkdir 16x16/status
 	@test -d 16x16/stock || mkdir 16x16/stock
-	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <($(SYMLINKS)) | bash
+	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <($(SYMLINKS)) | grep -vE $(SKIP) | bash
 	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash
-	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <($(COPIES)) | bash
+	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <($(COPIES)) | grep -vE $(SKIP) | bash
 
 _symlinks:
 	@test -d scalable || ( echo "folder scalable doesn't exists"; false )
