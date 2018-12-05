@@ -23,6 +23,7 @@ echo "Generating Makefile"
     echo "SHELL := /bin/bash"
     echo "DIR=\`pwd | sed 's%.*/%%'\`"
     echo "SYMLINKS=grep -v '^\\#' src/symlinks | tr -d '\\r' | grep -v '^ *\$\$'"
+    echo "COPIES=grep -v '^\\#' src/copies | tr -d '\\r' | grep -v '^ *\$\$'"
     echo
     echo "ALL: canus"
     echo
@@ -33,6 +34,7 @@ echo "Generating Makefile"
         echo -e "\t@test -d scalable/$dir || mkdir scalable/$dir"
     done
     echo -e "\t@sed 's/^/ln -sf /g' <(\$(SYMLINKS)) | bash"
+    echo -e "\t@sed 's/^/cp /g' <(\$(COPIES)) | bash"
     echo
     echo 'static-files:'
     echo -e "\t@bash -c \"find static -type f | sed -e 's/[^\/]*\/\(.*\)/echo copy scalable\/\1;cp & scalable\/\1/' | bash\""
@@ -72,7 +74,7 @@ echo "Generating Makefile"
                 } > /dev/stderr
                 exit;
             else
-                echo -e "\t@sed -e \"s%</svg>%\`grep 'id=\\\"shape\\\"' src/$element\`/>\\\\n</svg>%\" scalable/$source > scalable/$desc;"
+                echo -e "\t@sed -e \"s%</svg>%\`grep 'id=\\\"shape\\\"' src/$element\`\\\\n</svg>%\" scalable/$source > scalable/$desc;"
                 echo -e "\t@echo \"building scalable/$desc\""
             fi
         else
@@ -108,6 +110,7 @@ echo "Generating Makefile"
         echo -e "\t@test -d 16x16/$dir || mkdir 16x16/$dir"
     done
     echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <(\$(SYMLINKS)) | bash"
+    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <(\$(COPIES)) | bash"
     echo -e "\t@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash"
     echo
     echo '_symlinks:'

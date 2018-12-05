@@ -980,6 +980,17 @@ calc.svg scalable/apps/kcalc.svg
 virtualbox.svg scalable/apps/virtualbox-ose.svg
 ../status/gtk-dialog-authentication.svg scalable/apps/seahorse.svg
 edit-urpm-sources.svg scalable/apps/pk-package-sources.svg
+gdeb.svg scalable/apps/drakstats.svg
+gdeb.svg scalable/apps/porthole.svg
+gdeb.svg scalable/apps/gnome-app-install.svg
+gdeb.svg scalable/apps/system-software-install.svg
+gdeb.svg scalable/apps/gnome-apt.svg
+gdeb.svg scalable/apps/gedbi.svg
+gdeb.svg scalable/apps/rpmdrake.svg
+gdeb.svg scalable/apps/gdebi.svg
+gdeb.svg scalable/apps/system-installer.svg
+gdeb.svg scalable/apps/system-software-installer.svg
+gdeb.svg scalable/apps/yumex-dnf.svg
 gdeb.svg scalable/apps/kentoo.svg
 burner.svg scalable/apps/tvm-burn-cd.svg
 opera.svg scalable/apps/opera-browser.svg
@@ -1032,7 +1043,6 @@ synaptic.svg scalable/apps/gnome-codec-install.svg
 gnome-monitor.svg scalable/apps/htop.svg
 ../distributor-logos/xfce.svg scalable/apps/xfce4_xicon.svg
 gnome-session-reboot.svg scalable/apps/gnome-session-reboot2.svg
-gdeb.svg scalable/apps/drakstats.svg
 gnote.svg scalable/apps/notecase.svg
 facebook.svg scalable/apps/im-facebook.svg
 sun_java.svg scalable/apps/openjdk-6.svg
@@ -1129,8 +1139,6 @@ identica.svg scalable/apps/statusnet.svg
 date.svg scalable/apps/calendar.svg
 config-language.svg scalable/apps/gnome-translate.svg
 terminal.svg scalable/apps/terminal-tango.svg
-gdeb.svg scalable/apps/porthole.svg
-gdeb.svg scalable/apps/gnome-app-install.svg
 gnote.svg scalable/apps/stock_notes.svg
 firefox.svg scalable/apps/firefox-icon-unbranded.svg
 glade.svg scalable/apps/glade-2.svg
@@ -1187,7 +1195,6 @@ gnote.svg scalable/apps/stock_todo.svg
 email.svg scalable/apps/evolution.svg
 ../devices/monitor.svg scalable/apps/resapplet.svg
 kcmsound.svg scalable/apps/gnome-vumeter.svg
-gdeb.svg scalable/apps/system-software-install.svg
 ../actions/contact.svg scalable/apps/gksu-icon.svg
 terminal.svg scalable/apps/konsole.svg
 ../categories/package_settings.svg scalable/apps/drakconf.svg
@@ -1208,7 +1215,6 @@ config-language.svg scalable/apps/gswitchit-applet.svg
 bluetooth.svg scalable/apps/blueman.svg
 xfapplet1.svg scalable/apps/xfapplet2.svg
 ../devices/camera-photo.svg scalable/apps/xvidcap.svg
-gdeb.svg scalable/apps/gnome-apt.svg
 ../actions/info.svg scalable/apps/gnome-info.svg
 ../stock/epiphany-history.svg scalable/apps/gcrontab.svg
 burner.svg scalable/apps/stock_xfburn-burn-cd.svg
@@ -1313,7 +1319,6 @@ gnome-remote-desktop.svg scalable/apps/vinagre.svg
 gnome-remote-desktop.svg scalable/apps/gnome-mime-application-x-vnc.svg
 gdm-xnest.svg scalable/apps/gdmsetup.svg
 burner.svg scalable/apps/brasero.svg
-gdeb.svg scalable/apps/gedbi.svg
 python.svg scalable/apps/python2.5.svg
 ../emblems/emblem-personal.svg scalable/apps/package-installed-locked.svg
 ../actions/bookmark-new.svg scalable/apps/gnome-fs-bookmark.svg
@@ -1331,7 +1336,6 @@ avidemux.svg scalable/apps/video-player.svg
 multimedia-volume-control.svg scalable/apps/aumix.svg
 openofficeorg-math.svg scalable/apps/openofficeorg3-math.svg
 ../emblems/emblem-sound.svg scalable/apps/codeina.svg
-gdeb.svg scalable/apps/rpmdrake.svg
 gnote.svg scalable/apps/evolution-memos.svg
 ooo-writer.svg scalable/apps/openofficeorg-writer.svg
 ../status/audio-volume-medium.svg scalable/apps/preferences-sound.svg
@@ -1512,12 +1516,10 @@ icedove.svg scalable/apps/thunderbird-icon.svg
 gnote.svg scalable/apps/xfce4-notes.svg
 ../places/user-home.svg scalable/apps/gnome-home.svg
 ../emblems/emblem-web.svg scalable/apps/www-browser.svg
-gdeb.svg scalable/apps/gdebi.svg
 adobe-flashplayer.svg scalable/apps/flash-player-properties.svg
 virtualbox.svg scalable/apps/VBox.svg
 terminal.svg scalable/apps/tilda.svg
 checkbox.svg scalable/apps/hwtest-gtk.svg
-gdeb.svg scalable/apps/system-installer.svg
 main.svg scalable/apps/libreoffice34-main.svg
 gnome-tali.svg scalable/apps/tali.svg
 desktop-effects.svg scalable/apps/simple-ccsm.svg
@@ -1567,7 +1569,6 @@ ogmrip.svg scalable/apps/grip.svg
 ../devices/mouse.svg scalable/apps/gnome-mouse.svg
 bluefish.svg scalable/apps/bluefish_icon.svg
 ../devices/chardevice.svg scalable/apps/gnucharmap.svg
-gdeb.svg scalable/apps/system-software-installer.svg
 ../emblems/emblem-web.svg scalable/apps/browser.svg
 access.svg scalable/apps/accessibility-directory.svg
 ../stock/epiphany-history.svg scalable/apps/gnome-session-suspend.svg
@@ -1996,7 +1997,6 @@ redo.svg scalable/actions/edit-redo.svg
 ../apps/bluetooth.svg scalable/status/blueberry-tray.svg
 blueberry-tray-disabled.svg scalable/status/blueberry-disabled.svg
 blueberry-tray-active.svg scalable/status/blueberry-active.svg
-gdeb.svg scalable/apps/yumex-dnf.svg
 ../distributor-logos/fedora.svg scalable/apps/fedora-logo-icon.svg
 gnome-mime-text-plain.svg scalable/mimetypes/text-x-component.svg
 gcolor.svg scalable/apps/gnome-color-manager.svg
@@ -2007,3 +2007,4 @@ java.svg scalable/apps/java-1.7.0.svg
 java.svg scalable/apps/java-1.9.0.svg
 ../apps/rhythmbox.svg scalable/devices/audio-speakers.svg
 setroubleshoot_icon.svg scalable/apps/setroubleshoot_red_icon.svg
+application-x-ms-application.svg scalable/apps/application-x-msdownload.svg
