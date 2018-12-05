@@ -40,7 +40,7 @@ status/microphone-sensitivity-muted.svg = devices/microphone.svg + element_red_c
 #add/new icons
 actions/mail_new.svg = apps/email.svg + element_green_plus_bottom.svg
 actions/note-new.svg = apps/gnote.svg + element_green_plus.svg
-actions/notebook-new.svg = places/notebook.svg + element_green_plus_bottom.svg
+actions/notebook-new.svg = places/notebook.svg + element_green_plus.svg
 apps/openoffice-new.svg = apps/ooo.svg + element_green_plus.svg
 actions/folder-new.svg = places/folder.svg + element_green_plus.svg
 actions/contact-new.svg = actions/contact.svg + element_green_plus_bottom.svg
@@ -52,7 +52,7 @@ actions/appointment-new.svg = stock/epiphany-history.svg + element_green_plus.sv
 actions/audio-cd-new.svg = devices/media-optical-audio.svg + element_green_plus.svg
 actions/bookmark_add.svg = actions/bookmark-new.svg + element_green_plus_bottom.svg
 apps/stock_insert-note.svg = apps/gnote.svg + element_green_plus.svg
-actions/playlist-new.svg = mimetypes/audio-x-mp3-playlist.svg + element_green_plus_bottom.svg
+actions/playlist-new.svg = mimetypes/audio-x-mp3-playlist.svg + element_green_plus.svg
 actions/add-files-to-archive.svg = mimetypes/package-x-generic.svg + element_green_plus.svg
 stock/stock_xfburn-new-data-composition.svg = devices/drive-optical.svg + element_green_plus.svg
 apps/ubiquity.svg = devices/drive-harddisk.svg + element_green_plus.svg
