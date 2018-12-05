@@ -7,7 +7,9 @@
 # Don't modified it, if you want to do some changes, do this
 # in configure script
 #
+SHELL := /bin/bash
 DIR=`pwd | sed 's%.*/%%'`
+SYMLINKS=grep -v '^\#' src/symlinks | tr -d '\r' | grep -v '^ *$$'
 
 ALL: canus
 
@@ -24,7 +26,7 @@ scalable: src/symlinks
 	@test -d scalable/places || mkdir scalable/places
 	@test -d scalable/status || mkdir scalable/status
 	@test -d scalable/stock || mkdir scalable/stock
-	@sed 's/^/ln -sf /g' < src/symlinks | sh
+	@sed 's/^/ln -sf /g' <($(SYMLINKS)) | bash
 
 static-files:
 	@bash -c "find static -type f | sed -e 's/[^\/]*\/\(.*\)/echo copy scalable\/\1;cp & scalable\/\1/' | bash"
@@ -458,10 +460,10 @@ _16x16: src/symlinks
 	@test -d 16x16/places || mkdir 16x16/places
 	@test -d 16x16/status || mkdir 16x16/status
 	@test -d 16x16/stock || mkdir 16x16/stock
-	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' < src/symlinks | sh
+	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <($(SYMLINKS)) | bash
 	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash
 
-symlinks:
+_symlinks:
 	@test -d scalable || ( echo "folder scalable doesn't exists"; false )
 	@./symlink-file > src/symlinks
 
