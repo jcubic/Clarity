@@ -17,6 +17,9 @@
                     <cc:Agent>
                         <dc:title>Jakub Jankiewicz</dc:title>
                     </cc:Agent>
+                    <cc:Agent>
+                        <dc:title>Aha-Soft</dc:title>
+                    </cc:Agent>
                 </dc:creator>
                 <dc:rights>
                     <cc:Agent>
