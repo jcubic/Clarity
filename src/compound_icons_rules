@@ -133,6 +133,7 @@ apps/edit-urpm-sources.svg = mimetypes/package-x-generic.svg + element_blue_eart
 apps/checkbox.svg = devices/monitor.svg + element_green_check_fit_monitor.svg
 mimetypes/vmlinuz.svg = mimetypes/gtk-file.svg + element_black_tux.svg
 mimetypes/application-x-rpm.svg = mimetypes/package-x-generic.svg + element_red_rpm_bottom.svg
+app/anaconda.svg = extra/fedora-drive.svg + element_green_down_arrow_top.svg
 
 # dropbox
 status/dropboxstatus-idle.svg = status/dropboxstatus-logo.svg + element_green_check_bottom.svg
@@ -162,4 +163,3 @@ status/nm-vpn-connecting01.svg = status/nm-stage01-connecting01.svg + element_ye
 #blueberry
 status/blueberry-tray-active.svg = apps/bluetooth.svg + element_green_check_bottom.svg
 status/blueberry-tray-disabled.svg = apps/bluetooth.svg + element_red_cancel_bottom.svg
-

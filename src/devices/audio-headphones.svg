@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Headphones Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Headphones Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 64.136011,5.4329486 C 50.107152,5.4023065 36.108721,10.552133 25.229846,20.749605 5.4794825,39.262896 1.6844224,69.105576 15.782489,91.900008 v 0.837555 c 0,7.555727 6.057654,13.640607 13.599829,13.696097 -0.0016,-0.0722 -0.0097,-0.1424 -0.0097,-0.215 V 65.008416 c -5.649656,0.04545 -10.467,3.474209 -12.524802,8.369126 C 12.894651,56.870187 17.808199,38.964681 30.848842,26.740845 48.399545,10.289436 75.272354,9.1812618 94.117891,24.131913 109.2119,36.106371 115.43711,55.437878 111.14175,73.364705 109.08083,68.476865 104.26792,65.05383 98.623356,65.008416 v 41.210244 c 0,0.0726 -0.008,0.14279 -0.0097,0.215 7.542184,-0.0555 13.599834,-6.14037 13.599834,-13.696097 v -1.216219 a 4.1079571,4.1079571 0 0 0 0.87286,-1.075021 C 127.12025,66.138904 121.21206,35.142004 99.223372,17.697826 88.916188,9.5208679 76.514352,5.4599907 64.135945,5.4329486 Z M 33.201053,65.008416 V 106.4465 h 2.596097 c 1.604477,0 2.897746,-1.29327 2.897746,-2.89775 V 67.906163 c 0,-1.604478 -1.293269,-2.897747 -2.897746,-2.897747 z m 58.994634,0 c -1.604476,0 -2.897745,1.293269 -2.897745,2.897747 v 35.642587 c 0,1.60448 1.293269,2.89775 2.897745,2.89775 h 2.596098 V 65.008416 Z" style="fill:#aaaaaa"/>
+</svg>
