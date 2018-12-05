@@ -162,7 +162,7 @@ elements:
 	@echo "building scalable/actions/mail_new.svg"
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_plus.svg`/>\n</svg>%" scalable/apps/gnote.svg > scalable/actions/note-new.svg;
 	@echo "building scalable/actions/note-new.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_plus_bottom.svg`/>\n</svg>%" scalable/places/notebook.svg > scalable/actions/notebook-new.svg;
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_plus.svg`/>\n</svg>%" scalable/places/notebook.svg > scalable/actions/notebook-new.svg;
 	@echo "building scalable/actions/notebook-new.svg"
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_plus.svg`/>\n</svg>%" scalable/apps/ooo.svg > scalable/apps/openoffice-new.svg;
 	@echo "building scalable/apps/openoffice-new.svg"
@@ -186,7 +186,7 @@ elements:
 	@echo "building scalable/actions/bookmark_add.svg"
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_plus.svg`/>\n</svg>%" scalable/apps/gnote.svg > scalable/apps/stock_insert-note.svg;
 	@echo "building scalable/apps/stock_insert-note.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_plus_bottom.svg`/>\n</svg>%" scalable/mimetypes/audio-x-mp3-playlist.svg > scalable/actions/playlist-new.svg;
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_plus.svg`/>\n</svg>%" scalable/mimetypes/audio-x-mp3-playlist.svg > scalable/actions/playlist-new.svg;
 	@echo "building scalable/actions/playlist-new.svg"
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_plus.svg`/>\n</svg>%" scalable/mimetypes/package-x-generic.svg > scalable/actions/add-files-to-archive.svg;
 	@echo "building scalable/actions/add-files-to-archive.svg"
@@ -272,30 +272,6 @@ elements:
 	@echo "building scalable/mimetypes/application-x-gzdvi.svg"
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_yellow_package_bottom.svg`/>\n</svg>%" scalable/mimetypes/text-x-sl.svg > scalable/mimetypes/model-x-rib-gzip.svg;
 	@echo "building scalable/mimetypes/model-x-rib-gzip.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_reload.svg`/>\n</svg>%" scalable/status/stock_weather-cloudy.svg > scalable/status/ubuntuone-client-updating.svg;
-	@echo "building scalable/status/ubuntuone-client-updating.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check.svg`/>\n</svg>%" scalable/devices/input-touchpad.svg > scalable/actions/touchpad-enabled.svg;
-	@echo "building scalable/actions/touchpad-enabled.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check.svg`/>\n</svg>%" scalable/status/avatar-default.svg > scalable/status/user-available.svg;
-	@echo "building scalable/status/user-available.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_yellow_bell_bottom.svg`/>\n</svg>%" scalable/stock/epiphany-history.svg > scalable/status/appointment-soon.svg;
-	@echo "building scalable/status/appointment-soon.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_debian_logo.svg`/>\n</svg>%" scalable/mimetypes/package-x-generic.svg > scalable/mimetypes/deb.svg;
-	@echo "building scalable/mimetypes/deb.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_yellow_warning_bottom.svg`/>\n</svg>%" scalable/apps/email.svg > scalable/actions/mail-mark-important.svg;
-	@echo "building scalable/actions/mail-mark-important.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check.svg`/>\n</svg>%" scalable/emblems/emblem-personal.svg > scalable/stock/stock_lock-ok.svg;
-	@echo "building scalable/stock/stock_lock-ok.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check.svg`/>\n</svg>%" scalable/mimetypes/package-x-generic.svg > scalable/actions/jockey-free.svg;
-	@echo "building scalable/actions/jockey-free.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_blue_earth_bottom.svg`/>\n</svg>%" scalable/mimetypes/package-x-generic.svg > scalable/apps/edit-urpm-sources.svg;
-	@echo "building scalable/apps/edit-urpm-sources.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check_fit_monitor.svg`/>\n</svg>%" scalable/devices/monitor.svg > scalable/apps/checkbox.svg;
-	@echo "building scalable/apps/checkbox.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_black_tux.svg`/>\n</svg>%" scalable/mimetypes/gtk-file.svg > scalable/mimetypes/vmlinuz.svg;
-	@echo "building scalable/mimetypes/vmlinuz.svg"
-	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_red_rpm_bottom.svg`/>\n</svg>%" scalable/mimetypes/package-x-generic.svg > scalable/mimetypes/application-x-rpm.svg;
-	@echo "building scalable/mimetypes/application-x-rpm.svg"
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check_bottom.svg`/>\n</svg>%" scalable/status/dropboxstatus-logo.svg > scalable/status/dropboxstatus-idle.svg;
 	@echo "building scalable/status/dropboxstatus-idle.svg"
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_reload_bottom.svg`/>\n</svg>%" scalable/status/dropboxstatus-logo.svg > scalable/status/dropboxstatus-busy.svg;
@@ -336,6 +312,34 @@ elements:
 	@echo "building scalable/status/blueberry-tray-active.svg"
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_red_cancel_bottom.svg`/>\n</svg>%" scalable/apps/bluetooth.svg > scalable/status/blueberry-tray-disabled.svg;
 	@echo "building scalable/status/blueberry-tray-disabled.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_reload.svg`/>\n</svg>%" scalable/status/stock_weather-cloudy.svg > scalable/status/ubuntuone-client-updating.svg;
+	@echo "building scalable/status/ubuntuone-client-updating.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check.svg`/>\n</svg>%" scalable/devices/input-touchpad.svg > scalable/actions/touchpad-enabled.svg;
+	@echo "building scalable/actions/touchpad-enabled.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check.svg`/>\n</svg>%" scalable/status/avatar-default.svg > scalable/status/user-available.svg;
+	@echo "building scalable/status/user-available.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_yellow_bell_bottom.svg`/>\n</svg>%" scalable/stock/epiphany-history.svg > scalable/status/appointment-soon.svg;
+	@echo "building scalable/status/appointment-soon.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_debian_logo.svg`/>\n</svg>%" scalable/mimetypes/package-x-generic.svg > scalable/mimetypes/deb.svg;
+	@echo "building scalable/mimetypes/deb.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_yellow_warning_bottom.svg`/>\n</svg>%" scalable/apps/email.svg > scalable/actions/mail-mark-important.svg;
+	@echo "building scalable/actions/mail-mark-important.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check.svg`/>\n</svg>%" scalable/emblems/emblem-personal.svg > scalable/stock/stock_lock-ok.svg;
+	@echo "building scalable/stock/stock_lock-ok.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check.svg`/>\n</svg>%" scalable/mimetypes/package-x-generic.svg > scalable/actions/jockey-free.svg;
+	@echo "building scalable/actions/jockey-free.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_blue_earth_bottom.svg`/>\n</svg>%" scalable/mimetypes/package-x-generic.svg > scalable/apps/edit-urpm-sources.svg;
+	@echo "building scalable/apps/edit-urpm-sources.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_check_fit_monitor.svg`/>\n</svg>%" scalable/devices/monitor.svg > scalable/apps/checkbox.svg;
+	@echo "building scalable/apps/checkbox.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_black_tux.svg`/>\n</svg>%" scalable/mimetypes/gtk-file.svg > scalable/mimetypes/vmlinuz.svg;
+	@echo "building scalable/mimetypes/vmlinuz.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_red_rpm_bottom.svg`/>\n</svg>%" scalable/mimetypes/package-x-generic.svg > scalable/mimetypes/application-x-rpm.svg;
+	@echo "building scalable/mimetypes/application-x-rpm.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_green_down_arrow_top.svg`/>\n</svg>%" scalable/apps/fedora-drive.svg > scalable/apps/anaconda.svg;
+	@echo "building scalable/apps/anaconda.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/vlc_xmas_hat.svg`/>\n</svg>%" scalable/apps/vlc.svg > scalable/apps/vlc-xmas.svg;
+	@echo "building scalable/apps/vlc-xmas.svg"
 arch:
 	ln -sf ../distributor-logos/arch.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/arch.svg scalable/places/gnome-main-menu.svg
