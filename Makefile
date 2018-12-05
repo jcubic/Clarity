@@ -10,6 +10,7 @@
 SHELL := /bin/bash
 DIR=`pwd | sed 's%.*/%%'`
 SYMLINKS=grep -v '^\#' src/symlinks | tr -d '\r' | grep -v '^ *$$'
+COPIES=grep -v '^\#' src/copies | tr -d '\r' | grep -v '^ *$$'
 
 ALL: canus
 
@@ -111,6 +112,7 @@ gen_viridis:
 ./build viridis $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
+	@sed 's/^/cp /g' <($(COPIES)) | bash
 
 elements:
 	@echo -n 'building additional icons ... '
@@ -346,105 +348,131 @@ arch:
 	ln -sf ../distributor-logos/arch.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/arch.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/arch.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/arch.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/arch.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/arch.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/arch.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/arch.png 16x16/apps/xfce4_xicon1.png
 
 debian:
 	ln -sf ../distributor-logos/debian.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/debian.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/debian.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/debian.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/debian.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/debian.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/debian.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/debian.png 16x16/apps/xfce4_xicon1.png
 
 fedora:
 	ln -sf ../distributor-logos/fedora.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/fedora.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/fedora.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/fedora.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/fedora.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/fedora.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/fedora.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/fedora.png 16x16/apps/xfce4_xicon1.png
 
 gentoo:
 	ln -sf ../distributor-logos/gentoo.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/gentoo.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/gentoo.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/gentoo.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/gentoo.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/gentoo.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/gentoo.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/gentoo.png 16x16/apps/xfce4_xicon1.png
 
 gnome:
 	ln -sf ../distributor-logos/gnome.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/gnome.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/gnome.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/gnome.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/gnome.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/gnome.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/gnome.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/gnome.png 16x16/apps/xfce4_xicon1.png
 
 kubuntu:
 	ln -sf ../distributor-logos/kubuntu.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/kubuntu.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/kubuntu.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/kubuntu.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/kubuntu.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/kubuntu.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/kubuntu.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/kubuntu.png 16x16/apps/xfce4_xicon1.png
 
 madriva:
 	ln -sf ../distributor-logos/madriva.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/madriva.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/madriva.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/madriva.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/madriva.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/madriva.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/madriva.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/madriva.png 16x16/apps/xfce4_xicon1.png
 
 mint:
 	ln -sf ../distributor-logos/mint.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/mint.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/mint.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/mint.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/mint.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/mint.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/mint.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/mint.png 16x16/apps/xfce4_xicon1.png
 
 suse:
 	ln -sf ../distributor-logos/suse.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/suse.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/suse.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/suse.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/suse.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/suse.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/suse.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/suse.png 16x16/apps/xfce4_xicon1.png
 
 ubuntu:
 	ln -sf ../distributor-logos/ubuntu.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/ubuntu.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/ubuntu.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/ubuntu.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/ubuntu.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/ubuntu.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/ubuntu.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/ubuntu.png 16x16/apps/xfce4_xicon1.png
 
 xfce:
 	ln -sf ../distributor-logos/xfce.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/xfce.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/xfce.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/xfce.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/xfce.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/xfce.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/xfce.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/xfce.png 16x16/apps/xfce4_xicon1.png
 
 xubuntu:
 	ln -sf ../distributor-logos/xubuntu.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/xubuntu.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/xubuntu.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/xubuntu.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/xubuntu.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/xubuntu.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/xubuntu.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/xubuntu.png 16x16/apps/xfce4_xicon1.png
 
 zenwalk:
 	ln -sf ../distributor-logos/zenwalk.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/zenwalk.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/zenwalk.svg scalable/places/distributor-logo.svg
+	ln -sf ../distributor-logos/zenwalk.png 16x16/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/zenwalk.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/zenwalk.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/zenwalk.png 16x16/places/distributor-logo.png
+	ln -sf ../distributor-logos/zenwalk.png 16x16/apps/xfce4_xicon1.png
 
 
 _16x16: src/symlinks
@@ -462,6 +490,7 @@ _16x16: src/symlinks
 	@test -d 16x16/stock || mkdir 16x16/stock
 	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <($(SYMLINKS)) | bash
 	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash
+	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <($(COPIES)) | bash
 
 _symlinks:
 	@test -d scalable || ( echo "folder scalable doesn't exists"; false )

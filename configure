@@ -34,7 +34,6 @@ echo "Generating Makefile"
         echo -e "\t@test -d scalable/$dir || mkdir scalable/$dir"
     done
     echo -e "\t@sed 's/^/ln -sf /g' <(\$(SYMLINKS)) | bash"
-    echo -e "\t@sed 's/^/cp /g' <(\$(COPIES)) | bash"
     echo
     echo 'static-files:'
     echo -e "\t@bash -c \"find static -type f | sed -e 's/[^\/]*\/\(.*\)/echo copy scalable\/\1;cp & scalable\/\1/' | bash\""
@@ -53,6 +52,7 @@ echo "Generating Makefile"
         echo "done;'"
         echo -e "[\x1b[32m\x1b[1mOK\x1b[0m]" > /dev/stderr
     done
+    echo -e "\t@sed 's/^/cp /g' <(\$(COPIES)) | bash"
     echo
     echo "elements:"
     echo -e "\t@echo -n 'building additional icons ... '"
@@ -96,9 +96,11 @@ echo "Generating Makefile"
         echo -e "\tln -sf ../distributor-logos/$i scalable/places/start-here.svg"
         echo -e "\tln -sf ../distributor-logos/$i scalable/places/gnome-main-menu.svg"
         echo -e "\tln -sf ../distributor-logos/$i scalable/places/distributor-logo.svg"
+        echo -e "\tln -sf ../distributor-logos/${i/svg/png} 16x16/apps/xfce4_xicon1.svg"
         echo -e "\tln -sf ../distributor-logos/${i/svg/png} 16x16/places/start-here.png"
         echo -e "\tln -sf ../distributor-logos/${i/svg/png} 16x16/places/gnome-main-menu.png"
         echo -e "\tln -sf ../distributor-logos/${i/svg/png} 16x16/places/distributor-logo.png"
+        echo -e "\tln -sf ../distributor-logos/${i/svg/png} 16x16/apps/xfce4_xicon1.png"
         echo
     done
         echo -ne "[\x1b[32m\x1b[1mOK\x1b[0m]\nGenerating simple test ... " > /dev/stderr
@@ -110,8 +112,8 @@ echo "Generating Makefile"
         echo -e "\t@test -d 16x16/$dir || mkdir 16x16/$dir"
     done
     echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <(\$(SYMLINKS)) | bash"
-    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <(\$(COPIES)) | bash"
     echo -e "\t@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash"
+    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <(\$(COPIES)) | bash"
     echo
     echo '_symlinks:'
     echo -e "\t@test -d scalable || ( echo \"folder scalable doesn't exists\"; false )"
