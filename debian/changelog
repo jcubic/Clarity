@@ -1,3 +1,31 @@
+clarity-icon-theme (0.5.0~cosmic) cosmic; urgency=low
+  * news icon
+  * xfce4-pulseaudio-plugin
+  * application-x-wine-extension-aspx
+  * winefile
+  * software-update-available
+  * software-update-urgent
+  * ibus-engine
+  * blueberry compound icons
+  * gnome-disks
+  * fix compound icons (move bottom icons on the left)
+  * Headset Icon
+  * Pen Drive + Card Icon
+  * Headphones Icon
+  * VPN Netowrk Icon
+  * E-Book Reader Icon
+  * audio-speakers symlink
+  * drive-multidisk Icon
+  * Anaconda Icon
+  * telegram icon
+  * SELinux issue icon
+  * VLC-Xmas
+  * dnf-dragora symlink
+  * M$ application-x-ms-application
+  * blivet icon
+  * Parole icon
+ -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Thu, 06 Dec 2018 18:35:14 +0100
+
 clarity-icon-theme (0.4.7~artful1) artful; urgency=low
   * icons for blueberry (symlinks + composite)
  -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Mon, 14 Aug 2017 19:18:43 +0200
