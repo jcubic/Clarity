@@ -30,10 +30,13 @@ scalable: src/symlinks
 	@test -d scalable/stock || mkdir scalable/stock
 	@sed 's/^/ln -sf /g' <($(SYMLINKS)) | bash
 
+copies:
+	@sed 's/^/cp /g' <($(COPIES)) | bash
+
 static-files:
 	@bash -c "find static -type f | sed -e 's/[^\/]*\/\(.*\)/echo copy scalable\/\1;cp & scalable\/\1/' | bash"
 
-albus: scalable static-files gen_albus elements _16x16
+albus: scalable static-files gen_albus elements copies _16x16
 
 gen_albus:
 	@echo 'Building icons for theme albus ... '
@@ -41,9 +44,8 @@ gen_albus:
 ./build albus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
-	@sed 's/^/cp /g' <($(COPIES)) | bash
 
-caeruleus: scalable static-files gen_caeruleus elements _16x16
+caeruleus: scalable static-files gen_caeruleus elements copies _16x16
 
 gen_caeruleus:
 	@echo 'Building icons for theme caeruleus ... '
@@ -51,9 +53,8 @@ gen_caeruleus:
 ./build caeruleus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
-	@sed 's/^/cp /g' <($(COPIES)) | bash
 
-canus: scalable static-files gen_canus elements _16x16
+canus: scalable static-files gen_canus elements copies _16x16
 
 gen_canus:
 	@echo 'Building icons for theme canus ... '
@@ -61,9 +62,8 @@ gen_canus:
 ./build canus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
-	@sed 's/^/cp /g' <($(COPIES)) | bash
 
-dark_canus: scalable static-files gen_dark_canus elements _16x16
+dark_canus: scalable static-files gen_dark_canus elements copies _16x16
 
 gen_dark_canus:
 	@echo 'Building icons for theme dark_canus ... '
@@ -71,9 +71,8 @@ gen_dark_canus:
 ./build dark_canus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
-	@sed 's/^/cp /g' <($(COPIES)) | bash
 
-luteus: scalable static-files gen_luteus elements _16x16
+luteus: scalable static-files gen_luteus elements copies _16x16
 
 gen_luteus:
 	@echo 'Building icons for theme luteus ... '
@@ -81,9 +80,8 @@ gen_luteus:
 ./build luteus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
-	@sed 's/^/cp /g' <($(COPIES)) | bash
 
-lux_caeruleus: scalable static-files gen_lux_caeruleus elements _16x16
+lux_caeruleus: scalable static-files gen_lux_caeruleus elements copies _16x16
 
 gen_lux_caeruleus:
 	@echo 'Building icons for theme lux_caeruleus ... '
@@ -91,9 +89,8 @@ gen_lux_caeruleus:
 ./build lux_caeruleus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
-	@sed 's/^/cp /g' <($(COPIES)) | bash
 
-lux_violaceus: scalable static-files gen_lux_violaceus elements _16x16
+lux_violaceus: scalable static-files gen_lux_violaceus elements copies _16x16
 
 gen_lux_violaceus:
 	@echo 'Building icons for theme lux_violaceus ... '
@@ -101,9 +98,8 @@ gen_lux_violaceus:
 ./build lux_violaceus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
-	@sed 's/^/cp /g' <($(COPIES)) | bash
 
-violaceus: scalable static-files gen_violaceus elements _16x16
+violaceus: scalable static-files gen_violaceus elements copies _16x16
 
 gen_violaceus:
 	@echo 'Building icons for theme violaceus ... '
@@ -111,9 +107,8 @@ gen_violaceus:
 ./build violaceus $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
-	@sed 's/^/cp /g' <($(COPIES)) | bash
 
-viridis: scalable static-files gen_viridis elements _16x16
+viridis: scalable static-files gen_viridis elements copies _16x16
 
 gen_viridis:
 	@echo 'Building icons for theme viridis ... '
@@ -121,9 +116,8 @@ gen_viridis:
 ./build viridis $$i;\
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
-	@sed 's/^/cp /g' <($(COPIES)) | bash
 
-elements:
+elements: scalable
 	@echo -n 'building additional icons ... '
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_red_minus.svg`\n</svg>%" scalable/devices/drive-harddisk.svg > scalable/devices/hdd_unmount.svg;
 	@echo "building scalable/devices/hdd_unmount.svg"
@@ -484,22 +478,26 @@ zenwalk:
 	ln -sf ../distributor-logos/zenwalk.png 16x16/apps/xfce4_xicon1.png
 
 
-_16x16: src/symlinks
-	@echo creating 16x16 symlinks
+_16x16: src/symlinks elements
+	@echo -n 'creating 16x16 symlinks '
 	@test -d 16x16 || mkdir 16x16
-	@test -d 16x16/actions || mkdir 16x16/actions
-	@test -d 16x16/apps || mkdir 16x16/apps
-	@test -d 16x16/categories || mkdir 16x16/categories
-	@test -d 16x16/devices || mkdir 16x16/devices
-	@test -d 16x16/distributor-logos || mkdir 16x16/distributor-logos
-	@test -d 16x16/emblems || mkdir 16x16/emblems
-	@test -d 16x16/mimetypes || mkdir 16x16/mimetypes
-	@test -d 16x16/places || mkdir 16x16/places
-	@test -d 16x16/status || mkdir 16x16/status
-	@test -d 16x16/stock || mkdir 16x16/stock
-	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <($(SYMLINKS)) | grep -vE $(SKIP) | bash
+	@test -d 16x16/actions/ || mkdir 16x16/actions/
+	@test -d 16x16/apps/ || mkdir 16x16/apps/
+	@test -d 16x16/categories/ || mkdir 16x16/categories/
+	@test -d 16x16/devices/ || mkdir 16x16/devices/
+	@test -d 16x16/distributor-logos/ || mkdir 16x16/distributor-logos/
+	@test -d 16x16/emblems/ || mkdir 16x16/emblems/
+	@test -d 16x16/fonts/ || mkdir 16x16/fonts/
+	@test -d 16x16/mimetypes/ || mkdir 16x16/mimetypes/
+	@test -d 16x16/places/ || mkdir 16x16/places/
+	@test -d 16x16/status/ || mkdir 16x16/status/
+	@test -d 16x16/stock/ || mkdir 16x16/stock/
+	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^.*/echo symlink &; ln -sf &/g' <($(SYMLINKS)) | grep -vE $(SKIP) | bash
+	@echo -n
 	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash
-	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <($(COPIES)) | grep -vE $(SKIP) | bash
+	@echo -n 'Creating file copies '
+	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^.*/echo copy &; cp &/g' <($(COPIES)) | grep -vE $(SKIP) | bash
+	@echo -n
 
 _symlinks:
 	@test -d scalable || ( echo "folder scalable doesn't exists"; false )

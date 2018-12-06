@@ -8,8 +8,23 @@
 
 RULES_FILE=src/compound_icons_rules
 ERROR=false
+echo "Checking Dependencies"
+fail=1
+for command in make rsvg-convert zenity sed grep; do
+    echo -n "$command ... "
+    command -v $command >/dev/null 2>&1
+    if (( $? == 0 )); then
+        echo -e "[\x1b[32m\x1b[1mOK\x1b[0m]"
+    else
+        echo -e "[\x1b[31m\x1b[1mFAIL\x1b[0m]"
+        echo "You need to install $command"
+        fail=0
+    fi
+done
+if [ $fail = 0 ]; then
+    exit 1
+fi
 echo "Generating Makefile"
-
 {
     echo "# This is generated Makefile from Clarity Vector Icon Theme for GTK"
     echo "#"
@@ -36,6 +51,9 @@ echo "Generating Makefile"
     done
     echo -e "\t@sed 's/^/ln -sf /g' <(\$(SYMLINKS)) | bash"
     echo
+    echo "copies:"
+    echo -e "\t@sed 's/^/cp /g' <(\$(COPIES)) | bash"
+    echo
     echo 'static-files:'
     echo -e "\t@bash -c \"find static -type f | sed -e 's/[^\/]*\/\(.*\)/echo copy scalable\/\1;cp & scalable\/\1/' | bash\""
     #defined themes rules
@@ -43,7 +61,7 @@ echo "Generating Makefile"
         echo
         name=`echo $i | sed -e 's/.*template_\([^\.]*\).*/\1/'`
         echo -n "Process template $name ... " > /dev/stderr
-        echo ${name}: scalable static-files gen_$name elements _16x16
+        echo ${name}: scalable static-files gen_$name elements copies _16x16
         echo
         echo gen_${name}:
         echo -e "\t@echo 'Building icons for theme $name ... '"
@@ -51,11 +69,10 @@ echo "Generating Makefile"
         echo -e "./build ${name} \$\$i;\\"
         echo -e "echo building \`echo \$\$i | sed -e \"s/src/scalable/\"\`;\\"
         echo "done;'"
-        echo -e "\t@sed 's/^/cp /g' <(\$(COPIES)) | bash"
         echo -e "[\x1b[32m\x1b[1mOK\x1b[0m]" > /dev/stderr
     done
     echo
-    echo "elements:"
+    echo "elements: scalable"
     echo -e "\t@echo -n 'building additional icons ... '"
 
     IFS=$'\n'
@@ -91,8 +108,7 @@ echo "Generating Makefile"
     done
     echo -e "[\x1b[32m\x1b[1mOK\x1b[0m]" > /dev/stderr
     echo -n "Generating distribution rules ... " > /dev/stderr
-    cd src/distributor-logos;
-    for i in *; do
+    for i in `cd src/distributor-logos; ls *`; do
         echo -e "$i:" | sed -e 's/\.svg//'
         echo -e "\tln -sf ../distributor-logos/$i scalable/places/start-here.svg"
         echo -e "\tln -sf ../distributor-logos/$i scalable/places/gnome-main-menu.svg"
@@ -106,15 +122,18 @@ echo "Generating Makefile"
     done
         echo -ne "[\x1b[32m\x1b[1mOK\x1b[0m]\nGenerating simple test ... " > /dev/stderr
     echo
-    echo '_16x16: src/symlinks'
-    echo -e "\t@echo creating 16x16 symlinks"
+    echo '_16x16: src/symlinks elements'
+    echo -e "\t@echo -n 'creating 16x16 symlinks '"
     echo -e "\t@test -d 16x16 || mkdir 16x16"
-    for dir in actions apps categories devices distributor-logos emblems mimetypes places status stock; do
+    for dir in `cd src && ls -d */`; do
         echo -e "\t@test -d 16x16/$dir || mkdir 16x16/$dir"
     done
-    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' <(\$(SYMLINKS)) | grep -vE \$(SKIP) | bash"
+    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^\\(.*\\) \\(.*\\)/echo symlink \2; ln -sf &/g' <(\$(SYMLINKS)) | grep -vE \$(SKIP) | bash"
+    echo -e "\t@echo -n"
     echo -e "\t@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash"
-    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' <(\$(COPIES)) | grep -vE \$(SKIP) | bash"
+    echo -e "\t@echo -n 'Creating file copies '"
+    echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^\\(.*\\) \\(.*\\)/echo copy \2; cp &/g' <(\$(COPIES)) | grep -vE \$(SKIP) | bash"
+    echo -e "\t@echo -n"
     echo
     echo '_symlinks:'
     echo -e "\t@test -d scalable || ( echo \"folder scalable doesn't exists\"; false )"

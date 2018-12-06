@@ -9,17 +9,33 @@ theme=$(ls ${BASE}/src/template_*.svg | sed -e 's/.*template_\(.*\)\.svg/\1/' | 
 #user don't select the theme
 [ -z "$theme" ] && exit
 
+function symlinks() {
+    grep -v '^#' src/symlinks | tr -d '\r' | grep -v '^ *$'
+}
+function copies() {
+    grep -v '^#' src/copies | tr -d '\r' | grep -v '^ *$'
+}
+
+SKIP=`grep -v '^#' src/16x16_exceptions | tr -d '\r' | grep -v '^ *$' | paste -sd '|' - | sed -e 's/.*/(&)/'`
+
+
 #variables for counting progress
 num=$(find ${BASE}/src -mindepth 2 -type f -name "*.svg" | wc -l)
 count=0
 rcount=$(grep -v '^#' ${BASE}/src/compound_icons_rules | grep -v '^ *$' | wc -l)
-lcount=$(find scalable -type l | wc -l)
+lcount=$(echo $SYMLINKS | grep -vE "$SKIP" | wc -l)
 #num=`echo $num+$rcount | bc`
 function progress() {
     (( count++ ));
     (( percent = (count*99)/$1 ));
     echo $percent;
 }
+test -d scalable || mkdir scalable
+test -d 16x16 || mkdir 16x16
+for dir in `cd src && ls -d */`; do
+  test -d scalable/$dir || mkdir scalable/$dir
+  test -d 16x16/$dir || mkdir 16x16/$dir
+done
 
 {
     #find all icons in src directory
@@ -31,6 +47,7 @@ function progress() {
         progress $num
     done
     find static -type f | sed -e 's/[^\/]*\/\(.*\)/cp & scalable\/\1/' | bash
+    
     IFS=$'\n'
     count=0
     #skip comments and empty lines
@@ -40,19 +57,22 @@ function progress() {
             desc=$(echo $i | sed -e 's/\([^= ]*\) *=.*/\1/')
             source=$(echo $i | sed -e 's/[^=]*= *\([^ ]*\) *\+.*/\1/')
             element=$(echo $i | sed -e 's/.*+ *\(.*\) *$/\1/')
-            sed -e "s/<\/svg>/    <path `grep 'id=\"shape\" d='  ${BASE}/src/$element | sed -e 's/.*\(d=[^\/]*\)\/.*/\1/'` \/\>\n\<\/svg\>/" ${BASE}/scalable/$source > ${BASE}/scalable/$desc;
+            sed -e "s%</svg>%`grep 'id=\"shape\"'  ${BASE}/src/$element`\n\<\/svg\>%" ${BASE}/scalable/$source > ${BASE}/scalable/$desc;
         else
             zenity --error --title="src/compound_icons_rules corupted" --text="bad line in $RULES_FILE file\n  '$i'"
         fi
         progress $rcount
     done
+    symlinks | sed 's/^/ln -sf /g' | bash
+    copies | sed 's/^/cp /g' | bash
     count=0
-    sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' < src/symlinks | sh
-    for i in $(find scalable -type f); do
+    symlinks | sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/ln -sf /g' | grep -vE $SKIP | sh
+    for i in $(find scalable -type f | grep -vE $SKIP); do
         desc=$(echo $i | sed -e 's/scalable\(.*\)svg/16x16\1png/')
         rsvg-convert -w 16 -h 16 $i > $desc
         progress $lcount
     done
+    copies | sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^/cp /g' | grep -vE $SKIP | bash
     echo 100
     echo "# Completed"
 } | zenity --progress --title="Building ${theme} icons" --width=250
