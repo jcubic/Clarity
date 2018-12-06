@@ -222,7 +222,6 @@ package-x-generic.svg scalable/mimetypes/application-x-rar.svg
 package-x-generic.svg scalable/mimetypes/gnome-mime-application-x-tarz.svg
 audio-x-generic.svg scalable/mimetypes/application-ogg.svg
 text-x-python.svg scalable/mimetypes/gnome-mime-text-x-python.svg
-deb.svg scalable/mimetypes/gnome-mime-application-x-deb.svg
 image-x-generic.svg scalable/mimetypes/image-x-portable-bitmap.svg
 package-x-generic.svg scalable/mimetypes/gnome-mime-application-x-7z-compressed.svg
 ../apps/date.svg scalable/mimetypes/gnome-mime-text-x-vcalendar.svg
@@ -246,7 +245,6 @@ gnome-mime-text-html.svg scalable/mimetypes/gnome-mime-application-xml.svg
 text-x-python.svg scalable/mimetypes/application-x-python-bytecode.svg
 package-x-generic.svg scalable/mimetypes/application-x-ace.svg
 text-lua.svg scalable/mimetypes/text-x-lua.svg
-deb.svg scalable/mimetypes/application-x-deb.svg
 package-x-generic.svg scalable/mimetypes/gnome-mime-application-x-compress.svg
 audio-x-generic.svg scalable/mimetypes/audio-x-speex+ogg.svg
 font-x-generic.svg scalable/mimetypes/gnome-mime-application-x-font-afm.svg
@@ -993,6 +991,9 @@ gdeb.svg scalable/apps/system-software-installer.svg
 gdeb.svg scalable/apps/yumex-dnf.svg
 gdeb.svg scalable/apps/kentoo.svg
 burner.svg scalable/apps/tvm-burn-cd.svg
+deb.svg scalable/mimetypes/gnome-mime-application-x-deb.svg
+deb.svg  scalable/mimetypes/application-vnd.debian.binary-package.svg
+deb.svg scalable/mimetypes/application-x-deb.svg
 opera.svg scalable/apps/opera-browser.svg
 liferea.svg scalable/apps/internet-feed-reader.svg
 ../status/gtk-dialog-authentication.svg scalable/apps/badge-small.svg
