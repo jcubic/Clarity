@@ -2,7 +2,7 @@ Source: clarity-icon-theme
 Section: gnome
 Priority: optional
 Maintainer: Jakub Jankiewicz <jcubic@onet.pl>
-Build-Depends: debhelper (>= 7)
+Build-Depends: debhelper (>= 7), build-essential, librsvg2-bin
 Standards-Version: 3.9.1
 Homepage: http://gnome-look.org/content/show.php?content=135654
 
