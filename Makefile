@@ -492,11 +492,10 @@ _16x16: src/symlinks elements
 	@test -d 16x16/places/ || mkdir 16x16/places/
 	@test -d 16x16/status/ || mkdir 16x16/status/
 	@test -d 16x16/stock/ || mkdir 16x16/stock/
-	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^.*/echo symlink &; ln -sf &/g' <($(SYMLINKS)) | grep -vE $(SKIP) | bash
+	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^\(.*\) \(.*\)/echo symlink \2; ln -sf &/g' <($(SYMLINKS)) | grep -vE $(SKIP) | bash
 	@echo -n
 	@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash
-	@echo -n 'Creating file copies '
-	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^.*/echo copy &; cp &/g' <($(COPIES)) | grep -vE $(SKIP) | bash
+	@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^\(.*\) \(.*\)/echo copy \2; cp &/g' <($(COPIES)) | grep -vE $(SKIP) | bash
 	@echo -n
 
 _symlinks:

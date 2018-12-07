@@ -131,7 +131,6 @@ echo "Generating Makefile"
     echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^\\(.*\\) \\(.*\\)/echo symlink \2; ln -sf &/g' <(\$(SYMLINKS)) | grep -vE \$(SKIP) | bash"
     echo -e "\t@echo -n"
     echo -e "\t@find scalable/ -type f | sed -e 's/scalable\(.*\)svg/echo building 16x16\1png; rsvg-convert -w 16 -h 16 & > 16x16\1png/' | bash"
-    echo -e "\t@echo -n 'Creating file copies '"
     echo -e "\t@sed -e 's/\.svg/\.png/g' -e 's/scalable/16x16/g' -e 's/^\\(.*\\) \\(.*\\)/echo copy \2; cp &/g' <(\$(COPIES)) | grep -vE \$(SKIP) | bash"
     echo -e "\t@echo -n"
     echo
