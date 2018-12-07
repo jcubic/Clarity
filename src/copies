@@ -12,3 +12,8 @@ scalable/apps/application-x-ms-application.svg scalable/apps/application-x-msdow
 scalable/actions/insert-object.svg scalable/apps/parole-extension.svg
 scalable/apps/bluetooth.svg scalable/status/bluetooth-active.svg
 scalable/status/blueberry-tray-disabled.svg  scalable/status/bluetooth-disabled.svg
+scalable/places/user-home.svg scalable/actions/go-home.svg
+scalable/actions/back.svg scalable/actions/go-previous.svg
+scalable/actions/forward.svg scalable/actions/go-next.svg
+scalable/actions/down.svg scalable/actions/go-down.svg
+scalable/actions/up.svg scalable/actions/go-up.svg

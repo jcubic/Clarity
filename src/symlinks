@@ -1711,7 +1711,6 @@ back.svg scalable/actions/gtk-gok-forward-rtl.svg
 gtk-refresh.svg scalable/actions/reload_all_tabs.svg
 system-search.svg scalable/actions/stock_search.svg
 folder-copy.svg scalable/actions/folder-move.svg
-up.svg scalable/actions/go-up.svg
 ../places/user-trash.svg scalable/actions/edit-delete-mail.svg
 back.svg scalable/actions/previous.svg
 ../mimetypes/audio-x-mp3-playlist.svg scalable/actions/playlist.svg
@@ -1851,7 +1850,6 @@ bookmark_add.svg scalable/actions/stock_add-bookmark.svg
 gtk-indent.svg scalable/actions/format-indent-more.svg
 gtk-indent.svg scalable/actions/stock_text_indent.svg
 player_end.svg scalable/actions/gtk-media-next-ltr.svg
-back.svg scalable/actions/go-previous.svg
 undo.svg scalable/actions/edit-undo.svg
 document-save.svg scalable/actions/filesave.svg
 mail-reply-all.svg scalable/actions/stock_mail-reply.svg
@@ -1944,7 +1942,6 @@ edit-copy.svg scalable/actions/editcopy.svg
 ../emblems/emblem-nowrite.svg scalable/actions/dialog-cancel.svg
 view-fullscreen.svg scalable/actions/window_fullscreen.svg
 down.svg scalable/actions/gtk-go-down.svg
-forward.svg scalable/actions/go-next.svg
 edit-find-replace.svg scalable/actions/newstyle-edit-find-replace.svg
 gtk-undelete.svg scalable/actions/stock_undelete.svg
 back.svg scalable/actions/gtk-go-back-ltr.svg
@@ -1961,7 +1958,6 @@ mail-forward.svg scalable/actions/gnome-stock-mail-fwd.svg
 ../status/mail-read.svg scalable/actions/mail-mark-read.svg
 gtk-spell-check.svg scalable/actions/tools-check-spelling.svg
 zoom-original.svg scalable/actions/viewmag1.svg
-down.svg scalable/actions/go-down.svg
 info.svg scalable/actions/gtk-about.svg
 mail-send-receive.svg scalable/actions/stock_mail-send-receive.svg
 player_rew.svg scalable/actions/gtk-media-rewind-ltr.svg
@@ -1989,7 +1985,6 @@ edit-cut.svg scalable/actions/editcut.svg
 system-search.svg scalable/actions/kfind.svg
 edit-clear.svg scalable/actions/gtk-clear.svg
 info.svg scalable/actions/fnome-tourist-info.svg
-../places/user-home.svg scalable/actions/go-home.svg
 player_record.svg scalable/actions/gtk-media-record.svg
 up.svg scalable/actions/stock_up.svg
 gtk-indent.svg scalable/actions/gtk-unindent-rtl.svg

@@ -15,8 +15,7 @@ SKIP=`grep -v '^\#' src/16x16_exceptions | tr -d '\r' | grep -v '^ *$$' | paste 
 
 ALL: canus
 
-scalable: src/symlinks
-	@echo creating symlinks
+scalable:
 	@test -d scalable || mkdir scalable
 	@test -d scalable/actions || mkdir scalable/actions
 	@test -d scalable/apps || mkdir scalable/apps
@@ -28,7 +27,9 @@ scalable: src/symlinks
 	@test -d scalable/places || mkdir scalable/places
 	@test -d scalable/status || mkdir scalable/status
 	@test -d scalable/stock || mkdir scalable/stock
-	@sed 's/^/ln -sf /g' <($(SYMLINKS)) | bash
+
+symlinks: scalable src/symlinks
+	@sed 's/^\(.*\) \(.*\)/echo symlink \2; ln -sf &/g' <($(SYMLINKS)) | bash
 
 copies:
 	@sed 's/^/cp /g' <($(COPIES)) | bash
@@ -36,7 +37,7 @@ copies:
 static-files:
 	@bash -c "find static -type f | sed -e 's/[^\/]*\/\(.*\)/echo copy scalable\/\1;cp & scalable\/\1/' | bash"
 
-albus: scalable static-files gen_albus elements copies _16x16
+albus: symlinks static-files gen_albus elements copies _16x16
 
 gen_albus:
 	@echo 'Building icons for theme albus ... '
@@ -45,7 +46,7 @@ gen_albus:
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
-caeruleus: scalable static-files gen_caeruleus elements copies _16x16
+caeruleus: symlinks static-files gen_caeruleus elements copies _16x16
 
 gen_caeruleus:
 	@echo 'Building icons for theme caeruleus ... '
@@ -54,7 +55,7 @@ gen_caeruleus:
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
-canus: scalable static-files gen_canus elements copies _16x16
+canus: symlinks static-files gen_canus elements copies _16x16
 
 gen_canus:
 	@echo 'Building icons for theme canus ... '
@@ -63,7 +64,7 @@ gen_canus:
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
-dark_canus: scalable static-files gen_dark_canus elements copies _16x16
+dark_canus: symlinks static-files gen_dark_canus elements copies _16x16
 
 gen_dark_canus:
 	@echo 'Building icons for theme dark_canus ... '
@@ -72,7 +73,7 @@ gen_dark_canus:
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
-luteus: scalable static-files gen_luteus elements copies _16x16
+luteus: symlinks static-files gen_luteus elements copies _16x16
 
 gen_luteus:
 	@echo 'Building icons for theme luteus ... '
@@ -81,7 +82,7 @@ gen_luteus:
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
-lux_caeruleus: scalable static-files gen_lux_caeruleus elements copies _16x16
+lux_caeruleus: symlinks static-files gen_lux_caeruleus elements copies _16x16
 
 gen_lux_caeruleus:
 	@echo 'Building icons for theme lux_caeruleus ... '
@@ -90,7 +91,7 @@ gen_lux_caeruleus:
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
-lux_violaceus: scalable static-files gen_lux_violaceus elements copies _16x16
+lux_violaceus: symlinks static-files gen_lux_violaceus elements copies _16x16
 
 gen_lux_violaceus:
 	@echo 'Building icons for theme lux_violaceus ... '
@@ -99,7 +100,7 @@ gen_lux_violaceus:
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
-violaceus: scalable static-files gen_violaceus elements copies _16x16
+violaceus: symlinks static-files gen_violaceus elements copies _16x16
 
 gen_violaceus:
 	@echo 'Building icons for theme violaceus ... '
@@ -108,7 +109,7 @@ gen_violaceus:
 echo building `echo $$i | sed -e "s/src/scalable/"`;\
 done;'
 
-viridis: scalable static-files gen_viridis elements copies _16x16
+viridis: symlinks static-files gen_viridis elements copies _16x16
 
 gen_viridis:
 	@echo 'Building icons for theme viridis ... '
@@ -478,7 +479,7 @@ zenwalk:
 	ln -sf ../distributor-logos/zenwalk.png 16x16/apps/xfce4_xicon1.png
 
 
-_16x16: src/symlinks elements
+_16x16: scalable elements
 	@echo -n 'creating 16x16 symlinks '
 	@test -d 16x16 || mkdir 16x16
 	@test -d 16x16/actions/ || mkdir 16x16/actions/
