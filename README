@@ -36,12 +36,20 @@ INSTALLATION
 
   copy Clarity folder to ~/.icons or /usr/share/icons as root
 
-on Ubuntu based systems you can install Clarity from PPA:
+on Ubuntu based systems you can install Clarity from PPA (execute from terminal
+without $)
 
  $ sudo add-apt-repository ppa:jcubic/jcubicppa && sudo apt-get update
 
  $ sudo apt-get install clarity-icon-theme
 
+You can also use GNU/Linux build package mantra
+
+ $ ./configure && make && sudo make install
+
+instead of make you can use
+
+ $ make <theme>
 
 CHANGING COLORS OF ICONS
 
@@ -92,9 +100,9 @@ OTHER CONTRIBUTORS
 Enneric Valmorin
 Chris Lenk
 
-BUILDING
+BUILDING PACKAGES
 
-On Ubuntu
+On Ubuntu deb packages
 
 sudo apt-get install devscripts build-essential lintian debhelper librsvg2-bin
 # this will create debian pacakge
