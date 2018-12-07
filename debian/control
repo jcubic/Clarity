@@ -2,13 +2,13 @@ Source: clarity-icon-theme
 Section: gnome
 Priority: optional
 Maintainer: Jakub Jankiewicz <jcubic@onet.pl>
-Build-Depends: debhelper (>= 7), librsvg2-bin
+Build-Depends: debhelper (>= 7)
 Standards-Version: 3.9.1
 Homepage: http://gnome-look.org/content/show.php?content=135654
 
 Package: clarity-icon-theme
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: librsvg2-bin, zenity
 Conflicts: clarity-icon-theme
 Provides: clarity-icon-theme
 Replaces: clarity-icon-theme
