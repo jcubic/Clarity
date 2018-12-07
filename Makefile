@@ -511,17 +511,30 @@ clean:
 	@bash -c 'for i in `find . -name "*-stamp"`; do rm $$i; done'
 
 install-deb:
-	mkdir debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp configure debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp index.theme debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp Makefile debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp build debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp README debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp change-theme debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp -r static debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp -r src debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp -r scalable debian/clarity-icon-theme/usr/share/icons/Clarity
-	cp -r 16x16 debian/clarity-icon-theme/usr/share/icons/Clarity
+	@test -d debian/clarity-icon-theme/usr/share/icons/Clarity || mkdir debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp configure debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp index.theme debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp Makefile debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp build debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp README debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp change-theme debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp -r static debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp -r src debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp -r scalable debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp -r 16x16 debian/clarity-icon-theme/usr/share/icons/Clarity
+
+install:
+	@test -d /usr/share/icons/Clarity || mkdir /usr/share/icons/Clarity
+	@cp configure /usr/share/icons/Clarity
+	@cp index.theme /usr/share/icons/Clarity
+	@cp Makefile /usr/share/icons/Clarity
+	@cp build /usr/share/icons/Clarity
+	@cp README /usr/share/icons/Clarity
+	@cp change-theme /usr/share/icons/Clarity
+	@cp -r static /usr/share/icons/Clarity
+	@cp -r src /usr/share/icons/Clarity
+	@cp -r scalable /usr/share/icons/Clarity
+	@cp -r 16x16 /usr/share/icons/Clarity
 
 source-deb:
 	debuild -S

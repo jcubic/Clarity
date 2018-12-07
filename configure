@@ -21,6 +21,19 @@ for command in make rsvg-convert zenity sed grep; do
         fail=0
     fi
 done
+
+
+function install() {
+    echo -e "\t@test -d ${1}usr/share/icons/Clarity || mkdir ${1}usr/share/icons/Clarity"
+    for i in configure index.theme Makefile build README change-theme; do
+      echo -e "\t@cp $i ${1}usr/share/icons/Clarity"
+    done
+    for name in static src scalable 16x16; do
+      echo -e "\t@cp -r $name ${1}usr/share/icons/Clarity"
+    done
+}
+
+
 if [ $fail = 0 ]; then
     exit 1
 fi
@@ -148,24 +161,11 @@ echo "Generating Makefile"
     #test rule
     echo
     echo "install-deb:"
-    echo -e "\tmkdir debian/clarity-icon-theme/usr/share/icons/Clarity"
-    for i in configure index.theme Makefile build README change-theme; do
-      echo -e "\tcp $i debian/clarity-icon-theme/usr/share/icons/Clarity"
-    done
-    for name in static src scalable 16x16; do
-      echo -e "\tcp -r $name debian/clarity-icon-theme/usr/share/icons/Clarity"
-    done
+    install debian/clarity-icon-theme/
     echo
     echo "install:"
-    echo -e "\t@test -d /usr/share/icons/Clarity || mkdir /usr/share/icons/Clarity"
-    for i in configure index.theme Makefile build README change-theme; do
-      echo -e "\t@cp $i /usr/share/icons/Clarity"
-    done
-    for name in static src scalable 16x16; do
-      echo -e "\t@cp -r $name /usr/share/icons/Clarity"
-    done
+    install /
     echo
-    for name in static src scalable 16x16; do
     echo "source-deb:"
     echo -e "\tdebuild -S"
     echo
