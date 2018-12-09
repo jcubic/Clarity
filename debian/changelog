@@ -1,6 +1,5 @@
 clarity-icon-theme (0.5.1~trusty) trusty; urgency=low
   * scale icons to 64x64 to fix issue with evolution
-  * XFce Thunar navigation icons (symlinks)
  -- Jakub Jankiewicz (jcubic) <jcubic@onet.pl>  Sun, 09 Dec 2018 12:56:36 +0100
 
 clarity-icon-theme (0.5.0~trusty) trusty; urgency=low

@@ -1943,6 +1943,12 @@ gcolor.svg scalable/apps/gnome-color-manager.svg
 setroubleshoot_icon.svg scalable/apps/setroubleshoot_red_icon.svg
 ../actions/insert-object.svg scalable/mimetypes/application-x-addon.svg
 
+# Thunar
+../places/user-home.svg scalable/actions/go-home-symbolic.svg
+up.svg scalable/actions/go-up-symbolic.svg
+forward.svg scalable/actions/go-next-symbolic.svg
+back.svg scalable/actions/go-previous-symbolic.svg
+
 # Java
 gnome-mime-text-x-java.svg scalable/mimetypes/gnome-mime-text-x-java-source.svg
 gnome-mime-text-x-java.svg scalable/mimetypes/application-x-java.svg
