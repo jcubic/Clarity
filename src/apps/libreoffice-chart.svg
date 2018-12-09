@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Libreoffice Chart File Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Libreoffice Chart File Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 25.15625 7.84375 C 21.934691 7.84375 19.28125 10.528441 19.28125 13.75 L 19.28125 114.28125 C 19.28125 117.50281 21.919281 120.15625 25.15625 120.15625 L 102.8125 120.15625 C 106.04947 120.15625 108.71875 117.51822 108.71875 114.28125 L 108.71875 49.78125 L 108.71875 48.96875 L 108.125 48.375 L 68.25 8.4375 L 67.65625 7.84375 L 66.8125 7.84375 L 25.15625 7.84375 z M 104.375 8.28125 C 102.51902 8.28125 86.191384 8.4375 82.96875 8.4375 C 79.746122 8.4375 78.749033 10.806914 80.6875 13.1875 C 82.625964 15.568085 102.51936 35.042857 103.625 36.3125 C 105.10448 38.011404 108.3125 37.807027 108.3125 33.875 L 108.3125 12.21875 C 108.3125 10.333734 106.84395 8.28125 104.375 8.28125 z M 25.15625 11.84375 L 65.96875 11.84375 L 104.71875 50.59375 L 104.71875 114.28125 C 104.71875 115.34686 103.87809 116.15625 102.8125 116.15625 L 25.15625 116.15625 C 24.090645 116.15625 23.28125 115.36227 23.28125 114.28125 L 23.28125 13.75 C 23.28125 12.668987 24.075235 11.84375 25.15625 11.84375 z M 32.126953 55.042969 L 32.126953 56.542969 L 32.126953 109.02539 L 95.873047 109.02539 L 95.873047 55.042969 L 32.126953 55.042969 z M 35.126953 58.042969 L 92.873047 58.042969 L 92.873047 106.02539 L 35.126953 106.02539 L 35.126953 58.042969 z M 67.029297 61.289062 L 67.029297 102.7793 L 74.351562 102.7793 L 74.351562 61.289062 L 67.029297 61.289062 z M 40.271484 65.357422 L 40.271484 102.7793 L 47.59375 102.7793 L 47.59375 65.357422 L 40.271484 65.357422 z M 53.650391 77.017578 L 53.650391 102.7793 L 60.972656 102.7793 L 60.972656 77.017578 L 53.650391 77.017578 z M 80.40625 84.339844 L 80.40625 102.7793 L 87.728516 102.7793 L 87.728516 84.339844 L 80.40625 84.339844 z " style="fill:#aaaaaa"/>
+</svg>

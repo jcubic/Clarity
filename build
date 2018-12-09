@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# this file is part of build system for Clarity GTK+ Icons
+#
+# Copyright (c) 2010-2018 Jakub Jankiewicz <https://jcubic.pl/me>
+# Licensed under CC-BY-SA 3.0 license
+#
 
 if [ "$#" -eq 2 ]; then
 
@@ -6,5 +12,5 @@ if [ "$#" -eq 2 ]; then
     TITLE=`grep "<title>" $2 | sed -e "s/.*<title>\([^<]*\)<\/title>/\1/"`;\
     sed -e "s/{{PATH}}/${SHAPE}/" -e "s/{{TITLE}}/${TITLE}/" src/template_$1.svg > `echo $2 | sed -e "s/src/scalable/"`
 else
-    echo -e "usage:\n\tbuild template src/dir/filename.svg"
+    echo -e "usage:\n\tbuild <template name> src/dir/filename.svg"
 fi
