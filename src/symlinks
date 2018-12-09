@@ -272,7 +272,6 @@ gnome-mime-application-x-gnome-theme-package.svg scalable/mimetypes/application-
 text-x-ruby.svg scalable/mimetypes/application-x-ruby.svg
 image-x-generic.svg scalable/mimetypes/image-x-icon.svg
 openofficeorg23-text-template.svg scalable/mimetypes/x-office-document-template.svg
-gnome-mime-text-x-java.svg scalable/mimetypes/text-x-java-source.svg
 image-x-kodak-dcr.svg scalable/mimetypes/image-x-kodak-kdc.svg
 application-x-jar.svg scalable/mimetypes/application-x-class-file.svg
 gnome-mime-text-x-csrc.svg scalable/mimetypes/gnome-mime-text-x-chdr.svg
@@ -310,7 +309,6 @@ audio-x-generic.svg scalable/mimetypes/media-audio.svg
 package-x-generic.svg scalable/mimetypes/gnome-mime-application-x-arj.svg
 application-x-executable-script.svg scalable/mimetypes/text-x-script.svg
 gtk-file.svg scalable/mimetypes/empty.svg
-text-javascript.svg scalable/mimetypes/text-x-javascript.svg
 package-x-generic.svg scalable/mimetypes/application-x-cpio.svg
 openofficeorg23-presentation-template.svg scalable/mimetypes/application-vnd.openxmlformats-officedocument.presentationml.presentation.template.svg
 gnome-mime-text-plain.svg scalable/mimetypes/txt2.svg
@@ -335,7 +333,6 @@ video-x-generic.svg scalable/mimetypes/gnome-mime-application-vnd.rn-realmedia.s
 video-x-generic.svg scalable/mimetypes/gnome-mime-application-vnd.rn-realmedia-vbr.svg
 package-x-generic.svg scalable/mimetypes/gnome-mime-application-x-zoo.svg
 openofficeorg23-presentation.svg scalable/mimetypes/gnome-mime-application-vnd.oasis.opendocument.presentation.svg
-text-javascript.svg scalable/mimetypes/gnome-mime-text-x-javascript.svg
 ../apps/date.svg scalable/mimetypes/plan.svg
 package-x-generic.svg scalable/mimetypes/application-x-lzma.svg
 gnome-mime-text-x-csrc.svg scalable/mimetypes/application-text-c.svg
@@ -349,7 +346,6 @@ gnome-mime-text-html.svg scalable/mimetypes/aplication-text+html.svg
 ../apps/evolution-addressbook.svg scalable/mimetypes/stock_addressbook.svg
 application-x-executable-script.svg scalable/mimetypes/text-scriptlet.svg
 audio-x-generic.svg scalable/mimetypes/gnome-mime-audio-midi.svg
-gnome-mime-text-x-java.svg scalable/mimetypes/gnome-mime-application-x-java.svg
 image-x-canon-crw.svg scalable/mimetypes/image-x-canon-cr2.svg
 text-x-copying.svg scalable/mimetypes/gnome-mime-text-x-copying.svg
 openofficeorg23-text.svg scalable/mimetypes/gnome-mime-application-x-dvi.svg
@@ -416,9 +412,10 @@ openofficeorg23-spreadsheet.svg scalable/mimetypes/x-office-spreadsheet.svg
 application-x-mswinurl.svg scalable/mimetypes/text-x-uri.svg
 application-x-bittorrent.svg scalable/mimetypes/text-x-install.svg
 package-x-generic.svg scalable/mimetypes/application-x-arj.svg
-text-javascript.svg scalable/mimetypes/application-x-javascript.svg
 openofficeorg23-presentation.svg scalable/mimetypes/gnome-mime-application-vnd.sun.xml.impress.template.svg
-gnome-mime-text-x-java.svg scalable/mimetypes/text-x-java.svg
+text-javascript.svg scalable/mimetypes/text-x-javascript.svg
+text-javascript.svg scalable/mimetypes/application-x-javascript.svg
+text-javascript.svg scalable/mimetypes/gnome-mime-text-x-javascript.svg
 gnome-mime-text-x+lisp.svg scalable/mimetypes/gnome-mime-application-x+lisp.svg
 application-x-executable.svg scalable/mimetypes/exec.svg
 package-x-generic.svg scalable/mimetypes/gnome-mime-application-x-stuffit.svg
@@ -503,7 +500,6 @@ application-pgp-encrypted.svg scalable/mimetypes/application-pgp.svg
 openofficeorg23-spreadsheet.svg scalable/mimetypes/spreadsheet.svg
 application-x-subrip.svg scalable/mimetypes/text-x-mpsub.svg
 package-x-generic.svg scalable/mimetypes/rar.svg
-gnome-mime-text-x-java.svg scalable/mimetypes/gnome-mime-text-x-java-source.svg
 openofficeorg23-formula.svg scalable/mimetypes/application-vnd.oasis.opendocument.formula.svg
 package-x-generic.svg scalable/mimetypes/folder_tar.svg
 openofficeorg23-spreadsheet-template.svg scalable/mimetypes/application-vnd.openxmlformats-officedocument.spreadsheetml.template.svg
@@ -540,7 +536,6 @@ openofficeorg23-oasis-text-template.svg scalable/mimetypes/openofficeorg23-text-
 openofficeorg23-text.svg scalable/mimetypes/gnome-mime-application-x-kword.svg
 ../apps/apport-gtk2.svg scalable/mimetypes/text-x-apport.svg
 video-x-generic.svg scalable/mimetypes/video-quicktime.svg
-gnome-mime-text-x-java.svg scalable/mimetypes/application-x-java.svg
 application-certificate.svg scalable/mimetypes/stock_certificat.svg
 openofficeorg23-presentation-template.svg scalable/mimetypes/application-vnd.oasis.opendocument.presentation-template.svg
 network-idle.svg scalable/status/connect_creating.svg
@@ -810,7 +805,6 @@ weather-storm.svg scalable/status/stock_weather-storm.svg
 ../apps/sleep.svg scalable/status/weather-clear-night-080.svg
 xfpm-battery-000.svg scalable/status/xfpm-primary-000.svg
 ../emblems/emblem-multimedia.svg scalable/categories/redhat-sound_video.svg
-../apps/java.svg scalable/categories/applications-java.svg
 ../apps/python.svg scalable/categories/applications-python.svg
 ../devices/input-gaming.svg scalable/categories/applications-games.svg
 ../devices/mouse.svg scalable/categories/preferences-desktop-peripherials.svg
@@ -1003,7 +997,6 @@ gnome-eog.svg scalable/apps/image-viewer.svg
 gnome-eog.svg scalable/apps/eog.svg
 config-language.svg scalable/apps/yast-language.svg
 ooo.svg scalable/apps/openofficeorg3-main.svg
-java.svg scalable/apps/sun-java.svg
 google-earth.svg scalable/apps/qlandkartegt.svg
 ../stock/epiphany-history.svg scalable/apps/gnome-set-time.svg
 ../devices/audio-input-microphone.svg scalable/apps/gnome-grecord.svg
@@ -1034,7 +1027,6 @@ gnome-monitor.svg scalable/apps/htop.svg
 gnome-session-reboot.svg scalable/apps/gnome-session-reboot2.svg
 gnote.svg scalable/apps/notecase.svg
 facebook.svg scalable/apps/im-facebook.svg
-sun_java.svg scalable/apps/openjdk-6.svg
 gdm-xnest.svg scalable/apps/gdm.svg
 ../emblems/emblem-web.svg scalable/apps/gnome-web-browser.svg
 qt.svg scalable/apps/qtconfig.svg
@@ -1049,11 +1041,9 @@ icedove.svg scalable/apps/icedove-icon.svg
 evolution-tasks.svg scalable/apps/gtg-panel.svg
 evince.svg scalable/apps/okular.svg
 ../emblems/emblem-web.svg scalable/apps/web-browser.svg
-java.svg scalable/apps/sun-jcontrol.svg
 ../status/dropboxstatus-logo.svg scalable/apps/dropbox.svg
 config-language.svg scalable/apps/localedrake.svg
 gnome-panel-workspace-switcher.svg scalable/apps/workspace-switcher.svg
-sun_java.svg scalable/apps/netbeans.svg
 ../places/notebook.svg scalable/apps/text-editor.svg
 ../devices/network-wired.svg scalable/apps/pppoeconfig.svg
 evolution-addressbook.svg scalable/apps/activity-journal.svg
@@ -1141,7 +1131,6 @@ preferences-mail-accounts.svg scalable/apps/system-users.svg
 ../devices/scanner.svg scalable/apps/xsane.svg
 system-shutdown-panel.svg scalable/apps/system-shutdown.svg
 date.svg scalable/apps/gnome-calendar.svg
-java.svg scalable/apps/sun-javaws.svg
 gnote.svg scalable/apps/evolution-task.svg
 ../emblems/emblem-personal.svg scalable/apps/stock_keyring.svg
 ../places/notebook.svg scalable/apps/kate.svg
@@ -1357,7 +1346,6 @@ ipla.svg scalable/apps/iplalite.svg
 ../actions/info.svg scalable/apps/ibus-setup.svg
 ../categories/package_settings.svg scalable/apps/redhat-server_settings.svg
 invest-applet.svg scalable/apps/invest-big.svg
-sun_java.svg scalable/apps/netbeans-ide.svg
 preferences-mail-accounts.svg scalable/apps/evolution-contacts.svg
 gnome-session-reboot.svg scalable/apps/reboot-notifier.svg
 evolution-addressbook.svg scalable/apps/addressbook.svg
@@ -1567,7 +1555,6 @@ session-properties.svg scalable/apps/preferences-system-session.svg
 ../distributor-logos/gnome.svg scalable/apps/gnome-logo-icon.svg
 avidemux.svg scalable/apps/kino.svg
 firefox.svg scalable/apps/firefox-orginal.svg
-java.svg scalable/apps/sun_java.svg
 gnome-monitor.svg scalable/apps/utilities-system-monitor.svg
 iceweasel.svg scalable/apps/iceweasel-icon.svg
 amule.svg scalable/apps/amulegui.svg
@@ -1952,12 +1939,29 @@ gnome-mime-text-plain.svg scalable/mimetypes/text-x-component.svg
 gcolor.svg scalable/apps/gnome-color-manager.svg
 ../stock/epiphany-history.svg scalable/apps/preferences-system-time.svg
 ../stock/epiphany-history.svg scalable/apps/xfce4-time-out-plugin.svg
-java.svg scalable/apps/java-1.8.0.svg
-java.svg scalable/apps/java-1.7.0.svg
-java.svg scalable/apps/java-1.9.0.svg
 ../apps/rhythmbox.svg scalable/devices/audio-speakers.svg
 setroubleshoot_icon.svg scalable/apps/setroubleshoot_red_icon.svg
 ../actions/insert-object.svg scalable/mimetypes/application-x-addon.svg
+
+# Java
+gnome-mime-text-x-java.svg scalable/mimetypes/gnome-mime-text-x-java-source.svg
+gnome-mime-text-x-java.svg scalable/mimetypes/application-x-java.svg
+gnome-mime-text-x-java.svg scalable/mimetypes/text-x-java-source.svg
+gnome-mime-text-x-java.svg scalable/mimetypes/gnome-mime-application-x-java.svg
+gnome-mime-text-x-java.svg scalable/mimetypes/text-x-java.svg
+
+java.svg scalable/apps/java-1.8.0.svg
+java.svg scalable/apps/java-1.7.0.svg
+java.svg scalable/apps/java-1.9.0.svg
+sun_java.svg scalable/apps/openjdk-6.svg
+java.svg scalable/apps/sun-java.svg
+../apps/java.svg scalable/categories/applications-java.svg
+java.svg scalable/apps/sun_java.svg
+java.svg scalable/apps/sun-jcontrol.svg
+sun_java.svg scalable/apps/netbeans.svg
+java.svg scalable/apps/sun-javaws.svg
+sun_java.svg scalable/apps/netbeans-ide.svg
+java.svg scalable/apps/java-1.8.0-openjdk.svg
 
 # libre office
 libreoffice-text-template.svg scalable/mimetypes/libreoffice-oasis-text-template.svg
