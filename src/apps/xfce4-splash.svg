@@ -18,6 +18,11 @@
                         <dc:title>Jakub Jankiewicz</dc:title>
                     </cc:Agent>
                 </dc:creator>
+                <dc:contributor>
+                    <cc:Agent>
+                        <dc:title>https://github.com/emojione/emojione/graphs/contributors</dc:title>
+                    </cc:Agent>
+                </dc:contributor>
                 <dc:rights>
                     <cc:Agent>
                         <dc:title>Jakub Jankiewicz</dc:title>
