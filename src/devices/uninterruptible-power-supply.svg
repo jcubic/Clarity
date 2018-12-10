@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>UPS Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>UPS Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 28.580078,31.144648 c -1.537422,0 -2.775391,1.236016 -2.775391,2.773438 v 4.005859 H 21.777343 C 18.576796,37.923945 16,40.500742 16,43.701289 v 1.001953 h 96 v -1.001953 c 0,-3.200547 -2.57678,-5.777344 -5.77735,-5.777344 h -6.73828 v -4.005859 c 0,-1.537422 -1.237964,-2.773438 -2.775386,-2.773438 H 84.904296 c -1.537421,0 -2.77539,1.236016 -2.77539,2.773438 v 4.005859 h -38.96875 v -4.005859 c 0,-1.537422 -1.236016,-2.773438 -2.773438,-2.773438 z M 16,49.49121 v 40.052735 c 0,3.200547 2.576796,5.777344 5.777343,5.777344 h 84.445307 c 3.20056,0 5.77735,-2.576797 5.77735,-5.777344 V 49.49121 Z m 17.503906,5.382813 h 1.958984 c 1.537422,0 2.775391,1.236016 2.775391,2.773437 v 5.986329 h 5.986328 c 1.537422,0 2.775391,1.237968 2.775391,2.77539 v 1.960938 c 0,1.537422 -1.237969,2.773437 -2.775391,2.773437 h -5.986328 v 5.986328 c 0,1.537422 -1.237969,2.775391 -2.775391,2.775391 h -1.958984 c -1.537422,0 -2.775391,-1.237969 -2.775391,-2.775391 v -5.986328 h -5.986328 c -1.537422,0 -2.775391,-1.236015 -2.775391,-2.773437 v -1.960938 c 0,-1.537422 1.237969,-2.77539 2.775391,-2.77539 h 5.986328 V 57.64746 c 0,-1.537421 1.237969,-2.773437 2.775391,-2.773437 z m 47.560547,8.759766 h 19.482417 c 1.53743,0 2.77539,1.237968 2.77539,2.77539 v 1.960938 c 0,1.537422 -1.23796,2.77539 -2.77539,2.77539 H 81.064453 c -1.537423,0 -2.775391,-1.237968 -2.775391,-2.77539 v -1.960938 c 0,-1.537422 1.237968,-2.77539 2.775391,-2.77539 z" style="fill:#aaaaaa"/>
+</svg>
