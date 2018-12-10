@@ -85,6 +85,26 @@ base.svg scalable/apps/libreoffice3-base.svg
 ../apps/main.svg scalable/mimetypes/libreoffice-oasis-empty.svg
 ../apps/writer scalable/mimetypes/libreoffice-text.svg
 
+# PDf
+evince.svg scalable/apps/okular.svg
+acroread.svg scalable/categories/AdobeReader.svg
+acroread.svg scalable/categories/AdobeReader8.svg
+acroread.svg scalable/categories/acroread.svg
+postscript.svg scalable/apps/postscript-viewer.svg
+../categories/acroread.svg scalable/apps/AdobeReader.svg
+../categories/acroread.svg scalable/apps/xpdf.svg
+../categories/acroread.svg scalable/apps/adobe_reader.svg
+../categories/acroread.svg scalable/apps/AdobeReader8.svg
+../categories/acroread.svg scalable/apps/AdobeReader10.svg
+../categories/acroread.svg scalable/apps/epdfview.svg
+../categories/acroread.svg scalable/apps/AdobeReader9.svg
+../categories/acroread.svg scalable/apps/x-pdf.svg
+../categories/acroread.svg scalable/apps/acroread.svg
+../categories/acroread.svg scalable/apps/adobe-reader.svg
+../categories/acroread.svg scalable/apps/gnome-pdf.svg
+evince.svg scalable/apps/org.gnome.Evince.svg
+evince.svg scalable/apps/org.gnome.Evince-symbolic.svg
+
 # Other
 emblem-personal.svg scalable/emblems/emblem-noread.svg
 ../apps/gnote.svg scalable/emblems/emblem-note.svg
@@ -901,7 +921,6 @@ gnome-util.svg scalable/categories/applications-accessories.svg
 applications-graphics.svg scalable/categories/xfce-graphics.svg
 ../emblems/emblem-web.svg scalable/categories/applications-internet.svg
 ../devices/mouse.svg scalable/categories/input_device_settings.svg
-../apps/evince.svg scalable/categories/AdobeReader.svg
 ../emblems/emblem-multimedia.svg scalable/categories/xfce-multimedia.svg
 ../emblems/emblem-fonts.svg scalable/categories/applications-fonts.svg
 ../emblems/emblem-scripts.svg scalable/categories/redhat-system_tools.svg
@@ -913,7 +932,6 @@ package_settings.svg scalable/categories/xfce-system-settings.svg
 ../apps/wine.svg scalable/categories/applications-wine.svg
 ../emblems/emblem-web.svg scalable/categories/xfce-internet.svg
 gnome-util.svg scalable/categories/redhat-accessories.svg
-../apps/evince.svg scalable/categories/AdobeReader8.svg
 ../emblems/emblem-web.svg scalable/categories/stock_internet.svg
 ../distributor-logos/debian.svg scalable/categories/debian-logo.svg
 ../apps/multimedia-volume-control.svg scalable/categories/redhat-preferences.svg
@@ -942,7 +960,6 @@ package_settings.svg scalable/categories/xfce4-settings.svg
 ../emblems/emblem-scripts.svg scalable/categories/applications-system.svg
 gnome-util.svg scalable/categories/xfce-utils.svg
 ../emblems/emblem-web.svg scalable/categories/package_network.svg
-../apps/evince.svg scalable/categories/acroread.svg
 ../devices/input-gaming.svg scalable/categories/gnome-joystick.svg
 package_settings.svg scalable/categories/preferences-system.svg
 ../actions/insert-object.svg scalable/categories/applications-puzzles.svg
@@ -1097,7 +1114,6 @@ avidemux.svg scalable/apps/avidemux_icon.svg
 sleep.svg scalable/apps/preferences-desktop-screensaver.svg
 synaptic.svg scalable/apps/pirut.svg
 openofficeorg-calc.svg scalable/apps/openofficeorg3-calc.svg
-evince.svg scalable/apps/postscript-viewer.svg
 terminal.svg scalable/apps/bash.svg
 clementine.svg scalable/apps/clementine-panel.svg
 synaptic.svg scalable/apps/gnome-codec-install.svg
@@ -1119,7 +1135,6 @@ synaptic.svg scalable/apps/package.svg
 ../actions/insert-object.svg scalable/apps/awn-plugins.svg
 icedove.svg scalable/apps/icedove-icon.svg
 evolution-tasks.svg scalable/apps/gtg-panel.svg
-evince.svg scalable/apps/okular.svg
 ../emblems/emblem-web.svg scalable/apps/web-browser.svg
 ../status/dropboxstatus-logo.svg scalable/apps/dropbox.svg
 config-language.svg scalable/apps/localedrake.svg
@@ -1193,7 +1208,6 @@ firefox.svg scalable/apps/firefox-icon-unbranded.svg
 glade.svg scalable/apps/glade-2.svg
 ../devices/monitor.svg scalable/apps/preferences-desktop-display.svg
 ../devices/totem-tv.svg scalable/apps/pitivi.svg
-evince.svg scalable/apps/AdobeReader.svg
 date.svg scalable/apps/rainlendar2.svg
 ../actions/insert-object.svg scalable/apps/gdesklets.svg
 gnome-subtitles.svg scalable/apps/subtitleeditor.svg
@@ -1203,9 +1217,7 @@ config-language.svg scalable/apps/gswitchit-properties-applet.svg
 glchess.svg scalable/apps/package_games_strategy.svg
 gnometrix.svg scalable/apps/crack-attack.svg
 pithos.svg scalable/apps/pithos-mono.svg
-evince.svg scalable/apps/xpdf.svg
 ../stock/epiphany-history.svg scalable/apps/gtubeclock.svg
-evince.svg scalable/apps/adobe_reader.svg
 firefox.svg scalable/apps/firefox-3.5.svg
 preferences-mail-accounts.svg scalable/apps/system-users.svg
 ../devices/scanner.svg scalable/apps/xsane.svg
@@ -1241,7 +1253,6 @@ kcmsound.svg scalable/apps/gnome-vumeter.svg
 ../actions/contact.svg scalable/apps/gksu-icon.svg'
 terminal.svg scalable/apps/konsole.svg
 ../categories/package_settings.svg scalable/apps/drakconf.svg
-evince.svg scalable/apps/AdobeReader8.svg
 ../devices/drive-harddisk.svg scalable/apps/disks.svg
 vmware.svg scalable/apps/vmware-workstation.svg
 ../categories/system-help.svg scalable/apps/devhelp.svg
@@ -1251,7 +1262,6 @@ preferences-desktop-theme.svg scalable/apps/gnome-settings-theme.svg
 date.svg scalable/apps/office-calendar.svg
 session-properties.svg scalable/apps/gnome-session.svg
 ../actions/bookmark-new.svg scalable/apps/stock_bookmark.svg
-evince.svg scalable/apps/AdobeReader10.svg
 config-language.svg scalable/apps/gswitchit-applet.svg
 ../emblems/emblem-fonts.svg scalable/apps/preferences-autocompletition.svg
 ../emblems/emblem-fonts.svg scalable/apps/gnome-settings-font.svg
@@ -1411,7 +1421,6 @@ multimedia-volume-control.svg scalable/apps/volume-knob.svg
 easytags.svg scalable/apps/entagged.svg
 ooo-printeradmin.svg scalable/apps/openofficeorg3-printeradmin.svg
 preferences-mail-accounts.svg scalable/apps/system-config-users.svg
-evince.svg scalable/apps/epdfview.svg
 deluge.svg scalable/apps/deluge-torrent.svg
 ../emblems/emblem-personal.svg scalable/apps/gdu-encrypted-lock.svg
 giver.svg scalable/apps/giver-48.svg
@@ -1457,11 +1466,9 @@ epiphany-browser.svg scalable/apps/epiphany-gecko.svg
 ../places/network-server.svg scalable/apps/gnome-network-properties.svg
 nero.svg scalable/apps/nerolinux.svg
 claws-mail.svg scalable/apps/claws-mail-64x64.svg
-evince.svg scalable/apps/AdobeReader9.svg
 ../actions/insert-object.svg scalable/apps/awn-applets.svg
 firefox.svg scalable/apps/firefox-4.0.svg
 gnome-session-hibernate.svg scalable/apps/gnome-session-hebirnate.svg
-evince.svg scalable/apps/x-pdf.svg
 python.svg scalable/apps/python2.3.svg
 emacs.svg scalable/apps/emacs23.svg
 preferences-mail-accounts.svg scalable/apps/kuser.svg
@@ -1562,12 +1569,10 @@ firefox.svg scalable/apps/firefox3.svg
 terminal.svg scalable/apps/gnome-terminal.svg
 preferences-desktop-theme.svg scalable/apps/xfce4-ui.svg
 ../actions/mail_new.svg scalable/apps/indicator-message-new.svg
-evince.svg scalable/apps/acroread.svg
 beryl.svg scalable/apps/emerald-theme-manager-icon.svg
 gcolor.svg scalable/apps/gnome-color-chooser.svg
 calibre.svg scalable/apps/calibre-gui.svg
 key_bindigs.svg scalable/apps/preferences-desktop-keyboard-shortcuts.svg
-evince.svg scalable/apps/adobe-reader.svg
 glade.svg scalable/apps/glade-3.svg
 ../categories/system-help.svg scalable/apps/gnome-help.svg
 multimedia-volume-control.svg scalable/apps/xfce4-mixer.svg
@@ -1615,7 +1620,6 @@ firefox.svg scalable/apps/firefox-3.0-icon.svg
 gnome-window-manager.svg scalable/apps/kcmkwm.svg
 gnome-inhibit-applet.svg scalable/apps/system-suspend-hibernate.svg
 ../devices/monitor.svg scalable/apps/preferences-desktop-wallpaper.svg
-evince.svg scalable/apps/gnome-pdf.svg
 easytags.svg scalable/apps/easytag.svg
 icedove.svg scalable/apps/thunderbird.svg
 terminal.svg scalable/apps/gnome-eterm.svg
@@ -2023,6 +2027,7 @@ gcolor.svg scalable/apps/gnome-color-manager.svg
 ../apps/rhythmbox.svg scalable/devices/audio-speakers.svg
 setroubleshoot_icon.svg scalable/apps/setroubleshoot_red_icon.svg
 ../actions/insert-object.svg scalable/mimetypes/application-x-addon.svg
-org.gnome.Evince.svg scalable/apps/org.gnome.Evince-symbolic.svg
 abrt.svg scalable/apps/gnome-abrt.svg
 gnome-dev-printer-network.svg scalable/devices/printer-network.svg
+application-default-icon.svg scalable/apps/xfwm4-default.svg
+../devices/chardevice.svg scalable/apps/system-config-keyboard.svg
