@@ -69,6 +69,16 @@ injecting them using sed into template file that have
 
 {{TITLE}} {{PATH}}
 
+You can generate single icon using:
+
+./build canus src/apps/vlc.svg
+
+If you're working on new icons is good idea to create symlink to
+
+./icons/Clarity so each time you create new icon you can create icon
+using mkshape and then run build to generate new icon or create symlink
+and copy the 2 arguements to src/symlinks file.
+
 4. Creating new Theme
 =====================
 
@@ -158,5 +168,11 @@ $(SYMLINKS) is execute as shell script with redirect, I think it's called bash
 process substitution, and $(SKIP) in grep is used as string. sed is generating
 echo + ln -sf command that is piped to bash.
 
+8. Static Icons
+===============
+
+There are also exception to all of this build icons and they are located
+in static directory that have same structure as src and scalable but
+there are only few of those
 
 Happy Hacking
