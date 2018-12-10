@@ -10,7 +10,7 @@
     <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
     <metadata>
         <rdf:RDF>
-            <cc:Work rdf:about="">
+            <cc:Work>
                 <dc:title>Smart Card Icon</dc:title>
                 <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
                 <dc:creator>
@@ -18,6 +18,11 @@
                         <dc:title>Jakub Jankiewicz</dc:title>
                     </cc:Agent>
                 </dc:creator>
+                <dc:contributor>
+                    <cc:Agent>
+                        <dc:title>wanglizhong</dc:title>
+                    </cc:Agent>
+                </dc:contributor>
                 <dc:rights>
                     <cc:Agent>
                         <dc:title>Jakub Jankiewicz</dc:title>
