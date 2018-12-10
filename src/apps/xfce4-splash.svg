@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Splash App Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Splash App Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 16.667013,16.156182 c -3.766009,0 -6.778218,3.012206 -6.778218,6.778216 v 82.101422 c 0,3.766 3.012209,6.80799 6.778218,6.808 h 94.665967 c 3.76601,0 6.77823,-3.042 6.77823,-6.808 V 22.934398 c 0,-3.76601 -3.01222,-6.778218 -6.77823,-6.778216 z m 0.272595,21.963348 h 94.120782 v 66.91629 H 16.939608 Z m 47.436068,4.640983 c -3.022703,0.04112 -6.202748,0.246608 -9.511036,0.604748 5.456407,12.378038 11.86549,21.376954 19.012911,25.509371 6.066517,3.503093 13.806719,1.470821 17.274262,-4.544773 C 94.62608,58.309461 92.513206,50.591721 86.446689,47.087668 81.085402,43.987634 73.44379,42.637155 64.375676,42.760513 Z m -19.418367,8.594752 c -6.21448,8.500234 -9.781341,16.326974 -9.781341,22.760517 0.0019,5.457367 4.382953,9.886714 9.783632,9.886714 5.406444,0 9.783632,-4.429347 9.783632,-9.886714 -9.61e-4,-6.433543 -3.671366,-14.389031 -9.785923,-22.760517 z M 61.07476,70.830901 c -1.13567,10.471803 -0.312887,19.03439 2.900043,24.60225 2.728682,4.726199 8.734924,6.371129 13.412119,3.66743 4.681039,-2.704663 6.25904,-8.732701 3.532278,-13.457935 -3.212929,-5.570743 -10.366108,-10.6236 -19.84444,-14.811745 z" style="fill:#aaaaaa"/>
+</svg>
