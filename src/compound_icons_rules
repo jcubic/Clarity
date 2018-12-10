@@ -163,3 +163,4 @@ mimetypes/vmlinuz.svg = mimetypes/gtk-file.svg + element_black_tux.svg
 mimetypes/application-x-rpm.svg = mimetypes/package-x-generic.svg + element_red_rpm_bottom.svg
 apps/anaconda.svg = apps/fedora-drive.svg + element_green_down_arrow_top.svg
 apps/vlc-xmas.svg = apps/vlc.svg + vlc_xmas_hat.svg
+apps/gcr-password.svg = apps/cut_lock.svg + element_password.svg

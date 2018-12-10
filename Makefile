@@ -348,11 +348,13 @@ elements: scalable
 	@echo "building scalable/apps/anaconda.svg"
 	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/vlc_xmas_hat.svg`\n</svg>%" scalable/apps/vlc.svg > scalable/apps/vlc-xmas.svg;
 	@echo "building scalable/apps/vlc-xmas.svg"
+	@sed -e "s%</svg>%`grep 'id=\"shape\"' src/element_password.svg`\n</svg>%" scalable/apps/cut_lock.svg > scalable/apps/gcr-password.svg;
+	@echo "building scalable/apps/gcr-password.svg"
 arch:
 	ln -sf ../distributor-logos/arch.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/arch.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/arch.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/arch.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/arch.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/arch.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/arch.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/arch.png 16x16/places/distributor-logo.png
@@ -362,7 +364,7 @@ debian:
 	ln -sf ../distributor-logos/debian.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/debian.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/debian.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/debian.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/debian.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/debian.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/debian.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/debian.png 16x16/places/distributor-logo.png
@@ -372,7 +374,7 @@ fedora:
 	ln -sf ../distributor-logos/fedora.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/fedora.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/fedora.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/fedora.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/fedora.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/fedora.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/fedora.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/fedora.png 16x16/places/distributor-logo.png
@@ -382,7 +384,7 @@ gentoo:
 	ln -sf ../distributor-logos/gentoo.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/gentoo.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/gentoo.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/gentoo.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/gentoo.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/gentoo.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/gentoo.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/gentoo.png 16x16/places/distributor-logo.png
@@ -392,7 +394,7 @@ gnome:
 	ln -sf ../distributor-logos/gnome.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/gnome.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/gnome.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/gnome.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/gnome.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/gnome.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/gnome.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/gnome.png 16x16/places/distributor-logo.png
@@ -402,7 +404,7 @@ kubuntu:
 	ln -sf ../distributor-logos/kubuntu.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/kubuntu.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/kubuntu.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/kubuntu.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/kubuntu.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/kubuntu.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/kubuntu.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/kubuntu.png 16x16/places/distributor-logo.png
@@ -412,7 +414,7 @@ madriva:
 	ln -sf ../distributor-logos/madriva.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/madriva.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/madriva.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/madriva.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/madriva.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/madriva.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/madriva.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/madriva.png 16x16/places/distributor-logo.png
@@ -422,7 +424,7 @@ mint:
 	ln -sf ../distributor-logos/mint.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/mint.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/mint.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/mint.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/mint.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/mint.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/mint.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/mint.png 16x16/places/distributor-logo.png
@@ -432,7 +434,7 @@ suse:
 	ln -sf ../distributor-logos/suse.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/suse.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/suse.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/suse.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/suse.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/suse.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/suse.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/suse.png 16x16/places/distributor-logo.png
@@ -442,7 +444,7 @@ ubuntu:
 	ln -sf ../distributor-logos/ubuntu.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/ubuntu.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/ubuntu.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/ubuntu.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/ubuntu.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/ubuntu.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/ubuntu.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/ubuntu.png 16x16/places/distributor-logo.png
@@ -452,7 +454,7 @@ xfce:
 	ln -sf ../distributor-logos/xfce.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/xfce.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/xfce.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/xfce.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/xfce.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/xfce.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/xfce.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/xfce.png 16x16/places/distributor-logo.png
@@ -462,7 +464,7 @@ xubuntu:
 	ln -sf ../distributor-logos/xubuntu.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/xubuntu.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/xubuntu.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/xubuntu.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/xubuntu.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/xubuntu.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/xubuntu.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/xubuntu.png 16x16/places/distributor-logo.png
@@ -472,7 +474,7 @@ zenwalk:
 	ln -sf ../distributor-logos/zenwalk.svg scalable/places/start-here.svg
 	ln -sf ../distributor-logos/zenwalk.svg scalable/places/gnome-main-menu.svg
 	ln -sf ../distributor-logos/zenwalk.svg scalable/places/distributor-logo.svg
-	ln -sf ../distributor-logos/zenwalk.png 16x16/apps/xfce4_xicon1.svg
+	cp ../distributor-logos/zenwalk.svg.svg scalable/apps/xfce4_xicon1.svg
 	ln -sf ../distributor-logos/zenwalk.png 16x16/places/start-here.png
 	ln -sf ../distributor-logos/zenwalk.png 16x16/places/gnome-main-menu.png
 	ln -sf ../distributor-logos/zenwalk.png 16x16/places/distributor-logo.png

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Cut Lock Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Cut Lock Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 64.024792,6.186395 c -15.716433,0 -28.5592,12.842775 -28.5592,28.559202 V 51.702622 C 29.208634,53.072988 24.557564,58.608036 24.557564,65.288065 V 85.366218 H 103.44244 V 65.288065 c 0,-6.663275 -4.625214,-12.197635 -10.858444,-13.585443 V 34.745597 c 0,-15.716427 -12.842777,-28.559202 -28.559204,-28.559202 z m 0,9.519735 c 10.571565,0 19.039467,8.467877 19.039467,19.039467 V 51.405113 H 44.985326 V 34.745597 c 0,-10.57159 8.467876,-19.039467 19.039466,-19.039467 z" style="fill:#aaaaaa"/>
+</svg>
