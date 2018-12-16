@@ -2031,3 +2031,7 @@ abrt.svg scalable/apps/gnome-abrt.svg
 gnome-dev-printer-network.svg scalable/devices/printer-network.svg
 application-default-icon.svg scalable/apps/xfwm4-default.svg
 ../devices/chardevice.svg scalable/apps/system-config-keyboard.svg
+
+../distributor-logos/mint.svg scalable/places/cinnamon_badge-symbolic.svg
+../distributor-logos/mint.svg scalable/places/cinnamon2d_badge-symbolic.svg
+insert-object.svg scalable/actions/libpeas-plugin.svg
