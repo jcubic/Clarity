@@ -105,6 +105,25 @@ postscript.svg scalable/apps/postscript-viewer.svg
 evince.svg scalable/apps/org.gnome.Evince.svg
 evince.svg scalable/apps/org.gnome.Evince-symbolic.svg
 
+# Bluetooth
+bluetooth.svg scalable/apps/blueman.svg
+bluetooth.svg scalable/apps/gnome-bluetooth.svg
+../apps/bluetooth.svg scalable/stock/stock_bluetooth.svg
+bluetooth.svg scalable/apps/blueradio.svg
+bluetooth.svg scalable/apps/bluetooth-48.svg
+bluetooth.svg scalable/apps/bt-logo.svg
+bluetooth.svg scalable/apps/blueradio-48.svg
+bluetooth.svg scalable/apps/bluetooth-black.svg
+bluetooth.svg scalable/apps/bluetoothradio.svg
+bluetooth.svg scalable/apps/stock_bluetooth.svg
+../apps/bluetooth.svg scalable/status/blueberry.svg
+../apps/bluetooth.svg scalable/status/blueberry-tray.svg
+blueberry-tray-disabled.svg scalable/status/blueberry-disabled.svg
+blueberry-tray-active.svg scalable/status/blueberry-active.svg
+blueberry-tray-disabled.svg scalable/status/blueberry-disabled.svg
+../apps/bluetooth.svg scalable/status/blueman-tray.svg
+blueberry-tray-active.svg scalable/status/blueman-active.svg
+
 # Other
 emblem-personal.svg scalable/emblems/emblem-noread.svg
 ../apps/gnote.svg scalable/emblems/emblem-note.svg
@@ -247,7 +266,6 @@ epiphany-history.svg scalable/stock/history-view.svg
 ../apps/preferences-mail-accounts.svg scalable/stock/stock_people.svg
 ../apps/burner.svg scalable/stock/stock_xfburn.svg
 ../status/avatar-default.svg scalable/stock/stock_person.svg
-../apps/bluetooth.svg scalable/stock/stock_bluetooth.svg
 ../devices/media-tape.svg scalable/stock/stock_music-library.svg
 ../emblems/emblem-personal.svg scalable/stock/stock_lock.svg
 ../devices/media-optical-audio.svg scalable/stock/stock_xfburn-audio-cd.svg
@@ -1265,7 +1283,6 @@ session-properties.svg scalable/apps/gnome-session.svg
 config-language.svg scalable/apps/gswitchit-applet.svg
 ../emblems/emblem-fonts.svg scalable/apps/preferences-autocompletition.svg
 ../emblems/emblem-fonts.svg scalable/apps/gnome-settings-font.svg
-bluetooth.svg scalable/apps/blueman.svg
 xfapplet1.svg scalable/apps/xfapplet2.svg
 ../devices/camera-photo.svg scalable/apps/xvidcap.svg
 ../actions/info.svg scalable/apps/gnome-info.svg
@@ -1310,7 +1327,6 @@ gnome-session-reboot.svg scalable/apps/gnome-session-reboot1.svg
 date.svg scalable/apps/ximian-evolution-calendar.svg
 gnome-remote-desktop.svg scalable/apps/krfb.svg
 pidgin.svg scalable/apps/pidgin1.svg
-bluetooth.svg scalable/apps/blueradio.svg
 ../stock/epiphany-history.svg scalable/apps/gnome-panel-clock.svg
 proxy.svg scalable/apps/preferences-system-network-proxy.svg
 gnome-mahjongg.svg scalable/apps/kmahjongg.svg
@@ -1404,7 +1420,6 @@ package_games_card.svg scalable/apps/gnome-hearts.svg
 firefox.svg scalable/apps/firefox-icon.svg
 ../emblems/emblem-ok.svg scalable/apps/package-avalible.svg
 config-language.svg scalable/apps/system-config-language.svg
-bluetooth.svg scalable/apps/gnome-bluetooth.svg
 ../devices/chardevice.svg scalable/apps/accessories-character-map.svg
 ../stock/epiphany-history.svg scalable/apps/xfsm-suspend.svg
 gnome-window-manager.svg scalable/apps/kwin.svg
@@ -1444,7 +1459,6 @@ gnometrix.svg scalable/apps/gnome-gnometris.svg
 gnome-eog.svg scalable/apps/gthumb.svg
 rhythmbox.svg scalable/apps/rhythmbox-panel.svg
 amarok.svg scalable/apps/amarok2.svg
-bluetooth.svg scalable/apps/bt-logo.svg
 ooo.svg scalable/apps/openofficeorg3-startcenter.svg
 ../stock/epiphany-history.svg scalable/apps/cairo-clock.svg
 ../emblems/emblem-personal.svg scalable/apps/system-config-securitylevel.svg
@@ -1478,9 +1492,7 @@ avidemux.svg scalable/apps/gxine.svg
 ../emblems/emblem-web.svg scalable/apps/google-earth.svg
 email.svg scalable/apps/xfce-newmail.svg
 bluefish.svg scalable/apps/bluefish-icon.svg
-bluetooth.svg scalable/apps/bluetooth-48.svg
 chromium-browser.svg scalable/apps/chromium.svg
-bluetooth.svg scalable/apps/blueradio-48.svg
 nvidia.svg scalable/apps/nvdock.svg
 audacity.svg scalable/apps/audacity32.svg
 sleep.svg scalable/apps/xscreensaver.svg
@@ -1489,7 +1501,6 @@ evolution-calendar.svg scalable/apps/preferences-calendar-and-task.svg
 gnome-session-reboot.svg scalable/apps/system-restart.svg
 system-shutdown-panel.svg scalable/apps/xfce-system-exit.svg
 glchess.svg scalable/apps/gnome-glchess.svg
-bluetooth.svg scalable/apps/bluetooth-black.svg
 preferences-mail-accounts.svg scalable/apps/config-users.svg
 file-manager.svg scalable/apps/xfce-filemanager.svg
 ../actions/info.svg scalable/apps/ibus.svg
@@ -1506,7 +1517,6 @@ terminal.svg scalable/apps/guake.svg
 ../stock/epiphany-history.svg scalable/apps/rclock.svg
 twitter.svg scalable/apps/twitux.svg
 calc.svg scalable/apps/gnome-calculator.svg
-bluetooth.svg scalable/apps/bluetoothradio.svg
 date.svg scalable/apps/config-date.svg
 terminal.svg scalable/apps/openterm.svg
 ../emblems/emblem-multimedia.svg scalable/apps/f-spot.svg
@@ -1530,7 +1540,6 @@ terminal.svg scalable/apps/Etermutilities-terminal.svg
 ../actions/info.svg scalable/apps/stock_view-details.svg
 azureus.svg scalable/apps/Azureus.svg
 config-language.svg scalable/apps/language-selector.svg
-bluetooth.svg scalable/apps/stock_bluetooth.svg
 totem.svg scalable/apps/xine.svg
 ../actions/bookmark-new.svg scalable/apps/package-installed-outdated.svg
 ../categories/package_settings.svg scalable/apps/galternatives.svg
@@ -2014,10 +2023,6 @@ up.svg scalable/actions/stock_up.svg
 gtk-indent.svg scalable/actions/gtk-unindent-rtl.svg
 player_rew.svg scalable/actions/media-seek-backward.svg
 redo.svg scalable/actions/edit-redo.svg
-../apps/bluetooth.svg scalable/status/blueberry.svg
-../apps/bluetooth.svg scalable/status/blueberry-tray.svg
-blueberry-tray-disabled.svg scalable/status/blueberry-disabled.svg
-blueberry-tray-active.svg scalable/status/blueberry-active.svg
 ../distributor-logos/fedora.svg scalable/apps/fedora-logo-icon.svg
 gnome-mime-text-plain.svg scalable/mimetypes/text-x-component.svg
 gcolor.svg scalable/apps/gnome-color-manager.svg
