@@ -1499,6 +1499,7 @@ sleep.svg scalable/apps/xscreensaver.svg
 evolution-calendar.svg scalable/apps/preferences-calendar-and-task.svg
 ../emblems/emblem-multimedia.svg scalable/apps/preferences-desktop-multimedia.svg
 gnome-session-reboot.svg scalable/apps/system-restart.svg
+../apps/gnome-session-switch.svg scalable/actions/xfsm-switch-user.svg
 system-shutdown-panel.svg scalable/apps/xfce-system-exit.svg
 glchess.svg scalable/apps/gnome-glchess.svg
 preferences-mail-accounts.svg scalable/apps/config-users.svg
