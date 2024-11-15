@@ -19,7 +19,7 @@ and modify it to be single shape. The easiest way to create proper icon is to:
 
 The script works only on Linux system.
 
-If you use different flow to create icons, make sure that icon is 128x128x in size.
+If you use different flow to create icons, make sure that icon is 128x128px in size.
 You can also open src/shape_template.svg file in Inkscape and create your icon there, but the icon
 need to have single path XML tag with d attribute, the color doesn't matter but it would be nice
 if you add style `style="fill:#aaaaaa"` so all source icons look the same. You can add your own
