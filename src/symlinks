@@ -12,6 +12,9 @@ up.svg scalable/actions/go-up-symbolic.svg
 forward.svg scalable/actions/go-next-symbolic.svg
 back.svg scalable/actions/go-previous-symbolic.svg
 
+# Inkscape
+inkscape.svg scalable/apps/org.inkscape.Inkscape.svg
+
 # Java
 gnome-mime-text-x-java.svg scalable/mimetypes/gnome-mime-text-x-java-source.svg
 gnome-mime-text-x-java.svg scalable/mimetypes/application-x-java.svg
