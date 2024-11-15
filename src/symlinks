@@ -273,6 +273,7 @@ epiphany-history.svg scalable/stock/history-view.svg
 ../apps/preferences-mail-accounts.svg scalable/stock/stock-people.svg
 gnome-mime-text-x-readme.svg scalable/mimetypes/gnome-mime-application-x-gnome-app-info.svg
 openofficeorg23-database.svg scalable/mimetypes/openofficeorg3-oasis-database.svg
+openofficeorg23-database.svg scalable/mimetypes/application-vnd.sqlite3.svg
 video-x-generic.svg scalable/mimetypes/application-x-pitivi.svg
 emacs-document.svg scalable/mimetypes/emacs23-document.svg
 application-x-executable.svg scalable/mimetypes/gnome-fs-executable.svg
