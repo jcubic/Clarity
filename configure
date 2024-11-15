@@ -65,6 +65,13 @@ echo "Generating Makefile"
     echo "symlinks: scalable src/symlinks"
     echo -e "\t@sed 's/^\\(.*\\) \\(.*\\)/echo symlink \2; ln -sf &/g' <(\$(SYMLINKS)) | bash"
     echo
+    echo "cache:"
+    echo -e "\t@if command -v gtk-update-icon-cache > /dev/null 2>&1; then \\"
+    echo -e "\t  gtk-update-icon-cache -f .; \\"
+    echo -e "\telse \\"
+    echo -e "\t  echo \"gtk-update-icon-cache not found, skipping.\"; \\"
+    echo -e "\tfi"
+    echo
     echo "copies:"
     echo -e "\t@sed 's/^/cp /g' <(\$(COPIES)) | bash"
     echo
@@ -75,7 +82,7 @@ echo "Generating Makefile"
         echo
         name=`echo $i | sed -e 's/.*template_\([^\.]*\).*/\1/'`
         echo -n "Process template $name ... " > /dev/stderr
-        echo ${name}: symlinks static-files gen_$name elements copies _16x16
+        echo ${name}: symlinks static-files gen_$name elements copies _16x16 cache
         echo
         echo gen_${name}:
         echo -e "\t@echo 'Building icons for theme $name ... '"
