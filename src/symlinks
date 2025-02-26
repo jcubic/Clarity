@@ -86,7 +86,6 @@ base.svg scalable/apps/libreoffice3-base.svg
 ../apps/impress.svg scalable/mimetypes/libreoffice-presentation.svg
 ../apps/libreoffice-calc.svg scalable/mimetypes/libreoffice-spreadsheet.svg
 ../apps/main.svg scalable/mimetypes/libreoffice-oasis-empty.svg
-../apps/writer scalable/mimetypes/libreoffice-text.svg
 
 # PDf
 evince.svg scalable/apps/okular.svg
