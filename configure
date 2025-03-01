@@ -25,7 +25,7 @@ done
 
 function install() {
     echo -e "\t@test -d ${1}usr/share/icons/Clarity || mkdir ${1}usr/share/icons/Clarity"
-    for i in configure index.theme Makefile build README change-theme; do
+    for i in configure index.theme Makefile build README.md change-theme; do
       echo -e "\t@cp $i ${1}usr/share/icons/Clarity"
     done
     for name in static src scalable 16x16; do
@@ -182,7 +182,7 @@ echo "Generating Makefile"
     echo
     echo "tar.gz:"
     echo -e "\t@test -d Clarity && true || mkdir Clarity"
-    for path in scalable static 16x16 src build change-theme configure Makefile index.theme README; do
+    for path in scalable static 16x16 src build change-theme configure Makefile index.theme README.md; do
         echo -e "\tcp -r $path Clarity/"
     done
     echo -e "\ttar czvf ../\${DIR}.tar.gz Clarity"

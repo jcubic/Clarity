@@ -525,7 +525,7 @@ install-deb:
 	@cp index.theme debian/clarity-icon-theme/usr/share/icons/Clarity
 	@cp Makefile debian/clarity-icon-theme/usr/share/icons/Clarity
 	@cp build debian/clarity-icon-theme/usr/share/icons/Clarity
-	@cp README debian/clarity-icon-theme/usr/share/icons/Clarity
+	@cp README.md debian/clarity-icon-theme/usr/share/icons/Clarity
 	@cp change-theme debian/clarity-icon-theme/usr/share/icons/Clarity
 	@cp -r static debian/clarity-icon-theme/usr/share/icons/Clarity
 	@cp -r src debian/clarity-icon-theme/usr/share/icons/Clarity
@@ -538,7 +538,7 @@ install:
 	@cp index.theme /usr/share/icons/Clarity
 	@cp Makefile /usr/share/icons/Clarity
 	@cp build /usr/share/icons/Clarity
-	@cp README /usr/share/icons/Clarity
+	@cp README.md /usr/share/icons/Clarity
 	@cp change-theme /usr/share/icons/Clarity
 	@cp -r static /usr/share/icons/Clarity
 	@cp -r src /usr/share/icons/Clarity
@@ -555,12 +555,13 @@ tar.gz:
 	@test -d Clarity && true || mkdir Clarity
 	cp -r scalable Clarity/
 	cp -r static Clarity/
+	cp -r 16x16 Clarity/
 	cp -r src Clarity/
 	cp -r build Clarity/
 	cp -r change-theme Clarity/
 	cp -r configure Clarity/
 	cp -r Makefile Clarity/
 	cp -r index.theme Clarity/
-	cp -r README Clarity/
+	cp -r README.md Clarity/
 	tar czvf ../${DIR}.tar.gz Clarity
 	rm -r Clarity
