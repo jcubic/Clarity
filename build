@@ -3,7 +3,7 @@
 # this file is part of build system for Clarity GTK+ Icons
 #
 # Copyright (c) 2010-2025 Jakub T. Jankiewicz <https://jcubic.pl/me>
-# Licensed under CC-BY-SA 3.0 license
+# Licensed under CC-BY-SA 4.0 license
 #
 
 if [ "$#" -eq 2 ]; then
