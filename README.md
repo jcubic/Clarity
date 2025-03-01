@@ -72,7 +72,7 @@ You can also run from terminal:
 make <name of the theme>
 ```
 
-# CHANGING DISTRIBUTOR LOGO
+## CHANGING DISTRIBUTOR LOGO
 
 ```bash
 make fedora
@@ -94,7 +94,7 @@ available logos are:
 you must run this command from `~/.icons` folder or `/usr/share/icons/Clarity`
 if you install from deb or PPA.
 
-# FURTHER CUSTOMIZATION
+## FURTHER CUSTOMIZATION
 
 Every icon is made from a single shape and a template so it's easy to customize.
 You can create custom theme by creating new file `src/template_<your_name>.svg`
