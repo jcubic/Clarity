@@ -1,17 +1,4 @@
-```
-  _____ _            _ _ 
- / ____| |          (_) |
-| |    | | __ _ _ __ _| |_ _   _
-| |    | |/ _` | '__| | __| | | |
-| |____| | (_| | |  | | |_| |_| |
- \_____|_|\__,_|_|  |_|\__|\__, |
-                            __/ |
-                           |___/
-Clarity Vector Icon theme for GTK
-```
-
-Licensed under CC-BY-SA 4.0 license <http://creativecommons.org/licenses/by-sa/4.0/><br/>
-Copyright (c) 2010-2025 Jakub T. Jankiewicz <http://jcubic.pl/me>
+# Clarity Vector Icon theme for GTK
 
 ![Clarity Icon Theme](.github/preview.png)
 
@@ -141,5 +128,5 @@ The file will have the same name as the directory and located one level up.
 ## LICENSE
 
 Copyright (c) 2010-2025 Jakub T. Jankiewicz <https://jcubic.pl/me><br/>
-Licensed under CC-BY-SA 4.0 license<br/>
+Licensed under CC-BY-SA 4.0 license <http://creativecommons.org/licenses/by-sa/4.0/><br/>
 horned skull by Juicy Fish from <a href="https://thenounproject.com/browse/icons/term/horned-skull/">Noun Project</a> (CC BY 3.0)
