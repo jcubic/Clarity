@@ -1,3 +1,4 @@
+```
   _____ _            _ _ 
  / ____| |          (_) |
 | |    | | __ _ _ __ _| |_ _   _
@@ -7,10 +8,12 @@
                             __/ |
                            |___/
 Clarity Vector Icon theme for GTK
+```
 
-Licensed under CC-BY-SA 3.0 license <http://creativecommons.org/licenses/by-sa/3.0/>
+Licensed under CC-BY-SA 4.0 license <http://creativecommons.org/licenses/by-sa/4.0/><br/>
 Copyright (c) 2010-2025 Jakub T. Jankiewicz <http://jcubic.pl/me>
 
+![Clarity Icon Theme](.github/preview.png)
 
 This theme is based on AwOken and Token, lots of shapes and basic color pallete was
 taken from these icons. Few icons was taken from Raphael <http://raphaeljs.com/>.
@@ -22,56 +25,68 @@ Icons are mostly monoshape, but some icons have additional elements. There are n
 predefined color themes (in five colors) but you can also crete your own.
 
 Available theme:
-  violaceus        - violet/pink gradient
-  lux_violaceus    - glossy variant
-  canus            - grey gradient (default)
-  dark_canus       - dark grey gradient
-  caeruleus        - blue gradient
-  lux_caeruleus    - glossy variant
-  viridis          - green gradient
-  luteus           - orage gradient
-  albus            - white solid
+- violaceus        - violet/pink gradient
+- lux_violaceus    - glossy variant
+- canus            - grey gradient (default)
+- dark_canus       - dark grey gradient
+- caeruleus        - blue gradient
+- lux_caeruleus    - glossy variant
+- viridis          - green gradient
+- luteus           - orage gradient
+- albus            - white solid
 
-INSTALLATION
+## INSTALLATION
 
-  copy Clarity folder to ~/.icons or /usr/share/icons as root
+copy Clarity folder to ~/.icons or /usr/share/icons as root
 
 on Ubuntu based systems you can install Clarity from PPA (execute from terminal
 without $)
 
- $ sudo add-apt-repository ppa:jcubic/jcubicppa && sudo apt-get update
+```bash
+$ sudo add-apt-repository ppa:jcubic/jcubicppa && sudo apt-get update
 
- $ sudo apt-get install clarity-icon-theme
+$ sudo apt-get install clarity-icon-theme
+```
 
 You can also use GNU/Linux build package mantra
 
- $ ./configure && make && sudo make install
+```bash
+$ ./configure && make && sudo make install
+```
 
 instead of make you can use
 
- $ make <theme>
+```bash
+$ make <theme>
+```
 
-CHANGING COLORS OF ICONS
+## CHANGING COLORS OF ICONS
 
 To change color theme of icons:
 
-  1. open folder ~/.icons/Clarity
-  2. double click change-theme
-  3. select the theme and click ok
+1. open folder ~/.icons/Clarity
+2. double click change-theme
+3. select the theme and click ok
 
 If you install this theme from deb or PPA
 
-  gksu change-theme
+```bash
+gksu change-theme
+```
 
 To run the script you must have installed zenity
 
 You can also run from terminal:
 
-  make <name of the theme>
+```bash
+make <name of the theme>
+```
 
-CHANGING DISTRIBUTOR LOGO
+# CHANGING DISTRIBUTOR LOGO
 
-  make fedora
+```bash
+make fedora
+```
 
 available logos are: debian fedora gentoo gnome kubuntu madriva 
                      mint suse ubuntu xfce xubuntu 
@@ -79,7 +94,7 @@ available logos are: debian fedora gentoo gnome kubuntu madriva
 you must run this command from ~/.icons folder or /usr/share/icons/Clarity
 if you install from deb or PPA.
 
-FURTHER CUSTOMIZATION
+# FURTHER CUSTOMIZATION
 
 Every icon is made from a single shape and a template so it's easy to customize.
 You can create custom theme by creating new file src/template_<your_name>.svg
@@ -95,26 +110,36 @@ If you done editing your custom template double click change-theme and select
 
 If you want to use make you must run ./configure first
 
-OTHER CONTRIBUTORS
+## OTHER CONTRIBUTORS
 
 Enneric Valmorin
 Chris Lenk
 
-BUILDING PACKAGES
+## BUILDING PACKAGES
 
 On Ubuntu deb packages
 
+```bash
 sudo apt-get install devscripts build-essential lintian debhelper librsvg2-bin
 # this will create debian pacakge
 make deb
 # this will install source package for dput
 make source-deb
+```
 
 You will also need GPG to sign the package
 
-LICENSE
+Creating a tarball:
 
-Copyright (c) 2010-2025 Jakub T. Jankiewicz <https://jcubic.pl/me>
-Licensed under CC-BY-SA 3.0 license
+```
+make tar.gz
+```
 
+The file will have the same name as the directory and located one level up.
+
+
+## LICENSE
+
+Copyright (c) 2010-2025 Jakub T. Jankiewicz <https://jcubic.pl/me><br/>
+Licensed under CC-BY-SA 4.0 license<br/>
 horned skull by Juicy Fish from <a href="https://thenounproject.com/browse/icons/term/horned-skull/">Noun Project</a> (CC BY 3.0)
