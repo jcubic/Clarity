@@ -11,16 +11,19 @@ by simplifying existed icons or logos. I use mostly two fonts: Impact and Cheboy
 Icons are mostly monoshape, but some icons have additional elements. There are nine
 predefined color themes (in five colors) but you can also crete your own.
 
-Available theme:
-- violaceus        - violet/pink gradient
-- lux_violaceus    - glossy variant
-- canus            - grey gradient (default)
-- dark_canus       - dark grey gradient
-- caeruleus        - blue gradient
-- lux_caeruleus    - glossy variant
-- viridis          - green gradient
-- luteus           - orage gradient
-- albus            - white solid
+Available themes:
+
+| Name           | Description             |
+|----------------|-------------------------|
+| violaceus      | violet/pink gradient    |
+| lux_violaceus  | glossy variant          |
+| canus          | grey gradient (default) |
+| dark_canus     | dark grey gradient      |
+| caeruleus      | blue gradient           |
+| lux_caeruleus  | glossy variant          |
+| viridis        | green gradient          |
+| luteus         | orange gradient         |
+| albus          | white solid             |
 
 ## INSTALLATION
 
@@ -75,32 +78,42 @@ make <name of the theme>
 make fedora
 ```
 
-available logos are: debian fedora gentoo gnome kubuntu madriva 
-                     mint suse ubuntu xfce xubuntu 
+available logos are:
+* debian
+* fedora
+* gentoo
+* gnome
+* kubuntu
+* madriva
+* mint
+* suse
+* ubuntu
+* xfce
+* xubuntu 
 
-you must run this command from ~/.icons folder or /usr/share/icons/Clarity
+you must run this command from `~/.icons` folder or `/usr/share/icons/Clarity`
 if you install from deb or PPA.
 
 # FURTHER CUSTOMIZATION
 
 Every icon is made from a single shape and a template so it's easy to customize.
-You can create custom theme by creating new file src/template_<your_name>.svg
+You can create custom theme by creating new file `src/template_<your_name>.svg`
 see default templates to see how they are build. Basicly all templates must have
-{{PATH}} and {{TITLE}} marks which will be replaced by data from the "source"
+`{{PATH}}` and `{{TITLE}}` marks which will be replaced by data from the "source"
 of an icon. You can create theme in Inkscape but after saving you must put {{PATH}}
 marker in d atrribute of the shape (I don't tested but it sould work). You 
 can also edit template by hand see SVG Specification <http://www.w3.org/TR/SVG/>
 to see what transformations and effects you can add.
 
-If you done editing your custom template double click change-theme and select
-<your_name> to create your custom icons.
+If you done editing your custom template double click `change-theme` and select
+`<your_name>` to create your custom icons.
 
-If you want to use make you must run ./configure first
+If you want to use make you must run `./configure` first
 
 ## OTHER CONTRIBUTORS
 
-Enneric Valmorin
-Chris Lenk
+* Enneric Valmorin
+* Chris Lenk
 
 ## BUILDING PACKAGES
 
