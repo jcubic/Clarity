@@ -86,6 +86,7 @@ base.svg scalable/apps/libreoffice3-base.svg
 ../apps/impress.svg scalable/mimetypes/libreoffice-presentation.svg
 ../apps/libreoffice-calc.svg scalable/mimetypes/libreoffice-spreadsheet.svg
 ../apps/main.svg scalable/mimetypes/libreoffice-oasis-empty.svg
+application-x-wine-extension-ini.svg scalable/mimetypes/application-x-ms-shortcut.svg
 
 # PDf
 evince.svg scalable/apps/okular.svg
@@ -263,6 +264,7 @@ epiphany-history.svg scalable/stock/history-view.svg
 ../emblems/emblem-personal.svg scalable/stock/epiphany-secure.svg
 ../actions/gtk-refresh.svg scalable/stock/media-playlist-repeat.svg
 ../mimetypes/application-certificate.svg scalable/stock/stock_certificate.svg
+application-certificate.svg scalable/mimetypes/application-pkix-cert.svg
 ../places/network-server.svg scalable/stock/stock_directory-server.svg
 ../apps/preferences-mail-accounts.svg scalable/stock/stock_people.svg
 ../apps/burner.svg scalable/stock/stock_xfburn.svg
@@ -374,6 +376,7 @@ text-x-perl.svg scalable/mimetypes/application-x-perl.svg
 package-x-generic.svg scalable/mimetypes/application-x-7z-compressed.svg
 package-x-generic.svg scalable/mimetypes/application-x-compressed-tar.svg
 gtk-file.svg scalable/mimetypes/application-x-empty.svg
+gtk-file.svg scalable/mimetypes/application-x-zerosize.svg
 emacs-document.svg scalable/mimetypes/text-x-emacs-lisp.svg
 audio-x-generic.svg scalable/mimetypes/gnome-mime-audio-x-mp3.svg
 openofficeorg23-text.svg scalable/mimetypes/application-vnd.wordperfect.svg
