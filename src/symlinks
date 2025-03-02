@@ -376,6 +376,7 @@ text-x-perl.svg scalable/mimetypes/application-x-perl.svg
 package-x-generic.svg scalable/mimetypes/application-x-7z-compressed.svg
 package-x-generic.svg scalable/mimetypes/application-x-compressed-tar.svg
 gtk-file.svg scalable/mimetypes/application-x-empty.svg
+gtk-file.svg scalable/mimetypes/application-x-generic.svg
 gtk-file.svg scalable/mimetypes/application-x-zerosize.svg
 emacs-document.svg scalable/mimetypes/text-x-emacs-lisp.svg
 audio-x-generic.svg scalable/mimetypes/gnome-mime-audio-x-mp3.svg
