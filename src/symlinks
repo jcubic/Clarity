@@ -2048,3 +2048,6 @@ application-vnd.google-earth.kml+xml.svg scalable/mimetypes/application-gpx+xml.
 ../distributor-logos/mint.svg scalable/places/cinnamon_badge-symbolic.svg
 ../distributor-logos/mint.svg scalable/places/cinnamon2d_badge-symbolic.svg
 insert-object.svg scalable/actions/libpeas-plugin.svg
+
+liferea.svg scalable/apps/net.sourceforge.liferea.svg
+obs.svg scalable/apps/com.obsproject.Studio.svg
