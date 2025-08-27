@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Peek Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Peek Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 17.11719,16.990232 c -4.454652,0 -8.0507817,3.553158 -8.0507819,8.007813 v 63.886719 c 0,4.45466 3.5961309,8.050781 8.0507819,8.050781 h 93.80859 c 4.45465,0 8.00781,-3.596121 8.00781,-8.050781 V 24.998045 c 0,-4.454655 -3.55316,-8.007813 -8.00781,-8.007813 z m 3.330078,9.1875 h 87.150392 v 61.56836 H 20.447268 Z m 6.802734,6.361328 v 13.832032 h 3 V 35.53906 h 14.119141 v -3 z m 56.425781,0 v 3 h 14.119141 v 10.832032 h 2.999996 V 32.53906 Z M 27.250002,67.552732 V 81.38281 h 17.119141 v -3 H 30.250002 V 67.552732 Z m 70.544922,0 V 78.38281 H 83.675783 v 3 H 100.79492 V 67.552732 Z M 36.796877,102.45508 c -4.74082,0 -8.552734,3.81387 -8.552734,8.55469 h 71.55664 c 0,-4.74082 -3.815818,-8.55469 -8.55664,-8.55469 z" style="fill:#aaaaaa"/>
+</svg>
