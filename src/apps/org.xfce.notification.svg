@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Bell Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Bell Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 64,11.955076 c -17.67311,0 -26.64104,12.01243 -32,32.035157 l -8,40.046875 c -0.86648,4.337403 -3.58176,8.007812 -8,8.007812 v 8.00977 h 43.83203 a 9,9 0 0 0 -3.33203,7.00194 9,9 0 0 0 9.0039,8.98829 9,9 0 0 0 8.9961,-9 v -0.0195 a 9,9 0 0 0 -3.33204,-6.97073 H 112 v -8.00977 c -4.41833,0 -7.13353,-3.670409 -8,-8.007812 L 96,43.990233 C 91.75736,23.967506 81.67312,11.955076 64,11.955076 Z" style="fill:#aaaaaa"/>
+</svg>
