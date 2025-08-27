@@ -2051,3 +2051,22 @@ insert-object.svg scalable/actions/libpeas-plugin.svg
 
 liferea.svg scalable/apps/net.sourceforge.liferea.svg
 obs.svg scalable/apps/com.obsproject.Studio.svg
+../emblems/emblem-web.svg scalable/apps/org.xfce.webbrowser.svg
+xfce4-panel-menu.svg scalable/apps/org.xfce.panel.applicationsmenu.svg
+xfce4-whiskermenu.svg scalable/apps/org.xfce.panel.whiskermenu.svg
+../places/notebook.svg scalable/apps/org.xfce.mousepad.svg
+../status/mail-read.svg scalable/apps/org.xfce.mailreader.svg
+../stock/epiphany-history.svg scalable/apps/org.xfce.panel.clock.svg
+../places/folder.svg scalable/apps/org.xfce.panel.directorymenu.svg
+terminal.svg scalable/apps/org.xfce.terminal.svg
+terminal.svg scalable/apps/org.xfce.terminalemulator.svg
+../devices/keyboard.svg scalable/apps/org.xfce.settings.keyboard.svg
+../devices/mouse.svg scalable/apps/org.xfce.settings.mouse.svg
+../devices/drive-removable-media-usb.svg scalable/apps/org.xfce.volman.svg
+Thunar.svg scalable/apps/org.xfce.thunar.svg
+gnome-monitor.svg scalable/apps/org.xfce.taskmanager.svg
+session-properties.svg scalable/apps/org.xfce.session.svg
+shotwell.svg scalable/apps/org.xfce.tumbler.svg
+gnome-do.svg scalable/apps/org.xfce.panel.launcher.svg
+ristretto.svg scalable/apps/org.xfce.ristretto.svg
+openshot.svg scalable/apps/org.xfce.parole.svg
