@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Xfce Window Manager Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Xfce Window Manager Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="m 30.873046,10.478518 c -3.211004,0 -5.779297,2.568291 -5.779297,5.779296 v 16.623047 h 6.009766 V 29.20508 h 80.251955 v 57.054688 h -5.39453 v 5.804687 h 5.625 c 3.211,0 5.78125,-2.593689 5.78125,-5.804687 V 16.257814 c 0,-3.211005 -2.57025,-5.779296 -5.78125,-5.779296 z M 16.414061,35.935549 c -3.211002,0 -5.781249,2.568292 -5.78125,5.779297 V 111.7168 c 0,3.211 2.570247,5.80468 5.78125,5.80468 h 80.712891 c 3.211008,0 5.779298,-2.59368 5.779298,-5.80468 V 41.714846 c 0,-3.211005 -2.56829,-5.779297 -5.779298,-5.779297 z M 16.64453,54.662111 H 96.896483 V 111.7168 H 16.64453 Z m 27.740235,9.351563 c -0.520592,0 -1.040549,0.198751 -1.439454,0.597656 l -4.751953,4.753906 c -0.79781,0.79781 -0.797809,2.081098 0,2.878907 L 49.138671,83.189455 38.193358,94.134768 c -0.797809,0.797809 -0.79781,2.081096 0,2.878906 l 4.751953,4.751946 c 0.79781,0.79781 2.08305,0.79782 2.88086,0 L 56.76953,90.822268 67.714843,101.76562 c 0.79781,0.79781 2.083049,0.79782 2.880859,0 l 4.751953,-4.751946 c 0.79781,-0.79781 0.797811,-2.081096 0,-2.878906 L 64.402343,83.189455 75.347655,72.244143 c 0.797811,-0.79781 0.79781,-2.081098 0,-2.878907 L 70.595702,64.61133 c -0.79781,-0.79781 -2.083049,-0.79781 -2.880859,0 L 56.76953,75.556643 45.826171,64.61133 c -0.398905,-0.398905 -0.920813,-0.597656 -1.441406,-0.597656 z" style="fill:#aaaaaa"/>
+</svg>
