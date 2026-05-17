@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Helium Browser Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Helium Browser Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 75.767334,116.50435 64,125.182 52.232666,116.50435 57.580986,75.114732 24.348968,100.43388 10.939914,94.591 12.58163,80.075571 51.15178,64.000002 12.58163,47.924433 10.945012,33.409004 24.354066,27.566123 57.580985,52.890372 52.222465,11.485456 63.999999,2.8180064 75.767333,11.495653 70.424109,52.885272 103.65613,27.561025 117.06009,33.409004 115.41837,47.924433 76.848218,64.000002 115.42347,80.075571 117.06009,94.591 103.65103,100.43388 70.424109,75.114732 Z" style="fill:#aaaaaa"/>
+</svg>
