@@ -563,5 +563,6 @@ tar.gz:
 	cp -r Makefile Clarity/
 	cp -r index.theme Clarity/
 	cp -r README.md Clarity/
+	cp -r CHANGELOG.md Clarity/
 	tar czvf ../${DIR}.tar.gz Clarity
 	rm -r Clarity

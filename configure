@@ -182,7 +182,7 @@ echo "Generating Makefile"
     echo
     echo "tar.gz:"
     echo -e "\t@test -d Clarity && true || mkdir Clarity"
-    for path in scalable static 16x16 src build change-theme configure Makefile index.theme README.md; do
+    for path in scalable static 16x16 src build change-theme configure Makefile index.theme README.md CHANGELOG.md; do
         echo -e "\tcp -r $path Clarity/"
     done
     echo -e "\ttar czvf ../\${DIR}.tar.gz Clarity"

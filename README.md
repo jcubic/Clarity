@@ -27,27 +27,54 @@ Available themes:
 
 ## INSTALLATION
 
-copy Clarity folder to ~/.icons or /usr/share/icons as root
-
-on Ubuntu based systems you can install Clarity from PPA (execute from terminal
-without $)
+### Quick Install (recommended)
 
 ```bash
-$ sudo add-apt-repository ppa:jcubic/jcubicppa && sudo apt-get update
-
-$ sudo apt-get install clarity-icon-theme
+curl -sL https://raw.githubusercontent.com/jcubic/Clarity/master/install.sh | bash
 ```
 
-You can also use GNU/Linux build package mantra
+This installs Clarity to `~/.local/share/icons/Clarity` (no root required).
+
+### Update
+
+Re-run the same command to update to the latest version:
 
 ```bash
-$ ./configure && make && sudo make install
+curl -sL https://raw.githubusercontent.com/jcubic/Clarity/master/install.sh | bash
 ```
 
-instead of make you can use
+You can also check if an update is available without installing:
 
 ```bash
-$ make <theme>
+curl -sL https://raw.githubusercontent.com/jcubic/Clarity/master/install.sh | bash -s -- --check
+```
+
+### Uninstall
+
+```bash
+curl -sL https://raw.githubusercontent.com/jcubic/Clarity/master/install.sh | bash -s -- --uninstall
+```
+
+### Manual Install
+
+Copy the Clarity folder to `~/.icons` or `/usr/share/icons` (as root):
+
+```bash
+cp -r Clarity ~/.local/share/icons/
+```
+
+### Build from Source
+
+```bash
+git clone https://github.com/jcubic/Clarity.git
+cd Clarity
+./configure && make && sudo make install
+```
+
+Instead of `make` (which builds the default grey theme), you can use:
+
+```bash
+make <theme>
 ```
 
 ## CHANGING COLORS OF ICONS
