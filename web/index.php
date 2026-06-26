@@ -7,6 +7,7 @@ use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Throwable;
 
 $mime_types = [
     'css' => 'text/css',
@@ -135,6 +136,15 @@ $app->get('/', function (Request $request, Response $response) use ($icons, $var
         'gallery' => $gallery,
     ]);
 });
+
+$errorMiddleware = $app->addErrorMiddleware(false, false, false);
+$errorMiddleware->setErrorHandler(
+    Slim\Exception\HttpNotFoundException::class,
+    function (Request $request, Throwable $exception, bool $displayErrorDetails) use ($twig) {
+        $response = (new Slim\Psr7\Response())->withStatus(404);
+        return $twig->render($response, 'pages/404.html.twig');
+    }
+);
 
 $app->get('/install', function (Request $request, Response $response) {
     $response = $response->withHeader('Content-Type', 'text/plain');
