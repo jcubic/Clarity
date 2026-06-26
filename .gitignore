@@ -7,3 +7,5 @@ theme/Clarity
 theme/icon-theme.cache
 web/vendor
 web/cache
+web/icons.json
+web/icons

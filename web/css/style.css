@@ -13,11 +13,15 @@
   --accent-soft:  oklch(72% 0.16 230 / 0.14);
   --accent-glow:  oklch(72% 0.16 230 / 0.35);
 
-  --canus:        oklch(75% 0.005 245);
-  --caeruleus:    oklch(68% 0.16 235);
-  --violaceus:    oklch(62% 0.20 340);
-  --viridis:      oklch(72% 0.17 145);
-  --luteus:       oklch(80% 0.14 88);
+  --canus:           oklch(75% 0.005 245);
+  --dark_canus:      oklch(40% 0.005 245);
+  --albus:           oklch(95% 0.005 0);
+  --caeruleus:       oklch(68% 0.16 235);
+  --lux_caeruleus:   oklch(48% 0.12 235);
+  --violaceus:       oklch(62% 0.20 340);
+  --lux_violaceus:   oklch(42% 0.15 340);
+  --viridis:         oklch(72% 0.17 145);
+  --luteus:          oklch(80% 0.14 88);
 
   --ok:           oklch(72% 0.17 145);
   --err:          oklch(66% 0.20 25);
@@ -144,7 +148,6 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .variant-tab.is-active { background: var(--surface-2); color: var(--fg); }
 .variant-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .variant-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--variant-color, var(--fg)); box-shadow: 0 0 12px var(--variant-color, var(--fg)); flex-shrink: 0; }
-.variant-count { margin-left: 4px; padding-left: 10px; border-left: 1px solid var(--border); font-size: 11px; color: var(--fg-dim); letter-spacing: 0.1em; }
 
 .variant-panel { padding: 0; }
 .variant-panel + .variant-panel { margin-top: 64px; padding-top: 64px; border-top: 1px solid var(--border); }
@@ -155,27 +158,43 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .variant-panel-name { margin: 0; display: inline-flex; align-items: center; gap: 14px; font: 600 28px/1 var(--font-sans); letter-spacing: -0.01em; color: var(--fg); }
 .variant-panel-name .variant-dot { width: 16px; height: 16px; }
 .variant-panel-latin { margin: 0; font: 500 12px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); }
-.variant-panel-token { margin-left: auto; font: 500 11px/1 var(--font-mono); letter-spacing: 0.06em; color: var(--fg-muted); }
+.variant-panel-token { font: 500 11px/1 var(--font-mono); letter-spacing: 0.06em; color: var(--fg-muted); }
 .variant-panel-token .key { color: var(--fg-dim); margin-right: 6px; }
 
-.icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 8px; list-style: none; margin: 0; padding: 0; }
+.bg-toggle { margin-left: auto; background: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 6px; cursor: pointer; color: var(--fg-dim); transition: color 0.15s, border-color 0.15s; display: flex; align-items: center; gap: 6px; font: 500 11px/1 var(--font-mono); letter-spacing: 0.06em; }
+.bg-toggle svg { width: 16px; height: 16px; }
+.bg-toggle:hover { color: var(--fg); border-color: var(--fg-dim); }
+
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 8px; list-style: none; margin: 0; padding: 0; border-radius: var(--radius); transition: background 0.25s, padding 0.25s; }
+.icon-grid--light { background: oklch(92% 0.005 245); padding: 8px; }
 .icon-tile { aspect-ratio: 1; background: color-mix(in oklab, var(--variant-color, var(--accent)) 7%, var(--surface)); border: 1px solid var(--border); border-radius: var(--radius); display: grid; place-items: center; padding: 18px; color: var(--variant-color, var(--accent)); transition: transform 0.18s, border-color 0.18s, background 0.18s; position: relative; }
+.icon-grid--light .icon-tile { background: oklch(96% 0.005 245); border-color: oklch(85% 0.005 245); }
+.icon-grid--light .icon-tile:hover { background: oklch(100% 0 0); border-color: oklch(75% 0.005 245); }
+.icon-grid--light .icon-tile-name { color: oklch(40% 0.01 245); }
 .icon-tile:hover { transform: translateY(-2px); border-color: var(--variant-color, var(--accent)); background: color-mix(in oklab, var(--variant-color, var(--accent)) 15%, var(--surface)); }
-.icon-tile svg { width: 100%; height: 100%; display: block; }
+.icon-tile svg, .icon-tile img { width: 100%; height: 100%; display: block; }
 .icon-tile-name { position: absolute; bottom: 6px; left: 6px; right: 6px; font: 500 9px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-dim); text-align: center; opacity: 0; transition: opacity 0.15s; }
 .icon-tile:hover .icon-tile-name { opacity: 1; }
 
-.variant-panel--canus     { --variant-color: var(--canus); }
-.variant-panel--caeruleus { --variant-color: var(--caeruleus); }
-.variant-panel--violaceus { --variant-color: var(--violaceus); }
-.variant-panel--viridis   { --variant-color: var(--viridis); }
-.variant-panel--luteus    { --variant-color: var(--luteus); }
+.variant-panel--canus          { --variant-color: var(--canus); }
+.variant-panel--dark_canus     { --variant-color: var(--dark_canus); }
+.variant-panel--albus          { --variant-color: var(--albus); }
+.variant-panel--caeruleus      { --variant-color: var(--caeruleus); }
+.variant-panel--lux_caeruleus  { --variant-color: var(--lux_caeruleus); }
+.variant-panel--violaceus      { --variant-color: var(--violaceus); }
+.variant-panel--lux_violaceus  { --variant-color: var(--lux_violaceus); }
+.variant-panel--viridis        { --variant-color: var(--viridis); }
+.variant-panel--luteus         { --variant-color: var(--luteus); }
 
-.variant-tab--canus     { --variant-color: var(--canus); }
-.variant-tab--caeruleus { --variant-color: var(--caeruleus); }
-.variant-tab--violaceus { --variant-color: var(--violaceus); }
-.variant-tab--viridis   { --variant-color: var(--viridis); }
-.variant-tab--luteus    { --variant-color: var(--luteus); }
+.variant-tab--canus          { --variant-color: var(--canus); }
+.variant-tab--dark_canus     { --variant-color: var(--dark_canus); }
+.variant-tab--albus          { --variant-color: var(--albus); }
+.variant-tab--caeruleus      { --variant-color: var(--caeruleus); }
+.variant-tab--lux_caeruleus  { --variant-color: var(--lux_caeruleus); }
+.variant-tab--violaceus      { --variant-color: var(--violaceus); }
+.variant-tab--lux_violaceus  { --variant-color: var(--lux_violaceus); }
+.variant-tab--viridis        { --variant-color: var(--viridis); }
+.variant-tab--luteus         { --variant-color: var(--luteus); }
 
 /* === Community gallery === */
 .gallery { border-top: 1px solid var(--border); }

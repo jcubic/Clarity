@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "${PORT:-8081}:8080"
+    volumes:
+      - ./web:/app/web
+      - ./theme:/app/theme
+    working_dir: /app

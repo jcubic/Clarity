@@ -67,4 +67,17 @@
     var initial = tabs[0].dataset.tab;
     activate(initial);
   }
+
+  // Background toggle for icon grids
+  var toggles = document.querySelectorAll('.bg-toggle');
+  toggles.forEach(function (btn) {
+    var panel = btn.closest('.variant-panel');
+    var grid = panel ? panel.querySelector('.icon-grid') : null;
+    if (!grid) return;
+    var isLight = btn.dataset.light === 'true';
+    btn.addEventListener('click', function () {
+      isLight = !isLight;
+      grid.classList.toggle('icon-grid--light', isLight);
+    });
+  });
 })();
