@@ -1,0 +1,18 @@
+{
+    "name": "jcubic/clarity-web",
+    "description": "Clarity icon theme website",
+    "type": "project",
+    "license": "CC-BY-SA-4.0",
+    "authors": [
+        {
+            "name": "Jakub Jankiewicz",
+            "email": "jcubic@jcubic.pl"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.8",
+        "slim/twig-view": "^3.4",
+        "twig/twig": "^3.27"
+    }
+}

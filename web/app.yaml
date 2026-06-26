@@ -5,7 +5,7 @@ annotations:
     phpix: true
     phpix_worker_threads: 4
     port: 8080
-    use_composer: false
+    use_composer: true
   shipitcli.com/provider: php
   shipitcli.com/version: 0.21.2
 kind: wasmer.io/App.v0

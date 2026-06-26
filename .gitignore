@@ -5,3 +5,5 @@ theme/scalable
 theme/configure-stamp
 theme/Clarity
 theme/icon-theme.cache
+web/vendor
+web/cache

@@ -1,0 +1,10 @@
+[package]
+name = "jcubic/clarity-icons"
+version = "0.1.0"
+description = "Clarity icon theme website"
+
+[dependencies]
+"php/php" = "8.3"
+
+[fs]
+"/src" = "."
