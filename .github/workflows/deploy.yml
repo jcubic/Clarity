@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build icons
-        run: make icons
+        run: make -C web icons
 
       - name: Setup Wasmer
         uses: wasmerio/setup-wasmer@v3.1
