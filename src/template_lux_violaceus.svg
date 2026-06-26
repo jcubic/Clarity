@@ -4,8 +4,7 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:svg="http://www.w3.org/2000/svg"
      xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="64" height="64" viewBox="0 0 128 128" version="1.1">
+width="64" height="64" viewBox="0 0 128 128" version="1.1">
     <title>{{TITLE}}</title>
     <desc>This icon is a part of Clarity icon theme for gtk</desc>
     <metadata>
@@ -46,6 +45,6 @@
     <symbol id="shape">
         <path d="{{PATH}}" />
     </symbol>
-    <use style="fill:url(#gradient);fill-opacity:1;stroke:none" xlink:href="#shape" />
-    <use style="fill:url(#white_gradient);fill-opacity:1;stroke:none" clip-path="url(#glow_clip)" xlink:href="#shape"/>
+    <use style="fill:url(#gradient);fill-opacity:1;stroke:none" href="#shape" />
+    <use style="fill:url(#white_gradient);fill-opacity:1;stroke:none" clip-path="url(#glow_clip)" href="#shape"/>
 </svg>
