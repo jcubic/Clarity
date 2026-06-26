@@ -18,7 +18,7 @@ $mime_types = [
 ];
 
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
-$static = __DIR__ . '/public' . $uri;
+$static = __DIR__ . $uri;
 if ($uri !== '/' && file_exists($static) && is_file($static)) {
     $ext = pathinfo($static, PATHINFO_EXTENSION);
     $type = $mime_types[$ext] ?? 'application/octet-stream';
