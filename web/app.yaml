@@ -11,5 +11,6 @@ annotations:
 kind: wasmer.io/App.v0
 name: clarity-icons
 owner: jcubic
+package: .
 scaling:
   mode: single_concurrency

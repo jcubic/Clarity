@@ -15,6 +15,6 @@ jobs:
         uses: wasmerio/setup-wasmer@v3.1
 
       - name: Deploy to Wasmer Edge
-        run: wasmer deploy --dir web --non-interactive --no-wait --token "$WASMER_TOKEN"
+        run: wasmer deploy --dir web --non-interactive --no-wait --build-remote --token "$WASMER_TOKEN"
         env:
           WASMER_TOKEN: ${{ secrets.WASMER_TOKEN }}
