@@ -7,4 +7,12 @@ description = "Clarity icon theme website"
 "php/php" = "8.3"
 
 [fs]
-"/src" = "."
+"/app" = "."
+
+[[command]]
+name = "run"
+module = "php/php:php"
+runner = "wasi"
+
+[command.annotations.wasi]
+main-args = ["-t", "/app", "-S", "localhost:8080"]
