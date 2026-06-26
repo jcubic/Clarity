@@ -139,6 +139,23 @@ $app->get('/', function (Request $request, Response $response) use ($icons, $var
     ]);
 });
 
+$app->get('/debug', function (Request $request, Response $response) {
+    $info = [
+        '__DIR__' => __DIR__,
+        'cwd' => getcwd(),
+        'public_exists' => file_exists(__DIR__ . '/public'),
+        'css_dir_exists' => file_exists(__DIR__ . '/public/css'),
+        'css_file_exists' => file_exists(__DIR__ . '/public/css/style.css'),
+        'scandir_root' => scandir(__DIR__),
+    ];
+    if (file_exists(__DIR__ . '/public')) {
+        $info['scandir_public'] = scandir(__DIR__ . '/public');
+    }
+    $response = $response->withHeader('Content-Type', 'application/json');
+    $response->getBody()->write(json_encode($info, JSON_PRETTY_PRINT));
+    return $response;
+});
+
 $app->get('/install', function (Request $request, Response $response) {
     $response = $response->withHeader('Content-Type', 'text/plain');
     $response->getBody()->write("#!/usr/bin/env bash\n# Clarity icon theme installer\necho 'Coming soon'\n");
