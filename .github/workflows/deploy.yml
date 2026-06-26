@@ -12,7 +12,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build icons
-        run: make -C web icons
+        run: |
+          make -C web icons
+          sed -i 's%web/icons%#web/icons%g' .gitignore
 
       - name: Setup Wasmer
         uses: wasmerio/setup-wasmer@v3.1
