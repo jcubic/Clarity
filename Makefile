@@ -9,11 +9,11 @@ build: vendor icons
 
 icons: web/icons/.build-stamp
 
-web/icons.json: web/files.txt web/scripts/extract-icons.php $(ICON_SOURCES)
-	php web/scripts/extract-icons.php
+web/icons.json: web/files.txt web/scripts/extract-icons.py $(ICON_SOURCES)
+	python3 web/scripts/extract-icons.py
 
-web/icons/.build-stamp: web/icons.json web/scripts/build-icons.php $(TEMPLATES)
-	php web/scripts/build-icons.php
+web/icons/.build-stamp: web/icons.json web/scripts/build-icons.py $(TEMPLATES)
+	python3 web/scripts/build-icons.py
 	@touch $@
 
 vendor: web/vendor/autoload.php

@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build icons
+        run: make icons
+
       - name: Setup Wasmer
         uses: wasmerio/setup-wasmer@v3.1
 
