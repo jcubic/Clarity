@@ -1,0 +1,84 @@
+<section class="create" id="create" aria-labelledby="create-heading">
+  <div class="container">
+    <header class="section-header">
+      <p class="section-eyebrow">// 04 — Make your own</p>
+      <h2 id="create-heading" class="section-title">Four steps to a published theme.</h2>
+      <p class="section-lead">Each icon starts from a 128×128 SVG with a single placeholder <code>&lt;circle&gt;</code>. Restyle it, recolor it, give it depth — but keep the circle. The validator uses it to check fit and bounds.</p>
+    </header>
+
+    <div class="create-grid">
+      <div>
+        <ol class="create-steps">
+          <li class="create-step">
+            <h3>Download the template SVG</h3>
+            <p>Start with <code>clarity-template.svg</code> — a 128×128 canvas with a centred placeholder circle on a transparent background. Use it once per icon.</p>
+          </li>
+          <li class="create-step">
+            <h3>Open it in Inkscape <span class="pill pill--style">recommended</span></h3>
+            <p>Any vector editor works (Affinity, Figma, Illustrator), but Inkscape preserves the <code>id</code> attribute on the placeholder circle, which the validator needs.</p>
+          </li>
+          <li class="create-step">
+            <h3>Style the placeholder <span class="pill pill--required">don't delete</span></h3>
+            <p>The circle with <code>id="icon-placeholder"</code> must remain in the file. You can change its <code>fill</code>, add a <code>filter</code>, apply a <code>mask</code>, wrap it in a <code>&lt;g&gt;</code>, or transform it. Add glyphs, gradients, and effects around it — just don't remove it.</p>
+          </li>
+          <li class="create-step">
+            <h3>Upload &amp; submit</h3>
+            <p>Drop the finished SVG into the validator. It runs the checks below and shows you a preview before it goes to the public gallery.</p>
+          </li>
+        </ol>
+
+        <div class="create-snippet" aria-label="Template SVG source">
+          <div class="create-snippet-head">
+            <span>clarity-template.svg</span>
+            <span>128 × 128 · transparent</span>
+          </div>
+<pre><span class="tok-comment">&lt;!-- The placeholder circle MUST stay. Style it any way you like. --&gt;</span>
+<span class="tok-tag">&lt;svg</span> <span class="tok-attr">xmlns</span>=<span class="tok-str">"http://www.w3.org/2000/svg"</span>
+     <span class="tok-attr">viewBox</span>=<span class="tok-str">"0 0 128 128"</span> <span class="tok-attr">width</span>=<span class="tok-str">"128"</span> <span class="tok-attr">height</span>=<span class="tok-str">"128"</span><span class="tok-tag">&gt;</span>
+
+  <span class="tok-tag">&lt;circle</span> <span class="tok-keep">id</span>=<span class="tok-str">"icon-placeholder"</span>
+          <span class="tok-attr">cx</span>=<span class="tok-str">"64"</span> <span class="tok-attr">cy</span>=<span class="tok-str">"64"</span> <span class="tok-attr">r</span>=<span class="tok-str">"56"</span>
+          <span class="tok-attr">fill</span>=<span class="tok-str">"#8b8d96"</span> <span class="tok-tag">/&gt;</span>
+
+  <span class="tok-comment">&lt;!-- Your icon goes here. Glyphs, gradients, filters, --&gt;</span>
+  <span class="tok-comment">&lt;!-- anything that fits inside the placeholder bounds. --&gt;</span>
+
+<span class="tok-tag">&lt;/svg&gt;</span></pre>
+        </div>
+
+        <div class="create-actions">
+          <a class="button button--primary" href="theme-upload.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-upload"/></svg>
+            Upload your theme
+          </a>
+        </div>
+      </div>
+
+      <aside class="template-card" aria-label="Template preview">
+        <div class="template-preview">
+          <svg class="template-svg" viewBox="0 0 128 128" role="img" aria-label="Template SVG: 128 by 128 canvas with centred placeholder circle">
+            <line class="template-axis" x1="64" y1="0" x2="64" y2="128"/>
+            <line class="template-axis" x1="0" y1="64" x2="128" y2="64"/>
+            <rect class="template-bounds" x="1" y="1" width="126" height="126"/>
+            <circle class="template-bounds" cx="64" cy="64" r="56"/>
+            <circle class="template-placeholder" id="icon-placeholder" cx="64" cy="64" r="56"/>
+          </svg>
+        </div>
+        <div class="template-meta">
+          <span>placeholder</span>
+          <code>#icon-placeholder</code>
+        </div>
+        <div class="template-meta" style="border-top: 1px solid var(--border);">
+          <span>canvas</span>
+          <code>128 × 128</code>
+        </div>
+        <div class="template-actions">
+          <a class="button button--ghost button--small" href="#" download="clarity-template.svg">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg>
+            Download SVG
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

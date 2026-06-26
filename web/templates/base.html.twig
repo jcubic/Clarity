@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Clarity — A GTK+ Icon Theme in Five Colors{% endblock %}</title>
+  <meta name="description" content="{% block description %}920 unique icons for your GTK desktop, hand-tuned across five color variants: Canus, Caeruleus, Violaceus, Viridis, Luteus. One curl, you're done.{% endblock %}" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
+</head>
+
+<body>
+  {% include 'components/svg-symbols.html.twig' %}
+  {% include 'components/header.html.twig' %}
+
+  <main id="top">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include 'components/footer.html.twig' %}
+  <script src="/js/main.js"></script>
+</body>
+</html>

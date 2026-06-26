@@ -1,0 +1,35 @@
+<section class="gallery" id="gallery" aria-labelledby="gallery-heading">
+  <div class="container">
+    <div class="gallery-header-row">
+      <header class="section-header" style="margin-bottom: 0;">
+        <p class="section-eyebrow">// 03 — Community</p>
+        <h2 id="gallery-heading" class="section-title">Themes from the field.</h2>
+        <p class="section-lead">Custom palettes published by Clarity users. Each one keeps the Clarity geometry and swaps in its own color story.</p>
+      </header>
+      <a class="gallery-cta" href="#create">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plus"/></svg>
+        Submit yours
+      </a>
+    </div>
+
+    <div class="gallery-grid">
+      {% for card in gallery %}
+      <a class="gallery-card gallery-card--{{ card.id }}{% if card.featured %} gallery-card--featured{% endif %}" href="theme-{{ card.id }}.html" aria-label="{{ card.name }} by {{ card.author }} — open theme page">
+        <div class="gallery-cover" aria-hidden="true">
+          {% for icon_id in card.cover_icons %}
+          <svg viewBox="0 0 24 24"><use href="#i-{{ icon_id }}"/></svg>
+          {% endfor %}
+        </div>
+        <div class="gallery-body">
+          <h3 class="gallery-name">{{ card.name }}</h3>
+          <p class="gallery-tagline">{{ card.tagline|raw }}</p>
+        </div>
+        <div class="gallery-meta">
+          <span>{{ card.author }}</span>
+          <span>{{ card.version }} · {{ card.date }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
