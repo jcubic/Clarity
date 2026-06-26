@@ -1,7 +1,7 @@
 *~
-16x16
-build-stamp
-scalable
-configure-stamp
-Clarity
-icon-theme.cache
+theme/16x16
+theme/build-stamp
+theme/scalable
+theme/configure-stamp
+theme/Clarity
+theme/icon-theme.cache

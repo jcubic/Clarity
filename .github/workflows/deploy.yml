@@ -1,0 +1,20 @@
+name: Deploy to Wasmer Edge
+
+on:
+  push:
+    branches:
+      - wasmer
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Wasmer
+        uses: wasmerio/setup-wasmer@v3.1
+
+      - name: Deploy to Wasmer Edge
+        run: wasmer deploy --dir web --non-interactive --no-wait --token "$WASMER_TOKEN"
+        env:
+          WASMER_TOKEN: ${{ secrets.WASMER_TOKEN }}
