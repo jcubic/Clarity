@@ -8,6 +8,24 @@ use Slim\Views\TwigMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
+$mime_types = [
+    'css' => 'text/css',
+    'js'  => 'application/javascript',
+    'svg' => 'image/svg+xml',
+    'png' => 'image/png',
+    'ico' => 'image/x-icon',
+];
+
+$uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+$static = __DIR__ . '/public' . $uri;
+if ($uri !== '/' && file_exists($static) && is_file($static)) {
+    $ext = pathinfo($static, PATHINFO_EXTENSION);
+    $type = $mime_types[$ext] ?? 'application/octet-stream';
+    header('Content-Type: ' . $type);
+    readfile($static);
+    exit;
+}
+
 $app = AppFactory::create();
 
 $twig = Twig::create(__DIR__ . '/templates');
@@ -109,27 +127,6 @@ $gallery = [
     ],
 ];
 
-// Static file routes (Wasmer phpix routes everything through index.php)
-$app->get('/css/{file:.*}', function (Request $request, Response $response, array $args) {
-    $file = __DIR__ . '/public/css/' . $args['file'];
-    if (!file_exists($file)) {
-        return $response->withStatus(404);
-    }
-    $response = $response->withHeader('Content-Type', 'text/css');
-    $response->getBody()->write(file_get_contents($file));
-    return $response;
-});
-
-$app->get('/js/{file:.*}', function (Request $request, Response $response, array $args) {
-    $file = __DIR__ . '/public/js/' . $args['file'];
-    if (!file_exists($file)) {
-        return $response->withStatus(404);
-    }
-    $response = $response->withHeader('Content-Type', 'application/javascript');
-    $response->getBody()->write(file_get_contents($file));
-    return $response;
-});
-
 $app->get('/', function (Request $request, Response $response) use ($icons, $variants, $gallery) {
     $view = Twig::fromRequest($request);
     return $view->render($response, 'pages/home.html.twig', [
@@ -137,23 +134,6 @@ $app->get('/', function (Request $request, Response $response) use ($icons, $var
         'variants' => $variants,
         'gallery' => $gallery,
     ]);
-});
-
-$app->get('/debug', function (Request $request, Response $response) {
-    $info = [
-        '__DIR__' => __DIR__,
-        'cwd' => getcwd(),
-        'public_exists' => file_exists(__DIR__ . '/public'),
-        'css_dir_exists' => file_exists(__DIR__ . '/public/css'),
-        'css_file_exists' => file_exists(__DIR__ . '/public/css/style.css'),
-        'scandir_root' => scandir(__DIR__),
-    ];
-    if (file_exists(__DIR__ . '/public')) {
-        $info['scandir_public'] = scandir(__DIR__ . '/public');
-    }
-    $response = $response->withHeader('Content-Type', 'application/json');
-    $response->getBody()->write(json_encode($info, JSON_PRETTY_PRINT));
-    return $response;
 });
 
 $app->get('/install', function (Request $request, Response $response) {
