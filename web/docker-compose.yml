@@ -7,3 +7,34 @@ services:
       - .:/app
       - ../theme:/theme
     working_dir: /app
+    environment:
+      APP_DEBUG: 1
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: clarity
+      DB_USERNAME: clarity
+      DB_PASSWORD: clarity
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: clarity
+      MYSQL_USER: clarity
+      MYSQL_PASSWORD: clarity
+    ports:
+      - "${DB_PORT:-3307}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db_data:

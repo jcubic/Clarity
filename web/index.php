@@ -8,6 +8,50 @@ use Slim\Views\TwigMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
+if (file_exists(__DIR__ . '/.env.local')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '.env.local');
+    $dotenv->safeLoad();
+}
+
+function env(string $key, ?string $default = null): ?string {
+    return $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key) ?: $default;
+}
+
+$debug = env('APP_DEBUG', '0') === '1';
+
+if ($debug) {
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+} else {
+    error_reporting(E_ALL);
+    ini_set('display_errors', '0');
+    ini_set('log_errors', '1');
+}
+
+$db = null;
+if (env('DB_HOST')) {
+    try {
+        $dsn = sprintf(
+            'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
+            env('DB_HOST'),
+            env('DB_PORT', '3306'),
+            env('DB_NAME')
+        );
+        $db = new PDO($dsn, env('DB_USERNAME'), env('DB_PASSWORD'), [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        ]);
+        $db->exec("CREATE TABLE IF NOT EXISTS counters (
+            name VARCHAR(64) PRIMARY KEY,
+            value BIGINT UNSIGNED NOT NULL DEFAULT 0
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+        $db->exec("INSERT IGNORE INTO counters (name, value) VALUES ('installs', 0)");
+    } catch (PDOException $e) {
+        if ($debug) {
+            throw $e;
+        }
+        $db = null;
+    }
+}
 
 $mime_types = [
     'css' => 'text/css',
@@ -121,7 +165,7 @@ $app->get('/', function (Request $request, Response $response) use ($icons, $var
     ]);
 });
 
-$errorMiddleware = $app->addErrorMiddleware(false, false, false);
+$errorMiddleware = $app->addErrorMiddleware($debug, $debug, $debug);
 $errorMiddleware->setErrorHandler(
     Slim\Exception\HttpNotFoundException::class,
     function (Request $request, Throwable $exception, bool $displayErrorDetails) use ($twig) {
@@ -130,7 +174,23 @@ $errorMiddleware->setErrorHandler(
     }
 );
 
-$app->get('/install', function (Request $request, Response $response) {
+$app->get('/stats', function (Request $request, Response $response) use ($db) {
+    $stats = ['installs' => 0];
+    if ($db) {
+        $rows = $db->query("SELECT name, value FROM counters")->fetchAll(PDO::FETCH_KEY_PAIR);
+        $stats = array_merge($stats, $rows);
+    }
+    $response->getBody()->write(json_encode($stats));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->get('/install', function (Request $request, Response $response) use ($db) {
+    if ($db) {
+        try {
+            $db->exec("UPDATE counters SET value = value + 1 WHERE name = 'installs'");
+        } catch (PDOException $e) {
+        }
+    }
     return $response
         ->withHeader('Location', 'https://raw.githubusercontent.com/jcubic/Clarity/wasmer/theme/bin/install.sh')
         ->withStatus(302);

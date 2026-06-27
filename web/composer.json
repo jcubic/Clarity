@@ -13,6 +13,7 @@
         "slim/slim": "4.*",
         "slim/psr7": "^1.8",
         "slim/twig-view": "^3.4",
-        "twig/twig": "^3.27"
+        "twig/twig": "^3.27",
+        "vlucas/phpdotenv": "^5.6"
     }
 }
