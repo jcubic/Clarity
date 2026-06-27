@@ -6,3 +6,4 @@ services:
     volumes:
       - .:/app
       - ../theme:/theme
+    working_dir: /app
