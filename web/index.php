@@ -234,15 +234,22 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
     }
 
     if ($db->isConnected()) {
-        if ($db->isThemeNameTaken($themeName)) {
+        $existingUsername = $db->getUsernameByEmail($email);
+        if ($existingUsername !== null && $existingUsername !== $username) {
             return $view->render($response, 'pages/upload.html.twig', [
-                'error' => 'Theme name "' . htmlspecialchars($themeName) . '" is already taken.',
+                'error' => 'This email is already registered with username "@' . htmlspecialchars($existingUsername) . '".',
             ]);
         }
 
-        if ($db->isUsernameTaken($username, $email)) {
+        if ($existingUsername === null && $db->isUsernameTaken($username)) {
             return $view->render($response, 'pages/upload.html.twig', [
                 'error' => 'Username "@' . htmlspecialchars($username) . '" is already taken.',
+            ]);
+        }
+
+        if ($db->isThemeNameTaken($themeName)) {
+            return $view->render($response, 'pages/upload.html.twig', [
+                'error' => 'Theme name "' . htmlspecialchars($themeName) . '" is already taken.',
             ]);
         }
 
@@ -287,7 +294,7 @@ $app->get('/verify', function (Request $request, Response $response) use ($db) {
         ]);
     }
 
-    $userId = $db->createOrUpdateUser($data['email'], $data['username']);
+    $userId = $db->createOrGetUser($data['email'], $data['username']);
     $db->publishTheme($data['theme_id'], $userId);
 
     return $view->render($response, 'pages/upload-confirmed.html.twig', [

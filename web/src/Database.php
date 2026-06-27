@@ -71,6 +71,16 @@ class Database {
         return $id !== false ? (int) $id : null;
     }
 
+    public function getUsernameByEmail(string $email): ?string {
+        if (!$this->pdo) {
+            return null;
+        }
+        $stmt = $this->pdo->prepare('SELECT username FROM users WHERE email = ?');
+        $stmt->execute([$email]);
+        $username = $stmt->fetchColumn();
+        return $username !== false ? (string) $username : null;
+    }
+
     public function isUsernameTaken(string $username, ?string $exceptEmail = null): bool {
         if (!$this->pdo) {
             return false;
@@ -85,14 +95,12 @@ class Database {
         return (int) $stmt->fetchColumn() > 0;
     }
 
-    public function createOrUpdateUser(string $email, string $username): int {
+    public function createOrGetUser(string $email, string $username): int {
         if (!$this->pdo) {
             return 0;
         }
         $existing = $this->findUserByEmail($email);
         if ($existing !== null) {
-            $stmt = $this->pdo->prepare('UPDATE users SET username = ? WHERE id = ?');
-            $stmt->execute([$username, $existing]);
             return $existing;
         }
         $stmt = $this->pdo->prepare('INSERT INTO users (email, username) VALUES (?, ?)');
