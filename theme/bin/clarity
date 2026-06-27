@@ -396,7 +396,7 @@ cmd_install() {
     check_base
 
     local slug="${theme#@}"
-    local url="${API_BASE}/api/theme/${slug}/template.svg"
+    local url="${API_BASE}/api/theme/${slug}"
     local dest="${COMMUNITY_DIR}/${slug}.svg"
 
     info "Downloading community theme: $theme"
