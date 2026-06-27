@@ -7,7 +7,7 @@ _clarity() {
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-    commands="use create install remove list update help"
+    commands="use create install remove list update uninstall version help"
     variants="canus dark_canus albus caeruleus lux_caeruleus violaceus lux_violaceus viridis luteus"
 
     case "$prev" in

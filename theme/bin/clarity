@@ -499,6 +499,49 @@ cmd_update() {
     fi
 }
 
+cmd_uninstall() {
+    local bin_path
+    bin_path=$(command -v clarity 2>/dev/null || echo "${HOME}/.local/bin/clarity")
+
+    if [[ "$bin_path" == /usr/bin/clarity || "$bin_path" == /usr/local/bin/clarity ]]; then
+        error "Clarity was installed system-wide"
+        echo -e "  ${DIM}Use your package manager to remove it (e.g., sudo dnf remove clarity-icons)${RESET}"
+        exit 1
+    fi
+
+    echo -e "${BOLD}The following will be removed:${RESET}"
+    echo "  $CLARITY_HOME/"
+    echo "  $bin_path"
+    echo "  $ICON_DIR/"
+    local completion_dir="${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion/completions"
+    if [[ -f "$completion_dir/clarity" ]]; then
+        echo "  $completion_dir/clarity"
+    fi
+    echo ""
+
+    printf "Remove Clarity and all installed themes? [y/N] "
+    local answer
+    read -r answer
+    if [[ "$answer" != [yY] && "$answer" != [yY][eE][sS] ]]; then
+        echo "Aborted."
+        exit 0
+    fi
+
+    rm -f "$bin_path"
+    rm -rf "$CLARITY_HOME"
+    rm -rf "$ICON_DIR"
+    if [[ -f "$completion_dir/clarity" ]]; then
+        rm -f "$completion_dir/clarity"
+    fi
+
+    if command -v gtk-update-icon-cache > /dev/null 2>&1; then
+        gtk-update-icon-cache -f "${XDG_DATA_HOME:-$HOME/.local/share}/icons" 2>/dev/null || true
+    fi
+
+    info "Clarity has been removed"
+    echo -e "  ${DIM}Change your active icon theme in desktop appearance settings.${RESET}"
+}
+
 cmd_help() {
     echo -e "${BOLD}clarity${RESET} — CLI theme manager for the Clarity GTK+ icon theme"
     echo ""
@@ -512,6 +555,8 @@ cmd_help() {
     echo "    remove @user/theme        Remove an installed community theme"
     echo "    list                      Show available variants and installed themes"
     echo "    update                    Update the CLI and base theme files"
+    echo "    uninstall                 Remove Clarity completely"
+    echo "    version                   Print the installed version"
     echo ""
     echo -e "${BOLD}BUILT-IN VARIANTS${RESET}"
     echo "    canus, dark_canus, albus, caeruleus, lux_caeruleus,"
@@ -569,9 +614,10 @@ main() {
             fi
             cmd_remove "$1"
             ;;
-        list)    cmd_list ;;
-        update)  cmd_update ;;
-        -v|--version) echo "clarity $VERSION" ;;
+        list)      cmd_list ;;
+        update)    cmd_update ;;
+        uninstall) cmd_uninstall ;;
+        version|-v|-V|--version) echo "clarity $VERSION" ;;
         help|--help|-h|"") cmd_help ;;
         *)
             error "Unknown command: $cmd"
