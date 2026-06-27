@@ -321,6 +321,11 @@ $app->get('/stats', function (Request $request, Response $response) use ($db) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+$app->get('/api/test', function (Request $request, Response $response) {
+    $response->getBody()->write(json_encode(['ok' => true]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
 $app->get('/api/theme/{user}/{name}/template.svg', function (Request $request, Response $response, array $args) use ($db) {
     $svg = $db->getThemeSvg($args['user'], $args['name']);
     if ($svg === null) {
