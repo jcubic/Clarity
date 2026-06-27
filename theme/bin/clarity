@@ -64,35 +64,85 @@ cmd_use() {
 
     check_base
 
-    info "Building icons with variant: $theme"
-
     local src_dir="$CLARITY_HOME/src"
 
     mkdir -p "$ICON_DIR"/{scalable,16x16}/{actions,apps,categories,devices,emblems,mimetypes,places,status,stock}
 
     cp "$CLARITY_HOME/index.theme" "$ICON_DIR/index.theme"
 
-    local count=0
     local total
     total=$(find -L "$src_dir" -mindepth 2 -name "*.svg" -type f | wc -l)
 
-    local tmpl_content
-    tmpl_content=$(<"$template")
+    local jobs
+    jobs=$(nproc 2>/dev/null || echo 1)
 
-    while IFS= read -r svg; do
-        local shape title rel_path output content
+    export CLARITY_TEMPLATE="$template"
+    export CLARITY_SRC_DIR="$src_dir"
+    export CLARITY_ICON_DIR="$ICON_DIR"
+
+    _build_one_icon() {
+        local svg="$1"
+        local shape title rel_path output
         shape=$(grep "path.*d=" "$svg" | sed -e 's/.*d="\([^"]*\)".*/\1/' | head -1 || true)
         title=$(grep "<title>" "$svg" | sed -e 's/.*<title>\([^<]*\)<\/title>/\1/' | head -1 || true)
-        rel_path="${svg#${src_dir}/}"
-        output="$ICON_DIR/scalable/${rel_path}"
+        rel_path="${svg#${CLARITY_SRC_DIR}/}"
+        output="$CLARITY_ICON_DIR/scalable/${rel_path}"
         mkdir -p "$(dirname "$output")"
-        content="${tmpl_content//\{\{PATH\}\}/$shape}"
-        content="${content//\{\{TITLE\}\}/$title}"
-        printf '%s\n' "$content" > "$output"
-        (( ++count ))
-        printf "\r  Building: %d/%d" "$count" "$total"
-    done < <(find -L "$src_dir" -mindepth 2 -name "*.svg" -type f)
-    echo ""
+        awk -v title="$title" '{
+            if (match($0, /\{\{PATH\}\}/)) {
+                $0 = substr($0, 1, RSTART-1) ENVIRON["_SHAPE"] substr($0, RSTART+RLENGTH)
+            }
+            gsub(/\{\{TITLE\}\}/, title)
+            print
+        }' "$CLARITY_TEMPLATE" > "$output"
+    }
+    export -f _build_one_icon
+
+    if [[ "$jobs" -gt 1 ]]; then
+        info "Building $total icons ($theme) on $jobs cores..."
+        local progress_dir
+        progress_dir=$(mktemp -d)
+        (
+            while [[ -d "$progress_dir" ]]; do
+                local done
+                done=$(find "$progress_dir" -maxdepth 1 -type f 2>/dev/null | wc -l)
+                printf "\r  Building: %d/%d" "$done" "$total"
+                sleep 0.3
+            done
+        ) &
+        local monitor_pid=$!
+        export CLARITY_PROGRESS_DIR="$progress_dir"
+        find -L "$src_dir" -mindepth 2 -name "*.svg" -type f | \
+            xargs -P "$jobs" -I{} bash -c '
+                svg="$1"
+                shape=$(grep "path.*d=" "$svg" | sed -e '\''s/.*d="\([^"]*\)".*/\1/'\'' | head -1 || true)
+                export _SHAPE="$shape"
+                _build_one_icon "$svg"
+                touch "$CLARITY_PROGRESS_DIR/$$.$RANDOM"
+            ' _ {}
+        rm -rf "$progress_dir"
+        kill "$monitor_pid" 2>/dev/null; wait "$monitor_pid" 2>/dev/null || true
+        printf "\r  Building: %d/%d\n" "$total" "$total"
+    else
+        info "Building $total icons ($theme)..."
+        local count=0
+        local tmpl_content
+        tmpl_content=$(<"$template")
+        while IFS= read -r svg; do
+            local shape title rel_path output content
+            shape=$(grep "path.*d=" "$svg" | sed -e 's/.*d="\([^"]*\)".*/\1/' | head -1 || true)
+            title=$(grep "<title>" "$svg" | sed -e 's/.*<title>\([^<]*\)<\/title>/\1/' | head -1 || true)
+            rel_path="${svg#${src_dir}/}"
+            output="$ICON_DIR/scalable/${rel_path}"
+            mkdir -p "$(dirname "$output")"
+            content="${tmpl_content//\{\{PATH\}\}/$shape}"
+            content="${content//\{\{TITLE\}\}/$title}"
+            printf '%s\n' "$content" > "$output"
+            (( ++count ))
+            printf "\r  Building: %d/%d" "$count" "$total"
+        done < <(find -L "$src_dir" -mindepth 2 -name "*.svg" -type f)
+        echo ""
+    fi
 
     if [[ -d "$CLARITY_HOME/static" ]]; then
         find "$CLARITY_HOME/static" -type f | while IFS= read -r f; do
@@ -104,10 +154,14 @@ cmd_use() {
     if [[ -f "$src_dir/compound_icons_rules" ]]; then
         while IFS= read -r rule; do
             [[ "$rule" =~ ^#.*$ || -z "${rule// }" ]] && continue
-            local desc src elem
-            desc=$(echo "$rule" | sed -e 's/\([^= ]*\) *=.*/\1/')
-            src=$(echo "$rule" | sed -e 's/[^=]*= *\([^ ]*\) *\+.*/\1/')
-            elem=$(echo "$rule" | sed -e 's/.*+ *\(.*\) *$/\1/')
+            local desc="${rule%%=*}"
+            desc="${desc%% }"
+            local rest="${rule#*=}"
+            rest="${rest# }"
+            local src="${rest%%+*}"
+            src="${src%% }"
+            local elem="${rest#*+}"
+            elem="${elem# }"
             if [[ -f "$ICON_DIR/scalable/$src" && -f "$src_dir/$elem" ]]; then
                 local insert
                 insert=$(grep 'id="shape"' "$src_dir/$elem" || true)
@@ -122,22 +176,18 @@ cmd_use() {
     fi
 
     if [[ -f "$src_dir/symlinks" ]]; then
-        while IFS= read -r line; do
-            [[ "$line" =~ ^#.*$ || -z "${line// }" ]] && continue
-            local link_src link_dst
-            link_src=$(echo "$line" | awk '{print $1}')
-            link_dst=$(echo "$line" | awk '{print $2}')
-            mkdir -p "$(dirname "$ICON_DIR/$link_dst")"
+        grep -v '^#' "$src_dir/symlinks" | awk '{print $2}' | sed "s|[^/]*$||" | sort -u | while read -r d; do
+            [[ -n "$d" ]] && mkdir -p "$ICON_DIR/$d"
+        done
+        while read -r link_src link_dst _; do
+            [[ "$link_src" =~ ^#.*$ || -z "$link_src" ]] && continue
             ln -sf "$link_src" "$ICON_DIR/$link_dst" 2>/dev/null || true
         done < "$src_dir/symlinks"
     fi
 
     if [[ -f "$src_dir/copies" ]]; then
-        while IFS= read -r line; do
-            [[ "$line" =~ ^#.*$ || -z "${line// }" ]] && continue
-            local copy_src copy_dst
-            copy_src=$(echo "$line" | awk '{print $1}')
-            copy_dst=$(echo "$line" | awk '{print $2}')
+        while read -r copy_src copy_dst _; do
+            [[ "$copy_src" =~ ^#.*$ || -z "$copy_src" ]] && continue
             [[ -f "$ICON_DIR/$copy_src" ]] && cp "$ICON_DIR/$copy_src" "$ICON_DIR/$copy_dst" 2>/dev/null || true
         done < "$src_dir/copies"
     fi
@@ -149,41 +199,68 @@ cmd_use() {
 
     if command -v rsvg-convert > /dev/null 2>&1; then
         info "Generating 16x16 PNGs..."
-        local png_count=0
-        find "$ICON_DIR/scalable" -type f -name "*.svg" | while IFS= read -r svg; do
-            if [[ -n "$skip_pattern" ]] && echo "$svg" | grep -qE "$skip_pattern"; then
-                continue
-            fi
-            local png
-            png=$(echo "$svg" | sed -e 's/scalable/16x16/' -e 's/\.svg$/.png/')
-            mkdir -p "$(dirname "$png")"
+
+        local svg_list
+        svg_list=$(mktemp)
+        if [[ -n "$skip_pattern" ]]; then
+            find "$ICON_DIR/scalable" -type f -name "*.svg" | grep -vE "$skip_pattern" > "$svg_list"
+        else
+            find "$ICON_DIR/scalable" -type f -name "*.svg" > "$svg_list"
+        fi
+
+        local png_total
+        png_total=$(wc -l < "$svg_list")
+
+        # pre-create 16x16 directories
+        sed -e 's/scalable/16x16/' -e 's/[^/]*$//' "$svg_list" | sort -u | xargs -I{} mkdir -p {}
+
+        local png_progress_dir
+        png_progress_dir=$(mktemp -d)
+        (
+            while [[ -d "$png_progress_dir" ]]; do
+                local done
+                done=$(find "$png_progress_dir" -maxdepth 1 -type f 2>/dev/null | wc -l)
+                printf "\r  Rasterizing: %d/%d" "$done" "$png_total"
+                sleep 0.3
+            done
+        ) &
+        local png_monitor_pid=$!
+        xargs -P "$jobs" -I{} bash -c '
+            svg="$1"
+            png=$(echo "$svg" | sed -e "s/scalable/16x16/" -e "s/\.svg$/.png/")
             rsvg-convert -w 16 -h 16 "$svg" > "$png" 2>/dev/null || true
-            (( ++png_count ))
-            printf "\r  Rasterizing: %d" "$png_count"
-        done
-        echo ""
+            touch "'"$png_progress_dir"'/$$.$RANDOM"
+        ' _ {} < "$svg_list"
+        rm -rf "$png_progress_dir"
+        kill "$png_monitor_pid" 2>/dev/null; wait "$png_monitor_pid" 2>/dev/null || true
+        printf "\r  Rasterizing: %d/%d\n" "$png_total" "$png_total"
+        rm -f "$svg_list"
 
         if [[ -f "$src_dir/symlinks" ]]; then
-            while IFS= read -r line; do
-                [[ "$line" =~ ^#.*$ || -z "${line// }" ]] && continue
-                local link_src link_dst
-                link_src=$(echo "$line" | awk '{print $1}' | sed -e 's/\.svg/.png/g' -e 's/scalable/16x16/g')
-                link_dst=$(echo "$line" | awk '{print $2}' | sed -e 's/\.svg/.png/g' -e 's/scalable/16x16/g')
-                if [[ -n "$skip_pattern" ]] && echo "$link_dst" | grep -qE "$skip_pattern"; then
+            grep -v '^#' "$src_dir/symlinks" | awk '{print $2}' | sed -e 's/\.svg/.png/g' -e 's/scalable/16x16/g' -e "s|[^/]*$||" | sort -u | while read -r d; do
+                [[ -n "$d" ]] && mkdir -p "$ICON_DIR/$d"
+            done
+            while read -r link_src link_dst _; do
+                [[ "$link_src" =~ ^#.*$ || -z "$link_src" ]] && continue
+                link_src="${link_src//.svg/.png}"
+                link_src="${link_src//scalable/16x16}"
+                link_dst="${link_dst//.svg/.png}"
+                link_dst="${link_dst//scalable/16x16}"
+                if [[ -n "$skip_pattern" ]] && [[ "$link_dst" =~ $skip_pattern ]]; then
                     continue
                 fi
-                mkdir -p "$(dirname "$ICON_DIR/$link_dst")"
                 ln -sf "$link_src" "$ICON_DIR/$link_dst" 2>/dev/null || true
             done < "$src_dir/symlinks"
         fi
 
         if [[ -f "$src_dir/copies" ]]; then
-            while IFS= read -r line; do
-                [[ "$line" =~ ^#.*$ || -z "${line// }" ]] && continue
-                local copy_src copy_dst
-                copy_src=$(echo "$line" | awk '{print $1}' | sed -e 's/\.svg/.png/g' -e 's/scalable/16x16/g')
-                copy_dst=$(echo "$line" | awk '{print $2}' | sed -e 's/\.svg/.png/g' -e 's/scalable/16x16/g')
-                if [[ -n "$skip_pattern" ]] && echo "$copy_dst" | grep -qE "$skip_pattern"; then
+            while read -r copy_src copy_dst _; do
+                [[ "$copy_src" =~ ^#.*$ || -z "$copy_src" ]] && continue
+                copy_src="${copy_src//.svg/.png}"
+                copy_src="${copy_src//scalable/16x16}"
+                copy_dst="${copy_dst//.svg/.png}"
+                copy_dst="${copy_dst//scalable/16x16}"
+                if [[ -n "$skip_pattern" ]] && [[ "$copy_dst" =~ $skip_pattern ]]; then
                     continue
                 fi
                 [[ -f "$ICON_DIR/$copy_src" ]] && cp "$ICON_DIR/$copy_src" "$ICON_DIR/$copy_dst" 2>/dev/null || true
