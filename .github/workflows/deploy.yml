@@ -15,6 +15,7 @@ jobs:
         run: |
           make -C web icons
           sed -i 's%web/icons%#web/icons%g' .gitignore
+          cat web/.wasmerignore >> .gitignore
 
       - name: Setup Wasmer
         uses: wasmerio/setup-wasmer@v3.1
