@@ -30,6 +30,9 @@ if ($uri !== '/' && file_exists($static) && is_file($static)) {
 $app = AppFactory::create();
 
 $twig = Twig::create(__DIR__ . '/templates');
+$twig->getEnvironment()->addFilter(new \Twig\TwigFilter('with_hash', function ($filename) {
+    return $filename . '?v=' . dechex(crc32(file_get_contents(__DIR__ . $filename)));
+}));
 $app->add(TwigMiddleware::create($app, $twig));
 
 $icons = json_decode(file_get_contents(__DIR__ . '/icons.json'), true);
