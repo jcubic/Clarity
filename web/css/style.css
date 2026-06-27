@@ -325,6 +325,9 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .upload { background: var(--bg-elevated); border-top: 1px solid var(--border); }
 .upload-container { max-width: 640px; }
 
+.no-js-notice { padding: 16px 20px; background: color-mix(in oklab, var(--err) 12%, var(--surface)); border: 1px solid color-mix(in oklab, var(--err) 40%, var(--border)); border-radius: var(--radius); color: var(--fg); font-size: 14px; line-height: 1.5; margin-bottom: 32px; }
+.no-js-notice strong { color: var(--err); }
+
 .wizard-stepper { margin-bottom: 40px; }
 .stepper { display: flex; list-style: none; margin: 0; padding: 0; gap: 0; }
 .stepper-step { flex: 1; display: flex; align-items: center; gap: 10px; padding: 14px 0; font: 500 13px/1 var(--font-mono); letter-spacing: 0.06em; color: var(--fg-dim); border-bottom: 2px solid var(--border); transition: color 0.2s, border-color 0.2s; }
@@ -367,6 +370,10 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 .form-input::placeholder { color: var(--fg-dim); }
 .form-hint { font: 500 12px/1.4 var(--font-mono); color: var(--fg-dim); }
+.form-input.is-invalid { border-color: var(--err); }
+.form-input.is-invalid:focus { box-shadow: 0 0 0 3px color-mix(in oklab, var(--err) 20%, transparent); }
+.form-error { display: none; font: 500 12px/1.4 var(--font-mono); color: var(--err); }
+.form-error.is-visible { display: block; }
 .form-input-prefix { display: flex; align-items: stretch; }
 .form-prefix { display: grid; place-items: center; padding: 0 12px; background: var(--surface); border: 1px solid var(--border-strong); border-right: 0; border-radius: var(--radius) 0 0 var(--radius); font: 500 14px/1 var(--font-mono); color: var(--fg-dim); }
 .form-input-prefix .form-input { border-radius: 0 var(--radius) var(--radius) 0; flex: 1; }
@@ -401,6 +408,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .check-item.is-fail .check-icon::after { content: '✗'; position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: oklch(15% 0.05 25); }
 .check-item.is-pass { color: var(--fg); }
 .check-item.is-fail { color: var(--err); }
+.check-hint { display: block; margin-top: 4px; margin-left: 32px; font: 500 12px/1.4 var(--font-mono); color: var(--fg-dim); }
 
 @media (max-width: 980px) {
   .create-grid { grid-template-columns: 1fr; }

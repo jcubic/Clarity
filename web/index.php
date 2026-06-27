@@ -4,6 +4,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Clarity\Database;
 use Clarity\Mailer;
+use Clarity\SvgValidator;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -161,6 +162,23 @@ $app->get('/', function (Request $request, Response $response) use ($icons, $var
 $app->get('/upload', function (Request $request, Response $response) {
     $view = Twig::fromRequest($request);
     return $view->render($response, 'pages/upload.html.twig');
+});
+
+$app->post('/api/validate', function (Request $request, Response $response) {
+    $files = $request->getUploadedFiles();
+    $svg = $files['svg_file'] ?? null;
+
+    if (!$svg || $svg->getError() !== UPLOAD_ERR_OK) {
+        $response->getBody()->write(json_encode(['error' => 'No SVG file uploaded.']));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+    }
+
+    $content = (string) $svg->getStream();
+    $validator = new SvgValidator();
+    $checks = $validator->validate($content);
+
+    $response->getBody()->write(json_encode(['checks' => $checks]));
+    return $response->withHeader('Content-Type', 'application/json');
 });
 
 $errorMiddleware = $app->addErrorMiddleware($debug, $debug, $debug);

@@ -120,10 +120,97 @@
 
     showStep(1);
 
+    // Validation state
+    var badge = wizard.querySelector('.validation-badge');
+    var checkItems = wizard.querySelectorAll('.check-item');
+    var nextBtn2 = wizard.querySelector('[data-wizard-next="3"]');
+
+    function setCheck(name, pass, hint) {
+      var item = wizard.querySelector('.check-item[data-check="' + name + '"]');
+      if (!item) return;
+      item.classList.toggle('is-pass', pass);
+      item.classList.toggle('is-fail', !pass);
+      var existing = item.querySelector('.check-hint');
+      if (existing) existing.remove();
+      if (!pass && hint) {
+        var span = document.createElement('span');
+        span.className = 'check-hint';
+        span.textContent = hint;
+        item.appendChild(span);
+      }
+    }
+
+    function resetChecks() {
+      checkItems.forEach(function (item) {
+        item.classList.remove('is-pass', 'is-fail');
+        var h = item.querySelector('.check-hint');
+        if (h) h.remove();
+      });
+      if (badge) {
+        badge.textContent = 'Waiting for upload';
+        badge.dataset.status = 'waiting';
+      }
+      if (nextBtn2) nextBtn2.disabled = true;
+    }
+
+    function runValidation() {
+      if (!fileInput || !fileInput.files || !fileInput.files.length) return;
+
+      resetChecks();
+      if (badge) {
+        badge.textContent = 'Running checks…';
+        badge.dataset.status = 'running';
+      }
+
+      var formData = new FormData();
+      formData.append('svg_file', fileInput.files[0]);
+
+      fetch('/api/validate', { method: 'POST', body: formData })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data.error) {
+            if (badge) {
+              badge.textContent = data.error;
+              badge.dataset.status = 'fail';
+            }
+            return;
+          }
+
+          var checks = data.checks || {};
+          var failCount = 0;
+          var keys = Object.keys(checks);
+          keys.forEach(function (key) {
+            var c = checks[key];
+            setCheck(key, c.pass, c.hint);
+            if (!c.pass) failCount++;
+          });
+
+          if (badge) {
+            if (failCount === 0) {
+              badge.textContent = 'All checks passed';
+              badge.dataset.status = 'pass';
+            } else {
+              badge.textContent = failCount + ' issue' + (failCount > 1 ? 's' : '') + ' found';
+              badge.dataset.status = 'fail';
+            }
+          }
+
+          if (nextBtn2) nextBtn2.disabled = failCount > 0;
+        })
+        .catch(function () {
+          if (badge) {
+            badge.textContent = 'Validation request failed';
+            badge.dataset.status = 'fail';
+          }
+        });
+    }
+
     wizard.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-wizard-next]');
       if (btn && !btn.disabled) {
-        showStep(parseInt(btn.dataset.wizardNext, 10));
+        var target = parseInt(btn.dataset.wizardNext, 10);
+        showStep(target);
+        if (target === 2) runValidation();
         return;
       }
       btn = e.target.closest('[data-wizard-prev]');
@@ -185,9 +272,31 @@
       });
     }
 
-    if (themeInput) {
-      themeInput.addEventListener('input', updateNextBtn);
+    function validateField(input, errorId, getMessage, onUpdate) {
+      var errorEl = document.getElementById(errorId);
+      if (!input || !errorEl) return;
+
+      function check() {
+        var val = input.value.trim();
+        var msg = val.length > 0 ? getMessage(val, input) : '';
+        errorEl.textContent = msg;
+        errorEl.classList.toggle('is-visible', msg.length > 0);
+        input.classList.toggle('is-invalid', msg.length > 0);
+      }
+
+      input.addEventListener('blur', check);
+      input.addEventListener('input', function () {
+        if (input.classList.contains('is-invalid')) check();
+        if (onUpdate) onUpdate();
+      });
     }
+
+    validateField(themeInput, 'theme-name-error', function (val) {
+      if (val.length < 2) return 'Name must be at least 2 characters.';
+      if (val.length > 32) return 'Name must be at most 32 characters.';
+      if (!/^[A-Za-z0-9_-]+$/.test(val)) return 'Only letters, numbers, hyphens, and underscores.';
+      return '';
+    }, updateNextBtn);
 
     if (dropzone) {
       ['dragenter', 'dragover'].forEach(function (evt) {
@@ -213,6 +322,37 @@
         }
       });
     }
+
+    // Step 3: submit button gating
+    var submitBtn = wizard.querySelector('button[type="submit"]');
+    var emailInput = document.getElementById('email');
+    var usernameInput = document.getElementById('username');
+    var licenseCheck = wizard.querySelector('input[name="license_agree"]');
+
+    function updateSubmitBtn() {
+      if (!submitBtn) return;
+      var emailOk = emailInput && emailInput.value.trim().length > 0 && emailInput.validity.valid;
+      var userOk = usernameInput && usernameInput.value.trim().length >= 2 && usernameInput.validity.valid;
+      var licenseOk = licenseCheck && licenseCheck.checked;
+      submitBtn.disabled = !(emailOk && userOk && licenseOk);
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      if (licenseCheck) licenseCheck.addEventListener('change', updateSubmitBtn);
+    }
+
+    validateField(emailInput, 'email-error', function (val, input) {
+      if (!input.validity.valid) return 'Enter a valid email address.';
+      return '';
+    }, updateSubmitBtn);
+
+    validateField(usernameInput, 'username-error', function (val) {
+      if (val.length < 2) return 'Username must be at least 2 characters.';
+      if (val.length > 32) return 'Username must be at most 32 characters.';
+      if (!/^[A-Za-z0-9_-]+$/.test(val)) return 'Only letters, numbers, hyphens, and underscores.';
+      return '';
+    }, updateSubmitBtn);
   }
 
   // Background toggle for icon grids

@@ -12,6 +12,12 @@
       <p class="section-lead">Upload an SVG template, pass validation, and publish to the gallery.</p>
     </header>
 
+    <noscript>
+      <div class="no-js-notice">
+        <strong>JavaScript required.</strong> The upload wizard needs JavaScript for file validation and the multi-step flow. Please enable JavaScript to continue.
+      </div>
+    </noscript>
+
     <div class="wizard-stepper js-only" aria-hidden="true">
       <ol class="stepper">
         <li class="stepper-step is-active" data-step="1"><span class="stepper-num">1</span> Upload</li>
@@ -43,8 +49,9 @@
         <div class="form-row">
           <div class="form-field">
             <label for="theme-name" class="form-label">Theme name</label>
-            <input type="text" name="theme_name" id="theme-name" required pattern="[A-Za-z0-9_\-]{2,32}" placeholder="e.g. cyberpunk" class="form-input" />
+            <input type="text" name="theme_name" id="theme-name" required pattern="[A-Za-z0-9_\-]{2,32}" minlength="2" maxlength="32" placeholder="e.g. cyberpunk" class="form-input" />
             <span class="form-hint">2–32 characters, letters, numbers, hyphens, underscores</span>
+            <span class="form-error" id="theme-name-error"></span>
           </div>
         </div>
 
@@ -69,13 +76,12 @@
         </div>
 
         <ol class="validation-checks">
+          <li class="check-item" data-check="filesize"><span class="check-icon"></span> File size under 256 KB</li>
           <li class="check-item" data-check="canvas"><span class="check-icon"></span> Canvas is 128×128</li>
-          <li class="check-item" data-check="placeholder"><span class="check-icon"></span> Placeholder circle preserved</li>
+          <li class="check-item" data-check="placeholder"><span class="check-icon"></span> Contains <code>&lt;circle id="icon-placeholder"&gt;</code></li>
           <li class="check-item" data-check="vector"><span class="check-icon"></span> Vector only (no raster images)</li>
-          <li class="check-item" data-check="path"><span class="check-icon"></span> Contains <code>{"{{PATH}}"}</code> injection point</li>
           <li class="check-item" data-check="security"><span class="check-icon"></span> No scripts or external references</li>
-          <li class="check-item" data-check="username"><span class="check-icon"></span> Username provided</li>
-          <li class="check-item" data-check="title"><span class="check-icon"></span> Contains <code>{"{{TITLE}}"}</code> placeholder</li>
+          <li class="check-item" data-check="ids"><span class="check-icon"></span> No duplicate element IDs</li>
         </ol>
 
         <div class="wizard-nav js-only">
@@ -93,6 +99,7 @@
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" id="email" required placeholder="you@example.com" class="form-input" />
             <span class="form-hint">Used only for sign-in — we send a magic link, no passwords.</span>
+            <span class="form-error" id="email-error"></span>
           </div>
         </div>
 
@@ -101,9 +108,10 @@
             <label for="username" class="form-label">Username</label>
             <div class="form-input-prefix">
               <span class="form-prefix">@</span>
-              <input type="text" name="username" id="username" required pattern="[A-Za-z0-9_\-]{2,32}" placeholder="yourname" class="form-input" />
+              <input type="text" name="username" id="username" required pattern="[A-Za-z0-9_\-]{2,32}" minlength="2" maxlength="32" placeholder="yourname" class="form-input" />
             </div>
             <span class="form-hint">Your theme slug will be <code>@username/theme</code></span>
+            <span class="form-error" id="username-error"></span>
           </div>
         </div>
 
