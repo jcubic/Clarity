@@ -514,9 +514,13 @@ cmd_uninstall() {
     echo "  $CLARITY_HOME/"
     echo "  $bin_path"
     echo "  $ICON_DIR/"
-    local completion_dir="${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion/completions"
-    if [[ -f "$completion_dir/clarity" ]]; then
-        echo "  $completion_dir/clarity"
+    local bash_comp_dir="${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion/completions"
+    local zsh_comp_dir="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/site-functions"
+    if [[ -f "$bash_comp_dir/clarity" ]]; then
+        echo "  $bash_comp_dir/clarity"
+    fi
+    if [[ -f "$zsh_comp_dir/_clarity" ]]; then
+        echo "  $zsh_comp_dir/_clarity"
     fi
     echo ""
 
@@ -531,9 +535,8 @@ cmd_uninstall() {
     rm -f "$bin_path"
     rm -rf "$CLARITY_HOME"
     rm -rf "$ICON_DIR"
-    if [[ -f "$completion_dir/clarity" ]]; then
-        rm -f "$completion_dir/clarity"
-    fi
+    rm -f "$bash_comp_dir/clarity"
+    rm -f "$zsh_comp_dir/_clarity"
 
     if command -v gtk-update-icon-cache > /dev/null 2>&1; then
         gtk-update-icon-cache -f "${XDG_DATA_HOME:-$HOME/.local/share}/icons" 2>/dev/null || true

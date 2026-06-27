@@ -17,6 +17,7 @@ BRANCH="wasmer" # TODO: remove when released
 API_BASE="https://clarity.pl.eu.org"
 CLI_URL="https://raw.githubusercontent.com/${REPO}/${BRANCH}/theme/bin/clarity"
 COMPLETION_URL="https://raw.githubusercontent.com/${REPO}/${BRANCH}/theme/bin/clarity-completion.bash"
+ZSH_COMPLETION_URL="https://raw.githubusercontent.com/${REPO}/${BRANCH}/theme/bin/_clarity"
 ARCHIVE_URL="https://github.com/${REPO}/archive/refs/heads/${BRANCH}.tar.gz"
 CLARITY_HOME="${HOME}/.clarity-icons"
 BIN_DIR="${HOME}/.local/bin"
@@ -70,6 +71,11 @@ COMP_DIR="${HOME}/.local/share/bash-completion/completions"
 mkdir -p "$COMP_DIR"
 curl -sL "$COMPLETION_URL" -o "$COMP_DIR/clarity" 2>/dev/null || true
 
+# Download zsh completion
+ZSH_COMP_DIR="${HOME}/.local/share/zsh/site-functions"
+mkdir -p "$ZSH_COMP_DIR"
+curl -sL "$ZSH_COMPLETION_URL" -o "$ZSH_COMP_DIR/_clarity" 2>/dev/null || true
+
 # Download base theme
 info "Downloading base icon theme..."
 tmpdir=$(mktemp -d)
@@ -109,6 +115,24 @@ if ! echo "$PATH" | tr ':' '\n' | grep -qx "$BIN_DIR"; then
     echo -e "  ${DIM}Then restart your shell or run: source ~/.bashrc${RESET}"
 fi
 
+# Check zsh fpath for completion
+if [[ "$(basename "${SHELL:-}")" = "zsh" ]]; then
+    if ! [[ ":${FPATH:-}:" == *":${ZSH_COMP_DIR}:"* ]]; then
+        echo ""
+        echo -e "  ${DIM}For zsh tab completion, add this to ~/.zshrc (before compinit):${RESET}"
+        echo ""
+        echo -e "    ${CYAN}fpath=(~/.local/share/zsh/site-functions \$fpath)${RESET}"
+    fi
+fi
+
+echo ""
+echo -e "  ${DIM}To enable tab completion in this terminal session:${RESET}"
+if [[ "$(basename "${SHELL:-}")" = "zsh" ]]; then
+    echo -e "    ${CYAN}source ${ZSH_COMP_DIR}/_clarity && compdef _clarity clarity${RESET}"
+else
+    echo -e "    ${CYAN}source ${COMP_DIR}/clarity${RESET}"
+fi
+echo -e "  ${DIM}New terminals will pick it up automatically.${RESET}"
 echo ""
 echo -e "  ${BOLD}Quick start:${RESET}"
 echo -e "    ${CYAN}clarity use caeruleus${RESET}          ${DIM}# switch to blue variant${RESET}"

@@ -1,0 +1,74 @@
+#compdef clarity
+# Zsh completion for the clarity CLI
+# https://clarity.pl.eu.org
+
+_clarity_themes() {
+    local -a themes
+    local community_dir="${HOME}/.clarity-icons/community"
+    if [[ -d "$community_dir" ]]; then
+        local svg
+        for svg in "$community_dir"/**/*.svg(N); do
+            local rel="${svg#${community_dir}/}"
+            themes+=("@${rel%.svg}")
+        done
+    fi
+    _describe 'theme' themes
+}
+
+_clarity_variants() {
+    local -a variants=(
+        'canus:grey gradient'
+        'dark_canus:dark grey gradient'
+        'albus:white solid'
+        'caeruleus:blue gradient'
+        'lux_caeruleus:glossy blue'
+        'violaceus:violet gradient'
+        'lux_violaceus:glossy violet'
+        'viridis:green gradient'
+        'luteus:orange gradient'
+    )
+    _describe 'variant' variants
+    _clarity_themes
+}
+
+_clarity() {
+    local -a commands=(
+        'use:switch to a built-in variant or community theme'
+        'create:create a local theme from an SVG template'
+        'install:download a community theme from the gallery'
+        'remove:remove an installed community theme'
+        'list:show available variants and installed themes'
+        'update:update the CLI and base theme files'
+        'uninstall:remove Clarity completely'
+        'version:print the installed version'
+        'help:show usage information'
+    )
+
+    _arguments -C \
+        '1:command:->cmd' \
+        '*::arg:->args'
+
+    case "$state" in
+        cmd)
+            _describe 'command' commands
+            ;;
+        args)
+            case "$words[1]" in
+                use)
+                    _clarity_variants
+                    ;;
+                create)
+                    _files -g '*.svg'
+                    ;;
+                remove)
+                    _clarity_themes
+                    ;;
+                install)
+                    _message '@user/theme'
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+_clarity "$@"
