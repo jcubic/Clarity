@@ -38,15 +38,33 @@ $app->add(TwigMiddleware::create($app, $twig));
 $icons = json_decode(file_get_contents(__DIR__ . '/icons.json'), true);
 
 $variants = [
-    ['id' => 'canus',          'name' => 'Canus',          'latin' => 'hoary · silver-grey', 'oklch' => '75% 0.005 245', 'light' => false],
-    ['id' => 'dark_canus',     'name' => 'Dark Canus',     'latin' => 'dark · charcoal',     'oklch' => '35% 0.005 245', 'light' => true],
-    ['id' => 'albus',          'name' => 'Albus',          'latin' => 'white · bright',      'oklch' => '95% 0.005 245', 'light' => false],
-    ['id' => 'caeruleus',      'name' => 'Caeruleus',      'latin' => 'azure · sky-blue',    'oklch' => '68% 0.16 235',  'light' => false],
-    ['id' => 'lux_caeruleus',  'name' => 'Lux Caeruleus',  'latin' => 'light azure',         'oklch' => '82% 0.10 235',  'light' => false],
-    ['id' => 'violaceus',      'name' => 'Violaceus',      'latin' => 'violet · amaranth',   'oklch' => '62% 0.20 340',  'light' => false],
-    ['id' => 'lux_violaceus',  'name' => 'Lux Violaceus',  'latin' => 'light violet',        'oklch' => '78% 0.12 340',  'light' => false],
-    ['id' => 'viridis',        'name' => 'Viridis',        'latin' => 'green · verdant',     'oklch' => '72% 0.17 145',  'light' => false],
-    ['id' => 'luteus',         'name' => 'Luteus',         'latin' => 'saffron · amber',     'oklch' => '80% 0.14 88',   'light' => false],
+    [
+        'id' => 'canus', 'name' => 'Canus', 'latin' => 'hoary · silver-grey',
+        'oklch' => '75% 0.005 245', 'light' => false,
+        'sub' => [
+            'id' => 'dark_canus', 'name' => 'Dark Canus', 'latin' => 'dark · charcoal',
+            'oklch' => '35% 0.005 245', 'light' => true, 'toggle' => 'Dark',
+        ],
+    ],
+    [
+        'id' => 'caeruleus', 'name' => 'Caeruleus', 'latin' => 'azure · sky-blue',
+        'oklch' => '68% 0.16 235', 'light' => false,
+        'sub' => [
+            'id' => 'lux_caeruleus', 'name' => 'Lux Caeruleus', 'latin' => 'light azure',
+            'oklch' => '82% 0.10 235', 'light' => false, 'toggle' => 'Lux',
+        ],
+    ],
+    [
+        'id' => 'violaceus', 'name' => 'Violaceus', 'latin' => 'violet · amaranth',
+        'oklch' => '62% 0.20 340', 'light' => false,
+        'sub' => [
+            'id' => 'lux_violaceus', 'name' => 'Lux Violaceus', 'latin' => 'light violet',
+            'oklch' => '78% 0.12 340', 'light' => false, 'toggle' => 'Lux',
+        ],
+    ],
+    ['id' => 'viridis', 'name' => 'Viridis', 'latin' => 'green · verdant', 'oklch' => '72% 0.17 145', 'light' => false],
+    ['id' => 'luteus', 'name' => 'Luteus', 'latin' => 'saffron · amber', 'oklch' => '80% 0.14 88', 'light' => false],
+    ['id' => 'albus', 'name' => 'Albus', 'latin' => 'white · bright', 'oklch' => '95% 0.005 245', 'light' => false],
 ];
 
 $gallery = [

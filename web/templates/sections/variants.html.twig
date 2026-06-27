@@ -1,3 +1,23 @@
+{% macro panel(variant, icons) %}
+<section class="variant-panel variant-panel--{{ variant.id }}">
+  <header class="variant-panel-head">
+    <h3 class="variant-panel-name"><span class="variant-dot" aria-hidden="true"></span>{{ variant.name }}</h3>
+    <p class="variant-panel-latin">{{ variant.latin }}</p>
+    <p class="variant-panel-token"><span class="key">oklch</span>{{ variant.oklch }}</p>
+    <button class="bg-toggle" type="button" aria-label="Toggle light/dark background" data-light="{{ variant.light ? 'true' : 'false' }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bg-toggle"/></svg>
+    </button>
+  </header>
+  <ul class="icon-grid{% if variant.light %} icon-grid--light{% endif %}">
+    {% for icon in icons %}
+    <li class="icon-tile"><img src="/icons/{{ variant.id }}/{{ icon.name }}.svg" alt="{{ icon.name }}" width="128" height="128" /><span class="icon-tile-name">{{ icon.name }}</span></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endmacro %}
+
+{% from _self import panel %}
+
 <section class="variants" id="variants" aria-labelledby="variants-heading">
   <div class="container">
     <header class="section-header">
@@ -14,21 +34,20 @@
       </div>
 
       {% for variant in variants %}
-      <section class="variant-panel variant-panel--{{ variant.id }}" id="vp-{{ variant.id }}" data-tab-panel="{{ variant.id }}" role="tabpanel" aria-labelledby="vt-{{ variant.id }}">
-        <header class="variant-panel-head">
-          <h3 class="variant-panel-name"><span class="variant-dot" aria-hidden="true"></span>{{ variant.name }}</h3>
-          <p class="variant-panel-latin">{{ variant.latin }}</p>
-          <p class="variant-panel-token"><span class="key">oklch</span>{{ variant.oklch }}</p>
-          <button class="bg-toggle" type="button" aria-label="Toggle light/dark background" data-light="{{ variant.light ? 'true' : 'false' }}">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bg-toggle"/></svg>
-          </button>
-        </header>
-        <ul class="icon-grid{% if variant.light %} icon-grid--light{% endif %}">
-          {% for icon in icons %}
-          <li class="icon-tile"><img src="/icons/{{ variant.id }}/{{ icon.name }}.svg" alt="{{ icon.name }}" width="64" height="64" /><span class="icon-tile-name">{{ icon.name }}</span></li>
-          {% endfor %}
-        </ul>
-      </section>
+      <div class="variant-group" id="vp-{{ variant.id }}" data-tab-panel="{{ variant.id }}" role="tabpanel" aria-labelledby="vt-{{ variant.id }}">
+        {% if variant.sub is defined %}
+        <div class="variant-switch" role="radiogroup" aria-label="{{ variant.name }} style">
+          <button class="variant-switch-btn is-active" type="button" role="radio" aria-checked="true" data-switch="{{ variant.id }}">Standard</button>
+          <button class="variant-switch-btn" type="button" role="radio" aria-checked="false" data-switch="{{ variant.sub.id }}">{{ variant.sub.toggle }}</button>
+        </div>
+        {% endif %}
+
+        {{ panel(variant, icons) }}
+
+        {% if variant.sub is defined %}
+        {{ panel(variant.sub, icons) }}
+        {% endif %}
+      </div>
       {% endfor %}
     </div>
   </div>

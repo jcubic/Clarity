@@ -32,7 +32,7 @@
   var root = document.getElementById('variant-tabs');
   if (root) {
     var tabs = Array.prototype.slice.call(root.querySelectorAll('.variant-tab'));
-    var panels = Array.prototype.slice.call(root.querySelectorAll('.variant-panel'));
+    var groups = Array.prototype.slice.call(root.querySelectorAll('[data-tab-panel]'));
 
     function activate(key, focus) {
       tabs.forEach(function (t) {
@@ -42,10 +42,10 @@
         t.setAttribute('tabindex', on ? '0' : '-1');
         if (on && focus) t.focus();
       });
-      panels.forEach(function (p) {
-        var on = p.dataset.tabPanel === key;
-        if (on) p.removeAttribute('hidden');
-        else p.setAttribute('hidden', '');
+      groups.forEach(function (g) {
+        var on = g.dataset.tabPanel === key;
+        if (on) g.removeAttribute('hidden');
+        else g.setAttribute('hidden', '');
       });
     }
 
@@ -64,8 +64,37 @@
       });
     });
 
-    var initial = tabs[0].dataset.tab;
-    activate(initial);
+    activate(tabs[0].dataset.tab);
+
+    // Sub-toggle within variant groups
+    groups.forEach(function (group) {
+      var switchEl = group.querySelector('.variant-switch');
+      if (!switchEl) return;
+      var subPanels = Array.prototype.slice.call(group.querySelectorAll('.variant-panel'));
+      var switchBtns = Array.prototype.slice.call(switchEl.querySelectorAll('.variant-switch-btn'));
+
+      if (subPanels.length > 1) {
+        subPanels[1].setAttribute('hidden', '');
+      }
+
+      switchBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetId = btn.dataset.switch;
+          subPanels.forEach(function (p) {
+            if (p.classList.contains('variant-panel--' + targetId)) {
+              p.removeAttribute('hidden');
+            } else {
+              p.setAttribute('hidden', '');
+            }
+          });
+          switchBtns.forEach(function (b) {
+            var isActive = b === btn;
+            b.classList.toggle('is-active', isActive);
+            b.setAttribute('aria-checked', isActive ? 'true' : 'false');
+          });
+        });
+      });
+    });
   }
 
   // Background toggle for icon grids
