@@ -172,6 +172,20 @@ class Database {
         ];
     }
 
+    public function getThemeSvg(string $username, string $themeName): ?string {
+        if (!$this->pdo) {
+            return null;
+        }
+        $stmt = $this->pdo->prepare(
+            "SELECT t.svg_content FROM themes t
+             JOIN users u ON t.user_id = u.id
+             WHERE u.username = ? AND t.name = ? AND t.status = 'published'"
+        );
+        $stmt->execute([$username, $themeName]);
+        $content = $stmt->fetchColumn();
+        return $content !== false ? (string) $content : null;
+    }
+
     /**
      * @return array<int, array{id: int, name: string, username: string|null, email: string|null, status: string, created_at: string}>
      */

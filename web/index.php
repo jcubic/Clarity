@@ -314,6 +314,15 @@ $app->get('/stats', function (Request $request, Response $response) use ($db) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+$app->get('/api/theme/{user}/{name}/template.svg', function (Request $request, Response $response, array $args) use ($db) {
+    $svg = $db->getThemeSvg($args['user'], $args['name']);
+    if ($svg === null) {
+        return $response->withStatus(404);
+    }
+    $response->getBody()->write($svg);
+    return $response->withHeader('Content-Type', 'image/svg+xml');
+});
+
 $app->get('/install', function (Request $request, Response $response) use ($db) {
     $db->incrementCounter('installs');
     return $response
