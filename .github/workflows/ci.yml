@@ -1,0 +1,42 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - wasmer
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql
+
+      - name: Install dependencies
+        run: composer install --no-interaction --working-dir=web
+
+      - name: Check formatting
+        run: make -C web check
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [check]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build
+        run: |
+          make -C web ci
+
+      - name: Setup Wasmer
+        uses: wasmerio/setup-wasmer@v3.1
+
+      - name: Deploy to Wasmer Edge
+        run: wasmer deploy --dir web --non-interactive --no-wait --build-remote --token "$WASMER_TOKEN"
+        env:
+          WASMER_TOKEN: ${{ secrets.WASMER_TOKEN }}
