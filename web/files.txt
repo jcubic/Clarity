@@ -11,7 +11,6 @@ src/apps/terminal.svg
 src/apps/totem.svg
 src/apps/vlc.svg
 src/apps/email.svg
-src/apps/chat.svg
 src/apps/date.svg
 src/mimetypes/gnome-mime-text-plain.svg
 src/mimetypes/application-x-executable.svg
