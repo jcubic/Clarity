@@ -4,6 +4,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Clarity\Database;
 use Clarity\Mailer;
+use Clarity\SvgConverter;
 use Clarity\SvgValidator;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -181,6 +182,120 @@ $app->post('/api/validate', function (Request $request, Response $response) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+$app->post('/upload', function (Request $request, Response $response) use ($db, $mailer) {
+    $view = Twig::fromRequest($request);
+    $data = $request->getParsedBody();
+    $files = $request->getUploadedFiles();
+
+    if (!empty($data['confirm_email'] ?? '')) {
+        return $view->render($response, 'pages/upload-sent.html.twig', [
+            'email' => 'your inbox',
+        ]);
+    }
+
+    $email = trim($data['email'] ?? '');
+    $username = trim($data['username'] ?? '');
+    $themeName = trim($data['theme_name'] ?? '');
+    $svg = $files['svg_file'] ?? null;
+
+    if (!$svg || $svg->getError() !== UPLOAD_ERR_OK || !$email || !$username || !$themeName) {
+        return $view->render($response, 'pages/upload.html.twig', [
+            'error' => 'All fields are required.',
+        ]);
+    }
+
+    if (!preg_match('/^[A-Za-z0-9_\-]{2,32}$/', $themeName)) {
+        return $view->render($response, 'pages/upload.html.twig', [
+            'error' => 'Invalid theme name. Use 2–32 characters: letters, numbers, hyphens, underscores.',
+        ]);
+    }
+
+    if (!preg_match('/^[A-Za-z0-9_\-]{2,32}$/', $username)) {
+        return $view->render($response, 'pages/upload.html.twig', [
+            'error' => 'Invalid username. Use 2–32 characters: letters, numbers, hyphens, underscores.',
+        ]);
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return $view->render($response, 'pages/upload.html.twig', [
+            'error' => 'Invalid email address.',
+        ]);
+    }
+
+    $content = (string) $svg->getStream();
+    $validator = new SvgValidator();
+    $checks = $validator->validate($content);
+
+    $failed = array_filter($checks, fn($c) => !$c['pass']);
+    if (!empty($failed)) {
+        return $view->render($response, 'pages/upload.html.twig', [
+            'error' => 'SVG validation failed. Please fix the issues and try again.',
+        ]);
+    }
+
+    if ($db->isConnected()) {
+        if ($db->isThemeNameTaken($themeName)) {
+            return $view->render($response, 'pages/upload.html.twig', [
+                'error' => 'Theme name "' . htmlspecialchars($themeName) . '" is already taken.',
+            ]);
+        }
+
+        if ($db->isUsernameTaken($username, $email)) {
+            return $view->render($response, 'pages/upload.html.twig', [
+                'error' => 'Username "@' . htmlspecialchars($username) . '" is already taken.',
+            ]);
+        }
+
+        $converter = new SvgConverter();
+        $converted = $converter->convert($content);
+
+        $themeId = $db->createTheme($themeName, $converted);
+        $token = bin2hex(random_bytes(32));
+        $db->createMagicToken($token, $email, $username, $themeId);
+
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        $baseUrl = $scheme . '://' . $host;
+
+        try {
+            $mailer->sendUploadLink($email, $token, $themeName, $baseUrl);
+        } catch (\Throwable $e) {
+            error_log('Mailer error: ' . $e->getMessage());
+        }
+    }
+
+    return $view->render($response, 'pages/upload-sent.html.twig', [
+        'email' => $email,
+    ]);
+});
+
+$app->get('/verify', function (Request $request, Response $response) use ($db) {
+    $view = Twig::fromRequest($request);
+    $params = $request->getQueryParams();
+    $token = $params['token'] ?? '';
+
+    if (!$token || !$db->isConnected()) {
+        return $view->render($response, 'pages/upload-error.html.twig', [
+            'error' => 'Invalid or missing verification token.',
+        ]);
+    }
+
+    $data = $db->verifyMagicToken($token);
+    if (!$data) {
+        return $view->render($response, 'pages/upload-error.html.twig', [
+            'error' => 'This link has expired or has already been used. Please upload your theme again.',
+        ]);
+    }
+
+    $userId = $db->createOrUpdateUser($data['email'], $data['username']);
+    $db->publishTheme($data['theme_id'], $userId);
+
+    return $view->render($response, 'pages/upload-confirmed.html.twig', [
+        'theme_name' => $db->getThemeName($data['theme_id']) ?? 'your theme',
+        'username' => $data['username'],
+    ]);
+});
+
 $errorMiddleware = $app->addErrorMiddleware($debug, $debug, $debug);
 $errorMiddleware->setErrorHandler(
     Slim\Exception\HttpNotFoundException::class,
@@ -191,8 +306,11 @@ $errorMiddleware->setErrorHandler(
 );
 
 $app->get('/stats', function (Request $request, Response $response) use ($db) {
-    $stats = $db->getAllCounters() ?: ['installs' => 0];
-    $response->getBody()->write(json_encode($stats));
+    $stats = [
+        'counters' => $db->getAllCounters() ?: ['installs' => 0],
+        'themes' => $db->getAllThemes(),
+    ];
+    $response->getBody()->write(json_encode($stats, JSON_PRETTY_PRINT));
     return $response->withHeader('Content-Type', 'application/json');
 });
 

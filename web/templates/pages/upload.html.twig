@@ -12,6 +12,10 @@
       <p class="section-lead">Upload an SVG template, pass validation, and publish to the gallery.</p>
     </header>
 
+    {% if error is defined and error %}
+    <div class="form-banner form-banner--error">{{ error }}</div>
+    {% endif %}
+
     <noscript>
       <div class="no-js-notice">
         <strong>JavaScript required.</strong> The upload wizard needs JavaScript for file validation and the multi-step flow. Please enable JavaScript to continue.

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Check Your Email — Clarity{% endblock %}
+{% block description %}A magic link has been sent to confirm your theme upload.{% endblock %}
+
+{% block content %}
+<section class="upload" aria-labelledby="sent-heading">
+  <div class="container upload-container">
+    <header class="section-header">
+      <p class="section-eyebrow">// Almost there</p>
+      <h1 id="sent-heading" class="section-title">Check your email</h1>
+      <p class="section-lead">We sent a magic link to <strong>{{ email }}</strong>.</p>
+    </header>
+
+    <div class="confirmation-card">
+      <svg class="confirmation-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"/></svg>
+      <p>Click the link in the email to publish your theme. The link expires in <strong>15 minutes</strong>.</p>
+      <p class="confirmation-hint">Didn't get it? Check your spam folder, or <a href="/upload">try again</a>.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
