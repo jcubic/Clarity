@@ -369,13 +369,14 @@ cmd_create() {
         sed -i -e 's/<svg\([^>]*\)>/<svg\1>\n    <title>{{TITLE}}<\/title>/' "$tmpfile"
     fi
 
-    if grep -q 'id="shape"' "$tmpfile"; then
-        sed -i -e 's/<circle[^>]*id="icon-placeholder"[^>]*\/>/<path d="{{PATH}}" fill="white"\/>/' \
-               -e 's/<circle[^>]*id="icon-placeholder"[^>]*>[^<]*<\/circle>/<path d="{{PATH}}" fill="white"\/>/' "$tmpfile"
-    else
-        sed -i -e 's/<circle[^>]*id="icon-placeholder"[^>]*\/>/<path d="{{PATH}}" style="fill:url(#gradient);fill-opacity:1;stroke:none"\/>/' \
-               -e 's/<circle[^>]*id="icon-placeholder"[^>]*>[^<]*<\/circle>/<path d="{{PATH}}" style="fill:url(#gradient);fill-opacity:1;stroke:none"\/>/' "$tmpfile"
-    fi
+    sed -i -e '/id="icon-placeholder"/{
+        s/<circle/<path d="{{PATH}}"/
+        s/ id="icon-placeholder"//
+        s/ cx="[^"]*"//
+        s/ cy="[^"]*"//
+        s/ r="[^"]*"//
+        s/>[^<]*<\/circle>/\/>/
+    }' "$tmpfile"
 
     mv "$tmpfile" "$dest"
 
