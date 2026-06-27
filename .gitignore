@@ -9,3 +9,4 @@ web/vendor
 web/cache
 web/icons.json
 web/icons
+web/.php-cs-fixer.cache

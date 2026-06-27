@@ -2,13 +2,12 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
+use Clarity\Database;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-
-use Clarity\Database;
 
 if (file_exists(__DIR__ . '/.env.local')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '.env.local');

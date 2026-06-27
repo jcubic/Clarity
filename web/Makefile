@@ -1,4 +1,4 @@
-.PHONY: vendor serve build clean ci
+.PHONY: vendor serve build clean ci lint format check
 
 PORT ?= 8081
 
@@ -30,6 +30,16 @@ vendor/autoload.php: composer.json composer.lock
 serve: build
 	php -S localhost:$(PORT) index.php
 
+lint: vendor
+	vendor/bin/phpstan analyse
+
+format: vendor
+	vendor/bin/php-cs-fixer fix
+
+check: vendor
+	vendor/bin/php-cs-fixer fix --dry-run --diff
+	vendor/bin/phpstan analyse
+
 clean:
-	rm -f icons.json icons/.build-stamp
+	rm -f icons.json icons/.build-stamp .php-cs-fixer.cache
 	rm -rf icons
