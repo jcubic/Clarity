@@ -1,4 +1,4 @@
-.PHONY: vendor serve build clean
+.PHONY: vendor serve build clean ci
 
 PORT ?= 8081
 
