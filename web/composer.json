@@ -9,6 +9,11 @@
             "email": "jcubic@jcubic.pl"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Clarity\\": "src/"
+        }
+    },
     "require": {
         "slim/slim": "4.*",
         "slim/psr7": "^1.8",

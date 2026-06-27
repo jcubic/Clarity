@@ -8,6 +8,8 @@ use Slim\Views\TwigMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
+use Clarity\Database;
+
 if (file_exists(__DIR__ . '/.env.local')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '.env.local');
     $dotenv->safeLoad();
@@ -28,29 +30,15 @@ if ($debug) {
     ini_set('log_errors', '1');
 }
 
-$db = null;
-if (env('DB_HOST')) {
-    try {
-        $dsn = sprintf(
-            'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
-            env('DB_HOST'),
-            env('DB_PORT', '3306'),
-            env('DB_NAME')
-        );
-        $db = new PDO($dsn, env('DB_USERNAME'), env('DB_PASSWORD'), [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        ]);
-        $db->exec("CREATE TABLE IF NOT EXISTS counters (
-            name VARCHAR(64) PRIMARY KEY,
-            value BIGINT UNSIGNED NOT NULL DEFAULT 0
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
-        $db->exec("INSERT IGNORE INTO counters (name, value) VALUES ('installs', 0)");
-    } catch (PDOException $e) {
-        if ($debug) {
-            throw $e;
-        }
-        $db = null;
+try {
+    $db = env('DB_HOST')
+        ? Database::connect(env('DB_HOST'), env('DB_NAME'), env('DB_USERNAME'), env('DB_PASSWORD'), env('DB_PORT', '3306'))
+        : Database::null();
+} catch (\PDOException $e) {
+    if ($debug) {
+        throw $e;
     }
+    $db = Database::null();
 }
 
 $mime_types = [
@@ -175,22 +163,13 @@ $errorMiddleware->setErrorHandler(
 );
 
 $app->get('/stats', function (Request $request, Response $response) use ($db) {
-    $stats = ['installs' => 0];
-    if ($db) {
-        $rows = $db->query("SELECT name, value FROM counters")->fetchAll(PDO::FETCH_KEY_PAIR);
-        $stats = array_merge($stats, $rows);
-    }
+    $stats = $db->getAllCounters() ?: ['installs' => 0];
     $response->getBody()->write(json_encode($stats));
     return $response->withHeader('Content-Type', 'application/json');
 });
 
 $app->get('/install', function (Request $request, Response $response) use ($db) {
-    if ($db) {
-        try {
-            $db->exec("UPDATE counters SET value = value + 1 WHERE name = 'installs'");
-        } catch (PDOException $e) {
-        }
-    }
+    $db->incrementCounter('installs');
     return $response
         ->withHeader('Location', 'https://raw.githubusercontent.com/jcubic/Clarity/wasmer/theme/bin/install.sh')
         ->withStatus(302);
