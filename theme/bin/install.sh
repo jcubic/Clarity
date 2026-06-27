@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Clarity CLI installer — v{{VERSION}}
+# Clarity CLI installer — v0.1.0
 # https://clarity.pl.eu.org
 #
 # Usage: curl -sL https://clarity.pl.eu.org/install | bash
@@ -11,10 +11,11 @@
 
 set -euo pipefail
 
-CLARITY_VERSION="{{VERSION}}"
+CLARITY_VERSION="0.1.0"
 REPO="jcubic/Clarity"
-API_BASE="{{API_BASE}}"
+API_BASE="https://clarity.pl.eu.org"
 CLI_URL="https://raw.githubusercontent.com/${REPO}/wasmer/theme/bin/clarity"
+COMPLETION_URL="https://raw.githubusercontent.com/${REPO}/wasmer/theme/bin/clarity-completion.bash"
 ARCHIVE_URL="https://github.com/${REPO}/archive/refs/heads/wasmer.tar.gz"
 CLARITY_HOME="${HOME}/.clarity-icons"
 BIN_DIR="${HOME}/.local/bin"
@@ -62,6 +63,11 @@ curl -sL "$CLI_URL" -o "$BIN_DIR/clarity" || {
     exit 1
 }
 chmod +x "$BIN_DIR/clarity"
+
+# Download bash completion
+COMP_DIR="${HOME}/.local/share/bash-completion/completions"
+mkdir -p "$COMP_DIR"
+curl -sL "$COMPLETION_URL" -o "$COMP_DIR/clarity" 2>/dev/null || true
 
 # Download base theme
 info "Downloading base icon theme..."

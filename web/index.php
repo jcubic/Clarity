@@ -131,12 +131,9 @@ $errorMiddleware->setErrorHandler(
 );
 
 $app->get('/install', function (Request $request, Response $response) {
-    $script = file_get_contents(__DIR__ . '/scripts/install.sh');
-    $script = str_replace('{{VERSION}}', '0.1.0', $script);
-    $script = str_replace('{{API_BASE}}', 'https://clarity.pl.eu.org', $script);
-    $response = $response->withHeader('Content-Type', 'text/plain');
-    $response->getBody()->write($script);
-    return $response;
+    return $response
+        ->withHeader('Location', 'https://raw.githubusercontent.com/jcubic/Clarity/wasmer/theme/bin/install.sh')
+        ->withStatus(302);
 });
 
 $app->run();
