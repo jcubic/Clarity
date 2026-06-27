@@ -3,15 +3,17 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use Clarity\Database;
+use Clarity\Mailer;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 
-if (file_exists(__DIR__ . '/.env.local')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '.env.local');
-    $dotenv->safeLoad();
+foreach (['.env.local', '.env'] as $envFile) {
+    if (file_exists(__DIR__ . '/' . $envFile)) {
+        Dotenv\Dotenv::createImmutable(__DIR__, $envFile)->safeLoad();
+    }
 }
 
 function env(string $key, ?string $default = null): ?string {
@@ -39,6 +41,10 @@ try {
     }
     $db = Database::null();
 }
+
+$mailer = env('RESEND_API_KEY')
+    ? Mailer::create(env('RESEND_API_KEY'), env('RESEND_EMAIL', 'Clarity <noreply@clarity.pl.eu.org>'))
+    : Mailer::null();
 
 $mime_types = [
     'css' => 'text/css',
