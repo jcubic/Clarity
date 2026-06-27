@@ -97,6 +97,124 @@
     });
   }
 
+  // Upload wizard — stepper & drag-and-drop
+  var wizard = document.querySelector('.wizard-form');
+  if (wizard) {
+    var steps = Array.prototype.slice.call(wizard.querySelectorAll('.wizard-step'));
+    var stepperItems = Array.prototype.slice.call(document.querySelectorAll('.stepper-step'));
+    var currentStep = 1;
+
+    function showStep(n) {
+      currentStep = n;
+      steps.forEach(function (s) {
+        var sn = parseInt(s.dataset.wizardStep, 10);
+        if (sn === n) s.removeAttribute('hidden');
+        else s.setAttribute('hidden', '');
+      });
+      stepperItems.forEach(function (s) {
+        var sn = parseInt(s.dataset.step, 10);
+        s.classList.toggle('is-active', sn === n);
+        s.classList.toggle('is-done', sn < n);
+      });
+    }
+
+    showStep(1);
+
+    wizard.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-wizard-next]');
+      if (btn && !btn.disabled) {
+        showStep(parseInt(btn.dataset.wizardNext, 10));
+        return;
+      }
+      btn = e.target.closest('[data-wizard-prev]');
+      if (btn) {
+        showStep(parseInt(btn.dataset.wizardPrev, 10));
+      }
+    });
+
+    // Dropzone
+    var dropzone = document.getElementById('dropzone');
+    var fileInput = document.getElementById('svg-file');
+    var dropLabel = dropzone ? dropzone.querySelector('.dropzone-label') : null;
+    var dropFile = wizard.querySelector('.dropzone-file');
+    var dropName = dropFile ? dropFile.querySelector('.dropzone-filename') : null;
+    var dropSize = dropFile ? dropFile.querySelector('.dropzone-filesize') : null;
+    var dropRemove = dropFile ? dropFile.querySelector('.dropzone-remove') : null;
+    var nextBtn = wizard.querySelector('[data-wizard-next="2"]');
+    var themeInput = document.getElementById('theme-name');
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      return (bytes / 1024).toFixed(1) + ' KB';
+    }
+
+    function updateNextBtn() {
+      if (!nextBtn) return;
+      var hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+      var hasName = themeInput && themeInput.value.trim().length >= 2 && themeInput.validity.valid;
+      nextBtn.disabled = !(hasFile && hasName);
+    }
+
+    function showFile(file) {
+      if (!file || !dropFile) return;
+      dropName.textContent = file.name;
+      dropSize.textContent = formatSize(file.size);
+      if (dropzone) dropzone.setAttribute('hidden', '');
+      dropFile.removeAttribute('hidden');
+      updateNextBtn();
+    }
+
+    function clearFile() {
+      if (!dropFile) return;
+      fileInput.value = '';
+      if (dropzone) dropzone.removeAttribute('hidden');
+      dropFile.setAttribute('hidden', '');
+      updateNextBtn();
+    }
+
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        if (fileInput.files.length) showFile(fileInput.files[0]);
+      });
+    }
+
+    if (dropRemove) {
+      dropRemove.addEventListener('click', function (e) {
+        e.preventDefault();
+        clearFile();
+      });
+    }
+
+    if (themeInput) {
+      themeInput.addEventListener('input', updateNextBtn);
+    }
+
+    if (dropzone) {
+      ['dragenter', 'dragover'].forEach(function (evt) {
+        dropzone.addEventListener(evt, function (e) {
+          e.preventDefault();
+          dropzone.classList.add('is-drag');
+        });
+      });
+      ['dragleave', 'drop'].forEach(function (evt) {
+        dropzone.addEventListener(evt, function (e) {
+          e.preventDefault();
+          dropzone.classList.remove('is-drag');
+        });
+      });
+      dropzone.addEventListener('drop', function (e) {
+        var files = e.dataTransfer && e.dataTransfer.files;
+        if (files && files.length) {
+          var file = files[0];
+          if (file.name.toLowerCase().endsWith('.svg')) {
+            fileInput.files = e.dataTransfer.files;
+            showFile(file);
+          }
+        }
+      });
+    }
+  }
+
   // Background toggle for icon grids
   var toggles = document.querySelectorAll('.bg-toggle');
   toggles.forEach(function (btn) {

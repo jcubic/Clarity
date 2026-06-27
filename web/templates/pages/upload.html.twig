@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Upload Your Theme — Clarity{% endblock %}
+{% block description %}Upload a custom SVG template and share it with the Clarity community.{% endblock %}
+
+{% block content %}
+<section class="upload" aria-labelledby="upload-heading">
+  <div class="container upload-container">
+    <header class="section-header">
+      <p class="section-eyebrow">// Upload</p>
+      <h1 id="upload-heading" class="section-title">Share your theme</h1>
+      <p class="section-lead">Upload an SVG template, pass validation, and publish to the gallery.</p>
+    </header>
+
+    <div class="wizard-stepper js-only" aria-hidden="true">
+      <ol class="stepper">
+        <li class="stepper-step is-active" data-step="1"><span class="stepper-num">1</span> Upload</li>
+        <li class="stepper-step" data-step="2"><span class="stepper-num">2</span> Validate</li>
+        <li class="stepper-step" data-step="3"><span class="stepper-num">3</span> Account</li>
+      </ol>
+    </div>
+
+    <form class="wizard-form" method="post" action="/upload" enctype="multipart/form-data" novalidate>
+      {# ── Step 1: Upload ── #}
+      <fieldset class="wizard-step" data-wizard-step="1">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">01</span> Upload your SVG</legend>
+
+        <div class="dropzone" id="dropzone">
+          <input type="file" name="svg_file" id="svg-file" accept=".svg" required class="dropzone-input" />
+          <label for="svg-file" class="dropzone-label">
+            <svg class="dropzone-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-upload"/></svg>
+            <span class="dropzone-text">Drag &amp; drop an <strong>.svg</strong> file here, or <span class="dropzone-link">click to browse</span></span>
+            <span class="dropzone-hint">SVG only · max 256 KB</span>
+          </label>
+        </div>
+        <div class="dropzone-file" hidden>
+          <svg class="dropzone-file-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-doc"/></svg>
+          <span class="dropzone-filename"></span>
+          <span class="dropzone-filesize"></span>
+          <button type="button" class="dropzone-remove" aria-label="Remove file">&times;</button>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="theme-name" class="form-label">Theme name</label>
+            <input type="text" name="theme_name" id="theme-name" required pattern="[A-Za-z0-9_\-]{2,32}" placeholder="e.g. cyberpunk" class="form-input" />
+            <span class="form-hint">2–32 characters, letters, numbers, hyphens, underscores</span>
+          </div>
+        </div>
+
+        {# Honeypot #}
+        <div class="form-field" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;overflow:hidden;tabindex:-1">
+          <label for="confirm-email">Confirm your email</label>
+          <input type="email" name="confirm_email" id="confirm-email" autocomplete="off" tabindex="-1" />
+        </div>
+
+        <div class="wizard-nav js-only">
+          <span></span>
+          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="2" disabled>Next</button>
+        </div>
+      </fieldset>
+
+      {# ── Step 2: Validate ── #}
+      <fieldset class="wizard-step" data-wizard-step="2">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">02</span> Validation</legend>
+
+        <div class="validation-status">
+          <span class="validation-badge" data-status="waiting">Waiting for upload</span>
+        </div>
+
+        <ol class="validation-checks">
+          <li class="check-item" data-check="canvas"><span class="check-icon"></span> Canvas is 128×128</li>
+          <li class="check-item" data-check="placeholder"><span class="check-icon"></span> Placeholder circle preserved</li>
+          <li class="check-item" data-check="vector"><span class="check-icon"></span> Vector only (no raster images)</li>
+          <li class="check-item" data-check="path"><span class="check-icon"></span> Contains <code>{"{{PATH}}"}</code> injection point</li>
+          <li class="check-item" data-check="security"><span class="check-icon"></span> No scripts or external references</li>
+          <li class="check-item" data-check="username"><span class="check-icon"></span> Username provided</li>
+          <li class="check-item" data-check="title"><span class="check-icon"></span> Contains <code>{"{{TITLE}}"}</code> placeholder</li>
+        </ol>
+
+        <div class="wizard-nav js-only">
+          <button type="button" class="btn btn--ghost wizard-prev" data-wizard-prev="1">Back</button>
+          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="3" disabled>Next</button>
+        </div>
+      </fieldset>
+
+      {# ── Step 3: Account ── #}
+      <fieldset class="wizard-step" data-wizard-step="3">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">03</span> Your account</legend>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" required placeholder="you@example.com" class="form-input" />
+            <span class="form-hint">Used only for sign-in — we send a magic link, no passwords.</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="username" class="form-label">Username</label>
+            <div class="form-input-prefix">
+              <span class="form-prefix">@</span>
+              <input type="text" name="username" id="username" required pattern="[A-Za-z0-9_\-]{2,32}" placeholder="yourname" class="form-input" />
+            </div>
+            <span class="form-hint">Your theme slug will be <code>@username/theme</code></span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-checkbox">
+            <input type="checkbox" name="license_agree" required />
+            <span>I agree to release this theme under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC-BY-SA 4.0</a></span>
+          </label>
+        </div>
+
+        <div class="wizard-nav">
+          <button type="button" class="btn btn--ghost wizard-prev js-only" data-wizard-prev="2">Back</button>
+          <button type="submit" class="btn btn--accent">Send magic link</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
+{% endblock %}

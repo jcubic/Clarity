@@ -158,6 +158,11 @@ $app->get('/', function (Request $request, Response $response) use ($icons, $var
     ]);
 });
 
+$app->get('/upload', function (Request $request, Response $response) {
+    $view = Twig::fromRequest($request);
+    return $view->render($response, 'pages/upload.html.twig');
+});
+
 $errorMiddleware = $app->addErrorMiddleware($debug, $debug, $debug);
 $errorMiddleware->setErrorHandler(
     Slim\Exception\HttpNotFoundException::class,
