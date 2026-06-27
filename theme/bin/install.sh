@@ -13,10 +13,11 @@ set -euo pipefail
 
 CLARITY_VERSION="0.1.0"
 REPO="jcubic/Clarity"
+BRANCH="wasmer" # TODO: remove when released
 API_BASE="https://clarity.pl.eu.org"
-CLI_URL="https://raw.githubusercontent.com/${REPO}/wasmer/theme/bin/clarity"
-COMPLETION_URL="https://raw.githubusercontent.com/${REPO}/wasmer/theme/bin/clarity-completion.bash"
-ARCHIVE_URL="https://github.com/${REPO}/archive/refs/heads/wasmer.tar.gz"
+CLI_URL="https://raw.githubusercontent.com/${REPO}/${BRANCH}/theme/bin/clarity"
+COMPLETION_URL="https://raw.githubusercontent.com/${REPO}/${BRANCH}/theme/bin/clarity-completion.bash"
+ARCHIVE_URL="https://github.com/${REPO}/archive/refs/heads/${BRANCH}.tar.gz"
 CLARITY_HOME="${HOME}/.clarity-icons"
 BIN_DIR="${HOME}/.local/bin"
 

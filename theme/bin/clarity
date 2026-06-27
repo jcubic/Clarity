@@ -8,6 +8,7 @@
 set -euo pipefail
 
 VERSION="0.1.0"
+BRANCH="wasmer" # TODO: remove when released
 CLARITY_HOME="${HOME}/.clarity-icons"
 ICON_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/icons/Clarity"
 COMMUNITY_DIR="${CLARITY_HOME}/community"
@@ -459,8 +460,8 @@ cmd_remove() {
 cmd_update() {
     info "Updating clarity CLI and base theme..."
 
-    local cli_url="https://raw.githubusercontent.com/${REPO}/wasmer/theme/bin/clarity"
-    local archive_url="https://github.com/${REPO}/archive/refs/heads/wasmer.tar.gz"
+    local cli_url="https://raw.githubusercontent.com/${REPO}/${BRANCH}/theme/bin/clarity"
+    local archive_url="https://github.com/${REPO}/archive/refs/heads/${BRANCH}.tar.gz"
     local bin_path
     bin_path=$(command -v clarity 2>/dev/null || echo "${HOME}/.local/bin/clarity")
 
