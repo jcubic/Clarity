@@ -67,6 +67,7 @@ cmd_use() {
 
     local src_dir="$CLARITY_HOME/src"
 
+    rm -rf "$ICON_DIR/scalable" "$ICON_DIR/16x16"
     mkdir -p "$ICON_DIR"/{scalable,16x16}/{actions,apps,categories,devices,emblems,mimetypes,places,status,stock}
 
     cp "$CLARITY_HOME/index.theme" "$ICON_DIR/index.theme"
@@ -485,6 +486,7 @@ cmd_update() {
     local extracted
     extracted=$(find "$tmpdir" -maxdepth 1 -mindepth 1 -type d ! -name ".*" | head -1)
 
+    rm -rf "$CLARITY_HOME/src" "$CLARITY_HOME/static"
     cp -a "$extracted/theme/src" "$CLARITY_HOME/src"
     [[ -d "$extracted/theme/static" ]] && cp -a "$extracted/theme/static" "$CLARITY_HOME/static"
     cp "$extracted/theme/index.theme" "$CLARITY_HOME/index.theme"

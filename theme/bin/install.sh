@@ -96,6 +96,7 @@ if [[ -z "$extracted" || ! -d "$extracted/theme/src" ]]; then
 fi
 
 mkdir -p "$CLARITY_HOME"
+rm -rf "$CLARITY_HOME/src" "$CLARITY_HOME/static"
 cp -a "$extracted/theme/src" "$CLARITY_HOME/src"
 [[ -d "$extracted/theme/static" ]] && cp -a "$extracted/theme/static" "$CLARITY_HOME/static"
 cp "$extracted/theme/index.theme" "$CLARITY_HOME/index.theme"
