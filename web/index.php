@@ -7,7 +7,7 @@ use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Throwable;
+
 
 $mime_types = [
     'css' => 'text/css',
@@ -131,8 +131,11 @@ $errorMiddleware->setErrorHandler(
 );
 
 $app->get('/install', function (Request $request, Response $response) {
+    $script = file_get_contents(__DIR__ . '/scripts/install.sh');
+    $script = str_replace('{{VERSION}}', '0.1.0', $script);
+    $script = str_replace('{{API_BASE}}', 'https://clarity.pl.eu.org', $script);
     $response = $response->withHeader('Content-Type', 'text/plain');
-    $response->getBody()->write("#!/usr/bin/env bash\n# Clarity icon theme installer\necho 'Coming soon'\n");
+    $response->getBody()->write($script);
     return $response;
 });
 
