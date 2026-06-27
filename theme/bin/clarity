@@ -221,14 +221,15 @@ cmd_list() {
     done
 
     if [[ -d "$COMMUNITY_DIR" ]]; then
-        local has_community=false
+        local has_downloaded=false
         while IFS= read -r svg; do
-            if [[ "$has_community" = false ]]; then
-                echo ""
-                echo -e "${BOLD}Community themes:${RESET}"
-                has_community=true
-            fi
             local rel="${svg#${COMMUNITY_DIR}/}"
+            [[ "$rel" == local/* ]] && continue
+            if [[ "$has_downloaded" = false ]]; then
+                echo ""
+                echo -e "${BOLD}Downloaded themes:${RESET}"
+                has_downloaded=true
+            fi
             local slug="${rel%.svg}"
             if [[ "@$slug" = "$active" ]]; then
                 echo -e "  ${GREEN}* @${slug}${RESET}  ${DIM}(active)${RESET}"
@@ -236,7 +237,71 @@ cmd_list() {
                 echo -e "    @${slug}"
             fi
         done < <(find "$COMMUNITY_DIR" -name "*.svg" -type f 2>/dev/null | sort)
+
+        local has_local=false
+        while IFS= read -r svg; do
+            if [[ "$has_local" = false ]]; then
+                echo ""
+                echo -e "${BOLD}Local themes:${RESET}"
+                has_local=true
+            fi
+            local name
+            name=$(basename "$svg" .svg)
+            if [[ "@local/$name" = "$active" ]]; then
+                echo -e "  ${GREEN}* @local/${name}${RESET}  ${DIM}(active)${RESET}"
+            else
+                echo -e "    @local/${name}"
+            fi
+        done < <(find "$COMMUNITY_DIR/local" -name "*.svg" -type f 2>/dev/null | sort)
     fi
+}
+
+cmd_create() {
+    local svg_file="$1"
+
+    if [[ ! -f "$svg_file" ]]; then
+        error "File not found: $svg_file"
+        exit 1
+    fi
+
+    if ! grep -q 'id="icon-placeholder"' "$svg_file"; then
+        error "SVG does not contain the required placeholder"
+        echo -e "  ${DIM}The file must contain: <circle id=\"icon-placeholder\" ...>${RESET}"
+        echo -e "  ${DIM}Download the template from https://clarity.pl.eu.org/#create${RESET}"
+        exit 1
+    fi
+
+    check_base
+
+    local name
+    name=$(basename "$svg_file" .svg)
+    local dest="${COMMUNITY_DIR}/local/${name}.svg"
+
+    info "Creating local theme: @local/$name"
+
+    mkdir -p "$(dirname "$dest")"
+
+    local tmpfile
+    tmpfile=$(mktemp)
+
+    sed -e 's/<title>[^<]*<\/title>/<title>{{TITLE}}<\/title>/' "$svg_file" > "$tmpfile"
+
+    if ! grep -q '{{TITLE}}' "$tmpfile"; then
+        sed -i -e 's/<svg\([^>]*\)>/<svg\1>\n    <title>{{TITLE}}<\/title>/' "$tmpfile"
+    fi
+
+    if grep -q 'id="shape"' "$tmpfile"; then
+        sed -i -e 's/<circle[^>]*id="icon-placeholder"[^>]*\/>/<path d="{{PATH}}" fill="white"\/>/' \
+               -e 's/<circle[^>]*id="icon-placeholder"[^>]*>[^<]*<\/circle>/<path d="{{PATH}}" fill="white"\/>/' "$tmpfile"
+    else
+        sed -i -e 's/<circle[^>]*id="icon-placeholder"[^>]*\/>/<path d="{{PATH}}" style="fill:url(#gradient);fill-opacity:1;stroke:none"\/>/' \
+               -e 's/<circle[^>]*id="icon-placeholder"[^>]*>[^<]*<\/circle>/<path d="{{PATH}}" style="fill:url(#gradient);fill-opacity:1;stroke:none"\/>/' "$tmpfile"
+    fi
+
+    mv "$tmpfile" "$dest"
+
+    info "Created @local/$name"
+    echo -e "  ${DIM}Activate with: clarity use @local/$name${RESET}"
 }
 
 cmd_install() {
@@ -365,6 +430,7 @@ cmd_help() {
     echo ""
     echo -e "${BOLD}COMMANDS${RESET}"
     echo "    use <variant>             Switch to a built-in variant or community theme"
+    echo "    create <file.svg>         Create a local theme from an SVG template"
     echo "    install @user/theme       Download a community theme from the gallery"
     echo "    remove @user/theme        Remove an installed community theme"
     echo "    list                      Show available variants and installed themes"
@@ -377,6 +443,8 @@ cmd_help() {
     echo -e "${BOLD}EXAMPLES${RESET}"
     echo "    clarity use caeruleus           Switch to the blue variant"
     echo "    clarity use dark_canus          Switch to the dark grey variant"
+    echo "    clarity create ./halftone.svg   Create a local theme from SVG"
+    echo "    clarity use @local/halftone     Activate the local theme"
     echo "    clarity install @bob/cyberpunk  Install a community theme"
     echo "    clarity use @bob/cyberpunk      Activate the community theme"
     echo "    clarity remove @bob/cyberpunk   Remove the community theme"
@@ -399,6 +467,14 @@ main() {
                 exit 1
             fi
             cmd_use "$1"
+            ;;
+        create)
+            if [[ -z "${1:-}" ]]; then
+                error "Missing SVG file path"
+                echo -e "  ${DIM}Usage: clarity create <file.svg>${RESET}"
+                exit 1
+            fi
+            cmd_create "$1"
             ;;
         install)
             if [[ -z "${1:-}" ]]; then
