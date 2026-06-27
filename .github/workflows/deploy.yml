@@ -11,11 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build icons
+      - name: Build
         run: |
-          make -C web icons
-          sed -i 's%web/icons%#web/icons%g' .gitignore
-          cat web/.wasmerignore >> .gitignore
+          make -C web ci
 
       - name: Setup Wasmer
         uses: wasmerio/setup-wasmer@v3.1

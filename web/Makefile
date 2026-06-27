@@ -7,6 +7,11 @@ TEMPLATES := $(wildcard ../theme/src/template_*.svg)
 
 build: vendor icons
 
+ci: icons
+	sed -i 's%web/icons%#web/icons%g' ../.gitignore
+	cat .wasmerignore >> ../.gitignore
+	cp favicon/favicon.ico .
+
 icons: icons/.build-stamp
 
 icons.json: files.txt scripts/extract-icons.py $(ICON_SOURCES)
