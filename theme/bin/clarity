@@ -202,7 +202,7 @@ cmd_use() {
     echo "$theme" > "$CLARITY_HOME/.active-theme"
 
     info "Done! Active theme: $theme"
-    echo -e "  ${DIM}Select 'Clarity' in your desktop appearance settings to apply.${RESET}"
+    echo -e "  ${DIM}Select 'Clarity (Next)' in your desktop appearance settings to apply.${RESET}"
 }
 
 cmd_list() {
