@@ -136,6 +136,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .term-out { color: var(--fg-muted); }
 .term-ok { color: var(--viridis); }
 .term-cmd { color: var(--term-fg); }
+.term-out.dim, .terminal-body .dim { color: var(--term-dim); }
 .term-cursor { display: inline-block; width: 0.55em; height: 1em; vertical-align: -2px; background: var(--term-fg); animation: term-blink 1.05s steps(2, start) infinite; }
 @keyframes term-blink { to { background: transparent; } }
 
