@@ -4,8 +4,8 @@ services:
     ports:
       - "${PORT:-8081}:8080"
     volumes:
-      - .:/app
-      - ../theme:/theme
+      - .:/app:z
+      - ../theme:/theme:z
     working_dir: /app
     environment:
       APP_DEBUG: 1
@@ -29,7 +29,7 @@ services:
       - "${DB_PORT:-3307}:3306"
     volumes:
       - db_data:/var/lib/mysql
-      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:z
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
