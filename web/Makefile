@@ -13,7 +13,7 @@ ci: icons
 	cp favicon/favicon.ico .
 
 migrate:
-	pip install pymysql && python3 web/scripts/migrate.py
+	pip install pymysql && python3 scripts/migrate.py
 
 icons: icons/.build-stamp
 
