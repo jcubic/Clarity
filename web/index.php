@@ -115,6 +115,9 @@ $app->add(TwigMiddleware::create($app, $twig));
 
 $icons = json_decode(file_get_contents(__DIR__ . '/icons.json'), true);
 $coverIcons = json_decode(file_get_contents(__DIR__ . '/cover-icons.json'), true);
+$stats = file_exists(__DIR__ . '/icons-stats.json')
+    ? json_decode(file_get_contents(__DIR__ . '/icons-stats.json'), true)
+    : ['unique_icons' => 0, 'with_symlinks' => 0, 'variants' => 0];
 
 $iconsByName = [];
 foreach ($icons as $icon) {
@@ -137,12 +140,13 @@ foreach ($variantData as $v) {
     $variants[] = $v;
 }
 
-$app->get('/', function (Request $request, Response $response) use ($icons, $variants, $db, $coverIcons) {
+$app->get('/', function (Request $request, Response $response) use ($icons, $variants, $db, $coverIcons, $stats) {
     $view = Twig::fromRequest($request);
     $published = $db->getPublishedThemes();
     return $view->render($response, 'pages/home.html.twig', [
         'icons' => $icons,
         'variants' => $variants,
+        'stats' => $stats,
         'published_themes' => $published,
         'cover_icons' => $coverIcons,
     ]);

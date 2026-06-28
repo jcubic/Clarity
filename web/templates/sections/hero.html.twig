@@ -12,7 +12,7 @@
 
     <p class="hero-eyebrow">GTK+ Icon Theme</p>
 
-    <p class="hero-tagline"><strong>920 unique icons</strong> for your GTK desktop, hand-tuned across <strong>nine color variants</strong>. One coherent system — pick the accent that matches your wallpaper, or wear all nine.</p>
+    <p class="hero-tagline"><strong>{{ stats.unique_icons|number_format }} unique icons</strong> for your GTK desktop, hand-tuned across <strong>{{ stats.variants }} color variants</strong>. One coherent system — pick the accent that matches your wallpaper, or wear them all.</p>
 
     <div class="hero-actions">
       <a class="button button--primary" href="#install">
@@ -23,9 +23,9 @@
     </div>
 
     <dl class="hero-stats" aria-label="Project at a glance">
-      <div class="hero-stat"><dt class="hero-stat-label">Unique icons</dt><dd class="hero-stat-value">920</dd></div>
-      <div class="hero-stat"><dt class="hero-stat-label">With symlinks</dt><dd class="hero-stat-value">2,923</dd></div>
-      <div class="hero-stat"><dt class="hero-stat-label">Color variants</dt><dd class="hero-stat-value">9</dd></div>
+      <div class="hero-stat"><dt class="hero-stat-label">Unique icons</dt><dd class="hero-stat-value">{{ stats.unique_icons|number_format }}</dd></div>
+      <div class="hero-stat"><dt class="hero-stat-label">With symlinks</dt><dd class="hero-stat-value">{{ stats.with_symlinks|number_format }}</dd></div>
+      <div class="hero-stat"><dt class="hero-stat-label">Color variants</dt><dd class="hero-stat-value">{{ stats.variants }}</dd></div>
     </dl>
   </div>
 </section>

@@ -1,13 +1,13 @@
-.PHONY: vendor serve build clean ci migrate lint format check validate-variants
+.PHONY: vendor serve build clean ci migrate lint format check validate-variants stats
 
 PORT ?= 8081
 
 ICON_SOURCES := $(wildcard ../theme/src/*/*.svg)
 TEMPLATES := $(wildcard ../theme/src/template_*.svg)
 
-build: vendor icons validate-variants
+build: vendor icons validate-variants stats
 
-ci: icons
+ci: icons stats
 	sed -i 's%web/icons%#web/icons%g' ../.gitignore
 	cat .wasmerignore >> ../.gitignore
 	cp favicon/favicon.ico .
@@ -43,9 +43,14 @@ check: vendor validate-variants
 	vendor/bin/php-cs-fixer fix --dry-run --diff
 	vendor/bin/phpstan analyse
 
+stats: icons-stats.json
+
+icons-stats.json: variants.json scripts/build-stats.py
+	python3 scripts/build-stats.py
+
 validate-variants:
 	python3 scripts/validate-variants.py
 
 clean:
-	rm -f icons.json icons/.build-stamp .php-cs-fixer.cache
+	rm -f icons.json icons/.build-stamp icons-stats.json .php-cs-fixer.cache
 	rm -rf icons
