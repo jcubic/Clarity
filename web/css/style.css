@@ -201,6 +201,9 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .gallery-name::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--card-color); box-shadow: 0 0 10px var(--card-color); }
 .gallery-tagline { margin: 0; font-size: 13px; line-height: 1.5; color: var(--fg-muted); }
 .gallery-tagline code { font-family: var(--font-mono); font-size: 12px; color: var(--fg); background: color-mix(in oklab, var(--card-color) 12%, var(--bg)); border: 1px solid color-mix(in oklab, var(--card-color) 30%, var(--border)); padding: 1px 6px; border-radius: 3px; }
+.gallery-stats { padding: 10px 18px; display: flex; align-items: center; gap: 16px; font: 500 11px/1 var(--font-mono); color: var(--fg-dim); border-top: 1px solid var(--border); }
+.gallery-stat { display: inline-flex; align-items: center; gap: 5px; }
+.gallery-stat svg { width: 13px; height: 13px; opacity: 0.7; }
 .gallery-meta { padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 500 11px/1 var(--font-mono); letter-spacing: 0.08em; color: var(--fg-dim); border-top: 1px solid var(--border); background: color-mix(in oklab, var(--bg) 50%, var(--surface)); }
 .gallery-meta code { color: var(--fg-muted); }
 .gallery-pending { padding: 32px; background: var(--surface); border: 1px dashed var(--border-strong); border-radius: var(--radius-lg); text-align: center; }
@@ -511,15 +514,26 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 
 .td-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 
+.td-hero-slug {
+  margin: 8px 0 0;
+  font: 500 13px/1 var(--font-mono);
+  color: var(--fg-dim);
+}
+.td-hero-slug code {
+  color: var(--fg-muted);
+  background: var(--surface);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
 .td-hero-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  max-width: 540px;
   margin-top: 28px;
 }
 .td-hero-meta-item { padding: 14px 16px; background: var(--bg); }
@@ -534,6 +548,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
   margin: 0;
   font: 500 14px/1 var(--font-mono);
   color: var(--fg);
+  white-space: nowrap;
 }
 
 .td-like { margin-top: 20px; }

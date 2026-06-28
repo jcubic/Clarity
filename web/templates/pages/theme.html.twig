@@ -32,6 +32,7 @@
           <span class="dot" aria-hidden="true"></span>
           <span>{{ theme.created_at[:10] }}</span>
         </p>
+        <p class="td-hero-slug"><code>@{{ theme.username }}/{{ theme.name }}</code></p>
 
         <p class="td-hero-tagline">
           {{ theme.description }}
@@ -46,10 +47,6 @@
         </div>
 
         <dl class="td-hero-meta" aria-label="Theme metadata">
-          <div class="td-hero-meta-item">
-            <dt>Slug</dt>
-            <dd>@{{ theme.username }}/{{ theme.name }}</dd>
-          </div>
           <div class="td-hero-meta-item">
             <dt>License</dt>
             <dd>CC-BY-SA 4.0</dd>

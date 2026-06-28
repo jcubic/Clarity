@@ -25,6 +25,11 @@
           <h3 class="gallery-name">{{ theme.name }}</h3>
           <p class="gallery-tagline">{{ theme.description }}</p>
         </div>
+        <div class="gallery-stats">
+          <span class="gallery-stat" title="Views"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> {{ theme.view_count }}</span>
+          <span class="gallery-stat" title="Downloads"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg> {{ theme.download_count }}</span>
+          <span class="gallery-stat" title="Likes"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg> {{ theme.like_count }}</span>
+        </div>
         <div class="gallery-meta">
           <span>@{{ theme.username }}</span>
           <span>{{ theme.version }} · {{ theme.updated_at|date('Y-m') }}</span>
