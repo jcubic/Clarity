@@ -6,6 +6,7 @@ Clean monoshape icons in nine color themes, plus community themes uploaded by us
 Includes a CLI manager for switching variants, installing community themes, and building icons.
 
 **Website:** [clarity.pl.eu.org](https://clarity.pl.eu.org)
+
 **Repo:** [jcubic/Clarity](https://github.com/jcubic/Clarity)
 
 ## Quick Install
