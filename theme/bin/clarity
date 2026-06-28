@@ -479,7 +479,11 @@ cmd_update() {
     local new_version
     new_version=$(grep '^VERSION=' "$tmpdir/clarity" | head -1 | sed 's/VERSION="\(.*\)"/\1/')
 
-    cp "$tmpdir/clarity" "$bin_path"
+    if [[ -L "$bin_path" ]]; then
+        warn "CLI not updated — $bin_path is a symlink"
+    else
+        cp "$tmpdir/clarity" "$bin_path"
+    fi
 
     info "Downloading latest base theme..."
     curl -sL "$archive_url" -o "$tmpdir/clarity.tar.gz"
