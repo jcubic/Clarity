@@ -171,11 +171,16 @@ $app->get('/theme/{user}/{name}', function (Request $request, Response $response
     ]);
 });
 
-$app->get('/upload', function (Request $request, Response $response) use ($jwtSecret) {
+$app->get('/upload', function (Request $request, Response $response) use ($jwtSecret, $iconsByName, $coverIcons) {
     $view = Twig::fromRequest($request);
     $user = getAuthUser($request, $jwtSecret);
+    $previewIcons = array_filter(array_map(
+        fn($name) => $iconsByName[$name] ?? null,
+        $coverIcons
+    ));
     return $view->render($response, 'pages/upload.html.twig', [
         'auth_user' => $user,
+        'preview_icons' => array_values($previewIcons),
     ]);
 });
 

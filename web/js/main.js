@@ -205,12 +205,57 @@
         });
     }
 
+    // Preview rendering
+    function convertCircle(circleMatch, pathD) {
+      var attrs = circleMatch
+        .replace(/^<circle/, '')
+        .replace(/\/?>(\s*<\/circle>)?$/, '');
+      attrs = attrs.replace(/\s*id="icon-placeholder"/g, '');
+      attrs = attrs.replace(/\s*cx="[^"]*"/g, '');
+      attrs = attrs.replace(/\s*cy="[^"]*"/g, '');
+      attrs = attrs.replace(/\s*\br="[^"]*"/g, '');
+      return '<path d="' + pathD + '"' + attrs + '/>';
+    }
+
+    function renderPreview() {
+      var grid = document.getElementById('upload-preview-grid');
+      var icons = window.__previewIcons;
+      if (!grid || !icons || !fileInput || !fileInput.files || !fileInput.files.length) return;
+
+      var reader = new FileReader();
+      reader.onload = function () {
+        var svgText = reader.result;
+        grid.innerHTML = '';
+        icons.forEach(function (icon) {
+          var rendered = svgText
+            .replace(/<circle[^>]*id="icon-placeholder"[^>]*\/?>(\s*<\/circle>)?/i,
+              function (match) { return convertCircle(match, icon.d); })
+            .replace(/<title>[^<]*<\/title>/, '<title>' + icon.name + '</title>');
+          var blob = new Blob([rendered], { type: 'image/svg+xml' });
+          var url = URL.createObjectURL(blob);
+          var tile = document.createElement('div');
+          tile.className = 'upload-preview-tile';
+          var img = document.createElement('img');
+          img.src = url;
+          img.alt = icon.name;
+          var name = document.createElement('span');
+          name.className = 'upload-preview-tile-name';
+          name.textContent = icon.name;
+          tile.appendChild(img);
+          tile.appendChild(name);
+          grid.appendChild(tile);
+        });
+      };
+      reader.readAsText(fileInput.files[0]);
+    }
+
     wizard.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-wizard-next]');
       if (btn && !btn.disabled) {
         var target = parseInt(btn.dataset.wizardNext, 10);
         showStep(target);
         if (target === 2) runValidation();
+        if (target === 3) renderPreview();
         return;
       }
       btn = e.target.closest('[data-wizard-prev]');
@@ -239,10 +284,18 @@
     function updateNextBtn() {
       if (!nextBtn) return;
       var hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+      nextBtn.disabled = !hasFile;
+    }
+
+    // Step 3 next button gating (preview → account)
+    var nextBtn3 = wizard.querySelector('[data-wizard-next="4"]');
+
+    function updateNextBtn3() {
+      if (!nextBtn3) return;
       var hasName = themeInput && themeInput.value.trim().length >= 2 && themeInput.validity.valid;
       var hasDesc = descInput && descInput.value.trim().length > 0;
       var overwriteOk = !themeNameTaken || (overwriteCheck && overwriteCheck.checked);
-      nextBtn.disabled = !(hasFile && hasName && hasDesc && overwriteOk);
+      nextBtn3.disabled = !(hasName && hasDesc && overwriteOk);
     }
 
     function showFile(file) {
@@ -302,7 +355,7 @@
       if (!val || val.length < 2 || !/^[A-Za-z0-9_-]+$/.test(val)) {
         if (overwriteWarn) overwriteWarn.setAttribute('hidden', '');
         themeNameTaken = false;
-        updateNextBtn();
+        updateNextBtn3();
         return;
       }
       fetch('/api/check-name?name=' + encodeURIComponent(val))
@@ -315,7 +368,7 @@
             if (overwriteWarn) overwriteWarn.removeAttribute('hidden');
             if (overwriteCheck) overwriteCheck.checked = false;
           }
-          updateNextBtn();
+          updateNextBtn3();
         })
         .catch(function () {});
     }
@@ -325,13 +378,13 @@
       if (val.length > 32) return 'Name must be at most 32 characters.';
       if (!/^[A-Za-z0-9_-]+$/.test(val)) return 'Only letters, numbers, hyphens, and underscores.';
       return '';
-    }, updateNextBtn);
+    }, updateNextBtn3);
 
     validateField(descInput, 'theme-description-error', function (val) {
       if (val.length === 0) return 'Description is required.';
       if (val.length > 200) return 'Description must be at most 200 characters.';
       return '';
-    }, updateNextBtn);
+    }, updateNextBtn3);
 
     if (themeInput) {
       themeInput.addEventListener('blur', function () {
@@ -339,7 +392,15 @@
       });
     }
     if (overwriteCheck) {
-      overwriteCheck.addEventListener('change', updateNextBtn);
+      overwriteCheck.addEventListener('change', updateNextBtn3);
+    }
+
+    var isDarkCheck = wizard.querySelector('input[name="is_dark"]');
+    var previewGrid = document.getElementById('upload-preview-grid');
+    if (isDarkCheck && previewGrid) {
+      isDarkCheck.addEventListener('change', function () {
+        previewGrid.classList.toggle('upload-preview-grid--light', !isDarkCheck.checked);
+      });
     }
 
     if (dropzone) {
@@ -367,7 +428,7 @@
       });
     }
 
-    // Step 3: submit button gating
+    // Step 4: submit button gating
     var submitBtn = wizard.querySelector('button[type="submit"]');
     var emailInput = document.getElementById('email');
     var usernameInput = document.getElementById('username');

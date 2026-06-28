@@ -26,7 +26,8 @@
       <ol class="stepper">
         <li class="stepper-step is-active" data-step="1"><span class="stepper-num">1</span> Upload</li>
         <li class="stepper-step" data-step="2"><span class="stepper-num">2</span> Validate</li>
-        <li class="stepper-step" data-step="3"><span class="stepper-num">3</span> Account</li>
+        <li class="stepper-step" data-step="3"><span class="stepper-num">3</span> Preview</li>
+        <li class="stepper-step" data-step="4"><span class="stepper-num">4</span> Account</li>
       </ol>
     </div>
 
@@ -49,6 +50,50 @@
           <span class="dropzone-filesize"></span>
           <button type="button" class="dropzone-remove" aria-label="Remove file">&times;</button>
         </div>
+
+        {# Honeypot #}
+        <div class="form-field" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;overflow:hidden;tabindex:-1">
+          <label for="confirm-email">Confirm your email</label>
+          <input type="email" name="confirm_email" id="confirm-email" autocomplete="off" tabindex="-1" />
+        </div>
+
+        <div class="wizard-nav js-only">
+          <span></span>
+          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="2" disabled>Next</button>
+        </div>
+      </fieldset>
+
+      {# ── Step 2: Validate ── #}
+      <fieldset class="wizard-step" data-wizard-step="2">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">02</span> Validation</legend>
+
+        <div class="validation-status">
+          <span class="validation-badge" data-status="waiting">Waiting for upload</span>
+        </div>
+
+        <ol class="validation-checks">
+          <li class="check-item" data-check="filesize"><span class="check-icon"></span> File size under 256 KB</li>
+          <li class="check-item" data-check="xmlns"><span class="check-icon"></span> Valid SVG namespace</li>
+          <li class="check-item" data-check="canvas"><span class="check-icon"></span> Canvas is 128×128</li>
+          <li class="check-item" data-check="placeholder"><span class="check-icon"></span> Contains <code>&lt;circle id="icon-placeholder"&gt;</code></li>
+          <li class="check-item" data-check="vector"><span class="check-icon"></span> Vector only (no raster images)</li>
+          <li class="check-item" data-check="security"><span class="check-icon"></span> No scripts or external references</li>
+          <li class="check-item" data-check="ids"><span class="check-icon"></span> No duplicate element IDs</li>
+        </ol>
+
+        <div class="wizard-nav js-only">
+          <button type="button" class="btn btn--ghost wizard-prev" data-wizard-prev="1">Back</button>
+          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="3" disabled>Next</button>
+        </div>
+      </fieldset>
+
+      {# ── Step 3: Preview & Details ── #}
+      <fieldset class="wizard-step" data-wizard-step="3">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">03</span> Preview &amp; details</legend>
+
+        <p class="wizard-step-intro">Your template applied to real icons. Check for visual issues, then fill in the details below.</p>
+
+        <div class="upload-preview-grid" id="upload-preview-grid"></div>
 
         <div class="form-row">
           <div class="form-field">
@@ -93,45 +138,15 @@
           </label>
         </div>
 
-        {# Honeypot #}
-        <div class="form-field" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;overflow:hidden;tabindex:-1">
-          <label for="confirm-email">Confirm your email</label>
-          <input type="email" name="confirm_email" id="confirm-email" autocomplete="off" tabindex="-1" />
-        </div>
-
         <div class="wizard-nav js-only">
-          <span></span>
-          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="2" disabled>Next</button>
+          <button type="button" class="btn btn--ghost wizard-prev" data-wizard-prev="2">Back</button>
+          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="4" disabled>Next</button>
         </div>
       </fieldset>
 
-      {# ── Step 2: Validate ── #}
-      <fieldset class="wizard-step" data-wizard-step="2">
-        <legend class="wizard-step-legend"><span class="wizard-step-num">02</span> Validation</legend>
-
-        <div class="validation-status">
-          <span class="validation-badge" data-status="waiting">Waiting for upload</span>
-        </div>
-
-        <ol class="validation-checks">
-          <li class="check-item" data-check="filesize"><span class="check-icon"></span> File size under 256 KB</li>
-          <li class="check-item" data-check="xmlns"><span class="check-icon"></span> Valid SVG namespace</li>
-          <li class="check-item" data-check="canvas"><span class="check-icon"></span> Canvas is 128×128</li>
-          <li class="check-item" data-check="placeholder"><span class="check-icon"></span> Contains <code>&lt;circle id="icon-placeholder"&gt;</code></li>
-          <li class="check-item" data-check="vector"><span class="check-icon"></span> Vector only (no raster images)</li>
-          <li class="check-item" data-check="security"><span class="check-icon"></span> No scripts or external references</li>
-          <li class="check-item" data-check="ids"><span class="check-icon"></span> No duplicate element IDs</li>
-        </ol>
-
-        <div class="wizard-nav js-only">
-          <button type="button" class="btn btn--ghost wizard-prev" data-wizard-prev="1">Back</button>
-          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="3" disabled>Next</button>
-        </div>
-      </fieldset>
-
-      {# ── Step 3: Account ── #}
-      <fieldset class="wizard-step" data-wizard-step="3">
-        <legend class="wizard-step-legend"><span class="wizard-step-num">03</span> Your account</legend>
+      {# ── Step 4: Account ── #}
+      <fieldset class="wizard-step" data-wizard-step="4">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">04</span> Your account</legend>
 
         {% if auth_user is defined and auth_user %}
         <div class="form-banner">
@@ -168,11 +183,15 @@
         </div>
 
         <div class="wizard-nav">
-          <button type="button" class="btn btn--ghost wizard-prev js-only" data-wizard-prev="2">Back</button>
+          <button type="button" class="btn btn--ghost wizard-prev js-only" data-wizard-prev="3">Back</button>
           <button type="submit" class="btn btn--accent">{% if auth_user is defined and auth_user %}Publish theme{% else %}Send magic link{% endif %}</button>
         </div>
       </fieldset>
     </form>
+
+    <script>
+      window.__previewIcons = {{ preview_icons|json_encode|raw }};
+    </script>
   </div>
 </section>
 {% endblock %}
