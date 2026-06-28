@@ -23,9 +23,22 @@
     </div>
 
     <dl class="hero-stats" aria-label="Project at a glance">
-      <div class="hero-stat"><dt class="hero-stat-label">Unique icons</dt><dd class="hero-stat-value">{{ stats.unique_icons|number_format }}</dd></div>
-      <div class="hero-stat"><dt class="hero-stat-label">With symlinks</dt><dd class="hero-stat-value">{{ stats.with_symlinks|number_format }}</dd></div>
-      <div class="hero-stat"><dt class="hero-stat-label">Color variants</dt><dd class="hero-stat-value">{{ stats.variants }}</dd></div>
+      <div class="hero-stat">
+        <dt class="hero-stat-label">Unique icons</dt>
+        {% if stats.unique_icons > 1000 %}
+          <dd class="hero-stat-value" title="{{ stats.unique_icons|number_format }}">1,000+</dd>
+        {% else %}
+          <dd class="hero-stat-value">1,000</dd>
+        {% endif %}
+      </div>
+      <div class="hero-stat">
+        <dt class="hero-stat-label">With symlinks</dt>
+        <dd class="hero-stat-value" title="{{ stats.with_symlinks|number_format }}">3,000+</dd>
+      </div>
+      <div class="hero-stat">
+        <dt class="hero-stat-label">Color variants</dt>
+        <dd class="hero-stat-value">{{ stats.variants }}</dd>
+      </div>
     </dl>
   </div>
 </section>
