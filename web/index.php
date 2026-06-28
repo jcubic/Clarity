@@ -13,6 +13,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
+use WikiZEIT\HTMLMinifier;
 
 foreach (['.env.local', '.env'] as $envFile) {
     if (file_exists(__DIR__ . '/' . $envFile)) {
@@ -121,6 +122,22 @@ $twig->getEnvironment()->addFilter(new \Twig\TwigFilter('with_hash', function ($
     return $filename . '?v=' . dechex(crc32(file_get_contents(__DIR__ . $filename)));
 }));
 $app->add(TwigMiddleware::create($app, $twig));
+
+if (!$debug) {
+    $app->add(function (Request $request, \Psr\Http\Server\RequestHandlerInterface $handler) {
+        $response = $handler->handle($request);
+        $contentType = $response->getHeaderLine('Content-Type');
+        if ($contentType !== '' && stripos($contentType, 'text/html') === false) {
+            return $response;
+        }
+        $html = (string) $response->getBody();
+        $minifier = new HTMLMinifier();
+        $minified = $minifier->run($html);
+        $response = $response->withBody(new \Slim\Psr7\Stream(fopen('php://temp', 'r+')));
+        $response->getBody()->write($minified);
+        return $response;
+    });
+}
 
 $icons = json_decode(file_get_contents(__DIR__ . '/icons.json'), true);
 $coverIcons = json_decode(file_get_contents(__DIR__ . '/cover-icons.json'), true);
