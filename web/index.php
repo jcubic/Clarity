@@ -241,16 +241,20 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
         $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
         $baseUrl = $scheme . '://' . $host;
+        $verifyUrl = $baseUrl . '/verify?token=' . urlencode($token);
 
-        try {
-            $mailer->sendUploadLink($email, $token, $themeName, $baseUrl);
-        } catch (\Throwable $e) {
-            error_log('Mailer error: ' . $e->getMessage());
+        if ($mailer->isConnected()) {
+            try {
+                $mailer->sendUploadLink($email, $token, $themeName, $baseUrl);
+            } catch (\Throwable $e) {
+                error_log('Mailer error: ' . $e->getMessage());
+            }
         }
     }
 
     return $view->render($response, 'pages/upload-sent.html.twig', [
         'email' => $email,
+        'verify_url' => !$mailer->isConnected() ? ($verifyUrl ?? null) : null,
     ]);
 });
 

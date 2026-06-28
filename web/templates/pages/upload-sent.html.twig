@@ -13,9 +13,15 @@
     </header>
 
     <div class="confirmation-card">
+      {% if verify_url is defined and verify_url %}
+      <svg class="confirmation-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>
+      <p>Mailer not configured — use this link to publish your theme:</p>
+      <p><a href="{{ verify_url }}">{{ verify_url }}</a></p>
+      {% else %}
       <svg class="confirmation-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"/></svg>
       <p>Click the link in the email to publish your theme. The link expires in <strong>15 minutes</strong>.</p>
       <p class="confirmation-hint">Didn't get it? Check your spam folder, or <a href="/upload">try again</a>.</p>
+      {% endif %}
     </div>
   </div>
 </section>
