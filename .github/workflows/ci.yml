@@ -35,6 +35,7 @@ jobs:
 
       - name: Run migrations
         run: make -C web migrate
+        background: true
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}

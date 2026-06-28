@@ -152,6 +152,25 @@ $app->get('/', function (Request $request, Response $response) use ($icons, $var
     ]);
 });
 
+$app->get('/theme/{user}/{name}', function (Request $request, Response $response, array $args) use ($db, $icons, $stats) {
+    $view = Twig::fromRequest($request);
+    $theme = $db->getThemeDetail($args['user'], $args['name']);
+    if ($theme === null) {
+        $response = $response->withStatus(404);
+        return $view->render($response, 'pages/404.html.twig');
+    }
+    $authorThemeCount = $db->getUserThemeCount($args['user']);
+    $previewIcons = array_slice($icons, 0, 27);
+    $featuredIcon = $icons[array_rand($icons)];
+    return $view->render($response, 'pages/theme.html.twig', [
+        'theme' => $theme,
+        'author_theme_count' => $authorThemeCount,
+        'preview_icons' => $previewIcons,
+        'featured_icon' => $featuredIcon,
+        'stats' => $stats,
+    ]);
+});
+
 $app->get('/upload', function (Request $request, Response $response) use ($jwtSecret) {
     $view = Twig::fromRequest($request);
     $user = getAuthUser($request, $jwtSecret);

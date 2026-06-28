@@ -28,7 +28,7 @@
   {% include 'components/svg-symbols.html.twig' %}
   {% include 'components/header.html.twig' %}
 
-  <main id="top">
+  <main id="top"{% block main_attrs %}{% endblock %}>
     {% block content %}{% endblock %}
   </main>
 

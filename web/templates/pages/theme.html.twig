@@ -1,0 +1,218 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ theme.name }} · a Clarity theme by @{{ theme.username }}{% endblock %}
+{% block description %}{{ theme.description|default('Community icon theme for GTK+. Install with the Clarity manager.') }}{% endblock %}
+{% block og_title %}{{ theme.name }} · a Clarity theme by @{{ theme.username }}{% endblock %}
+{% block og_description %}{{ theme.description|default('Community icon theme for GTK+.') }}{% endblock %}
+
+{% block main_attrs %} class="theme-detail"{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#gallery">Gallery</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="current">{{ theme.name }}</span>
+    </nav>
+  </div>
+
+  <section class="td-hero" aria-labelledby="hero-heading">
+    <div class="container td-hero-grid">
+      <div class="td-hero-text">
+        <p class="td-hero-eyebrow">Community theme</p>
+        <h1 id="hero-heading" class="td-hero-title">
+          <span class="gradient">{{ theme.name }}</span>
+        </h1>
+
+        <p class="td-hero-byline">
+          <span class="avatar" aria-hidden="true">{{ theme.username[:1]|upper }}</span>
+          <span>by <a href="#author">@{{ theme.username }}</a></span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>{{ theme.version }}</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>{{ theme.created_at[:10] }}</span>
+        </p>
+
+        <p class="td-hero-tagline">
+          {{ theme.description }}
+        </p>
+
+        <div class="td-hero-actions">
+          <a class="button button--primary" href="#install">
+            Install with clarity
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="button button--ghost" href="#preview">See all icons</a>
+        </div>
+
+        <dl class="td-hero-meta" aria-label="Theme metadata">
+          <div class="td-hero-meta-item">
+            <dt>Slug</dt>
+            <dd>@{{ theme.username }}/{{ theme.name }}</dd>
+          </div>
+          <div class="td-hero-meta-item">
+            <dt>License</dt>
+            <dd>CC-BY-SA 4.0</dd>
+          </div>
+          <div class="td-hero-meta-item">
+            <dt>Icons</dt>
+            <dd>{{ stats.unique_icons|number_format }}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <figure class="td-hero-window{% if not theme.is_dark %} td-hero-window--light{% endif %}">
+        <div class="td-hero-window-bar">
+          <span class="td-hero-window-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="td-hero-window-title">{{ theme.name }}</span>
+        </div>
+        <div class="td-hero-window-body">
+          <img src="/api/icon/{{ theme.username }}/{{ theme.name }}/{{ featured_icon.name }}" alt="{{ featured_icon.name }}" class="td-hero-featured-icon" />
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="td-preview" id="preview" aria-labelledby="preview-heading">
+    <div class="container">
+      <header class="section-header">
+        <p class="section-eyebrow">// Preview</p>
+        <h2 id="preview-heading" class="section-title">Icon preview.</h2>
+        <p class="section-lead">
+          A selection from the {{ stats.unique_icons|number_format }}-icon set, rendered through this theme's template.
+          <button class="bg-toggle" type="button" aria-label="Toggle light/dark background" data-light="{{ theme.is_dark ? 'false' : 'true' }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bg-toggle"/></svg>
+          </button>
+        </p>
+      </header>
+
+      <ul class="td-preview-grid{% if not theme.is_dark %} td-preview-grid--light{% endif %}">
+        {% for icon in preview_icons %}
+        <li class="td-preview-tile">
+          <img src="/api/icon/{{ theme.username }}/{{ theme.name }}/{{ icon.name }}" alt="{{ icon.name }}" loading="lazy" />
+          <span class="td-preview-tile-name">{{ icon.name }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="install" id="install" aria-labelledby="install-heading">
+    <div class="container">
+      <header class="section-header">
+        <p class="section-eyebrow">// Install</p>
+        <h2 id="install-heading" class="section-title">Two commands. You're done.</h2>
+        <p class="section-lead">
+          Already have the <code>clarity</code> manager? Skip to the second line — <code>clarity use</code>
+          switches themes without a logout or settings panel. New here? The
+          <a href="/#install" style="color: var(--accent)">bootstrap line</a>
+          on the main page sets up <code>clarity</code> in one curl.
+        </p>
+      </header>
+
+      <div class="install-grid">
+        <div>
+          <ol class="install-steps">
+            <li class="install-step">
+              <span class="install-step-num">01</span>
+              <div><strong>Fetch and build</strong><span><code>clarity install @{{ theme.username }}/{{ theme.name }}</code> pulls this theme from the gallery and saves it to <code>~/.clarity-icons/community/</code>.</span></div>
+            </li>
+            <li class="install-step">
+              <span class="install-step-num">02</span>
+              <div><strong>Switch to it</strong><span><code>clarity use @{{ theme.username }}/{{ theme.name }}</code> activates this theme and refreshes the icon cache instantly.</span></div>
+            </li>
+            <li class="install-step">
+              <span class="install-step-num">03</span>
+              <div><strong>Stay current</strong><span><code>clarity update</code> picks up new versions when the author publishes.</span></div>
+            </li>
+          </ol>
+        </div>
+
+        <figure class="terminal" aria-label="Install commands in a terminal window">
+          <div class="terminal-bar">
+            <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="terminal-title">kuba@desktop: ~</span>
+            <button class="terminal-copy" type="button" data-copy-target="#td-install-cmd" aria-label="Copy install command to clipboard">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+              <span class="terminal-copy-label">Copy</span>
+            </button>
+          </div>
+<pre class="terminal-body" aria-label="Shell session">
+<span class="term-comment"># Install the theme</span>
+<span class="term-prompt">$</span> <span class="term-cmd" id="td-install-cmd">clarity install <span class="term-arg">@{{ theme.username }}/{{ theme.name }}</span></span>
+
+<span class="term-comment"># Switch to it</span>
+<span class="term-prompt">$</span> <span class="term-cmd">clarity use <span class="term-arg">@{{ theme.username }}/{{ theme.name }}</span></span>
+<span class="term-prompt">$</span> <span class="term-cursor" aria-hidden="true"></span>
+</pre>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="td-howto" id="howto" aria-labelledby="howto-heading">
+    <div class="container">
+      <header class="section-header">
+        <p class="section-eyebrow">// How to use</p>
+        <h2 id="howto-heading" class="section-title">From zero to styled in four steps.</h2>
+        <p class="section-lead">Don't have the <code>clarity</code> manager yet? Step 01 sets it up. Already running it? Skip straight to 02.</p>
+      </header>
+
+      <ol class="td-howto-list">
+        <li class="td-howto-card">
+          <h3>Bootstrap the manager</h3>
+          <p>If <code>clarity</code> isn't on your PATH yet, install it with the one-liner from the main page.</p>
+          <code class="cmd"><span class="p">$</span>curl https://clarity.pl.eu.org/install | bash</code>
+        </li>
+        <li class="td-howto-card">
+          <h3>Install this theme</h3>
+          <p>Pulls and builds the SVG sources for all color variants.</p>
+          <code class="cmd"><span class="p">$</span>clarity install @{{ theme.username }}/{{ theme.name }}</code>
+        </li>
+        <li class="td-howto-card">
+          <h3>Switch to it</h3>
+          <p>Activates the theme and refreshes the GTK icon cache. No logout required.</p>
+          <code class="cmd"><span class="p">$</span>clarity use @{{ theme.username }}/{{ theme.name }}</code>
+        </li>
+        <li class="td-howto-card">
+          <h3>Switch back later</h3>
+          <p>Any other installed theme works the same way — use the slug or one of the Clarity built-ins.</p>
+          <code class="cmd"><span class="p">$</span>clarity use caeruleus</code>
+        </li>
+      </ol>
+
+      <p class="td-howto-tip">
+        <strong>Tip:</strong> <code>clarity list</code> shows every theme you have installed, with the active one starred.
+        <code>clarity remove @{{ theme.username }}/{{ theme.name }}</code> uninstalls it cleanly.
+      </p>
+    </div>
+  </section>
+
+  <section class="td-author" id="author" aria-labelledby="author-heading">
+    <div class="container">
+      <header class="section-header">
+        <p class="section-eyebrow">// Author</p>
+        <h2 id="author-heading" class="section-title">Made by @{{ theme.username }}.</h2>
+      </header>
+
+      <dl class="td-author-card">
+        <div class="td-author-id">
+          <span class="avatar-lg" aria-hidden="true">{{ theme.username[:1]|upper }}</span>
+          <div class="who">
+            <span class="handle"><span class="at">@</span>{{ theme.username }}</span>
+          </div>
+        </div>
+        <div class="td-author-stats">
+          <div class="td-author-stat">
+            <dt>Themes</dt>
+            <dd>{{ author_theme_count }}</dd>
+          </div>
+          <div class="td-author-stat">
+            <dt>Since</dt>
+            <dd>{{ theme.user_created_at[:4] }}</dd>
+          </div>
+        </div>
+      </dl>
+    </div>
+  </section>
+{% endblock %}

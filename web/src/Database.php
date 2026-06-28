@@ -268,6 +268,38 @@ class Database {
     }
 
     /**
+     * @return array{name: string, description: string, version: string, is_dark: int, username: string, created_at: string, updated_at: string, user_created_at: string}|null
+     */
+    public function getThemeDetail(string $username, string $themeName): ?array {
+        if (!$this->pdo) {
+            return null;
+        }
+        $stmt = $this->pdo->prepare(
+            "SELECT t.name, t.description, t.version, t.is_dark, t.created_at, t.updated_at,
+                    u.username, u.created_at AS user_created_at
+             FROM themes t
+             JOIN users u ON t.user_id = u.id
+             WHERE u.username = ? AND t.name = ? AND t.status = 'published'"
+        );
+        $stmt->execute([$username, $themeName]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row !== false ? $row : null;
+    }
+
+    public function getUserThemeCount(string $username): int {
+        if (!$this->pdo) {
+            return 0;
+        }
+        $stmt = $this->pdo->prepare(
+            "SELECT COUNT(*) FROM themes t
+             JOIN users u ON t.user_id = u.id
+             WHERE u.username = ? AND t.status = 'published'"
+        );
+        $stmt->execute([$username]);
+        return (int) $stmt->fetchColumn();
+    }
+
+    /**
      * @return array<int, array{id: int, name: string, description: string, version: string, username: string|null, email: string|null, status: string, created_at: string, updated_at: string}>
      */
     public function getAllThemes(): array {

@@ -15,7 +15,7 @@
     {% if published_themes is defined and published_themes|length > 0 %}
     <div class="gallery-grid">
       {% for theme in published_themes %}
-      <div class="gallery-card" aria-label="{{ theme.name }} by @{{ theme.username }}">
+      <a class="gallery-card" href="/theme/{{ theme.username }}/{{ theme.name }}" aria-label="{{ theme.name }} by @{{ theme.username }}">
         <div class="gallery-cover" aria-hidden="true">
           {% for icon_name in cover_icons %}
           <img src="/api/icon/{{ theme.username }}/{{ theme.name }}/{{ icon_name }}" alt="{{ icon_name }}" loading="lazy" width="48" height="48">
@@ -29,7 +29,7 @@
           <span>@{{ theme.username }}</span>
           <span>{{ theme.version }} · {{ theme.updated_at|date('Y-m') }}</span>
         </div>
-      </div>
+      </a>
       {% endfor %}
     </div>
     {% else %}

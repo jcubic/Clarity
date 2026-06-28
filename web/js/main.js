@@ -402,13 +402,14 @@
   // Background toggle for icon grids
   var toggles = document.querySelectorAll('.bg-toggle');
   toggles.forEach(function (btn) {
-    var panel = btn.closest('.variant-panel');
-    var grid = panel ? panel.querySelector('.icon-grid') : null;
+    var panel = btn.closest('.variant-panel') || btn.closest('.td-preview');
+    var grid = panel ? (panel.querySelector('.icon-grid') || panel.querySelector('.td-preview-grid')) : null;
     if (!grid) return;
+    var lightClass = grid.classList.contains('icon-grid') ? 'icon-grid--light' : 'td-preview-grid--light';
     var isLight = btn.dataset.light === 'true';
     btn.addEventListener('click', function () {
       isLight = !isLight;
-      grid.classList.toggle('icon-grid--light', isLight);
+      grid.classList.toggle(lightClass, isLight);
     });
   });
 })();

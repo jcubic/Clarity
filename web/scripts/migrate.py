@@ -48,6 +48,9 @@ MIGRATIONS = {
     3: [
         "ALTER TABLE themes ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER created_at",
     ],
+    4: [
+        "ALTER TABLE themes ADD COLUMN is_dark TINYINT(1) NOT NULL DEFAULT 1 AFTER svg_content",
+    ],
 }
 
 
