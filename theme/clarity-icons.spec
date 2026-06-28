@@ -1,6 +1,6 @@
 Name:           clarity-icons
 Version:        %{_version}
-Release:        1%{?dist}
+Release:        %{_release}%{?dist}
 Summary:        Clarity vector icon theme for GTK — CLI manager and icon sources
 License:        CC-BY-SA-4.0
 URL:            https://clarity.pl.eu.org

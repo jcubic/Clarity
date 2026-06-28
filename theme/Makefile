@@ -86,17 +86,21 @@ deb:
 
 rpm:
 	$(eval RPM_TOPDIR := $(CURDIR)/rpmbuild)
+	$(eval RPM_VERSION := $(firstword $(subst -, ,$(VERSION))))
+	$(eval RPM_PRERELEASE := $(word 2,$(subst -, ,$(VERSION))))
+	$(eval RPM_RELEASE := $(if $(RPM_PRERELEASE),0.1.$(RPM_PRERELEASE),1))
 	rm -rf $(RPM_TOPDIR)
 	mkdir -p $(RPM_TOPDIR)/{BUILD,RPMS,SOURCES,SPECS}
 	cp clarity-icons.spec $(RPM_TOPDIR)/SPECS/
 	rpmbuild -bb --define "_topdir $(RPM_TOPDIR)" \
-		--define "_version $(VERSION)" \
+		--define "_version $(RPM_VERSION)" \
+		--define "_release $(RPM_RELEASE)" \
 		--define "_srcdir $(CURDIR)" \
 		--buildroot "$(RPM_TOPDIR)/BUILDROOT" \
 		$(RPM_TOPDIR)/SPECS/clarity-icons.spec
-	cp $(RPM_TOPDIR)/RPMS/noarch/$(NAME)-$(VERSION)-*.noarch.rpm . 2>/dev/null || true
+	cp $(RPM_TOPDIR)/RPMS/noarch/$(NAME)-*.noarch.rpm . 2>/dev/null || true
 	rm -rf $(RPM_TOPDIR)
-	@echo "Created $(NAME)-$(VERSION)-1.noarch.rpm"
+	@echo "Created $(NAME)-$(RPM_VERSION)-$(RPM_RELEASE).noarch.rpm"
 
 clean:
 	rm -rf $(NAME)-*.tar.gz $(NAME)_*.deb $(NAME)-*.rpm rpmbuild
