@@ -295,7 +295,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .stepper-step.is-done { color: var(--ok); border-color: var(--ok); }
 .stepper-num { display: inline-grid; place-items: center; width: 28px; height: 28px; border: 1px solid currentColor; border-radius: 50%; font-size: 12px; flex-shrink: 0; }
 
-.wizard-step-legend { font: 500 11px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.wizard-step-legend { font: 500 11px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); margin-bottom: 24px; background: var(--bg); padding-inline: 8px; }
 .wizard-step-num { color: var(--accent); margin-right: 8px; }
 
 .wizard-step-intro { font-size: 14px; line-height: 1.5; color: var(--fg-muted); margin-bottom: 24px; }
@@ -340,8 +340,8 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .wizard-form:has(input[name="is_dark"]:not(:checked)) .upload-preview-tile { background: oklch(96% 0.005 245); border-color: oklch(85% 0.005 245); }
 .wizard-form:has(input[name="is_dark"]:not(:checked)) .upload-preview-tile-name { color: oklch(40% 0.01 245); }
 
-.wizard-step + .wizard-step { margin-top: 48px; padding-top: 48px; border-top: 1px solid var(--border); }
-.js .wizard-step + .wizard-step { margin-top: 0; padding-top: 0; border-top: 0; }
+.wizard-step + .wizard-step { margin-top: 48px; padding-top: 48px; }
+.js .wizard-step + .wizard-step { margin-top: 0; padding-top: 0; }
 .js .wizard-step[hidden] { display: none; }
 
 /* Dropzone */
