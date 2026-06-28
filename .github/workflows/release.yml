@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install build dependencies
-        run: sudo apt-get update && sudo apt-get install -y dpkg-deb rpm
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev rpm
 
       - name: Build deb package
         run: make -C theme deb
