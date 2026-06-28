@@ -225,6 +225,15 @@
           </div>
         </div>
       </dl>
+
+      {% if is_owner %}
+      <div class="td-owner-actions">
+        <form method="post" action="/theme/{{ theme.username }}/{{ theme.name }}/delete" class="td-delete-form">
+          <p class="td-delete-warning">This will permanently remove your theme from the gallery. Users who already installed it keep their local copy.</p>
+          <button type="submit" class="btn btn--danger" onclick="return confirm('Are you sure you want to delete {{ theme.name }}?')">Delete this theme</button>
+        </form>
+      </div>
+      {% endif %}
     </div>
   </section>
 {% endblock %}

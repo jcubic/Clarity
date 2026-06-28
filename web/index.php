@@ -163,7 +163,7 @@ $app->get('/', function (Request $request, Response $response) use ($icons, $var
     ]);
 });
 
-$app->get('/theme/{user}/{name}', function (Request $request, Response $response, array $args) use ($db, $icons, $stats) {
+$app->get('/theme/{user}/{name}', function (Request $request, Response $response, array $args) use ($db, $icons, $stats, $jwtSecret) {
     $view = Twig::fromRequest($request);
     $theme = $db->getThemeDetail($args['user'], $args['name']);
     if ($theme === null) {
@@ -174,6 +174,8 @@ $app->get('/theme/{user}/{name}', function (Request $request, Response $response
     $db->recordThemeView((int) $theme['id'], $ipHash);
     $likeCount = $db->getLikeCount((int) $theme['id']);
     $hasLiked = $db->hasLiked((int) $theme['id'], $ipHash);
+    $authUser = getAuthUser($request, $jwtSecret);
+    $isOwner = $authUser !== null && $authUser['username'] === $args['user'];
     $authorThemeCount = $db->getUserThemeCount($args['user']);
     $previewIcons = array_slice($icons, 0, 27);
     $featuredIcon = $icons[array_rand($icons)];
@@ -181,11 +183,24 @@ $app->get('/theme/{user}/{name}', function (Request $request, Response $response
         'theme' => $theme,
         'like_count' => $likeCount,
         'has_liked' => $hasLiked,
+        'is_owner' => $isOwner,
         'author_theme_count' => $authorThemeCount,
         'preview_icons' => $previewIcons,
         'featured_icon' => $featuredIcon,
         'stats' => $stats,
     ]);
+});
+
+$app->post('/theme/{user}/{name}/delete', function (Request $request, Response $response, array $args) use ($db, $jwtSecret) {
+    $authUser = getAuthUser($request, $jwtSecret);
+    if ($authUser === null || $authUser['username'] !== $args['user']) {
+        return $response->withHeader('Location', '/theme/' . $args['user'] . '/' . $args['name'])->withStatus(302);
+    }
+    $themeId = $db->getThemeIdBySlug($args['user'], $args['name']);
+    if ($themeId !== null) {
+        $db->deleteTheme($themeId);
+    }
+    return $response->withHeader('Location', '/#gallery')->withStatus(302);
 });
 
 $app->get('/upload', function (Request $request, Response $response) use ($jwtSecret, $iconsByName, $coverIcons) {
