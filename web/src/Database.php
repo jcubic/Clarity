@@ -108,14 +108,14 @@ class Database {
         return (int) $this->pdo->lastInsertId();
     }
 
-    public function createTheme(string $name, string $svgContent): int {
+    public function createTheme(string $name, string $description, string $version, string $svgContent): int {
         if (!$this->pdo) {
             return 0;
         }
         $stmt = $this->pdo->prepare(
-            'INSERT INTO themes (name, svg_content, status) VALUES (?, ?, ?)'
+            'INSERT INTO themes (name, description, version, svg_content, status) VALUES (?, ?, ?, ?, ?)'
         );
-        $stmt->execute([$name, $svgContent, 'pending']);
+        $stmt->execute([$name, $description, $version, $svgContent, 'pending']);
         return (int) $this->pdo->lastInsertId();
     }
 
@@ -158,14 +158,17 @@ class Database {
         return $email !== false ? (string) $email : null;
     }
 
-    public function getThemeSvgById(int $themeId): ?string {
+    /**
+     * @return array{svg_content: string, description: string, version: string}|null
+     */
+    public function getThemeById(int $themeId): ?array {
         if (!$this->pdo) {
             return null;
         }
-        $stmt = $this->pdo->prepare('SELECT svg_content FROM themes WHERE id = ?');
+        $stmt = $this->pdo->prepare('SELECT svg_content, description, version FROM themes WHERE id = ?');
         $stmt->execute([$themeId]);
-        $content = $stmt->fetchColumn();
-        return $content !== false ? (string) $content : null;
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row !== false ? $row : null;
     }
 
     public function deleteTheme(int $themeId): void {
@@ -176,14 +179,14 @@ class Database {
         $stmt->execute([$themeId]);
     }
 
-    public function replacePublishedTheme(string $name, int $userId, string $svgContent): void {
+    public function replacePublishedTheme(string $name, int $userId, string $description, string $version, string $svgContent): void {
         if (!$this->pdo) {
             return;
         }
         $stmt = $this->pdo->prepare(
-            "UPDATE themes SET svg_content = ?, created_at = CURRENT_TIMESTAMP WHERE name = ? AND user_id = ? AND status = 'published'"
+            "UPDATE themes SET description = ?, version = ?, svg_content = ?, created_at = CURRENT_TIMESTAMP WHERE name = ? AND user_id = ? AND status = 'published'"
         );
-        $stmt->execute([$svgContent, $name, $userId]);
+        $stmt->execute([$description, $version, $svgContent, $name, $userId]);
     }
 
     public function createMagicToken(string $token, string $email, string $username, int $themeId): void {
@@ -235,14 +238,14 @@ class Database {
     }
 
     /**
-     * @return array<int, array{id: int, name: string, username: string|null, email: string|null, status: string, created_at: string}>
+     * @return array<int, array{id: int, name: string, description: string, version: string, username: string|null, email: string|null, status: string, created_at: string}>
      */
     public function getAllThemes(): array {
         if (!$this->pdo) {
             return [];
         }
         return $this->pdo->query(
-            'SELECT t.id, t.name, u.username, u.email, t.status, t.created_at
+            'SELECT t.id, t.name, t.description, t.version, u.username, u.email, t.status, t.created_at
              FROM themes t LEFT JOIN users u ON t.user_id = u.id
              ORDER BY t.created_at DESC'
         )->fetchAll(PDO::FETCH_ASSOC);
@@ -266,10 +269,20 @@ class Database {
             id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             user_id INT UNSIGNED,
             name VARCHAR(32) NOT NULL,
+            description VARCHAR(200) NOT NULL DEFAULT \'\',
+            version VARCHAR(16) NOT NULL DEFAULT \'v1.0\',
             svg_content MEDIUMTEXT NOT NULL,
             status ENUM(\'pending\', \'published\') DEFAULT \'pending\',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+
+        $columns = $this->pdo->query('SHOW COLUMNS FROM themes')->fetchAll(PDO::FETCH_COLUMN);
+        if (!in_array('description', $columns, true)) {
+            $this->pdo->exec("ALTER TABLE themes ADD COLUMN description VARCHAR(200) NOT NULL DEFAULT '' AFTER name");
+        }
+        if (!in_array('version', $columns, true)) {
+            $this->pdo->exec("ALTER TABLE themes ADD COLUMN version VARCHAR(16) NOT NULL DEFAULT 'v1.0' AFTER description");
+        }
 
         $this->pdo->exec('CREATE TABLE IF NOT EXISTS magic_tokens (
             id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

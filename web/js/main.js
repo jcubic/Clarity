@@ -229,6 +229,7 @@
     var dropRemove = dropFile ? dropFile.querySelector('.dropzone-remove') : null;
     var nextBtn = wizard.querySelector('[data-wizard-next="2"]');
     var themeInput = document.getElementById('theme-name');
+    var descInput = document.getElementById('theme-description');
 
     function formatSize(bytes) {
       if (bytes < 1024) return bytes + ' B';
@@ -239,8 +240,9 @@
       if (!nextBtn) return;
       var hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
       var hasName = themeInput && themeInput.value.trim().length >= 2 && themeInput.validity.valid;
+      var hasDesc = descInput && descInput.value.trim().length > 0;
       var overwriteOk = !themeNameTaken || (overwriteCheck && overwriteCheck.checked);
-      nextBtn.disabled = !(hasFile && hasName && overwriteOk);
+      nextBtn.disabled = !(hasFile && hasName && hasDesc && overwriteOk);
     }
 
     function showFile(file) {
@@ -322,6 +324,12 @@
       if (val.length < 2) return 'Name must be at least 2 characters.';
       if (val.length > 32) return 'Name must be at most 32 characters.';
       if (!/^[A-Za-z0-9_-]+$/.test(val)) return 'Only letters, numbers, hyphens, and underscores.';
+      return '';
+    }, updateNextBtn);
+
+    validateField(descInput, 'theme-description-error', function (val) {
+      if (val.length === 0) return 'Description is required.';
+      if (val.length > 200) return 'Description must be at most 200 characters.';
       return '';
     }, updateNextBtn);
 

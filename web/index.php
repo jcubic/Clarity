@@ -208,6 +208,8 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
     $email = trim($data['email'] ?? '');
     $username = trim($data['username'] ?? '');
     $themeName = trim($data['theme_name'] ?? '');
+    $description = trim($data['theme_description'] ?? '');
+    $version = trim($data['theme_version'] ?? '') ?: 'v1.0';
     $svg = $files['svg_file'] ?? null;
 
     if (!$svg || $svg->getError() !== UPLOAD_ERR_OK || !$email || !$username || !$themeName) {
@@ -269,7 +271,7 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
         $converter = new SvgConverter();
         $converted = $converter->convert($content);
 
-        $themeId = $db->createTheme($themeName, $converted);
+        $themeId = $db->createTheme($themeName, $description, $version, $converted);
         $token = bin2hex(random_bytes(32));
         $db->createMagicToken($token, $email, $username, $themeId);
 
@@ -312,9 +314,9 @@ $app->get('/verify', function (Request $request, Response $response) use ($db) {
 
     $existingOwner = $db->getThemeOwnerEmail($themeName);
     if ($existingOwner !== null && $existingOwner === $data['email']) {
-        $pendingSvg = $db->getThemeSvgById($data['theme_id']);
-        if ($pendingSvg !== null) {
-            $db->replacePublishedTheme($themeName, $userId, $pendingSvg);
+        $pending = $db->getThemeById($data['theme_id']);
+        if ($pending !== null) {
+            $db->replacePublishedTheme($themeName, $userId, $pending['description'], $pending['version'], $pending['svg_content']);
         }
         $db->deleteTheme($data['theme_id']);
     } else {
