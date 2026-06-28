@@ -239,7 +239,8 @@
       if (!nextBtn) return;
       var hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
       var hasName = themeInput && themeInput.value.trim().length >= 2 && themeInput.validity.valid;
-      nextBtn.disabled = !(hasFile && hasName);
+      var overwriteOk = !themeNameTaken || (overwriteCheck && overwriteCheck.checked);
+      nextBtn.disabled = !(hasFile && hasName && overwriteOk);
     }
 
     function showFile(file) {
@@ -291,12 +292,47 @@
       });
     }
 
+    var overwriteWarn = document.getElementById('overwrite-warning');
+    var overwriteCheck = document.getElementById('overwrite');
+    var themeNameTaken = false;
+
+    function checkThemeName(val) {
+      if (!val || val.length < 2 || !/^[A-Za-z0-9_-]+$/.test(val)) {
+        if (overwriteWarn) overwriteWarn.setAttribute('hidden', '');
+        themeNameTaken = false;
+        updateNextBtn();
+        return;
+      }
+      fetch('/api/check-name?name=' + encodeURIComponent(val))
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          themeNameTaken = !data.available;
+          if (data.available) {
+            if (overwriteWarn) overwriteWarn.setAttribute('hidden', '');
+          } else {
+            if (overwriteWarn) overwriteWarn.removeAttribute('hidden');
+            if (overwriteCheck) overwriteCheck.checked = false;
+          }
+          updateNextBtn();
+        })
+        .catch(function () {});
+    }
+
     validateField(themeInput, 'theme-name-error', function (val) {
       if (val.length < 2) return 'Name must be at least 2 characters.';
       if (val.length > 32) return 'Name must be at most 32 characters.';
       if (!/^[A-Za-z0-9_-]+$/.test(val)) return 'Only letters, numbers, hyphens, and underscores.';
       return '';
     }, updateNextBtn);
+
+    if (themeInput) {
+      themeInput.addEventListener('blur', function () {
+        checkThemeName(themeInput.value.trim());
+      });
+    }
+    if (overwriteCheck) {
+      overwriteCheck.addEventListener('change', updateNextBtn);
+    }
 
     if (dropzone) {
       ['dragenter', 'dragover'].forEach(function (evt) {

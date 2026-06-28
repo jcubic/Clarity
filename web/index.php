@@ -182,6 +182,18 @@ $app->post('/api/validate', function (Request $request, Response $response) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+$app->get('/api/check-name', function (Request $request, Response $response) use ($db) {
+    $params = $request->getQueryParams();
+    $name = trim($params['name'] ?? '');
+    if (!$name || !$db->isConnected()) {
+        $response->getBody()->write(json_encode(['available' => true]));
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+    $taken = $db->isThemeNameTaken($name);
+    $response->getBody()->write(json_encode(['available' => !$taken]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
 $app->post('/upload', function (Request $request, Response $response) use ($db, $mailer) {
     $view = Twig::fromRequest($request);
     $data = $request->getParsedBody();
@@ -247,9 +259,10 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
             ]);
         }
 
-        if ($db->isThemeNameTaken($themeName)) {
+        $ownerEmail = $db->getThemeOwnerEmail($themeName);
+        if ($ownerEmail !== null && $ownerEmail !== $email) {
             return $view->render($response, 'pages/upload.html.twig', [
-                'error' => 'Theme name "' . htmlspecialchars($themeName) . '" is already taken.',
+                'error' => 'Theme name "' . htmlspecialchars($themeName) . '" is already taken by another user.',
             ]);
         }
 
@@ -295,10 +308,21 @@ $app->get('/verify', function (Request $request, Response $response) use ($db) {
     }
 
     $userId = $db->createOrGetUser($data['email'], $data['username']);
-    $db->publishTheme($data['theme_id'], $userId);
+    $themeName = $db->getThemeName($data['theme_id']) ?? 'your theme';
+
+    $existingOwner = $db->getThemeOwnerEmail($themeName);
+    if ($existingOwner !== null && $existingOwner === $data['email']) {
+        $pendingSvg = $db->getThemeSvgById($data['theme_id']);
+        if ($pendingSvg !== null) {
+            $db->replacePublishedTheme($themeName, $userId, $pendingSvg);
+        }
+        $db->deleteTheme($data['theme_id']);
+    } else {
+        $db->publishTheme($data['theme_id'], $userId);
+    }
 
     return $view->render($response, 'pages/upload-confirmed.html.twig', [
-        'theme_name' => $db->getThemeName($data['theme_id']) ?? 'your theme',
+        'theme_name' => $themeName,
         'username' => $data['username'],
     ]);
 });

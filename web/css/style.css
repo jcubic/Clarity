@@ -382,6 +382,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .form-checkbox { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--fg-muted); cursor: pointer; }
 .form-checkbox input[type="checkbox"] { margin-top: 3px; accent-color: var(--accent); width: 16px; height: 16px; flex-shrink: 0; }
 .form-checkbox a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.overwrite-warning { padding: 12px 16px; background: color-mix(in oklab, var(--warn, oklch(85% 0.15 85)) 12%, var(--surface)); border: 1px solid color-mix(in oklab, var(--warn, oklch(85% 0.15 85)) 40%, var(--border)); border-radius: var(--radius); margin-top: -8px; }
 
 /* Buttons */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 22px; font: 500 13px/1 var(--font-mono); letter-spacing: 0.06em; border: 1px solid transparent; border-radius: var(--radius); cursor: pointer; transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s; }

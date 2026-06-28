@@ -146,6 +146,46 @@ class Database {
         return (int) $stmt->fetchColumn() > 0;
     }
 
+    public function getThemeOwnerEmail(string $name): ?string {
+        if (!$this->pdo) {
+            return null;
+        }
+        $stmt = $this->pdo->prepare(
+            "SELECT u.email FROM themes t JOIN users u ON t.user_id = u.id WHERE t.name = ? AND t.status = 'published'"
+        );
+        $stmt->execute([$name]);
+        $email = $stmt->fetchColumn();
+        return $email !== false ? (string) $email : null;
+    }
+
+    public function getThemeSvgById(int $themeId): ?string {
+        if (!$this->pdo) {
+            return null;
+        }
+        $stmt = $this->pdo->prepare('SELECT svg_content FROM themes WHERE id = ?');
+        $stmt->execute([$themeId]);
+        $content = $stmt->fetchColumn();
+        return $content !== false ? (string) $content : null;
+    }
+
+    public function deleteTheme(int $themeId): void {
+        if (!$this->pdo) {
+            return;
+        }
+        $stmt = $this->pdo->prepare('DELETE FROM themes WHERE id = ?');
+        $stmt->execute([$themeId]);
+    }
+
+    public function replacePublishedTheme(string $name, int $userId, string $svgContent): void {
+        if (!$this->pdo) {
+            return;
+        }
+        $stmt = $this->pdo->prepare(
+            "UPDATE themes SET svg_content = ?, created_at = CURRENT_TIMESTAMP WHERE name = ? AND user_id = ? AND status = 'published'"
+        );
+        $stmt->execute([$svgContent, $name, $userId]);
+    }
+
     public function createMagicToken(string $token, string $email, string $username, int $themeId): void {
         if (!$this->pdo) {
             return;
