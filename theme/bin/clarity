@@ -7,8 +7,8 @@
 
 set -euo pipefail
 
-VERSION="0.1.0"
-BRANCH="wasmer" # TODO: remove when released
+VERSION="1.0.0-beta"
+BRANCH="master"
 CLARITY_HOME="${HOME}/.clarity-icons"
 ICON_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/icons/Clarity"
 COMMUNITY_DIR="${CLARITY_HOME}/community"

@@ -662,7 +662,7 @@ SVG;
 $app->get('/install', function (Request $request, Response $response) use ($db) {
     $db->incrementCounter('installs');
     return $response
-        ->withHeader('Location', 'https://raw.githubusercontent.com/jcubic/Clarity/wasmer/theme/bin/install.sh')
+        ->withHeader('Location', 'https://raw.githubusercontent.com/jcubic/Clarity/master/theme/bin/install.sh')
         ->withStatus(302);
 });
 

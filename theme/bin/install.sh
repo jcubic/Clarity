@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Clarity CLI installer — v0.1.0
+# Clarity CLI installer — 1.0.0-beta
 # https://clarity.pl.eu.org
 #
 # Usage: curl -sL https://clarity.pl.eu.org/install | bash
@@ -11,9 +11,9 @@
 
 set -euo pipefail
 
-CLARITY_VERSION="0.1.0"
+CLARITY_VERSION="1.0.0-beta"
 REPO="jcubic/Clarity"
-BRANCH="wasmer" # TODO: remove when released
+BRANCH="master"
 API_BASE="https://clarity.pl.eu.org"
 CLI_URL="https://raw.githubusercontent.com/${REPO}/${BRANCH}/theme/bin/clarity"
 COMPLETION_URL="https://raw.githubusercontent.com/${REPO}/${BRANCH}/theme/bin/clarity-completion.bash"
