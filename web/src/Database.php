@@ -22,9 +22,7 @@ class Database {
         $pdo = new PDO($dsn, $username, $password, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         ]);
-        $db = new self($pdo);
-        $db->migrate();
-        return $db;
+        return new self($pdo);
     }
 
     public static function null(): self {
@@ -184,7 +182,7 @@ class Database {
             return;
         }
         $stmt = $this->pdo->prepare(
-            "UPDATE themes SET description = ?, version = ?, svg_content = ?, created_at = CURRENT_TIMESTAMP WHERE name = ? AND user_id = ? AND status = 'published'"
+            "UPDATE themes SET description = ?, version = ?, svg_content = ? WHERE name = ? AND user_id = ? AND status = 'published'"
         );
         $stmt->execute([$description, $version, $svgContent, $name, $userId]);
     }
@@ -238,60 +236,17 @@ class Database {
     }
 
     /**
-     * @return array<int, array{id: int, name: string, description: string, version: string, username: string|null, email: string|null, status: string, created_at: string}>
+     * @return array<int, array{id: int, name: string, description: string, version: string, username: string|null, email: string|null, status: string, created_at: string, updated_at: string}>
      */
     public function getAllThemes(): array {
         if (!$this->pdo) {
             return [];
         }
         return $this->pdo->query(
-            'SELECT t.id, t.name, t.description, t.version, u.username, u.email, t.status, t.created_at
+            'SELECT t.id, t.name, t.description, t.version, u.username, u.email, t.status, t.created_at, t.updated_at
              FROM themes t LEFT JOIN users u ON t.user_id = u.id
-             ORDER BY t.created_at DESC'
+             ORDER BY t.updated_at DESC'
         )->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    private function migrate(): void {
-        $this->pdo->exec('CREATE TABLE IF NOT EXISTS counters (
-            name VARCHAR(64) PRIMARY KEY,
-            value BIGINT UNSIGNED NOT NULL DEFAULT 0
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-        $this->pdo->exec("INSERT IGNORE INTO counters (name, value) VALUES ('installs', 0)");
-
-        $this->pdo->exec('CREATE TABLE IF NOT EXISTS users (
-            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            email VARCHAR(255) NOT NULL UNIQUE,
-            username VARCHAR(32) NOT NULL UNIQUE,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-
-        $this->pdo->exec('CREATE TABLE IF NOT EXISTS themes (
-            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            user_id INT UNSIGNED,
-            name VARCHAR(32) NOT NULL,
-            description VARCHAR(200) NOT NULL DEFAULT \'\',
-            version VARCHAR(16) NOT NULL DEFAULT \'v1.0\',
-            svg_content MEDIUMTEXT NOT NULL,
-            status ENUM(\'pending\', \'published\') DEFAULT \'pending\',
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-
-        $columns = $this->pdo->query('SHOW COLUMNS FROM themes')->fetchAll(PDO::FETCH_COLUMN);
-        if (!in_array('description', $columns, true)) {
-            $this->pdo->exec("ALTER TABLE themes ADD COLUMN description VARCHAR(200) NOT NULL DEFAULT '' AFTER name");
-        }
-        if (!in_array('version', $columns, true)) {
-            $this->pdo->exec("ALTER TABLE themes ADD COLUMN version VARCHAR(16) NOT NULL DEFAULT 'v1.0' AFTER description");
-        }
-
-        $this->pdo->exec('CREATE TABLE IF NOT EXISTS magic_tokens (
-            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            token VARCHAR(64) NOT NULL UNIQUE,
-            email VARCHAR(255) NOT NULL,
-            username VARCHAR(32) NOT NULL,
-            theme_id INT UNSIGNED NOT NULL,
-            expires_at TIMESTAMP NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-    }
 }

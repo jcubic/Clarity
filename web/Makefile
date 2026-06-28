@@ -1,4 +1,4 @@
-.PHONY: vendor serve build clean ci lint format check
+.PHONY: vendor serve build clean ci migrate lint format check
 
 PORT ?= 8081
 
@@ -11,6 +11,9 @@ ci: icons
 	sed -i 's%web/icons%#web/icons%g' ../.gitignore
 	cat .wasmerignore >> ../.gitignore
 	cp favicon/favicon.ico .
+
+migrate:
+	pip install pymysql && python3 web/scripts/migrate.py
 
 icons: icons/.build-stamp
 
