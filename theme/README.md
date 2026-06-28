@@ -1,6 +1,6 @@
 # Clarity Vector Icon theme for GTK
 
-![Clarity Icon Theme](.github/preview.png)
+![Clarity Icon Theme](../.github/preview.png)
 
 This theme is based on AwOken and Token, lots of shapes and basic color pallete was
 taken from these icons. Few icons was taken from Raphael <http://raphaeljs.com/>.
@@ -119,5 +119,7 @@ docker run --rm -v "$(pwd)/dist:/out" clarity-packages
 ## License
 
 Copyright (c) 2010-2026 [Jakub T. Jankiewicz](https://jcubic.pl/me)
+
 Licensed under [CC-BY-SA 4.0 license](http://creativecommons.org/licenses/by-sa/4.0/)
+
 horned skull by [Juicy Fish](https://thenounproject.com/creator/admin885/) from [Noun Project](https://thenounproject.com/browse/icons/term/horned-skull/) (CC BY 3.0)
