@@ -375,8 +375,8 @@
 
     function updateSubmitBtn() {
       if (!submitBtn) return;
-      var emailOk = emailInput && emailInput.value.trim().length > 0 && emailInput.validity.valid;
-      var userOk = usernameInput && usernameInput.value.trim().length >= 2 && usernameInput.validity.valid;
+      var emailOk = !emailInput || (emailInput.value.trim().length > 0 && emailInput.validity.valid);
+      var userOk = !usernameInput || (usernameInput.value.trim().length >= 2 && usernameInput.validity.valid);
       var licenseOk = licenseCheck && licenseCheck.checked;
       submitBtn.disabled = !(emailOk && userOk && licenseOk);
     }

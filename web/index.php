@@ -6,6 +6,8 @@ use Clarity\Database;
 use Clarity\Mailer;
 use Clarity\SvgConverter;
 use Clarity\SvgValidator;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -47,6 +49,43 @@ try {
 $mailer = env('RESEND_API_KEY')
     ? Mailer::create(env('RESEND_API_KEY'), env('RESEND_EMAIL', 'Clarity <noreply@clarity.pl.eu.org>'))
     : Mailer::null();
+
+$jwtSecret = hash('sha256', env('JWT_SECRET', ''), true);
+
+/** @return array{user_id: int, email: string, username: string}|null */
+function getAuthUser(Request $request, string $secret): ?array {
+    $cookies = $request->getCookieParams();
+    $token = $cookies['clarity_auth'] ?? null;
+    if (!$token) {
+        return null;
+    }
+    try {
+        $payload = (array) JWT::decode($token, new Key($secret, 'HS256'));
+        return [
+            'user_id' => (int) $payload['uid'],
+            'email' => (string) $payload['email'],
+            'username' => (string) $payload['sub'],
+        ];
+    } catch (\Throwable $e) {
+        return null;
+    }
+}
+
+function setAuthCookie(Response $response, string $secret, int $userId, string $email, string $username): Response {
+    $payload = [
+        'sub' => $username,
+        'uid' => $userId,
+        'email' => $email,
+        'iat' => time(),
+        'exp' => time() + 30 * 86400,
+    ];
+    $jwt = JWT::encode($payload, $secret, 'HS256');
+    $secure = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+    $cookie = 'clarity_auth=' . $jwt
+        . '; Path=/; HttpOnly; SameSite=Lax; Max-Age=' . (30 * 86400)
+        . ($secure ? '; Secure' : '');
+    return $response->withHeader('Set-Cookie', $cookie);
+}
 
 $mime_types = [
     'css' => 'text/css',
@@ -123,9 +162,12 @@ $app->get('/', function (Request $request, Response $response) use ($icons, $var
     ]);
 });
 
-$app->get('/upload', function (Request $request, Response $response) {
+$app->get('/upload', function (Request $request, Response $response) use ($jwtSecret) {
     $view = Twig::fromRequest($request);
-    return $view->render($response, 'pages/upload.html.twig');
+    $user = getAuthUser($request, $jwtSecret);
+    return $view->render($response, 'pages/upload.html.twig', [
+        'auth_user' => $user,
+    ]);
 });
 
 $app->post('/api/validate', function (Request $request, Response $response) {
@@ -157,10 +199,11 @@ $app->get('/api/check-name', function (Request $request, Response $response) use
     return $response->withHeader('Content-Type', 'application/json');
 });
 
-$app->post('/upload', function (Request $request, Response $response) use ($db, $mailer) {
+$app->post('/upload', function (Request $request, Response $response) use ($db, $mailer, $jwtSecret) {
     $view = Twig::fromRequest($request);
     $data = $request->getParsedBody();
     $files = $request->getUploadedFiles();
+    $authUser = getAuthUser($request, $jwtSecret);
 
     if (!empty($data['confirm_email'] ?? '')) {
         return $view->render($response, 'pages/upload-sent.html.twig', [
@@ -168,35 +211,45 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
         ]);
     }
 
-    $email = trim($data['email'] ?? '');
-    $username = trim($data['username'] ?? '');
     $themeName = trim($data['theme_name'] ?? '');
     $description = trim($data['theme_description'] ?? '');
     $version = trim($data['theme_version'] ?? '') ?: 'v1.0';
     $svg = $files['svg_file'] ?? null;
 
+    if ($authUser) {
+        $email = $authUser['email'];
+        $username = $authUser['username'];
+    } else {
+        $email = trim($data['email'] ?? '');
+        $username = trim($data['username'] ?? '');
+    }
+
     if (!$svg || $svg->getError() !== UPLOAD_ERR_OK || !$email || !$username || !$themeName) {
         return $view->render($response, 'pages/upload.html.twig', [
             'error' => 'All fields are required.',
+            'auth_user' => $authUser,
         ]);
     }
 
     if (!preg_match('/^[A-Za-z0-9_\-]{2,32}$/', $themeName)) {
         return $view->render($response, 'pages/upload.html.twig', [
             'error' => 'Invalid theme name. Use 2–32 characters: letters, numbers, hyphens, underscores.',
+            'auth_user' => $authUser,
         ]);
     }
 
-    if (!preg_match('/^[A-Za-z0-9_\-]{2,32}$/', $username)) {
-        return $view->render($response, 'pages/upload.html.twig', [
-            'error' => 'Invalid username. Use 2–32 characters: letters, numbers, hyphens, underscores.',
-        ]);
-    }
+    if (!$authUser) {
+        if (!preg_match('/^[A-Za-z0-9_\-]{2,32}$/', $username)) {
+            return $view->render($response, 'pages/upload.html.twig', [
+                'error' => 'Invalid username. Use 2–32 characters: letters, numbers, hyphens, underscores.',
+            ]);
+        }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        return $view->render($response, 'pages/upload.html.twig', [
-            'error' => 'Invalid email address.',
-        ]);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return $view->render($response, 'pages/upload.html.twig', [
+                'error' => 'Invalid email address.',
+            ]);
+        }
     }
 
     $content = (string) $svg->getStream();
@@ -207,10 +260,18 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
     if (!empty($failed)) {
         return $view->render($response, 'pages/upload.html.twig', [
             'error' => 'SVG validation failed. Please fix the issues and try again.',
+            'auth_user' => $authUser,
         ]);
     }
 
-    if ($db->isConnected()) {
+    if (!$db->isConnected()) {
+        return $view->render($response, 'pages/upload.html.twig', [
+            'error' => 'Database unavailable.',
+            'auth_user' => $authUser,
+        ]);
+    }
+
+    if (!$authUser) {
         $existingUsername = $db->getUsernameByEmail($email);
         if ($existingUsername !== null && $existingUsername !== $username) {
             return $view->render($response, 'pages/upload.html.twig', [
@@ -223,42 +284,63 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
                 'error' => 'Username "@' . htmlspecialchars($username) . '" is already taken.',
             ]);
         }
+    }
 
-        $ownerEmail = $db->getThemeOwnerEmail($themeName);
-        if ($ownerEmail !== null && $ownerEmail !== $email) {
-            return $view->render($response, 'pages/upload.html.twig', [
-                'error' => 'Theme name "' . htmlspecialchars($themeName) . '" is already taken by another user.',
-            ]);
+    $ownerEmail = $db->getThemeOwnerEmail($themeName);
+    if ($ownerEmail !== null && $ownerEmail !== $email) {
+        return $view->render($response, 'pages/upload.html.twig', [
+            'error' => 'Theme name "' . htmlspecialchars($themeName) . '" is already taken by another user.',
+            'auth_user' => $authUser,
+        ]);
+    }
+
+    $converter = new SvgConverter();
+    $converted = $converter->convert($content);
+
+    if ($authUser) {
+        $userId = $authUser['user_id'];
+        $themeId = $db->createTheme($themeName, $description, $version, $converted);
+
+        if ($ownerEmail !== null && $ownerEmail === $email) {
+            $pending = $db->getThemeById($themeId);
+            if ($pending !== null) {
+                $db->replacePublishedTheme($themeName, $userId, $pending['description'], $pending['version'], $pending['svg_content']);
+            }
+            $db->deleteTheme($themeId);
+        } else {
+            $db->publishTheme($themeId, $userId);
         }
 
-        $converter = new SvgConverter();
-        $converted = $converter->convert($content);
+        return $view->render($response, 'pages/upload-confirmed.html.twig', [
+            'theme_name' => $themeName,
+            'username' => $username,
+        ]);
+    }
 
-        $themeId = $db->createTheme($themeName, $description, $version, $converted);
-        $token = bin2hex(random_bytes(32));
-        $db->createMagicToken($token, $email, $username, $themeId);
+    $themeId = $db->createTheme($themeName, $description, $version, $converted);
+    $token = bin2hex(random_bytes(32));
+    $db->createMagicToken($token, $email, $username, $themeId);
 
-        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-        $baseUrl = $scheme . '://' . $host;
-        $verifyUrl = $baseUrl . '/verify?token=' . urlencode($token);
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $baseUrl = $scheme . '://' . $host;
+    $verifyUrl = $baseUrl . '/verify?token=' . urlencode($token);
 
-        if ($mailer->isConnected()) {
-            try {
-                $mailer->sendUploadLink($email, $token, $themeName, $baseUrl);
-            } catch (\Throwable $e) {
-                error_log('Mailer error: ' . $e->getMessage());
-            }
+    if ($mailer->isConnected()) {
+        try {
+            $mailer->sendUploadLink($email, $token, $themeName, $baseUrl);
+        } catch (\Throwable $e) {
+            error_log('Mailer error: ' . $e->getMessage());
         }
     }
 
     return $view->render($response, 'pages/upload-sent.html.twig', [
         'email' => $email,
-        'verify_url' => !$mailer->isConnected() ? ($verifyUrl ?? null) : null,
+        'verify_url' => !$mailer->isConnected() ? $verifyUrl : null,
     ]);
 });
 
-$app->get('/verify', function (Request $request, Response $response) use ($db) {
+$app->get('/verify', function (Request $request, Response $response) use ($db, $jwtSecret) {
     $view = Twig::fromRequest($request);
     $params = $request->getQueryParams();
     $token = $params['token'] ?? '';
@@ -289,6 +371,8 @@ $app->get('/verify', function (Request $request, Response $response) use ($db) {
     } else {
         $db->publishTheme($data['theme_id'], $userId);
     }
+
+    $response = setAuthCookie($response, $jwtSecret, $userId, $data['email'], $data['username']);
 
     return $view->render($response, 'pages/upload-confirmed.html.twig', [
         'theme_name' => $themeName,
@@ -351,6 +435,16 @@ $app->get('/api/icon/{user}/{theme}/{icon}', function (Request $request, Respons
         ->withHeader('Content-Type', 'image/svg+xml')
         ->withHeader('ETag', $etag)
         ->withHeader('Cache-Control', 'public, max-age=3600');
+});
+
+$app->get('/logout', function (Request $request, Response $response) {
+    $secure = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+    $cookie = 'clarity_auth=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0'
+        . ($secure ? '; Secure' : '');
+    return $response
+        ->withHeader('Set-Cookie', $cookie)
+        ->withHeader('Location', '/')
+        ->withStatus(302);
 });
 
 $app->get('/install', function (Request $request, Response $response) use ($db) {

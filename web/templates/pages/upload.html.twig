@@ -123,6 +123,11 @@
       <fieldset class="wizard-step" data-wizard-step="3">
         <legend class="wizard-step-legend"><span class="wizard-step-num">03</span> Your account</legend>
 
+        {% if auth_user is defined and auth_user %}
+        <div class="form-banner">
+          Signed in as <strong>@{{ auth_user.username }}</strong> ({{ auth_user.email }}). <a href="/logout">Sign out</a>
+        </div>
+        {% else %}
         <div class="form-row">
           <div class="form-field">
             <label for="email" class="form-label">Email</label>
@@ -143,6 +148,7 @@
             <span class="form-error" id="username-error"></span>
           </div>
         </div>
+        {% endif %}
 
         <div class="form-field">
           <label class="form-checkbox">
@@ -153,7 +159,7 @@
 
         <div class="wizard-nav">
           <button type="button" class="btn btn--ghost wizard-prev js-only" data-wizard-prev="2">Back</button>
-          <button type="submit" class="btn btn--accent">Send magic link</button>
+          <button type="submit" class="btn btn--accent">{% if auth_user is defined and auth_user %}Publish theme{% else %}Send magic link{% endif %}</button>
         </div>
       </fieldset>
     </form>
