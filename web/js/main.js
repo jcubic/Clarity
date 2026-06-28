@@ -65,6 +65,7 @@
     });
 
     activate(tabs[0].dataset.tab);
+    root.classList.add('variant-tabs-enabled');
 
     // Sub-toggle within variant groups
     groups.forEach(function (group) {

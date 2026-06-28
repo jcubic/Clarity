@@ -18,6 +18,18 @@
 
 {% from _self import panel %}
 
+<style>
+ .variant-tabs:not(.variant-tabs-enabled) .variant-group ~ .variant-group {
+     display: none;
+ }
+</style>
+<noscript>
+  <style>
+   .variant-tabs:not(.variant-tabs-enabled) .variant-group ~ .variant-group {
+       display: block !important;
+   }
+  </style>
+</noscript>
 <section class="variants" id="variants" aria-labelledby="variants-heading">
   <div class="container">
     <header class="section-header">
