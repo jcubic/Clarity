@@ -25,7 +25,7 @@
   {
     "id": "lux_caeruleus",
     "name": "Lux Caeruleus",
-    "latin": "light azure",
+    "latin": "glossy azure",
     "oklch": "82% 0.10 235",
     "light": true,
     "parent": "caeruleus",
@@ -50,7 +50,7 @@
   {
     "id": "lux_violaceus",
     "name": "Lux Violaceus",
-    "latin": "light violet",
+    "latin": "glossy violet",
     "oklch": "78% 0.12 340",
     "light": false,
     "parent": "violaceus",
