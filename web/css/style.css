@@ -223,7 +223,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .gallery-card:focus-visible { outline: 2px solid var(--card-color); outline-offset: 3px; }
 .gallery-cover { position: relative; aspect-ratio: 16 / 9; padding: 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; place-items: center; background: var(--bg); border-bottom: 1px solid var(--border); overflow: hidden; isolation: isolate; }
 .gallery-cover::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--card-color) 22%, transparent) 0%, transparent 70%); z-index: -1; }
-.gallery-cover svg, .gallery-cover img { width: 100%; height: 100%; aspect-ratio: 1; color: var(--card-color); }
+.gallery-cover svg, .gallery-cover img { width: 100%; height: 100%; max-height: 48px; aspect-ratio: 1; object-fit: contain; color: var(--card-color); }
 .gallery-body { padding: 16px 18px 14px; }
 .gallery-name { display: flex; align-items: center; gap: 10px; margin: 0 0 4px; font: 600 16px/1.3 var(--font-sans); color: var(--fg); letter-spacing: -0.01em; }
 .gallery-name::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--card-color); box-shadow: 0 0 10px var(--card-color); }
