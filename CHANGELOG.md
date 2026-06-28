@@ -2,6 +2,11 @@
 
 All notable changes to the Clarity Icon Theme are documented in this file.
 
+## 1.0.0-beta (2026-06-29)
+* `clarity` manager
+* fix microphone icon
+* change build system
+
 ## 0.9.0 (2026-05-30)
 * Add Helium browser icon
 * Add Diablo icon
