@@ -143,7 +143,6 @@ emblem-nowrite.svg scalable/emblems/emblem-unreadable.svg
 emblem-personal.svg scalable/emblems/emblem-readonly.svg
 ../mimetypes/package-x-generic.svg scalable/emblems/emblem-package.svg
 ../apps/download.svg scalable/emblems/emblem-downloads.svg
-../devices/network-wired.svg scalable/emblems/emblem-shared.svg
 ../distributor-logos/ubuntu.svg scalable/emblems/emblem-ubuntu.svg
 ../apps/gnome-monitor.svg scalable/emblems/emblem-plan.svg
 ../devices/printer.svg scalable/emblems/emblem-print.svg
@@ -1183,7 +1182,6 @@ gcolor.svg scalable/apps/gcolor2.svg
 miro.svg scalable/apps/miro-72x72.svg
 gnome-window-manager.svg scalable/apps/preferences-system-windows.svg
 date.svg scalable/apps/stock_calendar.svg
-../actions/gtk-refresh.svg scalable/apps/gnome-session-reboot.svg
 config-language.svg scalable/apps/locale.svg
 ../devices/audio-input-microphone.svg scalable/apps/gnome-sound-recorder.svg
 multimedia-volume-control.svg scalable/apps/gnome-volume-control.svg
@@ -1650,7 +1648,6 @@ email.svg scalable/apps/internet-mail.svg
 terminal.svg scalable/apps/lxterminal.svg
 ../actions/insert-object.svg scalable/apps/gnome-applets.svg
 apport-gtk2.svg scalable/apps/apport.svg
-desktop-effects.svg scalable/apps/wmtweaks.svg
 session-properties.svg scalable/apps/preferences-system-session.svg
 ../distributor-logos/gnome.svg scalable/apps/gnome-logo-icon.svg
 avidemux.svg scalable/apps/kino.svg
