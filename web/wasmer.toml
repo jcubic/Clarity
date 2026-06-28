@@ -1,0 +1,18 @@
+[package]
+name = "jcubic/clarity-icons"
+version = "0.1.0"
+description = "Clarity icon theme website"
+
+[dependencies]
+"php/php" = "8.3"
+
+[fs]
+"/app" = "."
+
+[[command]]
+name = "run"
+module = "php/php:php"
+runner = "wasi"
+
+[command.annotations.wasi]
+main-args = ["-t", "/app", "-S", "localhost:8080"]

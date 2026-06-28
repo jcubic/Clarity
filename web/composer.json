@@ -1,0 +1,33 @@
+{
+    "name": "jcubic/clarity-web",
+    "description": "Clarity icon theme website",
+    "type": "project",
+    "license": "CC-BY-SA-4.0",
+    "authors": [
+        {
+            "name": "Jakub T. Jankiewicz",
+            "email": "jcubic@jcubic.pl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Clarity\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.8",
+        "slim/twig-view": "^3.4",
+        "twig/twig": "^3.27",
+        "vlucas/phpdotenv": "^5.6",
+        "resend/resend-php": "^1.4",
+        "firebase/php-jwt": "^7.1",
+        "wikizeit/html-minifier": "^0.1.0",
+        "z4kn4fein/php-semver": "^3.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.2",
+        "php-cs-fixer/shim": "^3.95"
+    }
+}

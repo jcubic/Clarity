@@ -1,172 +1,78 @@
-# Clarity Vector Icon theme for GTK
+# Clarity — Vector Icon Theme for GTK
 
-![Clarity Icon Theme](.github/preview.png)
+![Clarity Icon Theme](.github/splash-screen.svg)
 
-This theme is based on AwOken and Token, lots of shapes and basic color pallete was
-taken from these icons. Few icons was taken from Raphael <http://raphaeljs.com/>.
-I use some shapes from OpenClipart <http://www.openclipart.org>, Wikipedia, Humanity,
-AnyColorYouLike Themes and Emoji One icons. The rest of icons I design myself
-by simplifying existed icons or logos. I use mostly two fonts: Impact and Cheboygan.
+Clean monoshape icons in nine color themes, plus community themes uploaded by users.
+Includes a CLI manager for switching variants, installing community themes, and building icons.
 
-Icons are mostly monoshape, but some icons have additional elements. There are nine
-predefined color themes (in five colors) but you can also crete your own.
+**Website:** [clarity.pl.eu.org](https://clarity.pl.eu.org)
+**Repo:** [jcubic/Clarity](https://github.com/jcubic/Clarity)
 
-Available themes:
-
-| Name           | Description             |
-|----------------|-------------------------|
-| violaceus      | violet/pink gradient    |
-| lux_violaceus  | glossy variant          |
-| canus          | grey gradient (default) |
-| dark_canus     | dark grey gradient      |
-| caeruleus      | blue gradient           |
-| lux_caeruleus  | glossy variant          |
-| viridis        | green gradient          |
-| luteus         | orange gradient         |
-| albus          | white solid             |
-
-## INSTALLATION
-
-### Quick Install (recommended)
+## Quick Install
 
 ```bash
-curl -sL https://raw.githubusercontent.com/jcubic/Clarity/master/install.sh | bash
+curl -sL https://clarity.pl.eu.org/install | bash
 ```
 
-This installs Clarity to `~/.local/share/icons/Clarity` (no root required).
-
-### Update
-
-Re-run the same command to update to the latest version:
+Then pick a variant and build your icons:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/jcubic/Clarity/master/install.sh | bash
+clarity use caeruleus
 ```
 
-You can also check if an update is available without installing:
+## Usage
 
 ```bash
-curl -sL https://raw.githubusercontent.com/jcubic/Clarity/master/install.sh | bash -s -- --check
+clarity use <variant>             # switch to a built-in variant
+clarity list                      # show available variants and installed themes
+clarity install @user/theme       # download a community theme from the gallery
+clarity use @user/theme           # activate a community theme
+clarity update                    # update CLI, base theme, and community themes
+clarity create ./template.svg     # create a local theme from an SVG file
+clarity remove @user/theme        # remove a community theme
+clarity uninstall                 # remove Clarity completely
 ```
 
-### Uninstall
-
-```bash
-curl -sL https://raw.githubusercontent.com/jcubic/Clarity/master/install.sh | bash -s -- --uninstall
-```
-
-### Manual Install
-
-Copy the Clarity folder to `~/.icons` or `/usr/share/icons` (as root):
-
-```bash
-cp -r Clarity ~/.local/share/icons/
-```
-
-### Build from Source
+## Install from Source
 
 ```bash
 git clone https://github.com/jcubic/Clarity.git
-cd Clarity
-./configure && make && sudo make install
+cd Clarity/theme
+make install
 ```
 
-Instead of `make` (which builds the default grey theme), you can use:
+## Install from Packages
+
+Download `.deb` or `.rpm` from the [releases](https://github.com/jcubic/Clarity/releases) page:
 
 ```bash
-make <theme>
+# Debian/Ubuntu
+sudo dpkg -i clarity-icons_*.deb
+
+# Fedora/RHEL
+sudo rpm -i clarity-icons-*.rpm
 ```
 
-## CHANGING COLORS OF ICONS
+## Repository Structure
 
-To change color theme of icons:
+This is a monorepo with two projects:
 
-1. open folder ~/.icons/Clarity
-2. double click change-theme
-3. select the theme and click ok
+| Directory | Description | Docs |
+|-----------|-------------|------|
+| [`theme/`](theme/) | CLI manager, icon sources, templates, build system | [theme/README.md](theme/README.md) |
+| [`web/`](web/) | PHP website — gallery, upload wizard, icon API | [web/README.md](web/README.md) |
 
-If you install this theme from deb or PPA
+## Contributing
 
-```bash
-gksu change-theme
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to create and submit new icons.
 
-To run the script you must have installed zenity
+You can also create and share your own theme template — upload it to the
+[gallery](https://clarity.pl.eu.org/#gallery) from the website or use the CLI.
 
-You can also run from terminal:
+## License
 
-```bash
-make <name of the theme>
-```
+Copyright (c) 2010-2026 [Jakub T. Jankiewicz](https://jakub.jankiewicz.org/)
 
-## CHANGING DISTRIBUTOR LOGO
+Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
-```bash
-make fedora
-```
-
-available logos are:
-* debian
-* fedora
-* gentoo
-* gnome
-* kubuntu
-* madriva
-* mint
-* suse
-* ubuntu
-* xfce
-* xubuntu 
-
-you must run this command from `~/.icons` folder or `/usr/share/icons/Clarity`
-if you install from deb or PPA.
-
-## FURTHER CUSTOMIZATION
-
-Every icon is made from a single shape and a template so it's easy to customize.
-You can create custom theme by creating new file `src/template_<your_name>.svg`
-see default templates to see how they are build. Basicly all templates must have
-`{{PATH}}` and `{{TITLE}}` marks which will be replaced by data from the "source"
-of an icon. You can create theme in Inkscape but after saving you must put {{PATH}}
-marker in d atrribute of the shape (I don't tested but it sould work). You 
-can also edit template by hand see SVG Specification <http://www.w3.org/TR/SVG/>
-to see what transformations and effects you can add.
-
-If you done editing your custom template double click `change-theme` and select
-`<your_name>` to create your custom icons.
-
-If you want to use make you must run `./configure` first
-
-## OTHER CONTRIBUTORS
-
-* Enneric Valmorin
-* Chris Lenk
-
-## BUILDING PACKAGES
-
-On Ubuntu deb packages
-
-```bash
-sudo apt-get install devscripts build-essential lintian debhelper librsvg2-bin
-# this will create debian pacakge
-make deb
-# this will install source package for dput
-make source-deb
-```
-
-You will also need GPG to sign the package
-
-Creating a tarball:
-
-```
-make tar.gz
-```
-
-The file will have the same name as the directory and located one level up.
-
-
-## LICENSE
-
-Copyright (c) 2010-2025 [Jakub T. Jankiewicz](https://jcubic.pl/me)<br/>
-Licensed under [CC-BY-SA 4.0 license](http://creativecommons.org/licenses/by-sa/4.0/)<br/>
 horned skull by [Juicy Fish](https://thenounproject.com/creator/admin885/) from [Noun Project](https://thenounproject.com/browse/icons/term/horned-skull/) (CC BY 3.0)

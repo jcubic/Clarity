@@ -1,0 +1,70 @@
+{% macro panel(variant, icons) %}
+<section class="variant-panel variant-panel--{{ variant.id }}" style="--variant-color: oklch({{ variant.oklch }})">
+  <header class="variant-panel-head">
+    <h3 class="variant-panel-name"><span class="variant-dot" aria-hidden="true"></span>{{ variant.name }}</h3>
+    <p class="variant-panel-latin">{{ variant.latin }}</p>
+    <p class="variant-panel-token"><span class="key">oklch</span>{{ variant.oklch }}</p>
+    <button class="bg-toggle" type="button" aria-label="Toggle light/dark background" data-light="{{ variant.light ? 'true' : 'false' }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bg-toggle"/></svg>
+    </button>
+  </header>
+  <ul class="icon-grid{% if variant.light %} icon-grid--light{% endif %}">
+    {% for icon in icons %}
+    <li class="icon-tile"><img src="/icons/{{ variant.id }}/{{ icon.name }}.svg" alt="Clarity icon for {{ icon.name }}" width="128" height="128" /><span class="icon-tile-name">{{ icon.name }}</span></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endmacro %}
+
+{% from _self import panel %}
+
+<style>
+ .variant-tabs:not(.variant-tabs-enabled) .variant-group ~ .variant-group {
+     display: none;
+ }
+</style>
+<noscript>
+  <style>
+   .variant-tabs:not(.variant-tabs-enabled) .variant-group ~ .variant-group {
+       display: block !important;
+   }
+  </style>
+</noscript>
+<section class="variants" id="variants" aria-labelledby="variants-heading">
+  <div class="container">
+    <header class="section-header">
+      <p class="section-eyebrow">// 02 — {{ stats.variants }} flavors</p>
+      <h2 id="variants-heading" class="section-title">Pick your accent. Or wear all {{ stats.variants }}.</h2>
+      <p class="section-lead">Every icon ships in {{ stats.variants }} carefully tuned palettes — named after their Latin colors. Switch with a single click; no rebuild, no recompile.</p>
+    </header>
+
+    <div class="variant-tabs" id="variant-tabs">
+      <div class="variant-tabbar" role="tablist" aria-label="Color variants">
+        {% for variant in variants %}
+        <button class="variant-tab{% if loop.first %} is-active{% endif %}" type="button" role="tab" data-tab="{{ variant.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" aria-controls="vp-{{ variant.id }}" id="vt-{{ variant.id }}" style="--variant-color: oklch({{ variant.oklch }})"><span class="variant-dot" aria-hidden="true"></span><span>{{ variant.name }}</span></button>
+        {% endfor %}
+      </div>
+
+      {% for variant in variants %}
+      <div class="variant-group" id="vp-{{ variant.id }}" data-tab-panel="{{ variant.id }}" role="tabpanel" aria-labelledby="vt-{{ variant.id }}">
+        {% if variant.subs is defined and variant.subs|length > 0 %}
+        <div class="variant-switch" role="radiogroup" aria-label="{{ variant.name }} style">
+          <button class="variant-switch-btn is-active" type="button" role="radio" aria-checked="true" data-switch="{{ variant.id }}">Standard</button>
+          {% for sub in variant.subs %}
+          <button class="variant-switch-btn" type="button" role="radio" aria-checked="false" data-switch="{{ sub.id }}">{{ sub.toggle }}</button>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {{ panel(variant, icons) }}
+
+        {% if variant.subs is defined %}
+        {% for sub in variant.subs %}
+        {{ panel(sub, icons) }}
+        {% endfor %}
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

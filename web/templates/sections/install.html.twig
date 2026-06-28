@@ -1,0 +1,52 @@
+<section class="install" id="install" aria-labelledby="install-heading">
+  <div class="container">
+    <header class="section-header">
+      <p class="section-eyebrow">// 01 — Install</p>
+      <h2 id="install-heading" class="section-title">One command bootstraps everything.</h2>
+      <p class="section-lead">The curl line installs <code>clarity</code> — the manager that builds, installs, and switches icon themes for you. After that, every Clarity variant and every community theme is one command away.</p>
+    </header>
+
+    <div class="install-grid">
+      <div>
+        <ol class="install-steps">
+          <li class="install-step">
+            <span class="install-step-num">01</span>
+            <div><strong>Install the manager</strong><span>One <code>curl | bash</code> drops the <code>clarity</code> binary into <code>~/.local/bin</code>. Works on any GTK-based desktop — GNOME, Cinnamon, MATE, XFCE, Budgie, elementary.</span></div>
+          </li>
+          <li class="install-step">
+            <span class="install-step-num">02</span>
+            <div><strong>Install a theme</strong><span><code>clarity install @user/theme</code> fetches and builds any community theme into <code>~/.local/share/icons</code>. The nine core Clarity variants come pre-installed.</span></div>
+          </li>
+          <li class="install-step">
+            <span class="install-step-num">03</span>
+            <div><strong>Switch with one word</strong><span><code>clarity use &lt;theme&gt;</code> activates a theme and refreshes the icon cache. No logout, no settings panel.</span></div>
+          </li>
+        </ol>
+      </div>
+
+      <figure class="terminal" aria-label="Install command in a terminal window">
+        <div class="terminal-bar">
+          <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="terminal-title">kuba@desktop: ~</span>
+          <button class="terminal-copy" type="button" data-copy-target="#install-cmd" aria-label="Copy install command to clipboard">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+            <span class="terminal-copy-label">Copy</span>
+          </button>
+        </div>
+<pre class="terminal-body" aria-label="Shell session">
+<span class="term-comment"># 1. Bootstrap the clarity manager</span>
+<span class="term-prompt">$</span> <span class="term-cmd" id="install-cmd">curl -sL https://clarity.pl.eu.org/install | bash</span>
+
+<span class="term-comment"># 2. Switch to a built-in variant</span>
+<span class="term-prompt">$</span> <span class="term-cmd">clarity use caeruleus</span>
+
+<span class="term-comment"># 3. Or grab a community theme by @user/name</span>
+<span class="term-prompt">$</span> <span class="term-cmd">clarity install @bob/cyberpunk</span>
+
+<span class="term-prompt">$</span> <span class="term-cursor" aria-hidden="true"></span>
+</pre>
+
+      </figure>
+    </div>
+  </div>
+</section>

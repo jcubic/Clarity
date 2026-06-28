@@ -1,0 +1,33 @@
+<section class="contribute" id="contribute" aria-labelledby="contribute-heading">
+  <div class="container contribute-inner">
+    <div>
+      <header class="section-header" style="margin-bottom: 0;">
+        <p class="section-eyebrow">// 05 — Open source</p>
+        <h2 id="contribute-heading" class="section-title">PRs welcome. Issues even more so.</h2>
+        <p class="section-lead">Spotted a missing mime type? Want to add a sixth variant? Open an issue or send a pull request — the source is on GitHub.</p>
+      </header>
+      <div class="contribute-actions">
+        <a class="button button--primary" href="https://github.com/jcubic/Clarity" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github"/></svg>
+          View on GitHub
+        </a>
+        <a class="button button--ghost" href="https://github.com/jcubic/Clarity/issues" rel="noopener">Report an issue</a>
+      </div>
+    </div>
+
+    <aside class="contribute-card" aria-label="Project metadata">
+      <div class="repo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github"/></svg>
+        <strong>jcubic / Clarity</strong>
+      </div>
+      <dl>
+        <dt>type</dt><dd>GTK+ icon theme</dd>
+        <dt>install</dt><dd><code>~/.icons/Clarity</code></dd>
+        <dt>variants</dt><dd>{{ stats.variants }}</dd>
+        <dt>icons</dt><dd>{{ stats.unique_icons|number_format }} unique · {{ stats.with_symlinks|number_format }} total</dd>
+        <dt>installs</dt><dd>{{ installs|number_format }}</dd>
+        <dt>issues</dt><dd><a href="https://github.com/jcubic/Clarity/issues">github.com/jcubic/Clarity/issues</a></dd>
+      </dl>
+    </aside>
+  </div>
+</section>

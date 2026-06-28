@@ -1,0 +1,197 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Upload Your Theme — Clarity{% endblock %}
+{% block description %}Upload a custom SVG template and share it with the Clarity community.{% endblock %}
+
+{% block content %}
+<section class="upload" aria-labelledby="upload-heading">
+  <div class="container upload-container">
+    <header class="section-header">
+      <p class="section-eyebrow">// Upload</p>
+      <h1 id="upload-heading" class="section-title">Share your theme</h1>
+      <p class="section-lead">Upload an SVG template, pass validation, and publish to the gallery.</p>
+    </header>
+
+    {% if error is defined and error %}
+    <div class="form-banner form-banner--error">{{ error }}</div>
+    {% endif %}
+
+    <noscript>
+      <div class="no-js-notice">
+        ⚠ This form works better with JavaScript enabled — you get a step-by-step wizard, live SVG validation, and a preview of your icons before publishing.
+      </div>
+    </noscript>
+
+    <div class="wizard-stepper js-only" aria-hidden="true">
+      <ol class="stepper">
+        <li class="stepper-step is-active" data-step="1"><span class="stepper-num">1</span> Upload</li>
+        <li class="stepper-step" data-step="2"><span class="stepper-num">2</span> Validate</li>
+        <li class="stepper-step" data-step="3"><span class="stepper-num">3</span> Preview</li>
+        <li class="stepper-step" data-step="4"><span class="stepper-num">4</span> Account</li>
+      </ol>
+    </div>
+
+    <form class="wizard-form" method="post" action="/upload" enctype="multipart/form-data">
+      {# ── Step 1: Upload ── #}
+      <fieldset class="wizard-step" data-wizard-step="1">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">01</span> Upload your SVG</legend>
+
+        <div class="dropzone" id="dropzone">
+          <input type="file" name="svg_file" id="svg-file" accept=".svg" required class="dropzone-input" />
+          <label for="svg-file" class="dropzone-label">
+            <svg class="dropzone-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-upload"/></svg>
+            <span class="dropzone-text">Drag &amp; drop an <strong>.svg</strong> file here, or <span class="dropzone-link">click to browse</span></span>
+            <span class="dropzone-hint">SVG only · max 256 KB</span>
+          </label>
+        </div>
+        <div class="dropzone-file" hidden>
+          <svg class="dropzone-file-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-doc"/></svg>
+          <span class="dropzone-filename"></span>
+          <span class="dropzone-filesize"></span>
+          <button type="button" class="dropzone-remove" aria-label="Remove file">&times;</button>
+        </div>
+
+        {# Honeypot #}
+        <div class="form-field" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;overflow:hidden;tabindex:-1">
+          <label for="confirm-email">Confirm your email</label>
+          <input type="email" name="confirm_email" id="confirm-email" autocomplete="off" tabindex="-1" />
+        </div>
+
+        <div class="wizard-nav js-only">
+          <span></span>
+          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="2" disabled>Next</button>
+        </div>
+      </fieldset>
+
+      {# ── Step 2: Validate ── #}
+      <fieldset class="wizard-step" data-wizard-step="2">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">02</span> Validation</legend>
+
+        <div class="validation-status">
+          <span class="validation-badge" data-status="waiting">Waiting for upload</span>
+        </div>
+
+        <ol class="validation-checks">
+          <li class="check-item" data-check="filesize"><span class="check-icon"></span> File size under 256 KB</li>
+          <li class="check-item" data-check="xmlns"><span class="check-icon"></span> Valid SVG namespace</li>
+          <li class="check-item" data-check="canvas"><span class="check-icon"></span> Canvas is 128×128</li>
+          <li class="check-item" data-check="placeholder"><span class="check-icon"></span> Contains <code>&lt;circle id="icon-placeholder"&gt;</code></li>
+          <li class="check-item" data-check="vector"><span class="check-icon"></span> Vector only (no raster images)</li>
+          <li class="check-item" data-check="security"><span class="check-icon"></span> No scripts or external references</li>
+          <li class="check-item" data-check="ids"><span class="check-icon"></span> No duplicate element IDs</li>
+        </ol>
+
+        <div class="wizard-nav js-only">
+          <button type="button" class="btn btn--ghost wizard-prev" data-wizard-prev="1">Back</button>
+          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="3" disabled>Next</button>
+        </div>
+      </fieldset>
+
+      {# ── Step 3: Preview & Details ── #}
+      <fieldset class="wizard-step" data-wizard-step="3">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">03</span> Preview &amp; details</legend>
+
+        <p class="wizard-step-intro">Your template applied to real icons. Check for visual issues, then fill in the details below.</p>
+
+        <div class="upload-preview-grid" id="upload-preview-grid"></div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="theme-name" class="form-label">Theme name</label>
+            <input type="text" name="theme_name" id="theme-name" required pattern="[A-Za-z0-9_\-]{2,32}" minlength="2" maxlength="32" placeholder="e.g. cyberpunk" class="form-input"{% if prefill_theme %} value="{{ prefill_theme }}" readonly{% endif %} />
+            <span class="form-hint">2–32 characters, letters, numbers, hyphens, underscores</span>
+            <span class="form-error" id="theme-name-error"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="theme-description" class="form-label">Description</label>
+            <input type="text" name="theme_description" id="theme-description" required maxlength="200" placeholder="e.g. Neon pink and electric cyan for a synthwave look" class="form-input"{% if prefill_description %} value="{{ prefill_description }}"{% endif %} />
+            <span class="form-hint">Short tagline for the gallery — max 200 characters</span>
+            <span class="form-error" id="theme-description-error"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="theme-version" class="form-label">Version</label>
+            <input type="text" name="theme_version" id="theme-version" pattern="v?[0-9]+(\.[0-9]+){0,2}" maxlength="16" placeholder="v1.0" class="form-input"{% if prefill_version %} value="{{ prefill_version }}"{% endif %} />
+            <span class="form-hint">{% if prefill_version %}Must be higher than {{ prefill_version }}{% else %}Optional — defaults to v1.0{% endif %}</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-checkbox">
+              <input type="checkbox" name="is_dark" value="1"{% if prefill_mode == 'light' %}{% else %} checked{% endif %} />
+              <span>Dark theme — icons are designed for a dark background</span>
+            </label>
+            <span class="form-hint">Uncheck if your template uses dark icons on a light background</span>
+          </div>
+        </div>
+
+        <div class="overwrite-warning" id="overwrite-warning" hidden>
+          <label class="form-checkbox">
+            <input type="checkbox" name="overwrite" id="overwrite" />
+            <span>This theme already exists. Check to overwrite it with the new upload.</span>
+          </label>
+        </div>
+
+        <div class="wizard-nav js-only">
+          <button type="button" class="btn btn--ghost wizard-prev" data-wizard-prev="2">Back</button>
+          <button type="button" class="btn btn--accent wizard-next" data-wizard-next="4" disabled>Next</button>
+        </div>
+      </fieldset>
+
+      {# ── Step 4: Account ── #}
+      <fieldset class="wizard-step" data-wizard-step="4">
+        <legend class="wizard-step-legend"><span class="wizard-step-num">04</span> Your account</legend>
+
+        {% if auth_user is defined and auth_user %}
+        <div class="form-banner">
+          Signed in as <strong>@{{ auth_user.username }}</strong> ({{ auth_user.email }}). <a href="/logout">Sign out</a>
+        </div>
+        {% else %}
+        <div class="form-row">
+          <div class="form-field">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" required placeholder="you@example.com" class="form-input" />
+            <span class="form-hint">Used only for sign-in — we send a magic link, no passwords.</span>
+            <span class="form-error" id="email-error"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="username" class="form-label">Username</label>
+            <div class="form-input-prefix">
+              <span class="form-prefix">@</span>
+              <input type="text" name="username" id="username" required pattern="[A-Za-z0-9_\-]{2,32}" minlength="2" maxlength="32" placeholder="yourname" class="form-input"{% if prefill_username %} value="{{ prefill_username }}" readonly{% endif %} />
+            </div>
+            <span class="form-hint">Your theme slug will be <code>@username/theme</code></span>
+            <span class="form-error" id="username-error"></span>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="form-field">
+          <label class="form-checkbox">
+            <input type="checkbox" name="license_agree" required />
+            <span>I agree to release this theme under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC-BY-SA 4.0</a></span>
+          </label>
+        </div>
+
+        <div class="wizard-nav">
+          <button type="button" class="btn btn--ghost wizard-prev js-only" data-wizard-prev="3">Back</button>
+          <button type="submit" class="btn btn--accent">{% if auth_user is defined and auth_user %}Publish theme{% else %}Send magic link{% endif %}</button>
+        </div>
+      </fieldset>
+    </form>
+
+    <script>
+      window.__previewIcons = {{ preview_icons|json_encode|raw }};
+    </script>
+  </div>
+</section>
+{% endblock %}

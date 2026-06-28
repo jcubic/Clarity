@@ -1,0 +1,6 @@
+#!/bin/bash
+
+find ../scalable -type l | while read file; do
+    desc=$(file $file | sed -e 's/.*symbolic link to \(.*\)$/\1/');
+    echo "$desc $file"
+done

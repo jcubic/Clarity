@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Theme Published — Clarity{% endblock %}
+{% block description %}Your theme has been published to the Clarity gallery.{% endblock %}
+
+{% block content %}
+<section class="upload" aria-labelledby="confirmed-heading">
+  <div class="container upload-container">
+    <header class="section-header">
+      <p class="section-eyebrow">// Published</p>
+      <h1 id="confirmed-heading" class="section-title">You're live!</h1>
+      <p class="section-lead">Your theme <strong>{{ theme_name }}</strong> is now published as <code>@{{ username }}/{{ theme_name }}</code>.</p>
+    </header>
+
+    <div class="confirmation-card">
+      <svg class="confirmation-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>
+      <p>Your theme is now available in the community gallery. Others can install it with:</p>
+      <div class="terminal-block">
+        <pre class="terminal-code"><code>clarity install @{{ username }}/{{ theme_name }}</code></pre>
+      </div>
+      <div class="confirmation-actions">
+        <a href="/upload" class="btn btn--accent">Upload another</a>
+        <a href="/" class="btn btn--ghost">Back to home</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

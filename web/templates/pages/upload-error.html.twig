@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Verification Failed — Clarity{% endblock %}
+{% block description %}The verification link is invalid or has expired.{% endblock %}
+
+{% block content %}
+<section class="upload" aria-labelledby="error-heading">
+  <div class="container upload-container">
+    <header class="section-header">
+      <p class="section-eyebrow">// Error</p>
+      <h1 id="error-heading" class="section-title">Verification failed</h1>
+      <p class="section-lead">{{ error }}</p>
+    </header>
+
+    <div class="confirmation-card">
+      <svg class="confirmation-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-alert"/></svg>
+      <p>Magic links expire after 15 minutes and can only be used once.</p>
+      <div class="confirmation-actions">
+        <a href="/upload" class="btn btn--accent">Upload again</a>
+        <a href="/" class="btn btn--ghost">Back to home</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

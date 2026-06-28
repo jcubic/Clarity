@@ -1,0 +1,642 @@
+#!/usr/bin/env bash
+# clarity — CLI theme manager for the Clarity GTK+ icon theme
+# https://github.com/jcubic/Clarity
+#
+# Copyright (c) 2010-2026 Jakub T. Jankiewicz
+# Released under CC-BY-SA 4.0 license
+
+set -euo pipefail
+
+VERSION="1.0.0-beta"
+BRANCH="master"
+CLARITY_HOME="${HOME}/.clarity-icons"
+ICON_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/icons/Clarity"
+COMMUNITY_DIR="${CLARITY_HOME}/community"
+API_BASE="https://clarity.pl.eu.org"
+REPO="jcubic/Clarity"
+BUILTIN_VARIANTS="canus dark_canus albus caeruleus lux_caeruleus violaceus lux_violaceus viridis luteus"
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+DIM='\033[2m'
+RESET='\033[0m'
+
+info()  { echo -e "${GREEN}==>${RESET} ${BOLD}$1${RESET}"; }
+warn()  { echo -e "${YELLOW}==> WARNING:${RESET} ${BOLD}$1${RESET}"; }
+error() { echo -e "${RED}==> ERROR:${RESET} ${BOLD}$1${RESET}" >&2; }
+
+check_base() {
+    if [[ ! -d "$CLARITY_HOME/src" ]]; then
+        error "Base icon sources not found at $CLARITY_HOME"
+        echo -e "  ${DIM}Reinstall with: curl -sL ${API_BASE}/install | bash${RESET}"
+        exit 1
+    fi
+}
+
+get_active() {
+    if [[ -f "$CLARITY_HOME/.active-theme" ]]; then
+        cat "$CLARITY_HOME/.active-theme"
+    fi
+}
+
+cmd_use() {
+    local theme="$1"
+    local template
+
+    if [[ "$theme" == @* ]]; then
+        local slug="${theme#@}"
+        template="${COMMUNITY_DIR}/${slug}.svg"
+        if [[ ! -f "$template" ]]; then
+            error "Community theme '$theme' is not installed"
+            echo -e "  ${DIM}Run: clarity install $theme${RESET}"
+            exit 1
+        fi
+    else
+        template="${CLARITY_HOME}/src/template_${theme}.svg"
+        if [[ ! -f "$template" ]]; then
+            error "Unknown variant: $theme"
+            echo -e "  ${DIM}Run: clarity list${RESET}"
+            exit 1
+        fi
+    fi
+
+    check_base
+
+    local src_dir="$CLARITY_HOME/src"
+
+    rm -rf "$ICON_DIR/scalable" "$ICON_DIR/16x16"
+    mkdir -p "$ICON_DIR"/{scalable,16x16}/{actions,apps,categories,devices,emblems,mimetypes,places,status,stock}
+
+    cp "$CLARITY_HOME/index.theme" "$ICON_DIR/index.theme"
+
+    local total
+    total=$(find -L "$src_dir" -mindepth 2 -name "*.svg" -type f | wc -l)
+
+    local jobs
+    jobs=$(nproc 2>/dev/null || echo 1)
+
+    export CLARITY_TEMPLATE="$template"
+    export CLARITY_SRC_DIR="$src_dir"
+    export CLARITY_ICON_DIR="$ICON_DIR"
+
+    _build_one_icon() {
+        local svg="$1"
+        local shape title rel_path output
+        shape=$(grep "path.*d=" "$svg" | sed -e 's/.*d="\([^"]*\)".*/\1/' | head -1 || true)
+        title=$(grep "<title>" "$svg" | sed -e 's/.*<title>\([^<]*\)<\/title>/\1/' | head -1 || true)
+        rel_path="${svg#${CLARITY_SRC_DIR}/}"
+        output="$CLARITY_ICON_DIR/scalable/${rel_path}"
+        mkdir -p "$(dirname "$output")"
+        awk -v title="$title" '{
+            if (match($0, /\{\{PATH\}\}/)) {
+                $0 = substr($0, 1, RSTART-1) ENVIRON["_SHAPE"] substr($0, RSTART+RLENGTH)
+            }
+            gsub(/\{\{TITLE\}\}/, title)
+            print
+        }' "$CLARITY_TEMPLATE" > "$output"
+    }
+    export -f _build_one_icon
+
+    if [[ "$jobs" -gt 1 ]]; then
+        info "Building $total icons ($theme) on $jobs cores..."
+        local progress_dir
+        progress_dir=$(mktemp -d)
+        (
+            while [[ -d "$progress_dir" ]]; do
+                local done
+                done=$(find "$progress_dir" -maxdepth 1 -type f 2>/dev/null | wc -l)
+                printf "\r  Building: %d/%d" "$done" "$total"
+                sleep 0.3
+            done
+        ) &
+        local monitor_pid=$!
+        export CLARITY_PROGRESS_DIR="$progress_dir"
+        find -L "$src_dir" -mindepth 2 -name "*.svg" -type f | \
+            xargs -P "$jobs" -I{} bash -c '
+                svg="$1"
+                shape=$(grep "path.*d=" "$svg" | sed -e '\''s/.*d="\([^"]*\)".*/\1/'\'' | head -1 || true)
+                export _SHAPE="$shape"
+                _build_one_icon "$svg"
+                touch "$CLARITY_PROGRESS_DIR/$$.$RANDOM"
+            ' _ {}
+        rm -rf "$progress_dir"
+        kill "$monitor_pid" 2>/dev/null; wait "$monitor_pid" 2>/dev/null || true
+        printf "\r  Building: %d/%d\n" "$total" "$total"
+    else
+        info "Building $total icons ($theme)..."
+        local count=0
+        local tmpl_content
+        tmpl_content=$(<"$template")
+        while IFS= read -r svg; do
+            local shape title rel_path output content
+            shape=$(grep "path.*d=" "$svg" | sed -e 's/.*d="\([^"]*\)".*/\1/' | head -1 || true)
+            title=$(grep "<title>" "$svg" | sed -e 's/.*<title>\([^<]*\)<\/title>/\1/' | head -1 || true)
+            rel_path="${svg#${src_dir}/}"
+            output="$ICON_DIR/scalable/${rel_path}"
+            mkdir -p "$(dirname "$output")"
+            content="${tmpl_content//\{\{PATH\}\}/$shape}"
+            content="${content//\{\{TITLE\}\}/$title}"
+            printf '%s\n' "$content" > "$output"
+            (( ++count ))
+            printf "\r  Building: %d/%d" "$count" "$total"
+        done < <(find -L "$src_dir" -mindepth 2 -name "*.svg" -type f)
+        echo ""
+    fi
+
+    if [[ -d "$CLARITY_HOME/static" ]]; then
+        find "$CLARITY_HOME/static" -type f | while IFS= read -r f; do
+            local rel="${f#${CLARITY_HOME}/static/}"
+            cp "$f" "$ICON_DIR/scalable/$rel" 2>/dev/null || true
+        done
+    fi
+
+    if [[ -f "$src_dir/compound_icons_rules" ]]; then
+        while IFS= read -r rule; do
+            [[ "$rule" =~ ^#.*$ || -z "${rule// }" ]] && continue
+            local desc="${rule%%=*}"
+            desc="${desc%% }"
+            local rest="${rule#*=}"
+            rest="${rest# }"
+            local src="${rest%%+*}"
+            src="${src%% }"
+            local elem="${rest#*+}"
+            elem="${elem# }"
+            if [[ -f "$ICON_DIR/scalable/$src" && -f "$src_dir/$elem" ]]; then
+                local insert
+                insert=$(grep 'id="shape"' "$src_dir/$elem" || true)
+                if [[ -n "$insert" ]]; then
+                    local base_content
+                    base_content=$(<"$ICON_DIR/scalable/$src")
+                    printf '%s\n' "${base_content//<\/svg>/${insert}
+</svg>}" > "$ICON_DIR/scalable/$desc"
+                fi
+            fi
+        done < "$src_dir/compound_icons_rules"
+    fi
+
+    if [[ -f "$src_dir/symlinks" ]]; then
+        grep -v '^#' "$src_dir/symlinks" | awk '{print $2}' | sed "s|[^/]*$||" | sort -u | while read -r d; do
+            [[ -n "$d" ]] && mkdir -p "$ICON_DIR/$d"
+        done
+        while read -r link_src link_dst _; do
+            [[ "$link_src" =~ ^#.*$ || -z "$link_src" ]] && continue
+            ln -sf "$link_src" "$ICON_DIR/$link_dst" 2>/dev/null || true
+        done < "$src_dir/symlinks"
+    fi
+
+    if [[ -f "$src_dir/copies" ]]; then
+        while read -r copy_src copy_dst _; do
+            [[ "$copy_src" =~ ^#.*$ || -z "$copy_src" ]] && continue
+            [[ -f "$ICON_DIR/$copy_src" ]] && cp "$ICON_DIR/$copy_src" "$ICON_DIR/$copy_dst" 2>/dev/null || true
+        done < "$src_dir/copies"
+    fi
+
+    local skip_pattern=""
+    if [[ -f "$src_dir/16x16_exceptions" ]]; then
+        skip_pattern=$(grep -v '^#' "$src_dir/16x16_exceptions" | tr -d '\r' | grep -v '^ *$' | paste -sd '|' - | sed -e 's/.*/(&)/')
+    fi
+
+    if command -v rsvg-convert > /dev/null 2>&1; then
+        info "Generating 16x16 PNGs..."
+
+        local svg_list
+        svg_list=$(mktemp)
+        if [[ -n "$skip_pattern" ]]; then
+            find "$ICON_DIR/scalable" -type f -name "*.svg" | grep -vE "$skip_pattern" > "$svg_list"
+        else
+            find "$ICON_DIR/scalable" -type f -name "*.svg" > "$svg_list"
+        fi
+
+        local png_total
+        png_total=$(wc -l < "$svg_list")
+
+        # pre-create 16x16 directories
+        sed -e 's/scalable/16x16/' -e 's/[^/]*$//' "$svg_list" | sort -u | xargs -I{} mkdir -p {}
+
+        local png_progress_dir
+        png_progress_dir=$(mktemp -d)
+        (
+            while [[ -d "$png_progress_dir" ]]; do
+                local done
+                done=$(find "$png_progress_dir" -maxdepth 1 -type f 2>/dev/null | wc -l)
+                printf "\r  Rasterizing: %d/%d" "$done" "$png_total"
+                sleep 0.3
+            done
+        ) &
+        local png_monitor_pid=$!
+        xargs -P "$jobs" -I{} bash -c '
+            svg="$1"
+            png=$(echo "$svg" | sed -e "s/scalable/16x16/" -e "s/\.svg$/.png/")
+            rsvg-convert -w 16 -h 16 "$svg" > "$png" 2>/dev/null || true
+            touch "'"$png_progress_dir"'/$$.$RANDOM"
+        ' _ {} < "$svg_list"
+        rm -rf "$png_progress_dir"
+        kill "$png_monitor_pid" 2>/dev/null; wait "$png_monitor_pid" 2>/dev/null || true
+        printf "\r  Rasterizing: %d/%d\n" "$png_total" "$png_total"
+        rm -f "$svg_list"
+
+        if [[ -f "$src_dir/symlinks" ]]; then
+            grep -v '^#' "$src_dir/symlinks" | awk '{print $2}' | sed -e 's/\.svg/.png/g' -e 's/scalable/16x16/g' -e "s|[^/]*$||" | sort -u | while read -r d; do
+                [[ -n "$d" ]] && mkdir -p "$ICON_DIR/$d"
+            done
+            while read -r link_src link_dst _; do
+                [[ "$link_src" =~ ^#.*$ || -z "$link_src" ]] && continue
+                link_src="${link_src//.svg/.png}"
+                link_src="${link_src//scalable/16x16}"
+                link_dst="${link_dst//.svg/.png}"
+                link_dst="${link_dst//scalable/16x16}"
+                if [[ -n "$skip_pattern" ]] && [[ "$link_dst" =~ $skip_pattern ]]; then
+                    continue
+                fi
+                ln -sf "$link_src" "$ICON_DIR/$link_dst" 2>/dev/null || true
+            done < "$src_dir/symlinks"
+        fi
+
+        if [[ -f "$src_dir/copies" ]]; then
+            while read -r copy_src copy_dst _; do
+                [[ "$copy_src" =~ ^#.*$ || -z "$copy_src" ]] && continue
+                copy_src="${copy_src//.svg/.png}"
+                copy_src="${copy_src//scalable/16x16}"
+                copy_dst="${copy_dst//.svg/.png}"
+                copy_dst="${copy_dst//scalable/16x16}"
+                if [[ -n "$skip_pattern" ]] && [[ "$copy_dst" =~ $skip_pattern ]]; then
+                    continue
+                fi
+                [[ -f "$ICON_DIR/$copy_src" ]] && cp "$ICON_DIR/$copy_src" "$ICON_DIR/$copy_dst" 2>/dev/null || true
+            done < "$src_dir/copies"
+        fi
+    else
+        warn "rsvg-convert not found — skipping 16x16 PNG generation"
+        echo -e "  ${DIM}Install librsvg2-tools (Fedora) or librsvg2-bin (Debian/Ubuntu)${RESET}"
+    fi
+
+    if command -v gtk-update-icon-cache > /dev/null 2>&1; then
+        info "Updating icon cache..."
+        gtk-update-icon-cache -f "$ICON_DIR" 2>/dev/null || true
+    fi
+
+    echo "$theme" > "$CLARITY_HOME/.active-theme"
+
+    info "Done! Active theme: $theme"
+    echo -e "  ${DIM}Select 'Clarity (Next)' in your desktop appearance settings to apply.${RESET}"
+}
+
+cmd_list() {
+    check_base
+
+    local active
+    active=$(get_active)
+
+    echo -e "${BOLD}Built-in variants:${RESET}"
+    for v in $BUILTIN_VARIANTS; do
+        if [[ "$v" = "$active" ]]; then
+            echo -e "  ${GREEN}* ${v}${RESET}  ${DIM}(active)${RESET}"
+        else
+            echo -e "    ${v}"
+        fi
+    done
+
+    if [[ -d "$COMMUNITY_DIR" ]]; then
+        local has_downloaded=false
+        while IFS= read -r svg; do
+            local rel="${svg#${COMMUNITY_DIR}/}"
+            [[ "$rel" == local/* ]] && continue
+            if [[ "$has_downloaded" = false ]]; then
+                echo ""
+                echo -e "${BOLD}Downloaded themes:${RESET}"
+                has_downloaded=true
+            fi
+            local slug="${rel%.svg}"
+            if [[ "@$slug" = "$active" ]]; then
+                echo -e "  ${GREEN}* @${slug}${RESET}  ${DIM}(active)${RESET}"
+            else
+                echo -e "    @${slug}"
+            fi
+        done < <(find "$COMMUNITY_DIR" -name "*.svg" -type f 2>/dev/null | sort)
+
+        local has_local=false
+        while IFS= read -r svg; do
+            if [[ "$has_local" = false ]]; then
+                echo ""
+                echo -e "${BOLD}Local themes:${RESET}"
+                has_local=true
+            fi
+            local name
+            name=$(basename "$svg" .svg)
+            if [[ "@local/$name" = "$active" ]]; then
+                echo -e "  ${GREEN}* @local/${name}${RESET}  ${DIM}(active)${RESET}"
+            else
+                echo -e "    @local/${name}"
+            fi
+        done < <(find "$COMMUNITY_DIR/local" -name "*.svg" -type f 2>/dev/null | sort)
+    fi
+}
+
+cmd_create() {
+    local svg_file="$1"
+
+    if [[ ! -f "$svg_file" ]]; then
+        error "File not found: $svg_file"
+        exit 1
+    fi
+
+    if ! grep -q 'id="icon-placeholder"' "$svg_file"; then
+        error "SVG does not contain the required placeholder"
+        echo -e "  ${DIM}The file must contain: <circle id=\"icon-placeholder\" ...>${RESET}"
+        echo -e "  ${DIM}Download the template from https://clarity.pl.eu.org/#create${RESET}"
+        exit 1
+    fi
+
+    check_base
+
+    local name
+    name=$(basename "$svg_file" .svg)
+    local dest="${COMMUNITY_DIR}/local/${name}.svg"
+
+    info "Creating local theme: @local/$name"
+
+    mkdir -p "$(dirname "$dest")"
+
+    local tmpfile
+    tmpfile=$(mktemp)
+
+    sed -e 's/<title>[^<]*<\/title>/<title>{{TITLE}}<\/title>/' "$svg_file" > "$tmpfile"
+
+    if ! grep -q '{{TITLE}}' "$tmpfile"; then
+        sed -i -e 's/<svg\([^>]*\)>/<svg\1>\n    <title>{{TITLE}}<\/title>/' "$tmpfile"
+    fi
+
+    sed -i -e '/id="icon-placeholder"/{
+        s/<circle/<path d="{{PATH}}"/
+        s/ id="icon-placeholder"//
+        s/ cx="[^"]*"//
+        s/ cy="[^"]*"//
+        s/ r="[^"]*"//
+        s/>[^<]*<\/circle>/\/>/
+    }' "$tmpfile"
+
+    mv "$tmpfile" "$dest"
+
+    info "Created @local/$name"
+    echo -e "  ${DIM}Activate with: clarity use @local/$name${RESET}"
+}
+
+cmd_install() {
+    local theme="$1"
+
+    if [[ "$theme" != @* ]]; then
+        error "Community themes use the @user/name format"
+        echo -e "  ${DIM}Example: clarity install @bob/cyberpunk${RESET}"
+        exit 1
+    fi
+
+    check_base
+
+    local slug="${theme#@}"
+    local url="${API_BASE}/api/theme/${slug}"
+    local dest="${COMMUNITY_DIR}/${slug}.svg"
+
+    info "Downloading community theme: $theme"
+
+    mkdir -p "$(dirname "$dest")"
+
+    local http_code
+    http_code=$(curl -sL -w "%{http_code}" -o "$dest" "$url") || {
+        error "Failed to connect to ${API_BASE}"
+        if [[ -f "$dest" ]]; then
+            warn "Using cached version"
+        else
+            error "No cached version available — try again later"
+            exit 1
+        fi
+        return
+    }
+
+    if [[ "$http_code" != "200" ]]; then
+        rm -f "$dest"
+        error "Theme '$theme' not found (HTTP $http_code)"
+        exit 1
+    fi
+
+    info "Installed $theme"
+    echo -e "  ${DIM}Activate with: clarity use $theme${RESET}"
+}
+
+cmd_remove() {
+    local theme="$1"
+
+    if [[ "$theme" != @* ]]; then
+        for v in $BUILTIN_VARIANTS; do
+            if [[ "$v" = "$theme" ]]; then
+                error "Cannot remove built-in variant '$theme'"
+                exit 1
+            fi
+        done
+        error "Community themes use the @user/name format"
+        exit 1
+    fi
+
+    local slug="${theme#@}"
+    local template="${COMMUNITY_DIR}/${slug}.svg"
+
+    if [[ ! -f "$template" ]]; then
+        error "Theme '$theme' is not installed"
+        exit 1
+    fi
+
+    rm -f "$template"
+
+    local active
+    active=$(get_active)
+    if [[ "$active" = "$theme" ]]; then
+        info "Switching back to default variant (canus)"
+        cmd_use canus
+    else
+        info "Removed $theme"
+    fi
+}
+
+cmd_update() {
+    info "Updating clarity CLI and base theme..."
+
+    local cli_url="https://raw.githubusercontent.com/${REPO}/${BRANCH}/theme/bin/clarity"
+    local archive_url="https://github.com/${REPO}/archive/refs/heads/${BRANCH}.tar.gz"
+    local bin_path
+    bin_path=$(command -v clarity 2>/dev/null || echo "${HOME}/.local/bin/clarity")
+
+    info "Downloading latest CLI..."
+    local tmpdir
+    tmpdir=$(mktemp -d)
+    # shellcheck disable=SC2064
+    trap "rm -rf '$tmpdir'" EXIT
+
+    curl -sL "$cli_url" -o "$tmpdir/clarity"
+    chmod +x "$tmpdir/clarity"
+
+    local new_version
+    new_version=$(grep '^VERSION=' "$tmpdir/clarity" | head -1 | sed 's/VERSION="\(.*\)"/\1/')
+
+    if [[ -L "$bin_path" ]]; then
+        warn "CLI not updated — $bin_path is a symlink"
+    else
+        cp "$tmpdir/clarity" "$bin_path"
+    fi
+
+    info "Downloading latest base theme..."
+    curl -sL "$archive_url" -o "$tmpdir/clarity.tar.gz"
+
+    tar xzf "$tmpdir/clarity.tar.gz" -C "$tmpdir"
+    local extracted
+    extracted=$(find "$tmpdir" -maxdepth 1 -mindepth 1 -type d ! -name ".*" | head -1)
+
+    rm -rf "$CLARITY_HOME/src" "$CLARITY_HOME/static"
+    cp -a "$extracted/theme/src" "$CLARITY_HOME/src"
+    [[ -d "$extracted/theme/static" ]] && cp -a "$extracted/theme/static" "$CLARITY_HOME/static"
+    cp "$extracted/theme/index.theme" "$CLARITY_HOME/index.theme"
+
+    echo "${new_version:-$VERSION}" > "$CLARITY_HOME/.version"
+
+    info "Updated to v${new_version:-$VERSION}"
+
+    local active
+    active=$(get_active)
+    if [[ -n "$active" ]]; then
+        echo -e "  ${DIM}Run 'clarity use $active' to rebuild icons with the latest sources.${RESET}"
+    fi
+}
+
+cmd_uninstall() {
+    local bin_path
+    bin_path=$(command -v clarity 2>/dev/null || echo "${HOME}/.local/bin/clarity")
+
+    if [[ "$bin_path" == /usr/bin/clarity || "$bin_path" == /usr/local/bin/clarity ]]; then
+        error "Clarity was installed system-wide"
+        echo -e "  ${DIM}Use your package manager to remove it (e.g., sudo dnf remove clarity-icons)${RESET}"
+        exit 1
+    fi
+
+    echo -e "${BOLD}The following will be removed:${RESET}"
+    echo "  $CLARITY_HOME/"
+    echo "  $bin_path"
+    echo "  $ICON_DIR/"
+    local bash_comp_dir="${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion/completions"
+    local zsh_comp_dir="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/site-functions"
+    if [[ -f "$bash_comp_dir/clarity" ]]; then
+        echo "  $bash_comp_dir/clarity"
+    fi
+    if [[ -f "$zsh_comp_dir/_clarity" ]]; then
+        echo "  $zsh_comp_dir/_clarity"
+    fi
+    echo ""
+
+    printf "Remove Clarity and all installed themes? [y/N] "
+    local answer
+    read -r answer
+    if [[ "$answer" != [yY] && "$answer" != [yY][eE][sS] ]]; then
+        echo "Aborted."
+        exit 0
+    fi
+
+    rm -f "$bin_path"
+    rm -rf "$CLARITY_HOME"
+    rm -rf "$ICON_DIR"
+    rm -f "$bash_comp_dir/clarity"
+    rm -f "$zsh_comp_dir/_clarity"
+
+    if command -v gtk-update-icon-cache > /dev/null 2>&1; then
+        gtk-update-icon-cache -f "${XDG_DATA_HOME:-$HOME/.local/share}/icons" 2>/dev/null || true
+    fi
+
+    info "Clarity has been removed"
+    echo -e "  ${DIM}Change your active icon theme in desktop appearance settings.${RESET}"
+}
+
+cmd_help() {
+    echo -e "${BOLD}clarity${RESET} — CLI theme manager for the Clarity GTK+ icon theme"
+    echo ""
+    echo -e "${BOLD}USAGE${RESET}"
+    echo "    clarity <command> [arguments]"
+    echo ""
+    echo -e "${BOLD}COMMANDS${RESET}"
+    echo "    use <variant>             Switch to a built-in variant or community theme"
+    echo "    create <file.svg>         Create a local theme from an SVG template"
+    echo "    install @user/theme       Download a community theme from the gallery"
+    echo "    remove @user/theme        Remove an installed community theme"
+    echo "    list                      Show available variants and installed themes"
+    echo "    update                    Update the CLI and base theme files"
+    echo "    uninstall                 Remove Clarity completely"
+    echo "    version                   Print the installed version"
+    echo ""
+    echo -e "${BOLD}BUILT-IN VARIANTS${RESET}"
+    echo "    canus, dark_canus, albus, caeruleus, lux_caeruleus,"
+    echo "    violaceus, lux_violaceus, viridis, luteus"
+    echo ""
+    echo -e "${BOLD}EXAMPLES${RESET}"
+    echo "    clarity use caeruleus           Switch to the blue variant"
+    echo "    clarity use dark_canus          Switch to the dark grey variant"
+    echo "    clarity create ./halftone.svg   Create a local theme from SVG"
+    echo "    clarity use @local/halftone     Activate the local theme"
+    echo "    clarity install @bob/cyberpunk  Install a community theme"
+    echo "    clarity use @bob/cyberpunk      Activate the community theme"
+    echo "    clarity remove @bob/cyberpunk   Remove the community theme"
+    echo ""
+    echo -e "${BOLD}FILES${RESET}"
+    echo "    ~/.clarity-icons/               Base theme source files"
+    echo "    ~/.local/share/icons/Clarity/   Built icon theme (GTK picks this up)"
+    echo ""
+}
+
+main() {
+    local cmd="${1:-}"
+    shift 2>/dev/null || true
+
+    case "$cmd" in
+        use)
+            if [[ -z "${1:-}" ]]; then
+                error "Missing variant name"
+                echo -e "  ${DIM}Usage: clarity use <variant>${RESET}"
+                exit 1
+            fi
+            cmd_use "$1"
+            ;;
+        create)
+            if [[ -z "${1:-}" ]]; then
+                error "Missing SVG file path"
+                echo -e "  ${DIM}Usage: clarity create <file.svg>${RESET}"
+                exit 1
+            fi
+            cmd_create "$1"
+            ;;
+        install)
+            if [[ -z "${1:-}" ]]; then
+                error "Missing theme slug"
+                echo -e "  ${DIM}Usage: clarity install @user/theme${RESET}"
+                exit 1
+            fi
+            cmd_install "$1"
+            ;;
+        remove)
+            if [[ -z "${1:-}" ]]; then
+                error "Missing theme slug"
+                echo -e "  ${DIM}Usage: clarity remove @user/theme${RESET}"
+                exit 1
+            fi
+            cmd_remove "$1"
+            ;;
+        list)      cmd_list ;;
+        update)    cmd_update ;;
+        uninstall) cmd_uninstall ;;
+        version|-v|-V|--version) echo "clarity $VERSION" ;;
+        help|--help|-h|"") cmd_help ;;
+        *)
+            error "Unknown command: $cmd"
+            echo -e "  ${DIM}Run 'clarity --help' for usage${RESET}"
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"

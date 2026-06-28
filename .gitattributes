@@ -1,1 +1,2 @@
 *.svg linguist-detectable linguist-language=SVG
+composer.lock binary

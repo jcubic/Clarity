@@ -1,0 +1,113 @@
+This it intruduction of how Clarity icons are created
+
+1. Creating Icons
+=================
+
+All icons are created as 128x128 pixels icons, I usualy open one of the source
+files (so I already have proper sized canvas) create new shape in that file
+I don't save it only use xml editor to get `<path` tag d attribute that have
+path information and execute from command line
+
+clarity-icon-theme $ mkshape "Title of the Icon" > /src/<PATH to the file>
+
+to know how the file is name I usualy use XFce icon picker in Activator that
+you can add to XFce panel or small python script
+
+https://github.com/jcubic/tools/blob/master/gtk-icon-theme-viewer
+
+this repo is a fork where I've added serch feature.
+
+2. Applying Theme
+=================
+
+The clarity CLI handles building icons from templates. It iterates over all
+icons in src/ and generates files in the output directory. For each icon it
+extracts the title and shape (path d attribute) from the source SVG using
+grep/sed and injects them into the template file that has
+
+{{TITLE}} {{PATH}}
+
+You can build and activate a theme with:
+
+clarity use canus
+
+3. Creating new Theme
+=====================
+
+If you want to create new Theme you just need to copy some icon apply some
+filters and effects but do not modify the shape, you can also hand code the
+template in text editor, some things can not be done in Inkscape. Or you
+can generate in Inkscape and then edit it. For instance you can replace
+clone with symbols where you will have single {{PATH}}.
+
+After you generated the icon you just need to remove d attribute and add
+d="{{PATH}}" on main shape, there should be only one, I've didn't tested if
+it work with multiple instance of {{PATH}}. And and create
+<title>{{TITLE}}</title> it's not needed for svg to work but it's nice that
+icon have title.
+
+You can also use the CLI to create a local theme from an SVG file:
+
+clarity create ./my-template.svg
+clarity use @local/my-template
+
+4. Compund Icons
+================
+
+Those icons are normal icons taken from scalable directory where there
+are injected at the end (in SVG whats after it's on top like on stack)
+
+Those icons are located in src/compound_icons_rules each line (comments and blanks
+are ignored) look like this:
+
+apps/vlc-xmas.svg = apps/vlc.svg + vlc_xmas_hat.svg
+
+it take generated icon scalable/apps/vlc.svg vlc_xmas_hat.svg located in src
+directory and generated scalable/apps/vlc-xmas.svg
+
+The clarity CLI processes these rules during `clarity use` by grepping for
+the line with id="shape" in each element file and inserting it before the
+closing </svg> tag.
+
+NOTE: each element need to have id="shape" on the inserted element.
+
+Right now only single element is supported but if you want to put multiple elements
+you can just add
+
+<g id="shape"><!-- multiple shapes --></g>
+
+in fact g is not needed but it will look nicer in result svg. Look at
+
+vlc_xmas_hat.svg as an example.
+
+5. Symlinks and Copies
+======================
+
+Some icons are duplicate, it's hard to add symlinks to git repo so all
+symlinks are listed in src/symlinks file.
+
+The symlink-file script can regenerate this file from existing symlinks:
+
+./symlink-file > src/symlinks
+
+When I was creating icons I've notice that some don't work as symlinks
+but when I've created a copy they was working so some icons are exeptions
+and put in src/copies file.
+
+6. 16x16 png icons
+==================
+
+When working on icons there was some issues with small icons (scaling). The
+solution was to generate those icons using rsvg (usualy as rsvg-convert command)
+
+There was one issue with Parole icons when there ware 16px icons so they are in
+src/16x16_exceptions file.
+
+7. Static Icons
+===============
+
+There are also exception to all of this build icons and they are located
+in static directory that have same structure as src and scalable but
+there are only few of those
+
+Happy Hacking

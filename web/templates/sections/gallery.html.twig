@@ -1,0 +1,47 @@
+<section class="gallery" id="gallery" aria-labelledby="gallery-heading">
+  <div class="container">
+    <div class="gallery-header-row">
+      <header class="section-header" style="margin-bottom: 0;">
+        <p class="section-eyebrow">// 03 — Community</p>
+        <h2 id="gallery-heading" class="section-title">Themes from the field.</h2>
+        <p class="section-lead">Custom palettes published by Clarity users. Each one keeps the Clarity geometry and swaps in its own color story.</p>
+      </header>
+      <a class="gallery-cta" href="/upload">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plus"/></svg>
+        Submit yours
+      </a>
+    </div>
+
+    {% if published_themes is defined and published_themes|length > 0 %}
+    <div class="gallery-grid">
+      {% for theme in published_themes %}
+      <a class="gallery-card" href="/theme/{{ theme.username }}/{{ theme.name }}" aria-label="{{ theme.name }} by @{{ theme.username }}">
+        <div class="gallery-cover{% if not theme.is_dark %} gallery-cover--light{% endif %}" aria-hidden="true">
+          {% for icon_name in cover_icons %}
+          <img src="/api/icon/{{ theme.username }}/{{ theme.name }}/{{ icon_name }}" alt="{{ icon_name }}" loading="lazy" width="48" height="48">
+          {% endfor %}
+        </div>
+        <div class="gallery-body">
+          <h3 class="gallery-name">{{ theme.name }}</h3>
+          <p class="gallery-tagline">{{ theme.description }}</p>
+        </div>
+        <div class="gallery-stats">
+          <span class="gallery-stat" title="Views"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> {{ theme.view_count }}</span>
+          <span class="gallery-stat" title="Downloads"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg> {{ theme.download_count }}</span>
+          <span class="gallery-stat" title="Likes"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg> {{ theme.like_count }}</span>
+        </div>
+        <div class="gallery-meta">
+          <span>@{{ theme.username }}</span>
+          <span>{{ theme.version }} · {{ theme.updated_at|date('Y-m') }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="gallery-pending">
+      <p>No community themes yet — be the first!</p>
+      <p><a href="/upload">Upload your theme</a></p>
+    </div>
+    {% endif %}
+  </div>
+</section>

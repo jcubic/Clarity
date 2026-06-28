@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}404 — Page not found — Clarity{% endblock %}
+
+{% block content %}
+<section class="hero" style="padding: clamp(120px, 16vw, 200px) 0;">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <p class="hero-eyebrow">Error 404</p>
+    <h1 style="font: 600 clamp(64px, 10vw, 128px)/1 var(--font-mono); letter-spacing: -0.04em; color: var(--fg);">404</h1>
+    <p class="hero-tagline">This page doesn't exist — like an icon without a symlink.</p>
+    <div class="hero-actions">
+      <a class="button button--primary" href="/">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-home"/></svg>
+        Back to home
+      </a>
+      <a class="button button--ghost" href="https://github.com/jcubic/Clarity/issues" rel="noopener">Report an issue</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
