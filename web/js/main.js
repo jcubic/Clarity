@@ -459,6 +459,19 @@
       if (!/^[A-Za-z0-9_-]+$/.test(val)) return 'Only letters, numbers, hyphens, and underscores.';
       return '';
     }, updateSubmitBtn);
+
+    // Pre-fill and lock fields from query params (?theme=name&username=user)
+    var params = new URLSearchParams(window.location.search);
+    var qTheme = params.get('theme');
+    var qUser = params.get('username');
+    if (qTheme && themeInput) {
+      themeInput.value = qTheme;
+      themeInput.readOnly = true;
+    }
+    if (qUser && usernameInput) {
+      usernameInput.value = qUser;
+      usernameInput.readOnly = true;
+    }
   }
 
   // Background toggle for icon grids

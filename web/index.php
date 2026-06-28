@@ -14,6 +14,7 @@ use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 use WikiZEIT\HTMLMinifier;
+use z4kn4fein\SemVer\Version;
 
 foreach (['.env.local', '.env'] as $envFile) {
     if (file_exists(__DIR__ . '/' . $envFile)) {
@@ -404,6 +405,27 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
         ]);
     }
 
+    if ($ownerEmail !== null && $ownerEmail === $email) {
+        $currentVersion = $db->getPublishedVersion($themeName);
+        if ($currentVersion !== null) {
+            try {
+                $currentVer = Version::parse(ltrim($currentVersion, 'v'), false);
+                $nextVer = Version::parse(ltrim($version, 'v'), false);
+                if ($nextVer->isLessThanOrEqual($currentVer)) {
+                    return $view->render($response, 'pages/upload.html.twig', [
+                        'error' => 'Version must be higher than the current version (' . $currentVersion . ').',
+                        'auth_user' => $authUser,
+                    ]);
+                }
+            } catch (\Throwable $e) {
+                return $view->render($response, 'pages/upload.html.twig', [
+                    'error' => 'Invalid version format. Use semver (e.g., v1.1, 1.2.0).',
+                    'auth_user' => $authUser,
+                ]);
+            }
+        }
+    }
+
     $converter = new SvgConverter();
     $converted = $converter->convert($content);
 
@@ -475,6 +497,24 @@ $app->get('/verify', function (Request $request, Response $response) use ($db, $
     if ($existingOwner !== null && $existingOwner === $data['email']) {
         $pending = $db->getThemeById($data['theme_id']);
         if ($pending !== null) {
+            $currentVersion = $db->getPublishedVersion($themeName);
+            if ($currentVersion !== null) {
+                try {
+                    $currentVer = Version::parse(ltrim($currentVersion, 'v'), false);
+                    $nextVer = Version::parse(ltrim($pending['version'], 'v'), false);
+                    if ($nextVer->isLessThanOrEqual($currentVer)) {
+                        $db->deleteTheme($data['theme_id']);
+                        return $view->render($response, 'pages/upload-error.html.twig', [
+                            'error' => 'Version must be higher than the current version (' . $currentVersion . '). Please re-upload with a bumped version.',
+                        ]);
+                    }
+                } catch (\Throwable $e) {
+                    $db->deleteTheme($data['theme_id']);
+                    return $view->render($response, 'pages/upload-error.html.twig', [
+                        'error' => 'Invalid version format. Use semver (e.g., v1.1, 1.2.0).',
+                    ]);
+                }
+            }
             $db->replacePublishedTheme($themeName, $userId, $pending['description'], $pending['version'], $pending['svg_content'], (bool) $pending['is_dark']);
         }
         $db->deleteTheme($data['theme_id']);

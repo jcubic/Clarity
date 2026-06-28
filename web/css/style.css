@@ -365,6 +365,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .form-input { padding: 12px 14px; background: var(--bg); border: 1px solid var(--border-strong); border-radius: var(--radius); font: 14px/1 var(--font-sans); color: var(--fg); transition: border-color 0.15s; }
 .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 .form-input::placeholder { color: var(--fg-dim); }
+.form-input[readonly] { opacity: 0.6; cursor: not-allowed; }
 .form-hint { font: 500 12px/1.4 var(--font-mono); color: var(--fg-dim); }
 .form-input.is-invalid { border-color: var(--err); }
 .form-input.is-invalid:focus { box-shadow: 0 0 0 3px color-mix(in oklab, var(--err) 20%, transparent); }

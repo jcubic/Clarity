@@ -144,6 +144,18 @@ class Database {
         return (int) $stmt->fetchColumn() > 0;
     }
 
+    public function getPublishedVersion(string $name): ?string {
+        if (!$this->pdo) {
+            return null;
+        }
+        $stmt = $this->pdo->prepare(
+            "SELECT version FROM themes WHERE name = ? AND status = 'published'"
+        );
+        $stmt->execute([$name]);
+        $version = $stmt->fetchColumn();
+        return $version !== false ? (string) $version : null;
+    }
+
     public function getThemeOwnerEmail(string $name): ?string {
         if (!$this->pdo) {
             return null;
