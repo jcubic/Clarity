@@ -253,14 +253,14 @@ class Database {
     }
 
     /**
-     * @return array<int, array{name: string, description: string, version: string, username: string, created_at: string, updated_at: string}>
+     * @return array<int, array{name: string, description: string, version: string, is_dark: int, username: string, created_at: string, updated_at: string}>
      */
     public function getPublishedThemes(): array {
         if (!$this->pdo) {
             return [];
         }
         return $this->pdo->query(
-            "SELECT t.name, t.description, t.version, u.username, t.created_at, t.updated_at
+            "SELECT t.name, t.description, t.version, t.is_dark, u.username, t.created_at, t.updated_at
              FROM themes t JOIN users u ON t.user_id = u.id
              WHERE t.status = 'published'
              ORDER BY t.updated_at DESC"

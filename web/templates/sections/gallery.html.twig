@@ -16,7 +16,7 @@
     <div class="gallery-grid">
       {% for theme in published_themes %}
       <a class="gallery-card" href="/theme/{{ theme.username }}/{{ theme.name }}" aria-label="{{ theme.name }} by @{{ theme.username }}">
-        <div class="gallery-cover" aria-hidden="true">
+        <div class="gallery-cover{% if not theme.is_dark %} gallery-cover--light{% endif %}" aria-hidden="true">
           {% for icon_name in cover_icons %}
           <img src="/api/icon/{{ theme.username }}/{{ theme.name }}/{{ icon_name }}" alt="{{ icon_name }}" loading="lazy" width="48" height="48">
           {% endfor %}
