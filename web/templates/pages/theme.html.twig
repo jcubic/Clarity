@@ -71,7 +71,7 @@
             <span class="td-like-count">{{ like_count }}</span>
           </button>
           {% if is_owner %}
-          <a href="/upload?theme={{ theme.name }}&username={{ theme.username }}&mode={{ theme.is_dark ? 'dark' : 'light' }}&description={{ theme.description|url_encode }}" class="button button--ghost button--small">Re-upload</a>
+          <a href="/upload?theme={{ theme.name }}&username={{ theme.username }}&mode={{ theme.is_dark ? 'dark' : 'light' }}&description={{ theme.description|url_encode }}&version={{ theme.version|url_encode }}" class="button button--ghost button--small">Re-upload</a>
           <a href="/theme/{{ theme.username }}/{{ theme.name }}/edit" class="button button--ghost button--small">Edit metadata</a>
           <form method="post" action="/theme/{{ theme.username }}/{{ theme.name }}/delete" class="td-delete-form">
             <button type="submit" class="button button--small btn--danger-ghost" onclick="return confirm('Are you sure you want to delete {{ theme.name }}? This cannot be undone.')">Delete</button>

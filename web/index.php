@@ -282,6 +282,7 @@ $app->get('/upload', function (Request $request, Response $response) use ($jwtSe
         'prefill_username' => $params['username'] ?? '',
         'prefill_mode' => $params['mode'] ?? '',
         'prefill_description' => $params['description'] ?? '',
+        'prefill_version' => $params['version'] ?? '',
     ]);
 });
 

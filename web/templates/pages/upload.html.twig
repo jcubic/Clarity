@@ -116,8 +116,8 @@
         <div class="form-row">
           <div class="form-field">
             <label for="theme-version" class="form-label">Version</label>
-            <input type="text" name="theme_version" id="theme-version" pattern="v?[0-9]+(\.[0-9]+){0,2}" maxlength="16" placeholder="v1.0" class="form-input" />
-            <span class="form-hint">Optional — defaults to v1.0</span>
+            <input type="text" name="theme_version" id="theme-version" pattern="v?[0-9]+(\.[0-9]+){0,2}" maxlength="16" placeholder="v1.0" class="form-input"{% if prefill_version %} value="{{ prefill_version }}"{% endif %} />
+            <span class="form-hint">{% if prefill_version %}Must be higher than {{ prefill_version }}{% else %}Optional — defaults to v1.0{% endif %}</span>
           </div>
         </div>
 
