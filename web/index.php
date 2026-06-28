@@ -587,6 +587,15 @@ $app->get('/api/theme/{user}/{name}', function (Request $request, Response $resp
     return $response->withHeader('Content-Type', 'image/svg+xml');
 });
 
+$app->get('/api/theme/{user}/{name}/version', function (Request $request, Response $response, array $args) use ($db) {
+    $theme = $db->getThemeDetail($args['user'], $args['name']);
+    if ($theme === null) {
+        return $response->withStatus(404);
+    }
+    $response->getBody()->write($theme['version']);
+    return $response->withHeader('Content-Type', 'text/plain');
+});
+
 $app->get('/api/icon/{user}/{theme}/{icon}', function (Request $request, Response $response, array $args) use ($db, $iconsByName) {
     $iconName = $args['icon'];
     if (!isset($iconsByName[$iconName])) {

@@ -470,7 +470,8 @@ cmd_update() {
     info "Downloading latest CLI..."
     local tmpdir
     tmpdir=$(mktemp -d)
-    trap 'rm -rf "$tmpdir"' EXIT
+    # shellcheck disable=SC2064
+    trap "rm -rf '$tmpdir'" EXIT
 
     curl -sL "$cli_url" -o "$tmpdir/clarity"
     chmod +x "$tmpdir/clarity"
