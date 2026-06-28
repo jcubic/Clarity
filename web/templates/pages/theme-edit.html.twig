@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit {{ theme.name }} — Clarity{% endblock %}
+{% block description %}Edit your community theme settings.{% endblock %}
+
+{% block main_attrs %} class="theme-detail"{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#gallery">Gallery</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="/theme/{{ theme.username }}/{{ theme.name }}">{{ theme.name }}</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="current">Edit</span>
+    </nav>
+  </div>
+
+  <section class="upload" aria-labelledby="edit-heading">
+    <div class="container upload-container">
+      <header class="section-header">
+        <p class="section-eyebrow">// Edit</p>
+        <h1 id="edit-heading" class="section-title">Edit {{ theme.name }}</h1>
+        <p class="section-lead">Update your theme's description or display settings.</p>
+      </header>
+
+      {% if error is defined and error %}
+      <div class="form-banner form-banner--error">{{ error }}</div>
+      {% endif %}
+
+      <form method="post" action="/theme/{{ theme.username }}/{{ theme.name }}/edit">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="theme-description" class="form-label">Description</label>
+            <input type="text" name="description" id="theme-description" maxlength="200" placeholder="e.g. Neon pink and electric cyan for a synthwave look" class="form-input" value="{{ old.description is defined ? old.description : theme.description }}" />
+            <span class="form-hint">Short tagline for the gallery — max 200 characters</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-checkbox">
+              <input type="checkbox" name="is_dark" value="1"{% if old is defined ? old.is_dark : theme.is_dark %} checked{% endif %} />
+              <span>Dark theme — icons are designed for a dark background</span>
+            </label>
+            <span class="form-hint">Uncheck if your template uses dark icons on a light background</span>
+          </div>
+        </div>
+
+        <div class="wizard-nav">
+          <a href="/theme/{{ theme.username }}/{{ theme.name }}" class="button button--ghost">Cancel</a>
+          <button type="submit" class="button button--primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock %}

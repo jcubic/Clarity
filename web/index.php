@@ -208,6 +208,52 @@ $app->get('/theme/{user}/{name}', function (Request $request, Response $response
     ]);
 });
 
+$app->get('/theme/{user}/{name}/edit', function (Request $request, Response $response, array $args) use ($db, $jwtSecret) {
+    $authUser = getAuthUser($request, $jwtSecret);
+    if ($authUser === null || $authUser['username'] !== $args['user']) {
+        return $response->withHeader('Location', '/theme/' . $args['user'] . '/' . $args['name'])->withStatus(302);
+    }
+    $theme = $db->getThemeDetail($args['user'], $args['name']);
+    if ($theme === null) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response->withStatus(404), 'pages/404.html.twig');
+    }
+    $view = Twig::fromRequest($request);
+    return $view->render($response, 'pages/theme-edit.html.twig', [
+        'theme' => $theme,
+    ]);
+});
+
+$app->post('/theme/{user}/{name}/edit', function (Request $request, Response $response, array $args) use ($db, $jwtSecret) {
+    $authUser = getAuthUser($request, $jwtSecret);
+    if ($authUser === null || $authUser['username'] !== $args['user']) {
+        return $response->withHeader('Location', '/theme/' . $args['user'] . '/' . $args['name'])->withStatus(302);
+    }
+    $themeId = $db->getThemeIdBySlug($args['user'], $args['name']);
+    if ($themeId === null) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response->withStatus(404), 'pages/404.html.twig');
+    }
+    $body = $request->getParsedBody();
+    $description = trim((string) ($body['description'] ?? ''));
+    $isDark = isset($body['is_dark']);
+    $error = null;
+    if (mb_strlen($description) > 200) {
+        $error = 'Description must be 200 characters or fewer.';
+    }
+    if ($error !== null) {
+        $theme = $db->getThemeDetail($args['user'], $args['name']);
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'pages/theme-edit.html.twig', [
+            'theme' => $theme,
+            'error' => $error,
+            'old' => ['description' => $description, 'is_dark' => $isDark],
+        ]);
+    }
+    $db->updateThemeMetadata($themeId, $description, $isDark);
+    return $response->withHeader('Location', '/theme/' . $args['user'] . '/' . $args['name'])->withStatus(302);
+});
+
 $app->post('/theme/{user}/{name}/delete', function (Request $request, Response $response, array $args) use ($db, $jwtSecret) {
     $authUser = getAuthUser($request, $jwtSecret);
     if ($authUser === null || $authUser['username'] !== $args['user']) {

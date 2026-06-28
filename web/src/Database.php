@@ -169,6 +169,16 @@ class Database {
         return $row !== false ? $row : null;
     }
 
+    public function updateThemeMetadata(int $themeId, string $description, bool $isDark): void {
+        if (!$this->pdo) {
+            return;
+        }
+        $stmt = $this->pdo->prepare(
+            "UPDATE themes SET description = ?, is_dark = ? WHERE id = ? AND status = 'published'"
+        );
+        $stmt->execute([$description, $isDark ? 1 : 0, $themeId]);
+    }
+
     public function deleteTheme(int $themeId): void {
         if (!$this->pdo) {
             return;

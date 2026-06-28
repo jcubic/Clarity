@@ -65,11 +65,17 @@
           </div>
         </dl>
 
-        <div class="td-like">
+        <div class="td-actions">
           <button class="td-like-btn{% if has_liked %} td-like-btn--liked{% endif %}" type="button" data-theme-slug="{{ theme.username }}/{{ theme.name }}"{% if has_liked %} disabled{% endif %}>
             <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
             <span class="td-like-count">{{ like_count }}</span>
           </button>
+          {% if is_owner %}
+          <a href="/theme/{{ theme.username }}/{{ theme.name }}/edit" class="button button--ghost button--small">Edit</a>
+          <form method="post" action="/theme/{{ theme.username }}/{{ theme.name }}/delete" class="td-delete-form">
+            <button type="submit" class="button button--small btn--danger-ghost" onclick="return confirm('Are you sure you want to delete {{ theme.name }}? This cannot be undone.')">Delete</button>
+          </form>
+          {% endif %}
         </div>
       </div>
 
@@ -226,14 +232,6 @@
         </div>
       </dl>
 
-      {% if is_owner %}
-      <div class="td-owner-actions">
-        <form method="post" action="/theme/{{ theme.username }}/{{ theme.name }}/delete" class="td-delete-form">
-          <p class="td-delete-warning">This will permanently remove your theme from the gallery. Users who already installed it keep their local copy.</p>
-          <button type="submit" class="btn btn--danger" onclick="return confirm('Are you sure you want to delete {{ theme.name }}?')">Delete this theme</button>
-        </form>
-      </div>
-      {% endif %}
     </div>
   </section>
 {% endblock %}

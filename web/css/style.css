@@ -538,7 +538,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .td-hero-byline .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-strong); }
 
 .td-hero-tagline {
-  margin: 0 0 32px;
+  margin: 1em 0 32px;
   font-size: clamp(17px, 1.5vw, 19px);
   line-height: 1.5;
   color: var(--fg-muted);
@@ -586,7 +586,9 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
   white-space: nowrap;
 }
 
-.td-like { margin-top: 20px; }
+.td-actions { margin-top: 20px; display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap; }
+.td-delete-form { display: contents; }
+.btn--danger-ghost { color: white; font-weight: bold; background: var(--err); }
 .td-like-btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 18px;
@@ -807,10 +809,6 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
   color: var(--fg);
 }
 
-.td-owner-actions { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
-.td-delete-warning { margin: 0 0 16px; font-size: 14px; color: var(--fg-dim); }
-.btn--danger { background: var(--err); color: #fff; border: 1px solid var(--err); border-radius: var(--radius); padding: 10px 18px; font: 500 13px/1 var(--font-mono); }
-.btn--danger:hover { background: oklch(58% 0.22 25); }
 
 /* Theme detail responsive */
 @media (max-width: 900px) {
