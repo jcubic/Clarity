@@ -1,10 +1,12 @@
 *~
 theme/16x16
-theme/build-stamp
 theme/scalable
-theme/configure-stamp
-theme/Clarity
 theme/icon-theme.cache
+theme/clarity-icons-*.tar.gz
+theme/clarity-icons_*_all
+theme/clarity-icons_*.deb
+theme/clarity-icons-*.rpm
+theme/rpmbuild
 web/vendor
 web/cache
 web/icons.json
