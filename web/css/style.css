@@ -41,6 +41,7 @@ body {
   font: 16px/1.6 var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -414,7 +415,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .confirmation-actions { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
 
 @media (max-width: 980px) {
-  .create-grid { grid-template-columns: 1fr; }
+  .create-grid { grid-template-columns: minmax(0, 1fr); }
   .template-card { position: static; }
 }
 @media (max-width: 880px) {
@@ -422,15 +423,49 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
   .nav-links { display: none; }
   .variant-panel-token { display: none; }
 }
+@media (max-width: 680px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-header-row { flex-direction: column; align-items: flex-start; }
+  .create-step { padding-left: 48px; }
+  .create-step::before { width: 36px; height: 36px; font-size: 12px; }
+}
 @media (max-width: 560px) {
+  .site-nav { height: 52px; }
+  .brand { font-size: 11px; gap: 8px; }
+  .brand-mark { width: 18px; height: 18px; }
+  .nav-cta { padding: 6px 10px; font-size: 11px; }
+  .hero { padding: clamp(48px, 10vw, 100px) 0 clamp(40px, 8vw, 80px); }
+  .hero-logo { width: min(480px, 85%); }
+  .hero-tagline { font-size: 15px; }
   .hero-stats { grid-template-columns: 1fr; }
-  .hero-stat { border-right: 0; border-bottom: 1px solid var(--border); }
+  .hero-stat { padding: 14px 16px; flex-direction: row; justify-content: space-between; border-right: 0; border-bottom: 1px solid var(--border); }
   .hero-stat:last-child { border-bottom: 0; }
+  .hero-stat-value { font-size: 22px; }
+  .hero-stat-label { font-size: 10px; letter-spacing: 0.14em; }
   .hero-eyebrow::before, .hero-eyebrow::after { width: 18px; margin: 0 8px; }
+  .section-title { font-size: clamp(26px, 7vw, 36px); }
+  .section-lead { font-size: 15px; }
   .icon-grid { grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 6px; }
   .icon-tile { padding: 14px; }
-  .terminal-body { padding: 20px 16px; font-size: 13px; }
+  .terminal-body { padding: 20px 16px; font-size: 12px; }
+  .terminal-title { display: none; }
+  .terminal-copy-label { display: none; }
   .variant-tab { padding: 10px 12px; font-size: 12px; }
+  .variant-panel-name { font-size: 22px; }
+  .contribute-card dl { grid-template-columns: 1fr; row-gap: 4px; }
+  .contribute-card dt { margin-top: 8px; }
+  .contribute-card dt:first-of-type { margin-top: 0; }
+  .button { padding: 12px 18px; font-size: 13px; }
+  .site-footer-inner { flex-direction: column; text-align: center; gap: 12px; }
+  .site-footer-meta { justify-content: center; }
+  .template-preview { aspect-ratio: auto; }
+  .stepper { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .stepper::-webkit-scrollbar { display: none; }
+  .stepper-step { white-space: nowrap; font-size: 12px; gap: 6px; }
+  .stepper-num { width: 24px; height: 24px; font-size: 11px; }
+  .wizard-stepper { margin-bottom: 28px; }
+  .dropzone-label { padding: 36px 20px; }
+  .confirmation-card { padding: 28px 20px; }
 }
 /* === Theme detail page === */
 .breadcrumb {
@@ -783,9 +818,21 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
   .td-hero-window { order: -1; max-width: 280px; }
   .td-author-card { grid-template-columns: 1fr; }
   .td-author-stats { padding-left: 0; padding-top: 20px; border-left: 0; border-top: 1px solid var(--border); }
+  .theme-detail .install-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .td-hero-title { font-size: clamp(40px, 11vw, 56px); }
+  .td-hero-title { font-size: clamp(36px, 10vw, 52px); }
+  .td-hero-byline { flex-wrap: wrap; gap: 8px; font-size: 13px; }
+  .td-hero-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .td-hero-actions { flex-direction: column; }
+  .td-hero-actions .button { justify-content: center; }
+  .td-preview-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+  .td-preview-tile { padding: 14px; }
+  .td-howto-card .cmd { font-size: 11px; }
+  .td-howto-tip { font-size: 12px; }
+  .td-howto-tip code { font-size: 11px; }
+  .td-author-card { padding: 24px 20px; }
+  .td-author-id .avatar-lg { width: 48px; height: 48px; font-size: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
