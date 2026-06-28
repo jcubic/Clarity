@@ -18,6 +18,7 @@
   --albus:           oklch(95% 0.005 0);
   --caeruleus:       oklch(68% 0.16 235);
   --lux_caeruleus:   oklch(48% 0.12 235);
+  --caeruleus_flat:  oklch(68% 0.16 235);
   --violaceus:       oklch(62% 0.20 340);
   --lux_violaceus:   oklch(42% 0.15 340);
   --viridis:         oklch(72% 0.17 145);
@@ -195,6 +196,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .variant-panel--albus          { --variant-color: var(--albus); }
 .variant-panel--caeruleus      { --variant-color: var(--caeruleus); }
 .variant-panel--lux_caeruleus  { --variant-color: var(--lux_caeruleus); }
+.variant-panel--caeruleus_flat { --variant-color: var(--caeruleus_flat); }
 .variant-panel--violaceus      { --variant-color: var(--violaceus); }
 .variant-panel--lux_violaceus  { --variant-color: var(--lux_violaceus); }
 .variant-panel--viridis        { --variant-color: var(--viridis); }
@@ -205,6 +207,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .variant-tab--albus          { --variant-color: var(--albus); }
 .variant-tab--caeruleus      { --variant-color: var(--caeruleus); }
 .variant-tab--lux_caeruleus  { --variant-color: var(--lux_caeruleus); }
+.variant-tab--caeruleus_flat { --variant-color: var(--caeruleus_flat); }
 .variant-tab--violaceus      { --variant-color: var(--violaceus); }
 .variant-tab--lux_violaceus  { --variant-color: var(--lux_violaceus); }
 .variant-tab--viridis        { --variant-color: var(--viridis); }

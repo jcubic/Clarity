@@ -121,35 +121,21 @@ foreach ($icons as $icon) {
     $iconsByName[$icon['name']] = $icon;
 }
 
-$variants = [
-    [
-        'id' => 'canus', 'name' => 'Canus', 'latin' => 'hoary · silver-grey',
-        'oklch' => '75% 0.005 245', 'light' => false,
-        'sub' => [
-            'id' => 'dark_canus', 'name' => 'Dark Canus', 'latin' => 'dark · charcoal',
-            'oklch' => '35% 0.005 245', 'light' => true, 'toggle' => 'Dark',
-        ],
-    ],
-    [
-        'id' => 'caeruleus', 'name' => 'Caeruleus', 'latin' => 'azure · sky-blue',
-        'oklch' => '68% 0.16 235', 'light' => false,
-        'sub' => [
-            'id' => 'lux_caeruleus', 'name' => 'Lux Caeruleus', 'latin' => 'light azure',
-            'oklch' => '82% 0.10 235', 'light' => false, 'toggle' => 'Lux',
-        ],
-    ],
-    [
-        'id' => 'violaceus', 'name' => 'Violaceus', 'latin' => 'violet · amaranth',
-        'oklch' => '62% 0.20 340', 'light' => false,
-        'sub' => [
-            'id' => 'lux_violaceus', 'name' => 'Lux Violaceus', 'latin' => 'light violet',
-            'oklch' => '78% 0.12 340', 'light' => false, 'toggle' => 'Lux',
-        ],
-    ],
-    ['id' => 'viridis', 'name' => 'Viridis', 'latin' => 'green · verdant', 'oklch' => '72% 0.17 145', 'light' => false],
-    ['id' => 'luteus', 'name' => 'Luteus', 'latin' => 'saffron · amber', 'oklch' => '80% 0.14 88', 'light' => false],
-    ['id' => 'albus', 'name' => 'Albus', 'latin' => 'white · bright', 'oklch' => '95% 0.005 245', 'light' => false],
-];
+$variantData = json_decode(file_get_contents(__DIR__ . '/variants.json'), true);
+$variants = [];
+$childMap = [];
+foreach ($variantData as $v) {
+    if (isset($v['parent'])) {
+        $childMap[$v['parent']][] = $v;
+    }
+}
+foreach ($variantData as $v) {
+    if (isset($v['parent'])) {
+        continue;
+    }
+    $v['subs'] = $childMap[$v['id']] ?? [];
+    $variants[] = $v;
+}
 
 $app->get('/', function (Request $request, Response $response) use ($icons, $variants, $db, $coverIcons) {
     $view = Twig::fromRequest($request);
@@ -445,6 +431,29 @@ $app->get('/logout', function (Request $request, Response $response) {
         ->withHeader('Set-Cookie', $cookie)
         ->withHeader('Location', '/')
         ->withStatus(302);
+});
+
+$app->get('/template', function (Request $request, Response $response) {
+    $svg = <<<'SVG'
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The placeholder circle MUST stay. Style it any way you like. -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 128 128" width="128" height="128">
+
+  <circle id="icon-placeholder"
+          cx="64" cy="64" r="56"
+          fill="#8b8d96" />
+
+  <!-- Your icon goes here. Glyphs, gradients, filters, -->
+  <!-- anything that fits inside the placeholder bounds. -->
+
+</svg>
+SVG;
+    $response->getBody()->write($svg);
+    return $response
+        ->withHeader('Content-Type', 'image/svg+xml')
+        ->withHeader('Content-Disposition', 'attachment; filename="clarity-template.svg"')
+        ->withHeader('Cache-Control', 'public, max-age=86400');
 });
 
 $app->get('/install', function (Request $request, Response $response) use ($db) {

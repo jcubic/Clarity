@@ -35,17 +35,21 @@
 
       {% for variant in variants %}
       <div class="variant-group" id="vp-{{ variant.id }}" data-tab-panel="{{ variant.id }}" role="tabpanel" aria-labelledby="vt-{{ variant.id }}">
-        {% if variant.sub is defined %}
+        {% if variant.subs is defined and variant.subs|length > 0 %}
         <div class="variant-switch" role="radiogroup" aria-label="{{ variant.name }} style">
           <button class="variant-switch-btn is-active" type="button" role="radio" aria-checked="true" data-switch="{{ variant.id }}">Standard</button>
-          <button class="variant-switch-btn" type="button" role="radio" aria-checked="false" data-switch="{{ variant.sub.id }}">{{ variant.sub.toggle }}</button>
+          {% for sub in variant.subs %}
+          <button class="variant-switch-btn" type="button" role="radio" aria-checked="false" data-switch="{{ sub.id }}">{{ sub.toggle }}</button>
+          {% endfor %}
         </div>
         {% endif %}
 
         {{ panel(variant, icons) }}
 
-        {% if variant.sub is defined %}
-        {{ panel(variant.sub, icons) }}
+        {% if variant.subs is defined %}
+        {% for sub in variant.subs %}
+        {{ panel(sub, icons) }}
+        {% endfor %}
         {% endif %}
       </div>
       {% endfor %}

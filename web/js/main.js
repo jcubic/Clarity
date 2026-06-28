@@ -73,8 +73,8 @@
       var subPanels = Array.prototype.slice.call(group.querySelectorAll('.variant-panel'));
       var switchBtns = Array.prototype.slice.call(switchEl.querySelectorAll('.variant-switch-btn'));
 
-      if (subPanels.length > 1) {
-        subPanels[1].setAttribute('hidden', '');
+      for (var si = 1; si < subPanels.length; si++) {
+        subPanels[si].setAttribute('hidden', '');
       }
 
       switchBtns.forEach(function (btn) {
