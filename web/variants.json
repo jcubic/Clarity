@@ -32,7 +32,7 @@
     "toggle": "Lux"
   },
   {
-    "id": "caeruleus_flat",
+    "id": "flat_caeruleus",
     "name": "Caeruleus Flat",
     "latin": "flat azure",
     "oklch": "62% 0.17 261",
@@ -57,6 +57,15 @@
     "toggle": "Lux"
   },
   {
+    "id": "flat_violaceus",
+    "name": "Flat Violaceus",
+    "latin": "flat violet",
+    "oklch": "62% 0.20 340",
+    "light": false,
+    "parent": "violaceus",
+    "toggle": "Flat"
+  },
+  {
     "id": "viridis",
     "name": "Viridis",
     "latin": "green · verdant",
@@ -64,11 +73,29 @@
     "light": false
   },
   {
+    "id": "flat_viridis",
+    "name": "Flat Viridis",
+    "latin": "flat green",
+    "oklch": "72% 0.17 145",
+    "light": false,
+    "parent": "viridis",
+    "toggle": "Flat"
+  },
+  {
     "id": "luteus",
     "name": "Luteus",
     "latin": "saffron · amber",
     "oklch": "80% 0.14 88",
     "light": false
+  },
+  {
+    "id": "flat_luteus",
+    "name": "Flat Luteus",
+    "latin": "flat amber",
+    "oklch": "80% 0.14 88",
+    "light": false,
+    "parent": "luteus",
+    "toggle": "Flat"
   },
   {
     "id": "albus",

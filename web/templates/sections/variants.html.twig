@@ -1,5 +1,5 @@
 {% macro panel(variant, icons) %}
-<section class="variant-panel variant-panel--{{ variant.id }}">
+<section class="variant-panel variant-panel--{{ variant.id }}" style="--variant-color: oklch({{ variant.oklch }})">
   <header class="variant-panel-head">
     <h3 class="variant-panel-name"><span class="variant-dot" aria-hidden="true"></span>{{ variant.name }}</h3>
     <p class="variant-panel-latin">{{ variant.latin }}</p>
@@ -29,7 +29,7 @@
     <div class="variant-tabs" id="variant-tabs">
       <div class="variant-tabbar" role="tablist" aria-label="Color variants">
         {% for variant in variants %}
-        <button class="variant-tab variant-tab--{{ variant.id }}{% if loop.first %} is-active{% endif %}" type="button" role="tab" data-tab="{{ variant.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" aria-controls="vp-{{ variant.id }}" id="vt-{{ variant.id }}"><span class="variant-dot" aria-hidden="true"></span><span>{{ variant.name }}</span></button>
+        <button class="variant-tab{% if loop.first %} is-active{% endif %}" type="button" role="tab" data-tab="{{ variant.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" aria-controls="vp-{{ variant.id }}" id="vt-{{ variant.id }}" style="--variant-color: oklch({{ variant.oklch }})"><span class="variant-dot" aria-hidden="true"></span><span>{{ variant.name }}</span></button>
         {% endfor %}
       </div>
 

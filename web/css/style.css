@@ -13,17 +13,6 @@
   --accent-soft:  oklch(72% 0.16 230 / 0.14);
   --accent-glow:  oklch(72% 0.16 230 / 0.35);
 
-  --canus:           oklch(75% 0.005 245);
-  --dark_canus:      oklch(40% 0.005 245);
-  --albus:           oklch(95% 0.005 0);
-  --caeruleus:       oklch(68% 0.16 235);
-  --lux_caeruleus:   oklch(48% 0.12 235);
-  --caeruleus_flat:  oklch(68% 0.16 235);
-  --violaceus:       oklch(62% 0.20 340);
-  --lux_violaceus:   oklch(42% 0.15 340);
-  --viridis:         oklch(72% 0.17 145);
-  --luteus:          oklch(80% 0.14 88);
-
   --ok:           oklch(72% 0.17 145);
   --err:          oklch(66% 0.20 25);
 
@@ -191,27 +180,6 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .icon-tile-name { position: absolute; bottom: 6px; left: 6px; right: 6px; font: 500 9px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-dim); text-align: center; opacity: 0; transition: opacity 0.15s; }
 .icon-tile:hover .icon-tile-name { opacity: 1; }
 
-.variant-panel--canus          { --variant-color: var(--canus); }
-.variant-panel--dark_canus     { --variant-color: var(--dark_canus); }
-.variant-panel--albus          { --variant-color: var(--albus); }
-.variant-panel--caeruleus      { --variant-color: var(--caeruleus); }
-.variant-panel--lux_caeruleus  { --variant-color: var(--lux_caeruleus); }
-.variant-panel--caeruleus_flat { --variant-color: var(--caeruleus_flat); }
-.variant-panel--violaceus      { --variant-color: var(--violaceus); }
-.variant-panel--lux_violaceus  { --variant-color: var(--lux_violaceus); }
-.variant-panel--viridis        { --variant-color: var(--viridis); }
-.variant-panel--luteus         { --variant-color: var(--luteus); }
-
-.variant-tab--canus          { --variant-color: var(--canus); }
-.variant-tab--dark_canus     { --variant-color: var(--dark_canus); }
-.variant-tab--albus          { --variant-color: var(--albus); }
-.variant-tab--caeruleus      { --variant-color: var(--caeruleus); }
-.variant-tab--lux_caeruleus  { --variant-color: var(--lux_caeruleus); }
-.variant-tab--caeruleus_flat { --variant-color: var(--caeruleus_flat); }
-.variant-tab--violaceus      { --variant-color: var(--violaceus); }
-.variant-tab--lux_violaceus  { --variant-color: var(--lux_violaceus); }
-.variant-tab--viridis        { --variant-color: var(--viridis); }
-.variant-tab--luteus         { --variant-color: var(--luteus); }
 
 /* === Community gallery === */
 .gallery { border-top: 1px solid var(--border); }
