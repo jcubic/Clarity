@@ -473,4 +473,21 @@
       grid.classList.toggle(lightClass, isLight);
     });
   });
+
+  // Like button
+  var likeBtn = document.querySelector('.td-like-btn');
+  if (likeBtn && !likeBtn.disabled) {
+    likeBtn.addEventListener('click', function () {
+      var slug = likeBtn.dataset.themeSlug;
+      likeBtn.disabled = true;
+      fetch('/api/like/' + slug, { method: 'POST' })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          likeBtn.classList.add('td-like-btn--liked');
+          var count = likeBtn.querySelector('.td-like-count');
+          if (count) count.textContent = data.count;
+        })
+        .catch(function () { likeBtn.disabled = false; });
+    });
+  }
 })();

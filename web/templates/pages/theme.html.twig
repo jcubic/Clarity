@@ -58,7 +58,22 @@
             <dt>Icons</dt>
             <dd>{{ stats.unique_icons|number_format }}</dd>
           </div>
+          <div class="td-hero-meta-item">
+            <dt>Views</dt>
+            <dd>{{ theme.view_count|number_format }}</dd>
+          </div>
+          <div class="td-hero-meta-item">
+            <dt>Downloads</dt>
+            <dd>{{ theme.download_count|number_format }}</dd>
+          </div>
         </dl>
+
+        <div class="td-like">
+          <button class="td-like-btn{% if has_liked %} td-like-btn--liked{% endif %}" type="button" data-theme-slug="{{ theme.username }}/{{ theme.name }}"{% if has_liked %} disabled{% endif %}>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
+            <span class="td-like-count">{{ like_count }}</span>
+          </button>
+        </div>
       </div>
 
       <figure class="td-hero-window{% if not theme.is_dark %} td-hero-window--light{% endif %}">

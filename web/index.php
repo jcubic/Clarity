@@ -87,6 +87,15 @@ function setAuthCookie(Response $response, string $secret, int $userId, string $
     return $response->withHeader('Set-Cookie', $cookie);
 }
 
+function getIpHash(Request $request): string {
+    $ip = $request->getServerParams()['REMOTE_ADDR'] ?? '0.0.0.0';
+    $forwarded = $request->getHeaderLine('X-Forwarded-For');
+    if ($forwarded) {
+        $ip = trim(explode(',', $forwarded)[0]);
+    }
+    return hash('sha256', $ip . env('JWT_SECRET', ''));
+}
+
 $mime_types = [
     'css' => 'text/css',
     'js'  => 'application/javascript',
@@ -159,11 +168,17 @@ $app->get('/theme/{user}/{name}', function (Request $request, Response $response
         $response = $response->withStatus(404);
         return $view->render($response, 'pages/404.html.twig');
     }
+    $ipHash = getIpHash($request);
+    $db->recordThemeView((int) $theme['id'], $ipHash);
+    $likeCount = $db->getLikeCount((int) $theme['id']);
+    $hasLiked = $db->hasLiked((int) $theme['id'], $ipHash);
     $authorThemeCount = $db->getUserThemeCount($args['user']);
     $previewIcons = array_slice($icons, 0, 27);
     $featuredIcon = $icons[array_rand($icons)];
     return $view->render($response, 'pages/theme.html.twig', [
         'theme' => $theme,
+        'like_count' => $likeCount,
+        'has_liked' => $hasLiked,
         'author_theme_count' => $authorThemeCount,
         'preview_icons' => $previewIcons,
         'featured_icon' => $featuredIcon,
@@ -413,10 +428,27 @@ $app->get('/stats', function (Request $request, Response $response) use ($db) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+$app->post('/api/like/{user}/{name}', function (Request $request, Response $response, array $args) use ($db) {
+    $themeId = $db->getThemeIdBySlug($args['user'], $args['name']);
+    if ($themeId === null) {
+        $response->getBody()->write(json_encode(['error' => 'Theme not found']));
+        return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
+    }
+    $ipHash = getIpHash($request);
+    $added = $db->addLike($themeId, $ipHash);
+    $count = $db->getLikeCount($themeId);
+    $response->getBody()->write(json_encode(['liked' => true, 'added' => $added, 'count' => $count]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
 $app->get('/api/theme/{user}/{name}', function (Request $request, Response $response, array $args) use ($db) {
     $svg = $db->getThemeSvg($args['user'], $args['name']);
     if ($svg === null) {
         return $response->withStatus(404);
+    }
+    $themeId = $db->getThemeIdBySlug($args['user'], $args['name']);
+    if ($themeId !== null) {
+        $db->incrementDownloadCount($themeId);
     }
     $response->getBody()->write($svg);
     return $response->withHeader('Content-Type', 'image/svg+xml');

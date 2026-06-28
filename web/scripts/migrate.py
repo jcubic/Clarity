@@ -51,6 +51,26 @@ MIGRATIONS = {
     4: [
         "ALTER TABLE themes ADD COLUMN is_dark TINYINT(1) NOT NULL DEFAULT 1 AFTER svg_content",
     ],
+    5: [
+        "ALTER TABLE themes ADD COLUMN view_count BIGINT UNSIGNED NOT NULL DEFAULT 0 AFTER is_dark",
+        "ALTER TABLE themes ADD COLUMN download_count BIGINT UNSIGNED NOT NULL DEFAULT 0 AFTER view_count",
+        """CREATE TABLE IF NOT EXISTS theme_views (
+            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            theme_id INT UNSIGNED NOT NULL,
+            ip_hash VARCHAR(64) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE KEY unique_view (theme_id, ip_hash),
+            FOREIGN KEY (theme_id) REFERENCES themes(id) ON DELETE CASCADE
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4""",
+        """CREATE TABLE IF NOT EXISTS likes (
+            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            theme_id INT UNSIGNED NOT NULL,
+            ip_hash VARCHAR(64) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE KEY unique_like (theme_id, ip_hash),
+            FOREIGN KEY (theme_id) REFERENCES themes(id) ON DELETE CASCADE
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4""",
+    ],
 }
 
 

@@ -253,14 +253,16 @@ class Database {
     }
 
     /**
-     * @return array<int, array{name: string, description: string, version: string, is_dark: int, username: string, created_at: string, updated_at: string}>
+     * @return array<int, array{name: string, description: string, version: string, is_dark: int, view_count: int, download_count: int, like_count: int, username: string, created_at: string, updated_at: string}>
      */
     public function getPublishedThemes(): array {
         if (!$this->pdo) {
             return [];
         }
         return $this->pdo->query(
-            "SELECT t.name, t.description, t.version, t.is_dark, u.username, t.created_at, t.updated_at
+            "SELECT t.name, t.description, t.version, t.is_dark, t.view_count, t.download_count,
+                    (SELECT COUNT(*) FROM likes l WHERE l.theme_id = t.id) AS like_count,
+                    u.username, t.created_at, t.updated_at
              FROM themes t JOIN users u ON t.user_id = u.id
              WHERE t.status = 'published'
              ORDER BY t.updated_at DESC"
@@ -268,14 +270,14 @@ class Database {
     }
 
     /**
-     * @return array{name: string, description: string, version: string, is_dark: int, username: string, created_at: string, updated_at: string, user_created_at: string}|null
+     * @return array{id: int, name: string, description: string, version: string, is_dark: int, view_count: int, download_count: int, username: string, created_at: string, updated_at: string, user_created_at: string}|null
      */
     public function getThemeDetail(string $username, string $themeName): ?array {
         if (!$this->pdo) {
             return null;
         }
         $stmt = $this->pdo->prepare(
-            "SELECT t.name, t.description, t.version, t.is_dark, t.created_at, t.updated_at,
+            "SELECT t.id, t.name, t.description, t.version, t.is_dark, t.view_count, t.download_count, t.created_at, t.updated_at,
                     u.username, u.created_at AS user_created_at
              FROM themes t
              JOIN users u ON t.user_id = u.id
@@ -307,10 +309,73 @@ class Database {
             return [];
         }
         return $this->pdo->query(
-            'SELECT t.id, t.name, t.description, t.version, u.username, u.email, t.status, t.created_at, t.updated_at
+            'SELECT t.id, t.name, t.description, t.version, t.view_count, t.download_count,
+                    (SELECT COUNT(*) FROM likes l WHERE l.theme_id = t.id) AS like_count,
+                    u.username, u.email, t.status, t.created_at, t.updated_at
              FROM themes t LEFT JOIN users u ON t.user_id = u.id
              ORDER BY t.updated_at DESC'
         )->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function recordThemeView(int $themeId, string $ipHash): bool {
+        if (!$this->pdo) {
+            return false;
+        }
+        $stmt = $this->pdo->prepare('INSERT IGNORE INTO theme_views (theme_id, ip_hash) VALUES (?, ?)');
+        $stmt->execute([$themeId, $ipHash]);
+        if ($stmt->rowCount() > 0) {
+            $stmt = $this->pdo->prepare('UPDATE themes SET view_count = view_count + 1 WHERE id = ?');
+            $stmt->execute([$themeId]);
+            return true;
+        }
+        return false;
+    }
+
+    public function incrementDownloadCount(int $themeId): void {
+        if (!$this->pdo) {
+            return;
+        }
+        $stmt = $this->pdo->prepare('UPDATE themes SET download_count = download_count + 1 WHERE id = ?');
+        $stmt->execute([$themeId]);
+    }
+
+    public function getThemeIdBySlug(string $username, string $name): ?int {
+        if (!$this->pdo) {
+            return null;
+        }
+        $stmt = $this->pdo->prepare(
+            "SELECT t.id FROM themes t JOIN users u ON t.user_id = u.id WHERE u.username = ? AND t.name = ? AND t.status = 'published'"
+        );
+        $stmt->execute([$username, $name]);
+        $id = $stmt->fetchColumn();
+        return $id !== false ? (int) $id : null;
+    }
+
+    public function addLike(int $themeId, string $ipHash): bool {
+        if (!$this->pdo) {
+            return false;
+        }
+        $stmt = $this->pdo->prepare('INSERT IGNORE INTO likes (theme_id, ip_hash) VALUES (?, ?)');
+        $stmt->execute([$themeId, $ipHash]);
+        return $stmt->rowCount() > 0;
+    }
+
+    public function getLikeCount(int $themeId): int {
+        if (!$this->pdo) {
+            return 0;
+        }
+        $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM likes WHERE theme_id = ?');
+        $stmt->execute([$themeId]);
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function hasLiked(int $themeId, string $ipHash): bool {
+        if (!$this->pdo) {
+            return false;
+        }
+        $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM likes WHERE theme_id = ? AND ip_hash = ?');
+        $stmt->execute([$themeId, $ipHash]);
+        return (int) $stmt->fetchColumn() > 0;
     }
 
 }
