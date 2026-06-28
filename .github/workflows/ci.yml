@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - wasmer
+    paths:
+      - 'web/**'
+      - 'theme/src/**'
+      - 'theme/static/**'
+      - 'theme/index.theme'
+      - '.github/workflows/ci.yml'
 
 jobs:
   check:
