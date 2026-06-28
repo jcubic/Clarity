@@ -106,14 +106,14 @@ class Database {
         return (int) $this->pdo->lastInsertId();
     }
 
-    public function createTheme(string $name, string $description, string $version, string $svgContent): int {
+    public function createTheme(string $name, string $description, string $version, string $svgContent, bool $isDark = true): int {
         if (!$this->pdo) {
             return 0;
         }
         $stmt = $this->pdo->prepare(
-            'INSERT INTO themes (name, description, version, svg_content, status) VALUES (?, ?, ?, ?, ?)'
+            'INSERT INTO themes (name, description, version, svg_content, is_dark, status) VALUES (?, ?, ?, ?, ?, ?)'
         );
-        $stmt->execute([$name, $description, $version, $svgContent, 'pending']);
+        $stmt->execute([$name, $description, $version, $svgContent, $isDark ? 1 : 0, 'pending']);
         return (int) $this->pdo->lastInsertId();
     }
 
@@ -157,13 +157,13 @@ class Database {
     }
 
     /**
-     * @return array{svg_content: string, description: string, version: string}|null
+     * @return array{svg_content: string, description: string, version: string, is_dark: int}|null
      */
     public function getThemeById(int $themeId): ?array {
         if (!$this->pdo) {
             return null;
         }
-        $stmt = $this->pdo->prepare('SELECT svg_content, description, version FROM themes WHERE id = ?');
+        $stmt = $this->pdo->prepare('SELECT svg_content, description, version, is_dark FROM themes WHERE id = ?');
         $stmt->execute([$themeId]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row !== false ? $row : null;
@@ -177,14 +177,14 @@ class Database {
         $stmt->execute([$themeId]);
     }
 
-    public function replacePublishedTheme(string $name, int $userId, string $description, string $version, string $svgContent): void {
+    public function replacePublishedTheme(string $name, int $userId, string $description, string $version, string $svgContent, bool $isDark = true): void {
         if (!$this->pdo) {
             return;
         }
         $stmt = $this->pdo->prepare(
-            "UPDATE themes SET description = ?, version = ?, svg_content = ? WHERE name = ? AND user_id = ? AND status = 'published'"
+            "UPDATE themes SET description = ?, version = ?, svg_content = ?, is_dark = ? WHERE name = ? AND user_id = ? AND status = 'published'"
         );
-        $stmt->execute([$description, $version, $svgContent, $name, $userId]);
+        $stmt->execute([$description, $version, $svgContent, $isDark ? 1 : 0, $name, $userId]);
     }
 
     public function createMagicToken(string $token, string $email, string $username, int $themeId): void {

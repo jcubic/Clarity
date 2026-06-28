@@ -223,6 +223,7 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
     $themeName = trim($data['theme_name'] ?? '');
     $description = trim($data['theme_description'] ?? '');
     $version = trim($data['theme_version'] ?? '') ?: 'v1.0';
+    $isDark = !empty($data['is_dark']);
     $svg = $files['svg_file'] ?? null;
 
     if ($authUser) {
@@ -308,12 +309,12 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
 
     if ($authUser) {
         $userId = $authUser['user_id'];
-        $themeId = $db->createTheme($themeName, $description, $version, $converted);
+        $themeId = $db->createTheme($themeName, $description, $version, $converted, $isDark);
 
         if ($ownerEmail !== null && $ownerEmail === $email) {
             $pending = $db->getThemeById($themeId);
             if ($pending !== null) {
-                $db->replacePublishedTheme($themeName, $userId, $pending['description'], $pending['version'], $pending['svg_content']);
+                $db->replacePublishedTheme($themeName, $userId, $pending['description'], $pending['version'], $pending['svg_content'], $isDark);
             }
             $db->deleteTheme($themeId);
         } else {
@@ -326,7 +327,7 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
         ]);
     }
 
-    $themeId = $db->createTheme($themeName, $description, $version, $converted);
+    $themeId = $db->createTheme($themeName, $description, $version, $converted, $isDark);
     $token = bin2hex(random_bytes(32));
     $db->createMagicToken($token, $email, $username, $themeId);
 
@@ -374,7 +375,7 @@ $app->get('/verify', function (Request $request, Response $response) use ($db, $
     if ($existingOwner !== null && $existingOwner === $data['email']) {
         $pending = $db->getThemeById($data['theme_id']);
         if ($pending !== null) {
-            $db->replacePublishedTheme($themeName, $userId, $pending['description'], $pending['version'], $pending['svg_content']);
+            $db->replacePublishedTheme($themeName, $userId, $pending['description'], $pending['version'], $pending['svg_content'], (bool) $pending['is_dark']);
         }
         $db->deleteTheme($data['theme_id']);
     } else {
