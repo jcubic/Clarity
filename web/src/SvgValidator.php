@@ -30,6 +30,7 @@ class SvgValidator {
 
         return [
             'filesize' => $filesize,
+            'xmlns' => $this->checkXmlns($root, $svg),
             'canvas' => $this->checkCanvas($root),
             'placeholder' => $this->checkPlaceholder($doc),
             'vector' => $this->checkVector($doc),
@@ -46,6 +47,16 @@ class SvgValidator {
         }
         $kb = number_format($size / 1024, 1);
         return ['pass' => false, 'hint' => "File is {$kb} KB. Simplify paths or remove unnecessary metadata."];
+    }
+
+    /** @return array{pass: bool, hint: string} */
+    private function checkXmlns(\DOMElement $root, string $svg): array {
+        if ($root->namespaceURI === 'http://www.w3.org/2000/svg') {
+            return ['pass' => true, 'hint' => ''];
+        }
+        $hint = 'The <svg> element must declare xmlns="http://www.w3.org/2000/svg". '
+            . 'Validate your file at https://validator.w3.org/#validate_by_upload';
+        return ['pass' => false, 'hint' => $hint];
     }
 
     /** @return array{pass: bool, hint: string} */
@@ -157,6 +168,7 @@ class SvgValidator {
     private function allFail(string $hint): array {
         $fail = ['pass' => false, 'hint' => $hint];
         return [
+            'xmlns' => $fail,
             'canvas' => $fail,
             'placeholder' => $fail,
             'vector' => $fail,
