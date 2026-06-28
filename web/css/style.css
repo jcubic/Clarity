@@ -284,7 +284,7 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .no-js-notice { padding: 16px 20px; background: color-mix(in oklab, var(--warn, oklch(80% 0.15 85)) 12%, var(--surface)); border: 1px solid color-mix(in oklab, var(--warn, oklch(80% 0.15 85)) 40%, var(--border)); border-radius: var(--radius); color: var(--fg); font-size: 14px; line-height: 1.5; margin-bottom: 32px; }
 .no-js .js-only { display: none; }
 .no-js .wizard-step[data-wizard-step="2"] { display: none; }
-.no-js .dropzone-input { position: static; width: auto; height: auto; overflow: visible; clip: unset; margin-bottom: 16px; }
+.no-js .dropzone-input { position: static; width: auto; height: auto; overflow: visible; clip: unset; margin-block: 16px; font-size: 1.5em; }
 .no-js .dropzone-label { display: none; }
 .no-js .upload-preview-grid, .no-js .wizard-step-intro { display: none; }
 
