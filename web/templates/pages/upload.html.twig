@@ -18,7 +18,7 @@
 
     <noscript>
       <div class="no-js-notice">
-        <strong>JavaScript required.</strong> The upload wizard needs JavaScript for file validation and the multi-step flow. Please enable JavaScript to continue.
+        ⚠ This form works better with JavaScript enabled — you get a step-by-step wizard, live SVG validation, and a preview of your icons before publishing.
       </div>
     </noscript>
 
@@ -31,7 +31,7 @@
       </ol>
     </div>
 
-    <form class="wizard-form" method="post" action="/upload" enctype="multipart/form-data" novalidate>
+    <form class="wizard-form" method="post" action="/upload" enctype="multipart/form-data">
       {# ── Step 1: Upload ── #}
       <fieldset class="wizard-step" data-wizard-step="1">
         <legend class="wizard-step-legend"><span class="wizard-step-num">01</span> Upload your SVG</legend>
@@ -98,7 +98,7 @@
         <div class="form-row">
           <div class="form-field">
             <label for="theme-name" class="form-label">Theme name</label>
-            <input type="text" name="theme_name" id="theme-name" required pattern="[A-Za-z0-9_\-]{2,32}" minlength="2" maxlength="32" placeholder="e.g. cyberpunk" class="form-input" />
+            <input type="text" name="theme_name" id="theme-name" required pattern="[A-Za-z0-9_\-]{2,32}" minlength="2" maxlength="32" placeholder="e.g. cyberpunk" class="form-input"{% if prefill_theme %} value="{{ prefill_theme }}" readonly{% endif %} />
             <span class="form-hint">2–32 characters, letters, numbers, hyphens, underscores</span>
             <span class="form-error" id="theme-name-error"></span>
           </div>
@@ -107,7 +107,7 @@
         <div class="form-row">
           <div class="form-field">
             <label for="theme-description" class="form-label">Description</label>
-            <input type="text" name="theme_description" id="theme-description" required maxlength="200" placeholder="e.g. Neon pink and electric cyan for a synthwave look" class="form-input" />
+            <input type="text" name="theme_description" id="theme-description" required maxlength="200" placeholder="e.g. Neon pink and electric cyan for a synthwave look" class="form-input"{% if prefill_description %} value="{{ prefill_description }}"{% endif %} />
             <span class="form-hint">Short tagline for the gallery — max 200 characters</span>
             <span class="form-error" id="theme-description-error"></span>
           </div>
@@ -124,7 +124,7 @@
         <div class="form-row">
           <div class="form-field">
             <label class="form-checkbox">
-              <input type="checkbox" name="is_dark" value="1" checked />
+              <input type="checkbox" name="is_dark" value="1"{% if prefill_mode == 'light' %}{% else %} checked{% endif %} />
               <span>Dark theme — icons are designed for a dark background</span>
             </label>
             <span class="form-hint">Uncheck if your template uses dark icons on a light background</span>
@@ -167,7 +167,7 @@
             <label for="username" class="form-label">Username</label>
             <div class="form-input-prefix">
               <span class="form-prefix">@</span>
-              <input type="text" name="username" id="username" required pattern="[A-Za-z0-9_\-]{2,32}" minlength="2" maxlength="32" placeholder="yourname" class="form-input" />
+              <input type="text" name="username" id="username" required pattern="[A-Za-z0-9_\-]{2,32}" minlength="2" maxlength="32" placeholder="yourname" class="form-input"{% if prefill_username %} value="{{ prefill_username }}" readonly{% endif %} />
             </div>
             <span class="form-hint">Your theme slug will be <code>@username/theme</code></span>
             <span class="form-error" id="username-error"></span>

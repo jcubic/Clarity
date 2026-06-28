@@ -281,8 +281,12 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 
 .form-banner { padding: 16px 20px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; line-height: 1.5; margin-bottom: 32px; }
 .form-banner--error { background: color-mix(in oklab, var(--err) 12%, var(--surface)); border-color: color-mix(in oklab, var(--err) 40%, var(--border)); color: var(--err); }
-.no-js-notice { padding: 16px 20px; background: color-mix(in oklab, var(--err) 12%, var(--surface)); border: 1px solid color-mix(in oklab, var(--err) 40%, var(--border)); border-radius: var(--radius); color: var(--fg); font-size: 14px; line-height: 1.5; margin-bottom: 32px; }
-.no-js-notice strong { color: var(--err); }
+.no-js-notice { padding: 16px 20px; background: color-mix(in oklab, var(--warn, oklch(80% 0.15 85)) 12%, var(--surface)); border: 1px solid color-mix(in oklab, var(--warn, oklch(80% 0.15 85)) 40%, var(--border)); border-radius: var(--radius); color: var(--fg); font-size: 14px; line-height: 1.5; margin-bottom: 32px; }
+.no-js .js-only { display: none; }
+.no-js .wizard-step[data-wizard-step="2"] { display: none; }
+.no-js .dropzone-input { position: static; width: auto; height: auto; overflow: visible; clip: unset; margin-bottom: 16px; }
+.no-js .dropzone-label { display: none; }
+.no-js .upload-preview-grid, .no-js .wizard-step-intro { display: none; }
 
 .wizard-stepper { margin-bottom: 40px; }
 .stepper { display: flex; list-style: none; margin: 0; padding: 0; gap: 0; }
@@ -332,9 +336,9 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
   transition: opacity 0.15s;
 }
 .upload-preview-tile:hover .upload-preview-tile-name { opacity: 1; }
-.upload-preview-grid--light { background: oklch(92% 0.005 245); border-color: oklch(85% 0.005 245); }
-.upload-preview-grid--light .upload-preview-tile { background: oklch(96% 0.005 245); border-color: oklch(85% 0.005 245); }
-.upload-preview-grid--light .upload-preview-tile-name { color: oklch(40% 0.01 245); }
+.wizard-form:has(input[name="is_dark"]:not(:checked)) .upload-preview-grid { background: oklch(92% 0.005 245); border-color: oklch(85% 0.005 245); }
+.wizard-form:has(input[name="is_dark"]:not(:checked)) .upload-preview-tile { background: oklch(96% 0.005 245); border-color: oklch(85% 0.005 245); }
+.wizard-form:has(input[name="is_dark"]:not(:checked)) .upload-preview-tile-name { color: oklch(40% 0.01 245); }
 
 .wizard-step + .wizard-step { margin-top: 48px; padding-top: 48px; border-top: 1px solid var(--border); }
 .js .wizard-step + .wizard-step { margin-top: 0; padding-top: 0; border-top: 0; }

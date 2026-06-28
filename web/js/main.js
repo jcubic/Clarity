@@ -101,6 +101,7 @@
   // Upload wizard — stepper & drag-and-drop
   var wizard = document.querySelector('.wizard-form');
   if (wizard) {
+    wizard.setAttribute('novalidate', '');
     var steps = Array.prototype.slice.call(wizard.querySelectorAll('.wizard-step'));
     var stepperItems = Array.prototype.slice.call(document.querySelectorAll('.stepper-step'));
     var currentStep = 1;
@@ -396,14 +397,6 @@
       overwriteCheck.addEventListener('change', updateNextBtn3);
     }
 
-    var isDarkCheck = wizard.querySelector('input[name="is_dark"]');
-    var previewGrid = document.getElementById('upload-preview-grid');
-    if (isDarkCheck && previewGrid) {
-      isDarkCheck.addEventListener('change', function () {
-        previewGrid.classList.toggle('upload-preview-grid--light', !isDarkCheck.checked);
-      });
-    }
-
     if (dropzone) {
       ['dragenter', 'dragover'].forEach(function (evt) {
         dropzone.addEventListener(evt, function (e) {
@@ -460,18 +453,6 @@
       return '';
     }, updateSubmitBtn);
 
-    // Pre-fill and lock fields from query params (?theme=name&username=user)
-    var params = new URLSearchParams(window.location.search);
-    var qTheme = params.get('theme');
-    var qUser = params.get('username');
-    if (qTheme && themeInput) {
-      themeInput.value = qTheme;
-      themeInput.readOnly = true;
-    }
-    if (qUser && usernameInput) {
-      usernameInput.value = qUser;
-      usernameInput.readOnly = true;
-    }
   }
 
   // Background toggle for icon grids

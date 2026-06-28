@@ -274,9 +274,14 @@ $app->get('/upload', function (Request $request, Response $response) use ($jwtSe
         fn($name) => $iconsByName[$name] ?? null,
         $coverIcons
     ));
+    $params = $request->getQueryParams();
     return $view->render($response, 'pages/upload.html.twig', [
         'auth_user' => $user,
         'preview_icons' => array_values($previewIcons),
+        'prefill_theme' => $params['theme'] ?? '',
+        'prefill_username' => $params['username'] ?? '',
+        'prefill_mode' => $params['mode'] ?? '',
+        'prefill_description' => $params['description'] ?? '',
     ]);
 });
 
@@ -345,6 +350,13 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
     if (!preg_match('/^[A-Za-z0-9_\-]{2,32}$/', $themeName)) {
         return $view->render($response, 'pages/upload.html.twig', [
             'error' => 'Invalid theme name. Use 2–32 characters: letters, numbers, hyphens, underscores.',
+            'auth_user' => $authUser,
+        ]);
+    }
+
+    if (mb_strlen($description) > 200) {
+        return $view->render($response, 'pages/upload.html.twig', [
+            'error' => 'Description must be 200 characters or fewer.',
             'auth_user' => $authUser,
         ]);
     }
