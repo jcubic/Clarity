@@ -75,6 +75,12 @@ $twig->getEnvironment()->addFilter(new \Twig\TwigFilter('with_hash', function ($
 $app->add(TwigMiddleware::create($app, $twig));
 
 $icons = json_decode(file_get_contents(__DIR__ . '/icons.json'), true);
+$coverIcons = json_decode(file_get_contents(__DIR__ . '/cover-icons.json'), true);
+
+$iconsByName = [];
+foreach ($icons as $icon) {
+    $iconsByName[$icon['name']] = $icon;
+}
 
 $variants = [
     [
@@ -106,57 +112,14 @@ $variants = [
     ['id' => 'albus', 'name' => 'Albus', 'latin' => 'white · bright', 'oklch' => '95% 0.005 245', 'light' => false],
 ];
 
-$gallery = [
-    [
-        'id' => 'cyberpunk', 'name' => 'Cyberpunk', 'author' => '@bob',
-        'tagline' => 'Neon pink and electric cyan. Synthwave on every glyph — install: <code>@bob/cyberpunk</code>.',
-        'version' => 'v1.0', 'date' => '2026-05', 'featured' => true,
-        'cover_icons' => ['terminal', 'code', 'music', 'monitor'],
-    ],
-    [
-        'id' => 'lunaris', 'name' => 'Lunaris', 'author' => '@riverstone',
-        'tagline' => 'Cold moonlight on glass. Built for OLED displays after midnight.',
-        'version' => 'v1.2', 'date' => '2026-04', 'featured' => false,
-        'cover_icons' => ['folder', 'music', 'camera', 'clock'],
-    ],
-    [
-        'id' => 'volcanic', 'name' => 'Volcanic', 'author' => '@firekat',
-        'tagline' => 'Magma orange against deep ash. Loud, on purpose.',
-        'version' => 'v0.9', 'date' => '2026-05', 'featured' => false,
-        'cover_icons' => ['terminal', 'power', 'code', 'disk'],
-    ],
-    [
-        'id' => 'forest', 'name' => 'Forest Glass', 'author' => '@osvald',
-        'tagline' => 'Translucent moss with a soft fill. Easy on long sessions.',
-        'version' => 'v2.0', 'date' => '2026-04', 'featured' => false,
-        'cover_icons' => ['maps', 'weather', 'notes', 'home'],
-    ],
-    [
-        'id' => 'tokyo', 'name' => 'Tokyo Night', 'author' => '@kazuya',
-        'tagline' => 'Violet-blue, tuned to the popular Vim/Neovim colorscheme.',
-        'version' => 'v1.0', 'date' => '2026-03', 'featured' => false,
-        'cover_icons' => ['browser', 'chat', 'video', 'settings'],
-    ],
-    [
-        'id' => 'paper', 'name' => 'Paper Bag', 'author' => '@brownie',
-        'tagline' => 'Warm sepia. Pairs with the Solarized GTK theme.',
-        'version' => 'v1.4', 'date' => '2026-05', 'featured' => false,
-        'cover_icons' => ['doc', 'mail', 'calendar', 'pdf'],
-    ],
-    [
-        'id' => 'inverse', 'name' => 'Inverse', 'author' => '@null',
-        'tagline' => 'Pure white on absolute black. For maximum contrast setups.',
-        'version' => 'v0.4', 'date' => '2026-05', 'featured' => false,
-        'cover_icons' => ['monitor', 'keyboard', 'printer', 'archive'],
-    ],
-];
-
-$app->get('/', function (Request $request, Response $response) use ($icons, $variants, $gallery) {
+$app->get('/', function (Request $request, Response $response) use ($icons, $variants, $db, $coverIcons) {
     $view = Twig::fromRequest($request);
+    $published = $db->getPublishedThemes();
     return $view->render($response, 'pages/home.html.twig', [
         'icons' => $icons,
         'variants' => $variants,
-        'gallery' => $gallery,
+        'published_themes' => $published,
+        'cover_icons' => $coverIcons,
     ]);
 });
 
@@ -354,6 +317,36 @@ $app->get('/api/theme/{user}/{name}', function (Request $request, Response $resp
     }
     $response->getBody()->write($svg);
     return $response->withHeader('Content-Type', 'image/svg+xml');
+});
+
+$app->get('/api/icon/{user}/{theme}/{icon}', function (Request $request, Response $response, array $args) use ($db, $iconsByName) {
+    $iconName = $args['icon'];
+    if (!isset($iconsByName[$iconName])) {
+        return $response->withStatus(404);
+    }
+
+    $theme = $db->getThemeSvgWithMeta($args['user'], $args['theme']);
+    if ($theme === null) {
+        return $response->withStatus(404);
+    }
+
+    $rendered = str_replace(
+        ['{{PATH}}', '{{TITLE}}'],
+        [$iconsByName[$iconName]['d'], $iconName],
+        $theme['svg_content']
+    );
+
+    $etag = '"' . md5($rendered) . '"';
+    $ifNoneMatch = $request->getHeaderLine('If-None-Match');
+    if ($ifNoneMatch === $etag) {
+        return $response->withStatus(304);
+    }
+
+    $response->getBody()->write($rendered);
+    return $response
+        ->withHeader('Content-Type', 'image/svg+xml')
+        ->withHeader('ETag', $etag)
+        ->withHeader('Cache-Control', 'public, max-age=3600');
 });
 
 $app->get('/install', function (Request $request, Response $response) use ($db) {

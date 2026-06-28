@@ -221,25 +221,9 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .gallery-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s; --card-color: var(--accent); color: inherit; text-decoration: none; }
 .gallery-card:hover { transform: translateY(-2px); border-color: var(--card-color); box-shadow: 0 18px 36px -18px color-mix(in oklab, var(--card-color) 60%, transparent); }
 .gallery-card:focus-visible { outline: 2px solid var(--card-color); outline-offset: 3px; }
-.gallery-card--featured { position: relative; }
-.gallery-card--featured::before {
-  content: 'Featured';
-  position: absolute;
-  top: 14px; right: 14px;
-  z-index: 2;
-  padding: 4px 10px;
-  font: 500 10px/1 var(--font-mono);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: oklch(15% 0.05 320);
-  background: var(--card-color);
-  border-radius: 999px;
-  box-shadow: 0 0 14px color-mix(in oklab, var(--card-color) 70%, transparent);
-}
-.gallery-card--cyberpunk { --card-color: oklch(70% 0.28 340); }
 .gallery-cover { position: relative; aspect-ratio: 16 / 9; padding: 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; place-items: center; background: var(--bg); border-bottom: 1px solid var(--border); overflow: hidden; isolation: isolate; }
 .gallery-cover::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--card-color) 22%, transparent) 0%, transparent 70%); z-index: -1; }
-.gallery-cover svg { width: 100%; height: 100%; aspect-ratio: 1; color: var(--card-color); }
+.gallery-cover svg, .gallery-cover img { width: 100%; height: 100%; aspect-ratio: 1; color: var(--card-color); }
 .gallery-body { padding: 16px 18px 14px; }
 .gallery-name { display: flex; align-items: center; gap: 10px; margin: 0 0 4px; font: 600 16px/1.3 var(--font-sans); color: var(--fg); letter-spacing: -0.01em; }
 .gallery-name::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--card-color); box-shadow: 0 0 10px var(--card-color); }
@@ -251,12 +235,6 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
 .gallery-pending p { margin: 0; font-size: 14px; color: var(--fg-muted); }
 .gallery-pending p + p { margin-top: 8px; color: var(--fg-dim); font-size: 13px; }
 
-.gallery-card--lunaris   { --card-color: oklch(82% 0.04 250); }
-.gallery-card--volcanic  { --card-color: oklch(64% 0.22 30); }
-.gallery-card--forest    { --card-color: oklch(70% 0.14 155); }
-.gallery-card--tokyo     { --card-color: oklch(60% 0.18 280); }
-.gallery-card--paper     { --card-color: oklch(70% 0.10 75); }
-.gallery-card--inverse   { --card-color: oklch(96% 0.005 245); }
 
 /* === Create your own === */
 .create { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }

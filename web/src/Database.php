@@ -236,6 +236,38 @@ class Database {
     }
 
     /**
+     * @return array{svg_content: string, updated_at: string}|null
+     */
+    public function getThemeSvgWithMeta(string $username, string $themeName): ?array {
+        if (!$this->pdo) {
+            return null;
+        }
+        $stmt = $this->pdo->prepare(
+            "SELECT t.svg_content, t.updated_at FROM themes t
+             JOIN users u ON t.user_id = u.id
+             WHERE u.username = ? AND t.name = ? AND t.status = 'published'"
+        );
+        $stmt->execute([$username, $themeName]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row !== false ? $row : null;
+    }
+
+    /**
+     * @return array<int, array{name: string, description: string, version: string, username: string, created_at: string, updated_at: string}>
+     */
+    public function getPublishedThemes(): array {
+        if (!$this->pdo) {
+            return [];
+        }
+        return $this->pdo->query(
+            "SELECT t.name, t.description, t.version, u.username, t.created_at, t.updated_at
+             FROM themes t JOIN users u ON t.user_id = u.id
+             WHERE t.status = 'published'
+             ORDER BY t.updated_at DESC"
+        )->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
      * @return array<int, array{id: int, name: string, description: string, version: string, username: string|null, email: string|null, status: string, created_at: string, updated_at: string}>
      */
     public function getAllThemes(): array {

@@ -6,30 +6,37 @@
         <h2 id="gallery-heading" class="section-title">Themes from the field.</h2>
         <p class="section-lead">Custom palettes published by Clarity users. Each one keeps the Clarity geometry and swaps in its own color story.</p>
       </header>
-      <a class="gallery-cta" href="#create">
+      <a class="gallery-cta" href="/upload">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plus"/></svg>
         Submit yours
       </a>
     </div>
 
+    {% if published_themes is defined and published_themes|length > 0 %}
     <div class="gallery-grid">
-      {% for card in gallery %}
-      <a class="gallery-card gallery-card--{{ card.id }}{% if card.featured %} gallery-card--featured{% endif %}" href="theme-{{ card.id }}.html" aria-label="{{ card.name }} by {{ card.author }} — open theme page">
+      {% for theme in published_themes %}
+      <div class="gallery-card" aria-label="{{ theme.name }} by @{{ theme.username }}">
         <div class="gallery-cover" aria-hidden="true">
-          {% for icon_id in card.cover_icons %}
-          <svg viewBox="0 0 24 24"><use href="#i-{{ icon_id }}"/></svg>
+          {% for icon_name in cover_icons %}
+          <img src="/api/icon/{{ theme.username }}/{{ theme.name }}/{{ icon_name }}" alt="{{ icon_name }}" loading="lazy" width="48" height="48">
           {% endfor %}
         </div>
         <div class="gallery-body">
-          <h3 class="gallery-name">{{ card.name }}</h3>
-          <p class="gallery-tagline">{{ card.tagline|raw }}</p>
+          <h3 class="gallery-name">{{ theme.name }}</h3>
+          <p class="gallery-tagline">{{ theme.description }}</p>
         </div>
         <div class="gallery-meta">
-          <span>{{ card.author }}</span>
-          <span>{{ card.version }} · {{ card.date }}</span>
+          <span>@{{ theme.username }}</span>
+          <span>{{ theme.version }} · {{ theme.updated_at|date('Y-m') }}</span>
         </div>
-      </a>
+      </div>
       {% endfor %}
     </div>
+    {% else %}
+    <div class="gallery-pending">
+      <p>No community themes yet — be the first!</p>
+      <p><a href="/upload">Upload your theme</a></p>
+    </div>
+    {% endif %}
   </div>
 </section>
