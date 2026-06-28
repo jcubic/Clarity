@@ -152,12 +152,14 @@ foreach ($variantData as $v) {
 $app->get('/', function (Request $request, Response $response) use ($icons, $variants, $db, $coverIcons, $stats) {
     $view = Twig::fromRequest($request);
     $published = $db->getPublishedThemes();
+    $installs = $db->getCounter('installs');
     return $view->render($response, 'pages/home.html.twig', [
         'icons' => $icons,
         'variants' => $variants,
         'stats' => $stats,
         'published_themes' => $published,
         'cover_icons' => $coverIcons,
+        'installs' => $installs,
     ]);
 });
 

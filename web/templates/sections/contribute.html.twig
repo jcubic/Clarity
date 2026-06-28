@@ -23,8 +23,9 @@
       <dl>
         <dt>type</dt><dd>GTK+ icon theme</dd>
         <dt>install</dt><dd><code>~/.icons/Clarity</code></dd>
-        <dt>variants</dt><dd>5</dd>
-        <dt>icons</dt><dd>920 unique · 2,923 total</dd>
+        <dt>variants</dt><dd>{{ stats.variants }}</dd>
+        <dt>icons</dt><dd>{{ stats.unique_icons|number_format }} unique · {{ stats.with_symlinks|number_format }} total</dd>
+        <dt>installs</dt><dd>{{ installs|number_format }}</dd>
         <dt>issues</dt><dd><a href="https://github.com/jcubic/Clarity/issues">github.com/jcubic/Clarity/issues</a></dd>
       </dl>
     </aside>
