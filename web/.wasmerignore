@@ -2,3 +2,4 @@ docker-compose.yml
 files.txt
 Dockerfile
 Makefile
+.env.local
