@@ -2,8 +2,12 @@
 
 ![Clarity Icon Theme](.github/splash-screen.svg)
 
-Clean monoshape icons in nine color themes, plus community themes uploaded by users.
-Includes a CLI manager for switching variants, installing community themes, and building icons.
+Clarity is a clean monoshape icon theme for Linux, that alows you to customize your system just as
+you want.
+
+* one command to pick any color you want,
+* 1000 unique icons, over 3000 including symlinks,
+* 13 builtin styles, with additional provided by cummunity.
 
 **Website:** [clarity.pl.eu.org](https://clarity.pl.eu.org)
 
