@@ -551,6 +551,15 @@ section { padding: clamp(72px, 10vw, 112px) 0; position: relative; }
   text-wrap: pretty;
 }
 .td-hero-tagline strong { color: var(--fg); font-weight: 500; }
+.td-edit-link {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: 6px;
+  color: var(--fg-muted);
+  transition: color .15s;
+}
+.td-edit-link:hover { color: var(--accent); }
+.td-edit-link svg { width: 16px; height: 16px; }
 
 .td-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 

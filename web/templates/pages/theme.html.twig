@@ -36,6 +36,11 @@
 
         <p class="td-hero-tagline">
           {{ theme.description }}
+          {% if is_owner %}
+          <a href="/theme/{{ theme.username }}/{{ theme.name }}/edit" class="td-edit-link" aria-label="Edit metadata">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-edit"/></svg>
+          </a>
+          {% endif %}
         </p>
 
         <div class="td-hero-actions">
@@ -70,9 +75,9 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
             <span class="td-like-count">{{ like_count }}</span>
           </button>
+          <a href="/api/theme/{{ theme.username }}/{{ theme.name }}/template" download="{{ theme.name }}.svg" class="button button--ghost button--small">Download</a>
           {% if is_owner %}
-          <a href="/upload?theme={{ theme.name }}&username={{ theme.username }}&mode={{ theme.is_dark ? 'dark' : 'light' }}&description={{ theme.description|url_encode }}&version={{ theme.version|url_encode }}" class="button button--ghost button--small">Re-upload</a>
-          <a href="/theme/{{ theme.username }}/{{ theme.name }}/edit" class="button button--ghost button--small">Edit metadata</a>
+          <a href="/upload?theme={{ theme.name }}&username={{ theme.username }}&mode={{ theme.is_dark ? 'dark' : 'light' }}&description={{ theme.description|url_encode }}&version={{ theme.version|url_encode }}" class="button button--ghost button--small">Edit</a>
           <form method="post" action="/theme/{{ theme.username }}/{{ theme.name }}/delete" class="td-delete-form">
             <button type="submit" class="button button--small btn--danger-ghost" onclick="return confirm('Are you sure you want to delete {{ theme.name }}? This cannot be undone.')">Delete</button>
           </form>

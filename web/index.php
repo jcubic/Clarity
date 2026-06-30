@@ -587,6 +587,23 @@ $app->get('/api/theme/{user}/{name}', function (Request $request, Response $resp
     return $response->withHeader('Content-Type', 'image/svg+xml');
 });
 
+$app->get('/api/theme/{user}/{name}/template', function (Request $request, Response $response, array $args) use ($db) {
+    $svg = $db->getThemeSvg($args['user'], $args['name']);
+    if ($svg === null) {
+        return $response->withStatus(404);
+    }
+    $svg = preg_replace(
+        '/<path\s*([^>]*)\bd="\\{\\{PATH\\}\\}"\s*([^>]*)\/>/',
+        '<circle id="icon-placeholder" cx="64" cy="64" r="56" $1$2/>',
+        $svg
+    ) ?? $svg;
+    $filename = $args['name'] . '.svg';
+    $response->getBody()->write($svg);
+    return $response
+        ->withHeader('Content-Type', 'image/svg+xml')
+        ->withHeader('Content-Disposition', 'attachment; filename="' . $filename . '"');
+});
+
 $app->get('/api/theme/{user}/{name}/version', function (Request $request, Response $response, array $args) use ($db) {
     $theme = $db->getThemeDetail($args['user'], $args['name']);
     if ($theme === null) {
