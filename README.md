@@ -48,7 +48,7 @@ make install
 
 ## Install from Packages
 
-Download `.deb` or `.rpm` from the [releases](https://github.com/jcubic/Clarity/releases) page:
+Download `.deb`, `.rpm`, or `.tar.gz` from the [releases](https://github.com/jcubic/Clarity/releases) page:
 
 ```bash
 # Debian/Ubuntu
@@ -56,6 +56,11 @@ sudo dpkg -i clarity-icons_*.deb
 
 # Fedora/RHEL
 sudo rpm -i clarity-icons-*.rpm
+
+# Tarball (any distro)
+tar xzf clarity-icons-*.tar.gz
+cd clarity-icons-*/
+make install
 ```
 
 ## Repository Structure
