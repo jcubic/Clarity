@@ -2,6 +2,11 @@
 
 All notable changes to the Clarity Icon Theme are documented in this file.
 
+## 1.0.0-beta.3 (TBA)
+
+### Icons
+* fix up-arrow icon in thunar
+
 ## 1.0.0-beta.2 (2026-07-01)
 
 ### CLI
