@@ -8,6 +8,7 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * fix up-arrow icon in thunar
 * new icons (Thunar):  open-menu, view-grid, image-red-eye, view-compact, view-dual, view-list
 * fix rendering symbolic icons in Thunar's toolbar
+* add missing flat templates to the `clarity` commands
 
 ## 1.0.0-beta.2 (2026-07-01)
 

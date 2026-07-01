@@ -14,7 +14,7 @@ ICON_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/icons/Clarity"
 COMMUNITY_DIR="${CLARITY_HOME}/community"
 API_BASE="https://clarity.pl.eu.org"
 REPO="jcubic/Clarity"
-BUILTIN_VARIANTS="canus dark_canus albus caeruleus lux_caeruleus violaceus lux_violaceus viridis luteus"
+BUILTIN_VARIANTS=`ls ${CLARITY_HOME}/src/template_* | sed -e 's/.svg//' -e 's/.*template_//'`
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
