@@ -1,0 +1,29 @@
+#
+# Symbolic icon mappings
+# Maps source SVGs to monochrome symbolic output icons
+# Format: <source-svg> <output-path>
+#
+# Licensed under CC-BY-SA 4.0 license
+# Copyright (c) 2010-2026 Jakub Jankiewicz <https://jakub.jankiewicz.org>
+
+# Thunar
+
+actions/open-menu.svg scalable/actions/open-menu-symbolic.svg
+actions/back.svg scalable/actions/go-previous-symbolic.svg
+actions/forward.svg scalable/actions/go-next-symbolic.svg
+actions/up.svg scalable/actions/go-up-symbolic.svg
+places/user-home.svg scalable/actions/go-home-symbolic.svg
+actions/tab-new.svg scalable/actions/tab-new-symbolic.svg
+actions/window-new.svg scalable/actions/window-new-symbolic.svg
+actions/view-dual.svg scalable/actions/view-dual-symbolic.svg
+actions/undo.svg scalable/actions/edit-undo-symbolic.svg
+actions/redo.svg scalable/actions/edit-redo-symbolic.svg
+actions/gtk-zoom-out.svg scalable/actions/zoom-out-symbolic.svg
+actions/gtk-zoom-in.svg scalable/actions/zoom-in-symbolic.svg
+actions/zoom-original.svg scalable/actions/zoom-original-symbolic.svg
+actions/view-grid.svg scalable/actions/view-grid-symbolic.svg
+actions/view-list.svg scalable/actions/view-list-symbolic.svg
+actions/view-compact.svg scalable/actions/view-compact-symbolic.svg
+actions/gtk-refresh.svg scalable/actions/view-refresh-symbolic.svg
+actions/system-search.svg scalable/actions/system-search-symbolic.svg
+actions/image-red-eye.svg scalable/actions/image-red-eye-symbolic.svg

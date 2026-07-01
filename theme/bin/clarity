@@ -194,6 +194,29 @@ cmd_use() {
         done < "$src_dir/copies"
     fi
 
+    local symbolic_template="$src_dir/_template_symbolic.svg"
+    if [[ -f "$symbolic_template" && -f "$src_dir/symbolic" ]]; then
+        local sym_count=0
+        local sym_tmpl
+        sym_tmpl=$(<"$symbolic_template")
+        while read -r sym_src sym_dst _; do
+            [[ "$sym_src" =~ ^#.*$ || -z "$sym_src" ]] && continue
+            local src_svg="$src_dir/$sym_src"
+            [[ ! -f "$src_svg" ]] && continue
+            local shape title output content
+            shape=$(grep "path.*d=" "$src_svg" | sed -e 's/.*d="\([^"]*\)".*/\1/' | head -1 || true)
+            [[ -z "$shape" ]] && continue
+            title=$(basename "$sym_dst" .svg)
+            output="$ICON_DIR/$sym_dst"
+            mkdir -p "$(dirname "$output")"
+            content="${sym_tmpl//\{\{PATH\}\}/$shape}"
+            content="${content//\{\{TITLE\}\}/$title}"
+            printf '%s\n' "$content" > "$output"
+            (( ++sym_count ))
+        done < "$src_dir/symbolic"
+        info "Built $sym_count symbolic icons"
+    fi
+
     local skip_pattern=""
     if [[ -f "$src_dir/16x16_exceptions" ]]; then
         skip_pattern=$(grep -v '^#' "$src_dir/16x16_exceptions" | tr -d '\r' | grep -v '^ *$' | paste -sd '|' - | sed -e 's/.*/(&)/')

@@ -7,10 +7,6 @@
 # Copyright (c) 2010-2025 Jakub Jankiewicz <http://jcubic.pl>
 
 # Thunar
-../places/user-home.svg scalable/actions/go-home-symbolic.svg
-up.svg scalable/actions/go-up-symbolic.svg
-forward.svg scalable/actions/go-next-symbolic.svg
-back.svg scalable/actions/go-previous-symbolic.svg
 
 # Inkscape
 inkscape.svg scalable/apps/org.inkscape.Inkscape.svg
