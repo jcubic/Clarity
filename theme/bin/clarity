@@ -412,7 +412,7 @@ cmd_install() {
 
     if [[ "$theme" != @* ]]; then
         error "Community themes use the @user/name format"
-        echo -e "  ${DIM}Example: clarity install @bob/cyberpunk${RESET}"
+        echo -e "  ${DIM}Example: clarity install @jcubic/cyberpunk${RESET}"
         exit 1
     fi
 
@@ -605,9 +605,9 @@ cmd_help() {
     echo "    clarity use dark_canus          Switch to the dark grey variant"
     echo "    clarity create ./halftone.svg   Create a local theme from SVG"
     echo "    clarity use @local/halftone     Activate the local theme"
-    echo "    clarity install @bob/cyberpunk  Install a community theme"
-    echo "    clarity use @bob/cyberpunk      Activate the community theme"
-    echo "    clarity remove @bob/cyberpunk   Remove the community theme"
+    echo "    clarity install @jcubic/cyberpunk  Install a community theme"
+    echo "    clarity use @jcubic/cyberpunk      Activate the community theme"
+    echo "    clarity remove @jcubic/cyberpunk   Remove the community theme"
     echo ""
     echo -e "${BOLD}FILES${RESET}"
     local bin_path

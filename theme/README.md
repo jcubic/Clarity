@@ -82,9 +82,9 @@ clarity --help                  # show all commands
 ### Community Themes
 
 ```bash
-clarity install @bob/cyberpunk  # install a community theme
-clarity use @bob/cyberpunk      # activate it
-clarity remove @bob/cyberpunk   # remove it
+clarity install @jcubic/cyberpunk  # install a community theme
+clarity use @jcubic/cyberpunk      # activate it
+clarity remove @jcubic/cyberpunk   # remove it
 clarity update                  # update CLI, base theme, and community themes
 ```
 
