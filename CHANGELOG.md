@@ -2,10 +2,75 @@
 
 All notable changes to the Clarity Icon Theme are documented in this file.
 
+## 1.0.0-beta.2 (2026-07-01)
+
+### CLI
+* fix `clarity update` when installed system-wide (deb/rpm) — skip CLI overwrite, warn to use package manager
+* add update notification on regular commands (checks GitHub releases once per 24h, source/tarball installs only)
+* show actual file paths in `clarity --help` FILES section (binary, completions, sources)
+* display paths with `~/` instead of `/home/<user>/`
+
+### Website
+* add download template endpoint — reverses conversion so community themes can be re-uploaded
+* add edit metadata icon next to theme description
+* update install instructions in DESCRIPTION.md for gnome-look.org
+
+### Build
+* fix `dpkg-deb` not being a standalone package — install `dpkg-dev` in CI
+* fix RPM `Version` field rejecting hyphens — split `1.0.0-beta` into `Version: 1.0.0` + `Release: 0.1.beta`
+* add tarball install instructions to README
+* add `pull_request` trigger to CI (runs checks, skips deploy)
+
 ## 1.0.0-beta (2026-06-29)
-* `clarity` manager
-* fix microphone icon
-* change build system
+
+### CLI — `clarity` theme manager
+* new `clarity` CLI replacing the old `configure`/`make`/`change-theme` workflow
+* `clarity use <variant>` — switch between built-in color variants
+* `clarity install @user/theme` — download community themes from the gallery
+* `clarity remove @user/theme` — uninstall community themes
+* `clarity create <file.svg>` — create custom local themes from SVG templates
+* `clarity update` — update CLI, base theme, and installed community themes
+* `clarity uninstall` — clean removal of all Clarity files
+* `clarity list` — show available variants with version info for community themes
+* parallel icon building with progress indicator (uses all CPU cores)
+* 16x16 PNG generation via `rsvg-convert`
+* bash and zsh shell completions
+* community theme version tracking via `.meta` files
+* symlink guard to protect development installs during `clarity update`
+
+### Website — clarity.pl.eu.org
+* new PHP website (Slim 4 + Twig 3) deployed on Wasmer Edge
+* landing page with hero, install section, variant browser, gallery, and theme creation guide
+* variant browser with tabbed icon previews and oklch color system
+* community theme gallery with cover icon previews
+* theme detail pages with icon preview, install instructions, and terminal widget
+* 3-step upload wizard with server-side SVG validation (8 checks)
+* magic link email authentication (Resend API) with JWT session cookies
+* theme editing — re-upload SVG, edit metadata (description, dark/light mode)
+* theme deletion by owner
+* likes, view counts, and download counts
+* icon rendering API with ETag caching (`/api/icon/{user}/{theme}/{icon}`)
+* theme download API (`/api/theme/{user}/{name}`)
+* lightweight version endpoint (`/api/theme/{user}/{name}/version`)
+* curl-pipe installer (`curl -sL https://clarity.pl.eu.org/install | bash`)
+* HTML minification in production
+* cache-busting with `?v=<crc32>` on static assets
+* real icon statistics from build-time `icons-stats.json`
+* Docker Compose dev environment with MySQL
+* database migrations via Python script in CI
+
+### Build system
+* `make install` / `make uninstall` for source installs to `~/.local/`
+* `make deb` — build `.deb` package with `dpkg-deb`
+* `make rpm` — build `.rpm` package with `rpmbuild`
+* `make tar.gz` — build distributable tarball
+* Dockerfile for local package build testing
+* GitHub Actions CI/CD — lint (php-cs-fixer, phpstan), validate variants, deploy to Wasmer Edge
+* GitHub Actions release workflow — build and attach packages on version tags
+* variant validation (`validate-variants.py`) ensuring `variants.json` matches template SVGs
+
+### Icons
+* fix microphone icon alignment
 
 ## 0.9.0 (2026-05-30)
 * Add Helium browser icon
