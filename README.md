@@ -13,6 +13,10 @@ you want.
 
 **Repo:** [jcubic/Clarity](https://github.com/jcubic/Clarity)
 
+## Screenshot
+
+![Screenshot of Thunar window and the terminal](.github/screenshot.png)
+
 ## Quick Install
 
 ```bash
