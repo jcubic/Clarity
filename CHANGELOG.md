@@ -13,13 +13,6 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 ### Website
 * add download template endpoint — reverses conversion so community themes can be re-uploaded
 * add edit metadata icon next to theme description
-* update install instructions in DESCRIPTION.md for gnome-look.org
-
-### Build
-* fix `dpkg-deb` not being a standalone package — install `dpkg-dev` in CI
-* fix RPM `Version` field rejecting hyphens — split `1.0.0-beta` into `Version: 1.0.0` + `Release: 0.1.beta`
-* add tarball install instructions to README
-* add `pull_request` trigger to CI (runs checks, skips deploy)
 
 ## 1.0.0-beta (2026-06-29)
 
