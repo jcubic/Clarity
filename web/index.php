@@ -689,7 +689,6 @@ $app->get('/sitemap', function (Request $request, Response $response) use ($db) 
 
     $urls = [
         ['loc' => '/', 'priority' => '1.0'],
-        ['loc' => '/upload', 'priority' => '0.6'],
     ];
 
     $themes = $db->getPublishedThemes();
