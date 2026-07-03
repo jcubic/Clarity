@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /upload
+
+User-agent: *
+Allow: /
+
+Sitemap: https://clarity.pl.eu.org/sitemap
