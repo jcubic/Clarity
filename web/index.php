@@ -676,7 +676,7 @@ SVG;
         ->withHeader('Cache-Control', 'public, max-age=86400');
 });
 
-$app->get('/sitemap.xml', function (Request $request, Response $response) use ($db) {
+$app->get('/sitemap', function (Request $request, Response $response) use ($db) {
     $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $baseUrl = $scheme . '://' . $host;
