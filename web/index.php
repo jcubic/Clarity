@@ -676,6 +676,44 @@ SVG;
         ->withHeader('Cache-Control', 'public, max-age=86400');
 });
 
+$app->get('/sitemap.xml', function (Request $request, Response $response) use ($db) {
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $baseUrl = $scheme . '://' . $host;
+
+    $urls = [
+        ['loc' => '/', 'priority' => '1.0'],
+        ['loc' => '/upload', 'priority' => '0.6'],
+    ];
+
+    $themes = $db->getPublishedThemes();
+    foreach ($themes as $theme) {
+        $urls[] = [
+            'loc' => '/theme/' . $theme['username'] . '/' . $theme['name'],
+            'lastmod' => date('Y-m-d', strtotime($theme['updated_at'])),
+            'priority' => '0.8',
+        ];
+    }
+
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    foreach ($urls as $url) {
+        $xml .= "  <url>\n";
+        $xml .= '    <loc>' . htmlspecialchars($baseUrl . $url['loc']) . "</loc>\n";
+        if (isset($url['lastmod'])) {
+            $xml .= '    <lastmod>' . $url['lastmod'] . "</lastmod>\n";
+        }
+        $xml .= '    <priority>' . $url['priority'] . "</priority>\n";
+        $xml .= "  </url>\n";
+    }
+    $xml .= '</urlset>';
+
+    $response->getBody()->write($xml);
+    return $response
+        ->withHeader('Content-Type', 'application/xml')
+        ->withHeader('Cache-Control', 'public, max-age=3600');
+});
+
 $app->get('/install', function (Request $request, Response $response) use ($db) {
     $db->incrementCounter('installs');
     return $response
