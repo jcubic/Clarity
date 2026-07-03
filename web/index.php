@@ -82,7 +82,7 @@ function setAuthCookie(Response $response, string $secret, int $userId, string $
         'exp' => time() + 30 * 86400,
     ];
     $jwt = JWT::encode($payload, $secret, 'HS256');
-    $secure = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+    $secure = isSecure();
     $cookie = 'clarity_auth=' . $jwt
         . '; Path=/; HttpOnly; SameSite=Lax; Max-Age=' . (30 * 86400)
         . ($secure ? '; Secure' : '');
@@ -96,6 +96,16 @@ function getIpHash(Request $request): string {
         $ip = trim(explode(',', $forwarded)[0]);
     }
     return hash('sha256', $ip . env('JWT_SECRET', ''));
+}
+
+function isSecure(): bool {
+    return !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+}
+
+function getBaseUrl(): string {
+    $scheme = isSecure() ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    return $scheme . '://' . $host;
 }
 
 $mime_types = [
@@ -466,9 +476,7 @@ $app->post('/upload', function (Request $request, Response $response) use ($db, 
     $token = bin2hex(random_bytes(32));
     $db->createMagicToken($token, $email, $username, $themeId);
 
-    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $baseUrl = $scheme . '://' . $host;
+    $baseUrl = getBaseUrl();
     $verifyUrl = $baseUrl . '/verify?token=' . urlencode($token);
 
     if ($mailer->isConnected()) {
@@ -644,7 +652,7 @@ $app->get('/api/icon/{user}/{theme}/{icon}', function (Request $request, Respons
 });
 
 $app->get('/logout', function (Request $request, Response $response) {
-    $secure = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+    $secure = isSecure();
     $cookie = 'clarity_auth=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0'
         . ($secure ? '; Secure' : '');
     return $response
@@ -677,9 +685,7 @@ SVG;
 });
 
 $app->get('/sitemap', function (Request $request, Response $response) use ($db) {
-    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $baseUrl = $scheme . '://' . $host;
+    $baseUrl = getBaseUrl();
 
     $urls = [
         ['loc' => '/', 'priority' => '1.0'],
