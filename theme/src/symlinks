@@ -121,6 +121,10 @@ blueberry-tray-active.svg scalable/status/blueberry-active.svg
 blueberry-tray-disabled.svg scalable/status/blueberry-disabled.svg
 ../apps/bluetooth.svg scalable/status/blueman-tray.svg
 blueberry-tray-active.svg scalable/status/blueman-active.svg
+../apps/bluetooth.svg scalable/status/blueman.svg
+blueman-disabled.svg scalable/status/blueman-x.svg
+../apps/bluetooth.svg scalable/devices/blueman-device.svg
+../apps/bluetooth.svg scalable/devices/blueman-serial.svg
 
 # Other
 emblem-personal.svg scalable/emblems/emblem-noread.svg

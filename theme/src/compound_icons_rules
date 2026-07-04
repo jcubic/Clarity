@@ -146,6 +146,7 @@ status/nm-vpn-connecting01.svg = status/nm-stage01-connecting01.svg + element_ye
 #blueberry
 status/blueberry-tray-active.svg = apps/bluetooth.svg + element_green_check_bottom.svg
 status/blueberry-tray-disabled.svg = apps/bluetooth.svg + element_red_cancel_bottom.svg
+status/blueman-disabled.svg = apps/bluetooth.svg + element_red_cancel_bottom.svg
 
 #other icons
 status/ubuntuone-client-updating.svg = status/stock_weather-cloudy.svg + element_green_reload.svg
