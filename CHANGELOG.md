@@ -10,6 +10,7 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * fix rendering symbolic icons in Thunar's toolbar
 * add missing flat templates to the `clarity` commands
 * add missing Blueman icons
+* fix 16x16 icons on GTK3 with Scale factor 2
 
 ## 1.0.0-beta.2 (2026-07-01)
 
