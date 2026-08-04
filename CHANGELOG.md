@@ -12,6 +12,7 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * add missing Blueman icons
 * fix 16x16 icons on GTK3 with Scale factor 2
 * add missing symlink to Xournal
+* add Ghosty icon
 
 ## 1.0.0-beta.2 (2026-07-01)
 
