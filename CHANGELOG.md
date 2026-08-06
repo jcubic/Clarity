@@ -14,6 +14,9 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * add missing symlinks to X11 Nvidia Driver, Xournal++, Epiphany, Cheese, GnomeAbrt, Transmission (gtk/qt), and Telegram
 * add Ghosty, Xterm, and Zoom icons
 * add Xournal++ files icons
+* add symlinks to missing xfce plugin icons
+* fix broken org.xfce.panel.netload icon
+* fix low contrast of WiFi connection icons
 
 ## 1.0.0-beta.2 (2026-07-01)
 
