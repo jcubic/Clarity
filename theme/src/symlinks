@@ -2090,3 +2090,7 @@ wine-winecfg.svg scalable/apps/winecfg.svg
 
 transmission.svg scalable/apps/transmission-gtk.svg
 transmission.svg scalable/apps/transmission-qt.svg
+
+gnome-monitor.svg scalable/apps/org.xfce.genmon.svg
+xfce4-cpugraph-plugin.svg scalable/apps/org.xfce.panel.cpugraph.svg
+sv-icon.svg scalable/apps/org.xfce.panel.systemload.svg
