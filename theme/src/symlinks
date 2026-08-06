@@ -2084,3 +2084,5 @@ telegram-desktop.svg scalable/apps/org.telegram.desktop.svg
 
 application-x-xopt.svg scalable/mimetypes/application-x-xojpp.svg
 application-x-xopt.svg scalable/mimetypes/application-x-xopp.svg
+
+nvidia.svg scalable/apps/xorg-x11-drv-nvidia.svg

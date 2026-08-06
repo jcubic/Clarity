@@ -11,7 +11,7 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * add missing flat templates to the `clarity` commands
 * add missing Blueman icons
 * fix 16x16 icons on GTK3 with Scale factor 2
-* add missing symlinks to Xournal++, Epiphany, Cheese, GnomeAbrt, and Telegram
+* add missing symlinks to X11 Nvidia Driver, Xournal++, Epiphany, Cheese, GnomeAbrt, and Telegram
 * add Ghosty, Xterm, and Zoom icons
 * add Xournal++ files icons
 
