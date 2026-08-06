@@ -42,6 +42,80 @@ get_active() {
     fi
 }
 
+# Assemble a compound icon: overlay an element's shape onto a base icon,
+# also merging the element's <defs> (gradients, clipPaths, …) so that
+# references like fill:url(#…) / clip-path:url(#…) still resolve.
+#
+# The element's <defs> block and its <g id="shape">…</g> (or single
+# <path id="shape" … />) node are lifted verbatim and inserted just before
+# </svg>. SVG allows multiple <defs> blocks and resolves id references
+# regardless of document order, so the element's defs are appended rather
+# than spliced into the base's existing <defs> (which may be absent for flat
+# templates). Element ids are expected to be namespaced (e.g. element_*) in
+# the source so they never collide with template ids.
+#
+# Usage: _merge_compound_icon <base_icon> <element_svg> <output>
+_merge_compound_icon() {
+    local base="$1" elem="$2" out="$3"
+    awk '
+        # First file (element): capture its <defs>…</defs> block and shape node.
+        FNR == NR {
+            if (in_defs) {
+                defs = defs $0 "\n"
+                if ($0 ~ /<\/defs>/) in_defs = 0
+            } else if ($0 ~ /<defs[^>]*\/>/) {
+                # self-closing <defs/>: nothing to merge
+            } else if ($0 ~ /<defs[ >]/) {
+                defs = $0 "\n"
+                in_defs = 1
+                if ($0 ~ /<\/defs>/) in_defs = 0
+            }
+
+            if (in_shape) {
+                shape = shape $0 "\n"
+                if (is_group) {
+                    depth += gsub(/<g[ >]/, "&")
+                    depth -= gsub(/<\/g>/, "&")
+                    if (depth <= 0) in_shape = 0
+                } else if ($0 ~ /\/>|<\/path>/) {
+                    in_shape = 0
+                }
+            } else if ($0 ~ /id="shape"/) {
+                shape = $0 "\n"
+                if ($0 ~ /<g[ >]/) {
+                    is_group = 1
+                    depth = gsub(/<g[ >]/, "&") - gsub(/<\/g>/, "&")
+                    in_shape = (depth > 0)
+                } else {
+                    is_group = 0
+                    in_shape = ($0 ~ /\/>|<\/path>/) ? 0 : 1
+                }
+            }
+            next
+        }
+
+        # Second file (base icon): inject the captured defs + shape before </svg>.
+        {
+            if ($0 ~ /<\/svg>/) {
+                printf "%s", defs
+                printf "%s", shape
+            }
+            print
+        }
+    ' "$elem" "$base" > "$out"
+
+    # The merged element defs may use the xlink: prefix (e.g. gradient
+    # inheritance via xlink:href). Some templates -- and arbitrary community
+    # themes -- don't declare that namespace on the root <svg>, which makes the
+    # whole file fail to parse. If xlink: is used but undeclared, add it.
+    if grep -q 'xlink:' "$out" && ! grep -q 'xmlns:xlink' "$out"; then
+        awk '!done && /<svg[ >]/ {
+            sub(/<svg/, "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\"")
+            done = 1
+        } { print }' "$out" > "$out.tmp" && mv "$out.tmp" "$out"
+    fi
+}
+
 cmd_use() {
     local theme="$1"
     local template
@@ -165,13 +239,12 @@ cmd_use() {
             local elem="${rest#*+}"
             elem="${elem# }"
             if [[ -f "$ICON_DIR/scalable/$src" && -f "$src_dir/$elem" ]]; then
-                local insert
-                insert=$(grep 'id="shape"' "$src_dir/$elem" || true)
-                if [[ -n "$insert" ]]; then
-                    local base_content
-                    base_content=$(<"$ICON_DIR/scalable/$src")
-                    printf '%s\n' "${base_content//<\/svg>/${insert}
-</svg>}" > "$ICON_DIR/scalable/$desc"
+                if grep -q 'id="shape"' "$src_dir/$elem"; then
+                    mkdir -p "$(dirname "$ICON_DIR/scalable/$desc")"
+                    _merge_compound_icon \
+                        "$ICON_DIR/scalable/$src" \
+                        "$src_dir/$elem" \
+                        "$ICON_DIR/scalable/$desc"
                 fi
             fi
         done < "$src_dir/compound_icons_rules"

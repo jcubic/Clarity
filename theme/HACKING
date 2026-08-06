@@ -65,20 +65,34 @@ apps/vlc-xmas.svg = apps/vlc.svg + vlc_xmas_hat.svg
 it take generated icon scalable/apps/vlc.svg vlc_xmas_hat.svg located in src
 directory and generated scalable/apps/vlc-xmas.svg
 
-The clarity CLI processes these rules during `clarity use` by grepping for
-the line with id="shape" in each element file and inserting it before the
-closing </svg> tag.
+The clarity CLI processes these rules during `clarity use`. For each rule it
+takes the id="shape" node from the element file and inserts it before the
+closing </svg> tag of the generated base icon.
 
 NOTE: each element need to have id="shape" on the inserted element.
 
-Right now only single element is supported but if you want to put multiple elements
-you can just add
+The shape may be a single self-closing node:
+
+<path id="shape" d="..." style="fill:#..." />
+
+or a multi-line group holding several shapes:
 
 <g id="shape"><!-- multiple shapes --></g>
 
-in fact g is not needed but it will look nicer in result svg. Look at
+(the g wrapper is not strictly required for a single shape but it looks nicer
+in the result svg. Look at vlc_xmas_hat.svg as an example.)
 
-vlc_xmas_hat.svg as an example.
+If the element uses gradients, clipPaths or other referenced resources, put
+them in a <defs> block in the element file. The whole <defs> block is copied
+verbatim into the generated icon (appended before </svg>) so that references
+like fill:url(#...) and clip-path:url(#...) resolve. SVG allows more than one
+<defs> block and resolves ids regardless of order, so this works whether or
+not the base template already has its own <defs> (flat templates have none).
+
+IMPORTANT: ids defined in an element's <defs> share the document with the
+base template's ids, so prefix them (e.g. id="element_gradient") to avoid
+colliding with template ids such as "gradient", "shape" or "glow_clip".
+element_transmission_devel.svg is an example that adds a gradient + clipPath.
 
 5. Symlinks and Copies
 ======================
