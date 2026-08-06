@@ -17,6 +17,10 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * add symlinks to missing xfce plugin icons
 * fix broken org.xfce.panel.netload icon
 * fix low contrast of WiFi connection icons
+* add compoud Transmission devel icon
+
+### CLI
+* Improve the compound icon processing
 
 ## 1.0.0-beta.2 (2026-07-01)
 
