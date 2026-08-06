@@ -2075,8 +2075,12 @@ xfdashboard.svg scalable/apps/org.xfce.xfdashboard.svg
 gnome-settings-ui-behavior.svg scalable/apps/org.xfce.panel.windowmenu.svg
 ../status/weather-few-clouds.svg scalable/apps/org.xfce.panel.weather.svg
 org.xfce.workspaces.svg scalable/apps/org.xfce.panel.pager.svg
+
 xournal.svg scalable/apps/com.github.xournalpp.xournalpp.svg
 epiphany-browser.svg scalable/apps/org.gnome.Epiphany.svg
 cheese.svg scalable/apps/org.gnome.Cheese.svg
 abrt.svg scalable/apps/org.freedesktop.GnomeAbrt.svg
 telegram-desktop.svg scalable/apps/org.telegram.desktop.svg
+
+application-x-xopt.svg scalable/mimetypes/application-x-xojpp.svg
+application-x-xopt.svg scalable/mimetypes/application-x-xopp.svg
