@@ -2084,6 +2084,8 @@ telegram-desktop.svg scalable/apps/org.telegram.desktop.svg
 
 application-x-xopt.svg scalable/mimetypes/application-x-xojpp.svg
 application-x-xopt.svg scalable/mimetypes/application-x-xopp.svg
+application-x-xopt.svg scalable/mimetypes/gnome-mime-application-x-xopp.svg
+application-x-xopt.svg scalable/mimetypes/gnome-mime-application-x-xopt.svg
 
 nvidia.svg scalable/apps/xorg-x11-drv-nvidia.svg
 wine-winecfg.svg scalable/apps/winecfg.svg
@@ -2106,3 +2108,5 @@ application-x-kindle-application.svg scalable/mimetypes/application-x-topaz-eboo
 printer.svg scalable/devices/cupsprinter.svg
 
 text-x-emacs-lisp.svg scalable/mimetypes/emacs-document23.svg
+
+../apps/question.svg scalable/actions/help-faq.svg
