@@ -2099,3 +2099,6 @@ transmission-gtk-devel.svg scalable/apps/transmission-qt-devel.svg
 
 Zoom.svg scalable/apps/application-x-zoom.svg
 application-x-kdenlivetitle.svg scalable/mimetypes/application-x-kdenlive.svg
+application-x-kindle-application.svg scalable/mimetypes/application-x-mobi8-ebook.svg
+application-x-kindle-application.svg scalable/mimetypes/application-x-mobipocket-ebook.svg
+application-x-kindle-application.svg scalable/mimetypes/application-x-topaz-ebook.svg
