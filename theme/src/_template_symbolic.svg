@@ -27,5 +27,5 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <path d="{{PATH}}" fill="currentColor"/>
+  <path d="{{PATH}}" fill="#bebebe"/>
 </svg>
