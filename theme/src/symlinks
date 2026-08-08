@@ -2110,3 +2110,4 @@ printer.svg scalable/devices/cupsprinter.svg
 text-x-emacs-lisp.svg scalable/mimetypes/emacs-document23.svg
 
 ../apps/question.svg scalable/actions/help-faq.svg
+file-manager.svg scalable/apps/org.gnome.Nautilus.svg
