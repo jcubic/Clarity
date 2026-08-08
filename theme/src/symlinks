@@ -2097,4 +2097,5 @@ sv-icon.svg scalable/apps/org.xfce.panel.systemload.svg
 
 transmission-gtk-devel.svg scalable/apps/transmission-qt-devel.svg
 
-Zoom.svg calable/apps/application-x-zoom.svg
+Zoom.svg scalable/apps/application-x-zoom.svg
+application-x-kdenlivetitle.svg scalable/mimetypes/application-x-kdenlive.svg
