@@ -20,6 +20,7 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * add compoud Transmission devel icon
 * add Amazon files icons
 * add generic emblem icon
+* update Fedora logo
 
 ### CLI
 * Improve the compound icon processing
