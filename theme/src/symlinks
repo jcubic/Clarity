@@ -2104,3 +2104,5 @@ application-x-kindle-application.svg scalable/mimetypes/application-x-mobipocket
 application-x-kindle-application.svg scalable/mimetypes/application-x-topaz-ebook.svg
 
 printer.svg scalable/devices/cupsprinter.svg
+
+text-x-emacs-lisp.svg scalable/mimetypes/emacs-document23.svg
