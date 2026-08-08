@@ -12,7 +12,7 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * add missing Blueman icons
 * fix 16x16 icons on GTK3 with Scale factor 2
 * add missing symlinks to X11 Nvidia Driver, cupsprinter, help-faq, Xournal++, Epiphany, Cheese, GnomeAbrt, Transmission (gtk/qt), and Telegram
-* add Ghosty, Xterm, Idle3, Kdenlive, JupyterLab, and Zoom icons
+* add Ghosty, Xterm, Anaconda, Idle3, Kdenlive, JupyterLab, and Zoom icons
 * add Xournal++ files icons
 * add symlinks to missing xfce plugin icons
 * fix broken org.xfce.panel.netload icon
