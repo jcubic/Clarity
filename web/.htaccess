@@ -1,0 +1,27 @@
+# Apache / LiteSpeed configuration for the Clarity website.
+#
+# Used on shared hosting such as MyDevil, where the web server honors .htaccess.
+# (Wasmer/phpix ignores this file, so it is harmless there.)
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Never expose environment files. Return 404 (not 403) so their very
+    # existence isn't revealed. Matches .env, .env.local, .env.production, ...
+    RewriteRule (^|/)\.env(\.|$) - [R=404,L]
+
+    # Hide VCS metadata as well.
+    RewriteRule (^|/)\.(git|svn|hg) - [R=404,L]
+
+    # Front controller: serve real files and directories (css, js, svg,
+    # favicons, ...) as-is, and route everything else through index.php so the
+    # Slim routes (/install, /stats, /theme/..., /api/icon/...) work.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Belt-and-suspenders: if mod_rewrite is unavailable, still deny env files.
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
