@@ -60,7 +60,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
       - name: Setup Wasmer
-        uses: wasmerio/setup-wasmer@v3.1
+        uses: wasmerio/setup-wasmer@6c5d5cfde33555ebd3e0172ba547497890c4b1c0
 
       - name: Deploy to Wasmer Edge
         run: wasmer deploy --dir web --non-interactive --no-wait --build-remote --token "$WASMER_TOKEN"
