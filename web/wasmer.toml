@@ -1,5 +1,5 @@
 [package]
-name = "jcubic/clarity-icons"
+name = "jcubic/clarity"
 version = "0.1.0"
 description = "Clarity icon theme website"
 
@@ -14,5 +14,9 @@ name = "run"
 module = "php/php:php"
 runner = "wasi"
 
+# The trailing "/app/index.php" is the php -S router script: any request that
+# does not map to a real file is dispatched to index.php (the Slim front
+# controller) instead of returning a static-server 404. Without it, deep routes
+# such as /api/icon/... and /stats never reach the app.
 [command.annotations.wasi]
-main-args = ["-t", "/app", "-S", "localhost:8080"]
+main-args = ["-t", "/app", "-S", "localhost:8080", "/app/index.php"]

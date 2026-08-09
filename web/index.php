@@ -118,8 +118,14 @@ $mime_types = [
 
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $static = __DIR__ . $uri;
-if ($uri !== '/' && file_exists($static) && is_file($static)) {
-    $ext = pathinfo($static, PATHINFO_EXTENSION);
+$ext = pathinfo($static, PATHINFO_EXTENSION);
+$name = basename($uri);
+// Serve real static assets only. Never serve PHP source or dotfiles (e.g.
+// .env, .env.local) -- otherwise a request for /index.php or /src/*.php would
+// dump the source, and dotfiles could leak secrets, since this handler runs
+// before routing whenever the file exists on disk.
+if ($uri !== '/' && $ext !== 'php' && $name !== '' && $name[0] !== '.'
+    && file_exists($static) && is_file($static)) {
     $type = $mime_types[$ext] ?? 'application/octet-stream';
     header('Content-Type: ' . $type);
     readfile($static);
