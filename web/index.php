@@ -30,6 +30,15 @@ function env(string $key, ?string $default = null): ?string {
     return $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key) ?: $default;
 }
 
+// The site is moving off Wasmer. While the name servers propagate, requests
+// that still land on Wasmer (WASMER env var set) are temporarily redirected to
+// the new home. On other hosts (e.g. MyDevil) WASMER is unset, so the app
+// serves normally. Uses 302 so browsers don't cache it past the migration.
+if (env('WASMER')) {
+    header('Location: https://clarity.jcubic.pl' . ($_SERVER['REQUEST_URI'] ?? '/'), true, 302);
+    exit;
+}
+
 $debug = env('APP_DEBUG', '0') === '1';
 
 if ($debug) {
