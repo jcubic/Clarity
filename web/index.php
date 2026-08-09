@@ -16,10 +16,14 @@ use Slim\Views\TwigMiddleware;
 use WikiZEIT\HTMLMinifier;
 use z4kn4fein\SemVer\Version;
 
-foreach (['.env.local', '.env'] as $envFile) {
-    if (file_exists(__DIR__ . '/' . $envFile)) {
-        Dotenv\Dotenv::createImmutable(__DIR__, $envFile)->safeLoad();
-    }
+// A .env file (e.g. on shared hosting like MyDevil) is authoritative and used
+// on its own; .env.local is only the local-development fallback, so a committed
+// .env.local can't shadow the server's .env. On platforms that inject variables
+// into the process environment (e.g. Wasmer), neither file exists and env()
+// reads them straight from the environment.
+$envFile = file_exists(__DIR__ . '/.env') ? '.env' : '.env.local';
+if (file_exists(__DIR__ . '/' . $envFile)) {
+    Dotenv\Dotenv::createImmutable(__DIR__, $envFile)->safeLoad();
 }
 
 function env(string $key, ?string $default = null): ?string {

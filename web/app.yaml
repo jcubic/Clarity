@@ -1,17 +1,6 @@
-annotations:
-  anybuild.run/config:
-    name: clarity
-    php_version: '8.3'
-    phpix: true
-    use_composer: true
-  anybuild.run/provider: php
-  anybuild.run/version: 0.25.0
-  wasmer.io/version: 7.2.1
-app_id: da_KwGIWtMUmvmQ
-env:
-  PHPIX_PHP_THREADS: '4'
 kind: wasmer.io/App.v0
 name: clarity
+app_id: da_KwGIWtMUmvmQ
 owner: jcubic
 package: .
 scaling:

@@ -66,3 +66,41 @@ jobs:
         run: wasmer deploy --dir web --non-interactive --no-wait --build-remote --token "$WASMER_TOKEN"
         env:
           WASMER_TOKEN: ${{ secrets.WASMER_TOKEN }}
+
+  deploy-mydevil:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs: [check]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql
+
+      # Runtime dependencies only, built here and uploaded (MyDevil serves the
+      # files as-is, there is no build step on the server).
+      - name: Install PHP dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction --working-dir=web
+
+      # Generates icons.json, icons-stats.json, per-variant icons and favicon.
+      - name: Build generated assets
+        run: make -C web ci
+
+      - name: Configure SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      # Stream web/ over SSH and extract on the server. tar-extract overwrites
+      # changed files but never deletes, so the server-side .env is preserved.
+      # .env* are excluded so local/dev secrets are never uploaded.
+      - name: Deploy to MyDevil
+        uses: nick-fields/retry@v4
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: tar -czf - --exclude='./.env' --exclude='./.env.local' --exclude='./.env.local.example' -C web . | ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} "cd ${{ secrets.SSH_PATH }} && tar -xzf -"
