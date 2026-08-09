@@ -148,6 +148,9 @@ if ($uri !== '/' && $ext !== 'php' && $name !== '' && $name[0] !== '.'
 $app = AppFactory::create();
 
 $twig = Twig::create(__DIR__ . '/templates');
+// Base URL derived from the request host, so install commands and absolute
+// links follow the domain the site is actually served from.
+$twig->getEnvironment()->addGlobal('base_url', getBaseUrl());
 $twig->getEnvironment()->addFilter(new \Twig\TwigFilter('with_hash', function ($filename) {
     return $filename . '?v=' . dechex(crc32(file_get_contents(__DIR__ . $filename)));
 }));
