@@ -420,6 +420,7 @@ text-x-python.svg scalable/mimetypes/application-x-python.svg
 gnome-mime-text-x-sql.svg scalable/mimetypes/text-x-sql.svg
 image-x-generic.svg scalable/mimetypes/image-vnd.microsoft.icon.svg
 image-x-psd.svg scalable/mimetypes/image-x-psdimage-x-psd.svg
+image-vnd.djvu.svg scalable/mimetypes/image-vnd.djvu+multipage.svg
 message-rfc822.svg scalable/mimetypes/application-mbox.svg
 application-x-executable-script.svg scalable/mimetypes/gnome-mime-text-x-csh.svg
 openofficeorg23-text.svg scalable/mimetypes/application-vnd.oasis.opendocument.text.svg
