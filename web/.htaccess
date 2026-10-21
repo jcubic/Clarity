@@ -25,3 +25,5 @@
 <FilesMatch "^\.env">
     Require all denied
 </FilesMatch>
+
+AddType application/x-httpd-php84 .php
