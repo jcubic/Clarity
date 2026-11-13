@@ -1026,6 +1026,7 @@ folder.svg scalable/places/gnome-folder.svg
 folder-music.svg scalable/places/folders-music.svg
 user-trash.svg scalable/places/gnome-fs-trash-empty.svg
 folder.svg scalable/places/inode-directory.svg
+folder.svg scalable/places/inode-mount-point.svg
 folder-images.svg scalable/places/user-pictures.svg
 folder.svg scalable/places/stock-folder.svg
 ../distributor-logos/gnome.svg scalable/places/gnome-logo-large.svg
