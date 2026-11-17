@@ -23,6 +23,7 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * update Fedora logo
 * add PulseAudio Control icon
 * add mount-point locations symlink
+* add missing microphone low sensitivity
 
 ### CLI
 * Improve the compound icon processing

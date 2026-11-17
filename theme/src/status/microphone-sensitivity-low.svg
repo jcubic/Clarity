@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title></title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title></dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 45.65625,7.875 C 35.590352,7.875 27.5,15.996602 27.5,26.0625 v 39.03125 c 0,10.065898 8.090352,18.1875 18.15625,18.1875 10.065898,0 18.1875,-8.121602 18.1875,-18.1875 V 26.0625 c 0,-10.065898 -8.121602,-18.1875 -18.1875,-18.1875 z m -30.0625,30.34375 c -2.403797,0 -4.34375,2.189532 -4.34375,4.90625 v 21.96875 c 0.01541,9.068783 3.658361,17.929863 10.0625,24.375 3.745056,3.732199 8.297197,6.529026 13.25,8.21875 v 7.25 h -14.375 c -4.206644,0 -7.59375,3.38711 -7.59375,7.59375 V 120.125 H 78.75 v -7.59375 c 0,-4.20664 -3.387106,-7.59375 -7.59375,-7.59375 h -14.375 v -7.25 c 4.952803,-1.689724 9.504944,-4.486551 13.25,-8.21875 6.404142,-6.445138 10.047086,-15.306214 10.0625,-24.375 V 43.125 c 0,-2.716727 -1.939953,-4.90625 -4.34375,-4.90625 -2.403796,0 -4.3125,2.189523 -4.3125,4.90625 v 21.96875 c 0.01541,6.707582 -2.787826,13.531557 -7.53125,18.25 -4.709682,4.747781 -11.548124,7.54741 -18.25,7.53125 -6.701876,0.01616 -13.509068,-2.783469 -18.21875,-7.53125 -4.743426,-4.718443 -7.54666,-11.542416 -7.53125,-18.25 V 43.125 c 0,-2.716718 -1.908704,-4.90625 -4.3125,-4.90625 z M 101.5625,85.4375 c -8.387239,0 -15.1875,6.800261 -15.1875,15.1875 0,8.38724 6.800261,15.15625 15.1875,15.15625 8.38724,0 15.1875,-6.76901 15.1875,-15.15625 0,-8.387239 -6.80026,-15.1875 -15.1875,-15.1875 z" style="fill:#aaaaaa"/>
+</svg>
