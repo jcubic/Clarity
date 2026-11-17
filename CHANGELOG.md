@@ -21,6 +21,8 @@ All notable changes to the Clarity Icon Theme are documented in this file.
 * add Amazon files icons
 * add generic emblem icon
 * update Fedora logo
+* add PulseAudio Control icon
+* add mount-point locations symlink
 
 ### CLI
 * Improve the compound icon processing

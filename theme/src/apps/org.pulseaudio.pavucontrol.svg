@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="128" height="128" version="1.1">
+    <title>Volume Control Icon</title>
+    <desc>This is shape (source) for Clarity vector icon theme for gtk</desc>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:title>Volume Control Icon</dc:title>
+                <dc:description>This is shape (source) for Clarity vector icon theme for gtk</dc:description>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:rights>
+                    <cc:Agent>
+                        <dc:title>Jakub Jankiewicz</dc:title>
+                    </cc:Agent>
+                </dc:rights>
+                <dc:date>2010</dc:date>
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+             </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <path d="M 67.164062 6.5 C 64.44185 6.4073327 61.709511 6.5125989 58.996094 6.8242188 C 48.240141 8.1265816 38.204695 12.624411 30.011719 19.261719 C 21.674322 26.006493 15.24041 34.967512 11.902344 45.039062 C 5.3451203 65.035902 11.400866 87.98364 26.164062 101.83594 C 12.311767 87.072738 8.2513682 64.390411 15.535156 46.359375 C 19.1762 37.255981 25.633347 29.47971 33.527344 23.886719 C 41.293184 18.393453 50.445205 15.012638 59.675781 14.566406 C 78.282867 13.532312 97.015756 24.37279 105.26172 40.175781 L 115.41797 34.316406 C 104.92825 17.47818 86.219549 7.1486709 67.164062 6.5 z M 64 33.859375 A 30.141605 30.141605 0 0 0 33.859375 64 A 30.141605 30.141605 0 0 0 64 94.140625 A 30.141605 30.141605 0 0 0 94.140625 64 A 30.141605 30.141605 0 0 0 90.101562 48.925781 L 92.03125 41.578125 L 94.140625 33.859375 L 86.421875 35.96875 L 79.074219 37.898438 A 30.141605 30.141605 0 0 0 64 33.859375 z" style="fill:#aaaaaa"/>
+</svg>
